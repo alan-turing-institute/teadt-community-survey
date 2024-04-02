@@ -8,6 +8,7 @@ st.set_page_config(initial_sidebar_state="expanded")
 
 
 st.title("Part 1: Community Composition")
+st.markdown("This section explores your understanding and current practices around assurance of digital twins.")
 
 # Disable the submit button after it is clicked
 def disable():
@@ -22,7 +23,7 @@ with st.form("survey_form"):
     # Question 1.1
     sector = st.selectbox(
         "What sector best represents your field of work?",
-        ["Aerospace", "Architecture", "Artificial Intelligence", "Automotive", "Aviation", 
+        ["Select", "Aerospace", "Architecture", "Artificial Intelligence", "Automotive", "Aviation", 
         "Construction", "Consumer Goods", "Defence", "Education", "Electronics", 
         "Engineering", "Environment and Conservation", "Finance", "Food and Agriculture", 
         "Freight", "Healthcare", "International Government", "Local Government", 
@@ -44,7 +45,7 @@ with st.form("survey_form"):
     # Question 1.3
     role = st.selectbox(
         "What is your role within your organisation?",
-        ["Developer/Engineer", "Project/Program Manager", "Executive/Decision-Maker", 
+        ["Select","Developer/Engineer", "Project/Program Manager", "Executive/Decision-Maker", 
         "Researcher/Academic", "Compliance Officer/Regulatory Affairs Manager", 
         "Technical Manager/Lead Developer", "Industry Consultant/Advisor", 
         "Ontology Engineer/Framework Architect", "Data Scientist/Analyst", 
@@ -56,7 +57,7 @@ with st.form("survey_form"):
     # Question 1.4
     primary_responsibilities = st.multiselect(
         "What are your primary responsibilities?",
-        ["Designing and Implementing", "Strategizing and Directing", "Ensuring Compliance", 
+        ["Select","Designing and Implementing", "Strategizing and Directing", "Ensuring Compliance", 
         "Advising and Consulting", "Developing Tools and Frameworks", "Other"],
         disabled="submitted" in st.session_state
     )

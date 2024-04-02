@@ -3,7 +3,8 @@ from streamlit_extras.switch_page_button import switch_page
 from db_utils import create_connection, insert_survey_result, create_table, query_data
 
 
-st.title("Assurance and Ethics Capabilities")
+st.title("Current Assurance Practices and Understanding ")
+st.markdown("This section explores your understanding and current practices around assurance of digital twins. ")
 
 # Initialize session state for showing additional content
 if 'show_def' not in st.session_state:
@@ -41,8 +42,16 @@ if st.session_state.show_def:
     :::
     """, unsafe_allow_html=True)
 
-    if st.button('Continue'):
-        st.session_state.continue_clicked = True
+    definition_open = st.radio(
+    "Would you consider open documentation and justification of assurance activities to be an integral component of the assurance process in digital twinning technology?",
+    ["Yes, and it was included in my initial definition of assurance.", 
+     "Yes, but I did not include it in my initial definition of assurance.", 
+     "No, I do not view it as an integral component.","I don’t know"], index=None
+    )
+
+    if definition_open:
+        if st.button('Continue'):
+            st.session_state.continue_clicked = True
 
 if st.session_state.continue_clicked:   
     # Use a container for the rest of the questions to allow dynamic updates
@@ -50,78 +59,25 @@ if st.session_state.continue_clicked:
     with container:
         st.subheader("Current Assurance Practices")
         # Question 2.2
-        governance_requirements = st.text_area(
-            "2.2 What governance or legal requirements does your organization adhere to/reference for assurance in digital twin projects (e.g., ISO standards, GDPR)?"
-        )
-        
-        # Question 2.3
         assurance_methods = st.multiselect(
             "2.3 Which of the following assurance methods do you currently implement (if any)?",
             ["Risk Assessment", "Impact Assessment", "Bias Audit", "Compliance Audit", 
             "Conformity Assessment", "Formal Verification", "Model Cards", "None"],
             help="Based on recommendations outlined in the DSIT Practitioner Guide to AI Assurance."
         )
-        
+
+        if assurance_methods: 
         # Question 2.4
-        # Display the question above the matrix
-        st.markdown("2.4 Indicate all properties of your digital twin that you aim to assure with each method?")
-
         # Define your project lifecycle stages
-        project_stages =  ["Accuracy", "Fairness", "Privacy", "Robustness", "Transparency", "Other"]
-
-        # Dynamically set row names based on the selection made in 2.3
-        questions = assurance_methods if assurance_methods else ["None selected"]
-
-        # Create columns for the labels, matching the layout for the checkboxes
-        label_cols = st.columns(len(project_stages) + 1)  # +1 for the question label column
-
-        # Skip the first column intended for question labels
-        for col, stage in zip(label_cols[1:], project_stages):  # Start from 1 to skip the question label column
-            with col:
-                # Display the labels horizontally without rotation
-                st.markdown(f'<p style="margin-bottom: -20px; text-align: center; font-size: 14px; margin-left: -60px;">{stage}</p>', unsafe_allow_html=True)
-        # Iterate over each question/item
-        for question in questions:
-            # Create a row for each question with an additional column for the question label
-            cols = st.columns(len(project_stages) + 1)  # +1 for the question label column
-            
-            # Write the question label in the first column of the row
-            cols[0].write(question)
-            
-            # Iterate over each project stage to create a checkbox in each column
-            for col, stage in zip(cols[1:], project_stages):  # Correctly reference 'stage' here
-                with col:
-                    # Ensure each checkbox has a unique key by combining 'question' and 'stage'
-                    st.checkbox(" ", key=f"{question}_{stage}", label_visibility='collapsed')
+            properties_assured =  st.multiselect("2.4 Which of the following properties (or goals) do you currently assure, with any of the mechanisms previously selected?",
+                                             ["Accuracy", "Fairness", "Privacy", "Robustness", "Transparency", "Other"])
 
         # Question 2.5
-        assurance_execution = st.radio(
-            "2.5 Are your assurance methods carried out internally or by an external partner?",
-            ["Internal", "Third-party"], index=None
+        governance_requirements = st.multiselect(
+            "2.5 What governance or legal requirements does your organization adhere to/reference for assurance in digital twin projects (e.g., ISO standards, GDPR)?",
+            ["option 1","option 2","option 3"]
         )
         
-        # Question 2.6
-        existing_resources = st.text_area(
-            "2.6 Are you aware of any existing resources to support your use of Assurance techniques and/or technical standards?"
-        )
-
-        st.subheader("Ethics Capabilities")
-
-        # Question 2.7
-        ethics_framework = st.radio(
-            "2.7 Does your organisation have an established definition or framework for 'trustworthy' and 'ethical' digital twins?",
-            ["Yes", "No", "Don't know"], index=None  # Set default selection to avoid None
-        )
-
-        # Follow-up questions based on the response to 2.7
-        if ethics_framework == "Yes":
-            ethics_definition = st.text_area(
-                "2.7b Please describe your organisation's definition or framework for 'trustworthy' digital twins."
-            )
-            framework_development = st.text_area(
-                "2.7c How was this definition or framework developed (e.g., in-house, through consultancy, collaborative industry efforts)?"
-            )
-
     # Submit button for the rest of the survey
     if st.button("Submit & See Results"):
         conn = create_connection('survey_results.db')
@@ -131,14 +87,10 @@ if st.session_state.continue_clicked:
             # Update the data dictionary to match the questions from this section
             data = {
                 "assurance_meaning": assurance_meaning,
-                "governance_requirements": governance_requirements,
+                "governance_requirements": ', '.join(governance_requirements),
                 "assurance_methods": ', '.join(assurance_methods),  # Joining list into a string for multiselect
-                "assurance_execution": assurance_execution,
-                "existing_resources": existing_resources,
-                "ethics_framework": ethics_framework,
-                "ethics_definition": ethics_definition if ethics_framework == "Yes" else None,  # Conditional based on ethics_framework response
-                "framework_development": framework_development if ethics_framework == "Yes" else None  # Conditional based on ethics_framework response
-            }
+                 "properties_assured": ', '.join(properties_assured),
+                  }
             # Assuming 'insert_survey_result' is a function you've defined to insert data into your database
             insert_survey_result(conn, "assurance_survey", data)  # Update table name as needed
             st.success("Survey result saved successfully!")
@@ -146,4 +98,4 @@ if st.session_state.continue_clicked:
         else:
             st.error("Could not connect to the database.")
         
-        switch_page("Survey_Capabilities_Results")
+        switch_page("Capabilities_Results")

@@ -11,24 +11,7 @@ def create_connection(db_file):
         print(f"Error connecting to database: {e}")
 
 def create_table(conn):
-    # Define your assurance methods and properties as they appear in your form
-    assurance_methods = ["Risk Assessment", "Impact Assessment", "Bias Audit", "Compliance Audit", 
-                         "Conformity Assessment", "Formal Verification", "Model Cards", "None"]
-    project_stages = ["Accuracy", "Fairness", "Privacy", "Robustness", "Transparency", "Other"]
-
-    # Generate column definitions for each method-property combination
-    method_property_columns = []
-    for method in assurance_methods:
-        for property in project_stages:
-            # Format the column name to match your key naming convention
-            column_name = f"{method}_{property}".replace(" ", "_").lower()
-            method_property_columns.append(f"{column_name} BOOLEAN")
-
-    # Combine all column definitions into a single string
-    method_property_columns_str = ",\n".join(method_property_columns)
-
-    # SQL statement to create the table with all columns, including method-property combinations
-    create_table_sql = f"""
+    create_table_sql = """
         CREATE TABLE IF NOT EXISTS assurance_survey (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             sector TEXT,
@@ -38,6 +21,7 @@ def create_table(conn):
             assurance_meaning TEXT,
             governance_requirements TEXT,
             assurance_methods TEXT,
+            properties_assured TEXT,
             assurance_execution TEXT,
             existing_resources TEXT,
             ethics_framework TEXT,
@@ -51,7 +35,14 @@ def create_table(conn):
             importance_gemini_principles INTEGER,
             difficulty_operationalizing INTEGER,
             satisfaction_integration INTEGER,
-            {method_property_columns_str},  -- Add the dynamically generated columns here
+            additional_insights TEXT,
+            workshop_interest BOOLEAN,
+            agree_integration INTEGER,
+            agree_communicate INTEGER,
+            agree_linking INTEGER,
+            lifecycle_stages TEXT,
+            satisfaction_docs INTEGER,
+            email TEXT,
             timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
         );
     """

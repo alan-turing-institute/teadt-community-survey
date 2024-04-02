@@ -25,4 +25,4 @@ st.caption("Read more about the options on the streamlit documentation site: [ht
 if st.button('Next'):
         # Redirect to the next section of the survey
         st.write("Redirecting to the survey...")  
-        switch_page("Consent")
+        switch_page("Community")

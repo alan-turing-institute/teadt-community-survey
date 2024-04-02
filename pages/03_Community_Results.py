@@ -5,7 +5,7 @@ from plot_utils import plot_pie_chart
 
 st.title("Part 1 Results: Community Composition")
 
-conn = create_connection('survey_results.db')
+conn = create_connection('mock_survey_results.db')
 if conn:
 
     # Query data

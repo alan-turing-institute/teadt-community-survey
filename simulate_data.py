@@ -1,131 +1,73 @@
-import sqlite3
-from sqlite3 import Error
 import random
+from faker import Faker
+from db_utils import create_connection, create_table, insert_survey_result
 
-def create_connection(db_file):
-    """Create a database connection to a SQLite database."""
-    try:
-        conn = sqlite3.connect(db_file)
-        return conn
-    except Error as e:
-        print(e)
+# Initialize Faker
+fake = Faker()
 
-def create_table(conn):
-    """Create the table in the SQLite database."""
-    try:
-        cursor = conn.cursor()
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS assurance_survey (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                sector TEXT,
-                location TEXT,
-                role TEXT,
-                responsibilities TEXT,
-                assurance_meaning TEXT,
-                governance_requirements TEXT,
-                assurance_methods TEXT,
-                assurance_execution TEXT,
-                existing_resources TEXT,
-                ethics_framework TEXT,
-                ethics_definition TEXT,
-                framework_development TEXT,
-                biggest_challenges TEXT,
-                type_of_support TEXT,
-                sorted_support_types TEXT,
-                ethical_issues TEXT,
-                value_ethical_principles INTEGER,
-                importance_gemini_principles INTEGER,
-                difficulty_operationalizing INTEGER,
-                satisfaction_integration INTEGER,
-                risk_assessment_accuracy BOOLEAN,
-                risk_assessment_fairness BOOLEAN,
-                risk_assessment_privacy BOOLEAN,
-                risk_assessment_robustness BOOLEAN,
-                risk_assessment_transparency BOOLEAN,
-                risk_assessment_other BOOLEAN,
-                impact_assessment_accuracy BOOLEAN,
-                impact_assessment_fairness BOOLEAN,
-                impact_assessment_privacy BOOLEAN,
-                impact_assessment_robustness BOOLEAN,
-                impact_assessment_transparency BOOLEAN,
-                impact_assessment_other BOOLEAN,
-                bias_audit_accuracy BOOLEAN,
-                bias_audit_fairness BOOLEAN,
-                bias_audit_privacy BOOLEAN,
-                bias_audit_robustness BOOLEAN,
-                bias_audit_transparency BOOLEAN,
-                bias_audit_other BOOLEAN,
-                compliance_audit_accuracy BOOLEAN,
-                compliance_audit_fairness BOOLEAN,
-                compliance_audit_privacy BOOLEAN,
-                compliance_audit_robustness BOOLEAN,
-                compliance_audit_transparency BOOLEAN,
-                compliance_audit_other BOOLEAN,
-                conformity_assessment_accuracy BOOLEAN,
-                conformity_assessment_fairness BOOLEAN,
-                conformity_assessment_privacy BOOLEAN,
-                conformity_assessment_robustness BOOLEAN,
-                conformity_assessment_transparency BOOLEAN,
-                conformity_assessment_other BOOLEAN,
-                formal_verification_accuracy BOOLEAN,
-                formal_verification_fairness BOOLEAN,
-                formal_verification_privacy BOOLEAN,
-                formal_verification_robustness BOOLEAN,
-                formal_verification_transparency BOOLEAN,
-                formal_verification_other BOOLEAN,
-                model_cards_accuracy BOOLEAN,
-                model_cards_fairness BOOLEAN,
-                model_cards_privacy BOOLEAN,
-                model_cards_robustness BOOLEAN,
-                model_cards_transparency BOOLEAN,
-                model_cards_other BOOLEAN,
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-            );
-        """)
-        conn.commit()
-    except Error as e:
-        print(f"Error creating table: {e}")
+# Function to generate a random list of items from a given list
+def random_list(choices):
+    return random.sample(choices, random.randint(1, len(choices)))
 
-def insert_simulated_data(conn, num_entries=100):
-    """Insert simulated data into the database."""
-    cursor = conn.cursor()
-    
-    # Define your assurance methods and properties as they appear in your form
-    assurance_methods = ["Risk Assessment", "Impact Assessment", "Bias Audit", "Compliance Audit", 
-                         "Conformity Assessment", "Formal Verification", "Model Cards", "None"]
-    project_stages = ["Accuracy", "Fairness", "Privacy", "Robustness", "Transparency", "Other"]
+# Function to generate mock data for one survey entry
+def generate_mock_data():
+    # Define possible choices for each field based on your survey questions
+    sectors = ["Aerospace", "Architecture", "Artificial Intelligence", "Automotive", "Aviation"]
+    roles = ["Developer/Engineer", "Project/Program Manager", "Executive/Decision-Maker"]
+    responsibilities = ["Designing and Implementing", "Strategizing and Directing", "Ensuring Compliance"]
+    assurance_methods = ["Risk Assessment", "Impact Assessment", "Bias Audit", "Compliance Audit"]
+    properties_assured = ["Accuracy", "Fairness", "Privacy", "Robustness", "Transparency"]
+    ethics_framework_options = ["Yes", "No", "Don't know"]
+    support_types = ["Examples of effective practices", "Toolkit of methods and tools", "Guidance on selecting practices"]
 
-    for _ in range(num_entries):
-        # Start with fixed data for columns not related to method-property combinations
-        data = [None, "Technology", "United States", "Developer/Engineer", "Designing and Implementing",
-                "Understanding assurance in DT", "ISO standards", "Risk Assessment,Impact Assessment",
-                "Internal", "Online resources", "Yes", "Trustworthiness definition", "In-house development",
-                "Lack of resources", "Guidance,Case studies", "Case studies,Guidance", "Data privacy issues",
-                random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5)]
+    # Generate random data for each field
+    data = {
+        "sector": random.choice(sectors),
+        "location": fake.country(),
+        "role": random.choice(roles),
+        "responsibilities": ', '.join(random_list(responsibilities)),
+        "assurance_meaning": fake.sentence(),
+        "governance_requirements": fake.sentence(),
+        "assurance_methods": ', '.join(random_list(assurance_methods)),
+        "properties_assured": ', '.join(random_list(properties_assured)),
+        "assurance_execution": random.choice(["Internal", "Third-party"]),
+        "existing_resources": fake.sentence(),
+        "ethics_framework": random.choice(ethics_framework_options),
+        "ethics_definition": fake.sentence() if random.choice([True, False]) else None,
+        "framework_development": fake.sentence() if random.choice([True, False]) else None,
+        "biggest_challenges": fake.sentence(),
+        "type_of_support": ', '.join(random_list(support_types)),
+        "sorted_support_types": ', '.join(random_list(support_types)),
+        "ethical_issues": fake.sentence(),
+        "value_ethical_principles": random.randint(1, 5),
+        "importance_gemini_principles": random.randint(1, 5),
+        "difficulty_operationalizing": random.randint(1, 5),
+        "satisfaction_integration": random.randint(1, 5),
+        "additional_insights": fake.sentence(),
+        "workshop_interest": random.choice([True, False]),
+        "email": fake.email() if random.choice([True, False]) else None
+    }
 
-        # Append random boolean values for each method-property combination
-        for method in assurance_methods:
-            for property in project_stages:
-                data.append(random.choice([True, False]))
+    return data
 
-        # Construct the SQL insert statement
-        placeholders = ', '.join(['?'] * len(data))
-        sql = f"INSERT INTO assurance_survey VALUES ({placeholders})"
-
-        # Execute the insert operation
-        cursor.execute(sql, data)
-    
-    conn.commit()
-    print(f"Inserted {num_entries} simulated entries into the database.")
-
-if __name__ == "__main__":
-    db_file = 'survey_results_sim.db'
+# Main function to create the mock database and populate it with random data
+def create_mock_database(db_file, entries=100):
     conn = create_connection(db_file)
-
-    if conn is not None:
+    if conn:
         create_table(conn)
-        insert_simulated_data(conn, num_entries=100)  # Adjust num_entries as needed
+
+        for _ in range(entries):
+            mock_data = generate_mock_data()
+            insert_survey_result(conn, "assurance_survey", mock_data)
+
+        print(f"Inserted {entries} mock entries into {db_file}")
         conn.close()
     else:
-        print("Error! Cannot create the database connection.")
+        print("Failed to create database connection.")
 
+# Specify the name of your mock database file and the number of mock entries you want
+mock_db_file = 'mock_survey_results.db'
+mock_entries = 100  # Change this number based on how many mock entries you want
+
+# Create the mock database
+create_mock_database(mock_db_file, mock_entries)
