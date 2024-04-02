@@ -10,18 +10,12 @@ cd teadt-streamlit-app
 conda create --name teadt-streamlit-app python=3.11
 ```
 
-## Install with PyPI
+## Install with pip
 
-Then install streamlit and run the development server:
-
-```shell
-pip install streamlit
-```
-
-## Install with Anaconda
+Then install the project dependencies and run the development server:
 
 ```shell
-conda install conda-forge::streamlit
+pip install -r requirements.txt
 ```
 
 ## Run the app
