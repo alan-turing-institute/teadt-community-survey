@@ -2,7 +2,8 @@ import streamlit as st
 from db_utils import create_connection
 import plotly.graph_objects as go
 import pandas as pd
-from streamlit_extras.switch_page_button import switch_page 
+from streamlit_extras.switch_page_button import switch_page
+from config import DATABASE_FILE
 
 st.title("Part 2 Results: Current Practices")
 
@@ -65,7 +66,7 @@ def create_sankey_chart(source, target, value, label):
     fig.update_layout(title_text="Flow from Sector to Assurance Methods to Properties Assured", font_size=10)
     return fig
 
-conn = create_connection('mock_survey_results.db')
+conn = create_connection(DATABASE_FILE)
 if conn:
     source, target, value, label = query_sankey_data(conn)
 

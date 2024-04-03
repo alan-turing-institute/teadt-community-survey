@@ -2,10 +2,11 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page 
 from db_utils import create_connection, query_data
 from plot_utils import plot_pie_chart
+from config import DATABASE_FILE
 
 st.title("Part 1 Results: Community Composition")
 
-conn = create_connection('mock_survey_results.db')
+conn = create_connection(DATABASE_FILE)
 if conn:
 
     # Query data

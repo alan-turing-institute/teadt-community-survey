@@ -10,6 +10,7 @@ def create_connection(db_file):
     except Error as e:
         print(f"Error connecting to database: {e}")
 
+
 def create_table(conn):
     create_table_sql = """
         CREATE TABLE IF NOT EXISTS assurance_survey (
@@ -58,14 +59,15 @@ def insert_survey_result(conn, table_name, data):
     # 'data' is a dictionary where keys are column names and values are the corresponding data
 
     # Prepare the SQL statement dynamically based on the provided data
-    columns = ', '.join(data.keys())
-    placeholders = ', '.join(['?'] * len(data))
+    columns = ", ".join(data.keys())
+    placeholders = ", ".join(["?"] * len(data))
     sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
 
     # Execute the insert operation
     cur = conn.cursor()
     cur.execute(sql, tuple(data.values()))
     conn.commit()
+
 
 # Function to query data from the database
 def query_data(conn, column_name):
