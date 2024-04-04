@@ -1,8 +1,0 @@
-streamlit == 1.32.2
-streamlit-extras == 0.4.0
-black
-mypy
-pandas-stubs
-pycountry
-plotly
-email-validator
