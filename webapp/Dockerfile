@@ -1,4 +1,4 @@
-# app/Dockerfile
+# webapp/Dockerfile
 
 FROM python:3.10-slim
 
@@ -15,8 +15,8 @@ COPY  . .
 
 RUN pip3 install -r requirements.txt
 
-EXPOSE 8501
+EXPOSE 8000
 
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+HEALTHCHECK CMD curl --fail http://localhost:8000/_stcore/health
 
-ENTRYPOINT ["streamlit", "run", "home.py", "--server.port=8501", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "home.py", "--server.port=8000", "--server.address=0.0.0.0"]
