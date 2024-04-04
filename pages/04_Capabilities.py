@@ -1,22 +1,26 @@
 import streamlit as st
-from streamlit_extras.switch_page_button import switch_page 
-from db_utils import create_connection, insert_survey_result, create_table, query_data
+from streamlit_extras.switch_page_button import switch_page
+from db_utils import create_connection, insert_survey_result, create_table
 
 
 st.title("Current Assurance Practices and Understanding ")
-st.markdown("This section explores your understanding and current practices around assurance of digital twins. ")
+st.markdown(
+    "This section explores your understanding and current practices around assurance of digital twins. "
+)
 
 # Initialize session state for showing additional content
-if 'show_def' not in st.session_state:
+if "show_def" not in st.session_state:
     st.session_state.show_def = False
-if 'show_def' not in st.session_state:
+if "show_def" not in st.session_state:
     st.session_state.show_def = False
-if 'continue_clicked' not in st.session_state:
+if "continue_clicked" not in st.session_state:
     st.session_state.continue_clicked = False
+
 
 # Disable the submit button after it is clicked
 def disable():
     st.session_state.disabled = True
+
 
 # Initialize disabled for form_submit_button to False
 st.session_state.disabled = False
@@ -29,31 +33,40 @@ with st.form("question_1_form"):
     )
 
     # Submit button for assurance definition
-    submit_1 = st.form_submit_button("Submit Definition", on_click=disable, disabled=st.session_state.disabled)
+    submit_1 = st.form_submit_button(
+        "Submit Definition", on_click=disable, disabled=st.session_state.disabled
+    )
     if submit_1:
-        st.session_state['submit_1'] = True  # Mark the form as submitted
+        st.session_state["submit_1"] = True  # Mark the form as submitted
         st.session_state.show_def = True
 
 # If the response to the first question is submitted, show the rest of the content
 if st.session_state.show_def:
-    st.markdown("""
+    st.markdown(
+        """
     :::info
     **Background & Definition of Assurance:** *Assurance involves communicating reasons and evidence that help people understand and evaluate the trustworthiness of a claim (or series of claims) about a system or technology.*
     :::
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
     definition_open = st.radio(
-    "Would you consider open documentation and justification of assurance activities to be an integral component of the assurance process in digital twinning technology?",
-    ["Yes, and it was included in my initial definition of assurance.", 
-     "Yes, but I did not include it in my initial definition of assurance.", 
-     "No, I do not view it as an integral component.","I don’t know"], index=None
+        "Would you consider open documentation and justification of assurance activities to be an integral component of the assurance process in digital twinning technology?",
+        [
+            "Yes, and it was included in my initial definition of assurance.",
+            "Yes, but I did not include it in my initial definition of assurance.",
+            "No, I do not view it as an integral component.",
+            "I don’t know",
+        ],
+        index=None,
     )
 
     if definition_open:
-        if st.button('Continue'):
+        if st.button("Continue"):
             st.session_state.continue_clicked = True
 
-if st.session_state.continue_clicked:   
+if st.session_state.continue_clicked:
     # Use a container for the rest of the questions to allow dynamic updates
     container = st.container()
     with container:
@@ -61,41 +74,62 @@ if st.session_state.continue_clicked:
         # Question 2.2
         assurance_methods = st.multiselect(
             "2.3 Which of the following assurance methods do you currently implement (if any)?",
-            ["Risk Assessment", "Impact Assessment", "Bias Audit", "Compliance Audit", 
-            "Conformity Assessment", "Formal Verification", "Model Cards", "None"],
-            help="Based on recommendations outlined in the DSIT Practitioner Guide to AI Assurance."
+            [
+                "Risk Assessment",
+                "Impact Assessment",
+                "Bias Audit",
+                "Compliance Audit",
+                "Conformity Assessment",
+                "Formal Verification",
+                "Model Cards",
+                "None",
+            ],
+            help="Based on recommendations outlined in the DSIT Practitioner Guide to AI Assurance.",
         )
 
-        if assurance_methods: 
-        # Question 2.4
-        # Define your project lifecycle stages
-            properties_assured =  st.multiselect("2.4 Which of the following properties (or goals) do you currently assure, with any of the mechanisms previously selected?",
-                                             ["Accuracy", "Fairness", "Privacy", "Robustness", "Transparency", "Other"])
+        if assurance_methods:
+            # Question 2.4
+            # Define your project lifecycle stages
+            properties_assured = st.multiselect(
+                "2.4 Which of the following properties (or goals) do you currently assure, with any of the mechanisms previously selected?",
+                [
+                    "Accuracy",
+                    "Fairness",
+                    "Privacy",
+                    "Robustness",
+                    "Transparency",
+                    "Other",
+                ],
+            )
 
         # Question 2.5
         governance_requirements = st.multiselect(
             "2.5 What governance or legal requirements does your organization adhere to/reference for assurance in digital twin projects (e.g., ISO standards, GDPR)?",
-            ["option 1","option 2","option 3"]
+            ["option 1", "option 2", "option 3"],
         )
-        
+
     # Submit button for the rest of the survey
     if st.button("Submit & See Results"):
-        conn = create_connection('survey_results.db')
+        conn = create_connection("survey_results.db")
         if conn:
             create_table(conn)
 
             # Update the data dictionary to match the questions from this section
             data = {
                 "assurance_meaning": assurance_meaning,
-                "governance_requirements": ', '.join(governance_requirements),
-                "assurance_methods": ', '.join(assurance_methods),  # Joining list into a string for multiselect
-                 "properties_assured": ', '.join(properties_assured),
-                  }
+                "governance_requirements": ", ".join(governance_requirements),
+                "assurance_methods": ", ".join(
+                    assurance_methods
+                ),  # Joining list into a string for multiselect
+                "properties_assured": ", ".join(properties_assured),
+            }
             # Assuming 'insert_survey_result' is a function you've defined to insert data into your database
-            insert_survey_result(conn, "assurance_survey", data)  # Update table name as needed
+            insert_survey_result(
+                conn, "assurance_survey", data
+            )  # Update table name as needed
             st.success("Survey result saved successfully!")
             conn.close()
         else:
             st.error("Could not connect to the database.")
-        
+
         switch_page("Capabilities_Results")
