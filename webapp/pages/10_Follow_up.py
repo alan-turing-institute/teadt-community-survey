@@ -9,8 +9,10 @@ st.header("Section 5: Final Open-Ended Question")
 # Open-ended question
 st.subheader("1. Additional Insights")
 additional_insights = st.text_area(
-    "Is there anything else pertinent to the assurance of digital twins, which has not been covered, that you think is significant?",
-    help="Your insights are valuable to us. Feel free to share any thoughts or experiences."
+    "Is there anything else pertinent to the assurance of digital twins, which has not"
+    " been covered, that you think is significant?",
+    help="Your insights are valuable to us. Feel free to share any thoughts or"
+    " experiences."
 )
 
 # Email input for follow-ups
@@ -18,7 +20,8 @@ st.subheader("Interested in Follow-Ups?")
 
 # Checkbox for workshop interest
 workshop_interest = st.checkbox(
-    "I would like to join a more in-depth workshop to learn about assurance methodology & build my own assurance case under the guidance of experts.",
+    "I would like to join a more in-depth workshop to learn about assurance methodology"
+    " & build my own assurance case under the guidance of experts.",
     "I would like to be kept up-to-date on the TEA-DT project and the outcomes of this survey."
 )
 

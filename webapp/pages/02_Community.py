@@ -1,15 +1,20 @@
 import streamlit as st
 import pycountry
-from db_utils import create_connection, insert_survey_result, create_table, query_data
-from streamlit_extras.switch_page_button import switch_page
+from streamlit_extras.switch_page_button import switch_page  # type: ignore
+from pymongo import MongoClient
+import mongo_utils
+from config import USER_ID_STATE_KEY
+from typing import Any
 
-# reintroduce sidebar (collapse button will stay hidden as CSS cannot by dynamically altered)
+# reintroduce sidebar (collapse button will stay hidden as CSS cannot by
+# dynamically altered)
 st.set_page_config(initial_sidebar_state="expanded")
 
 
 st.title("Part 1: Community Composition")
 st.markdown(
-    "This section explores your understanding and current practices around assurance of digital twins."
+    "This section explores your understanding and current practices around assurance "
+    "of digital twins."
 )
 
 
@@ -124,11 +129,10 @@ with st.form("survey_form"):
 
 # Actions to take after the form is submitted
 if submitted:
-    conn = create_connection("survey_results.db")
-    if conn:
-        create_table(conn)
-
-        data = {
+    client: MongoClient = mongo_utils.init_connection()
+    if client:
+        data: dict[str, Any] = {
+            "_id": st.session_state[USER_ID_STATE_KEY],
             "sector": sector,
             "location": location,
             "role": role,
@@ -136,9 +140,9 @@ if submitted:
                 primary_responsibilities
             ),  # Joining list into a string
         }
-        insert_survey_result(conn, "assurance_survey", data)
+
+        mongo_utils.add_survey_results(client, data)
         st.success("Survey result saved successfully!")
-        conn.close()
     else:
         st.error("Could not connect to the database.")
 

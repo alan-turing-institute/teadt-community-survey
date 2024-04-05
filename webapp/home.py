@@ -1,5 +1,10 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
+from config import USER_ID_STATE_KEY
+import uuid
+
+if USER_ID_STATE_KEY not in st.session_state:
+    st.session_state[USER_ID_STATE_KEY] = str(uuid.uuid4())
 
 # Disable the sidebar
 st.set_page_config(initial_sidebar_state="collapsed")
