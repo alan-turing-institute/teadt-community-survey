@@ -1,39 +1,41 @@
 import streamlit as st
-from streamlit_extras.switch_page_button import switch_page 
-from db_utils import create_connection, query_data
+from streamlit_extras.switch_page_button import switch_page
 from plot_utils import plot_pie_chart
+from pymongo import MongoClient
+import mongo_utils
 
 st.title("Part 3 Results: Needs")
 
-conn = create_connection('survey_results.db')
-if conn:
+client: MongoClient = mongo_utils.init_connection()
+if client:
 
     # Query data
-    sector_data = query_data(conn, 'sector')
-    location_data = query_data(conn, 'location')
-    role_data = query_data(conn, 'role')
+    sector_data = mongo_utils.get_field_values(client, "sector")
+    location_data = mongo_utils.get_field_values(client, "location")
+    role_data = mongo_utils.get_field_values(client, "role")
 
     # Create columns for layout
     col1, col2, col3 = st.columns(3)
 
     # Plot pie charts and display them in their respective columns
     with col1:
-        sector_chart = plot_pie_chart(sector_data['sector'], 'Sectors Distribution')
+        sector_chart = plot_pie_chart(sector_data["sector"], "Sectors Distribution")
         st.pyplot(sector_chart)
 
     with col2:
-        location_chart = plot_pie_chart(location_data['location'], 'Locations Distribution')
+        location_chart = plot_pie_chart(
+            location_data["location"], "Locations Distribution"
+        )
         st.pyplot(location_chart)
 
     with col3:
-        role_chart = plot_pie_chart(role_data['role'], 'Roles Distribution')
+        role_chart = plot_pie_chart(role_data["role"], "Roles Distribution")
         st.pyplot(role_chart)
 
-    conn.close()
 else:
     st.error("Could not connect to the database.")
 
-if st.button('Next'):
-        # Redirect to the next section of the survey
-        st.write("Redirecting to next part...")  
-        switch_page("Attitudes")
+if st.button("Next"):
+    # Redirect to the next section of the survey
+    st.write("Redirecting to next part...")
+    switch_page("Attitudes")

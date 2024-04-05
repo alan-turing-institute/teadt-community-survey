@@ -1,6 +1,8 @@
 import streamlit as st
 import pymongo
 from pymongo import MongoClient
+from pymongo.collection import Collection
+from pymongo.cursor import Cursor
 import os
 from config import DATABASE_NAME_ENV, COLLECTION_NAME_ENV, CONNECTION_STRING_ENV
 from typing import Optional
@@ -22,6 +24,12 @@ def init_connection() -> MongoClient:
 
 
 def add_survey_results(client: MongoClient, data: dict[str, str]) -> None:
+
+    collection: Collection = get_survey_collection(client)
+    collection.update_one({"_id": data["_id"]}, {"$set": data}, upsert=True)
+
+
+def get_survey_collection(client: MongoClient) -> Collection:
     database_value: Optional[str] = os.getenv(DATABASE_NAME_ENV)
     collection_value: Optional[str] = os.getenv(COLLECTION_NAME_ENV)
 
@@ -32,6 +40,14 @@ def add_survey_results(client: MongoClient, data: dict[str, str]) -> None:
         )
 
     database = client[database_value]
-    collection = database[collection_value]
+    collection: Collection = database[collection_value]
+    return collection
 
-    collection.update_one({"_id": data["_id"]}, {"$set": data}, upsert=True)
+
+def get_field_values(client: MongoClient, field_name: str) -> dict[str, list]:
+
+    collection: Collection = get_survey_collection(client)
+
+    query_results: Cursor = collection.find(filter={}, projection=[field_name])
+
+    return {field_name: [document[field_name] for document in list(query_results)]}

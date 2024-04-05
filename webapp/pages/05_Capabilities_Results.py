@@ -1,20 +1,25 @@
 import streamlit as st
-from db_utils import create_connection
 import plotly.graph_objects as go
-import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
-from config import DATABASE_FILE
+import mongo_utils
+from pymongo import MongoClient
+from pymongo.collection import Collection
+from pymongo.cursor import Cursor
+import itertools
 
 st.title("Part 2 Results: Current Practices")
 
 
 # Function to query data for the Sankey chart
-def query_sankey_data(conn):
+def query_sankey_data(client: MongoClient):
     # Query the database for the relevant columns in the assurance_survey table
-    df = pd.read_sql(
-        "SELECT sector, assurance_methods, properties_assured FROM assurance_survey",
-        conn,
+
+    collection: Collection = mongo_utils.get_survey_collection(client)
+    query_results: Cursor = collection.find(
+        filter={},
+        projection=["sector", "assurance_methods", "properties_assured"],
     )
+    results_as_list: list[dict] = list(query_results)
 
     # Initialize lists for source, target, and value
     source = []
@@ -22,36 +27,62 @@ def query_sankey_data(conn):
     value = []
 
     # Unique lists for sectors, methods, and properties to build labels
-    sectors = df["sector"].unique().tolist()
-    methods = df["assurance_methods"].str.split(", ").explode().unique().tolist()
-    properties = df["properties_assured"].str.split(", ").explode().unique().tolist()
+    sectors: set[str] = {result["sector"] for result in results_as_list}
+    methods: set[str] = set(
+        itertools.chain.from_iterable(
+            [
+                result["assurance_methods"].split(",")
+                for result in results_as_list
+                if "assurance_methods" in result
+            ]
+        )
+    )
+    properties: set[str] = set(
+        itertools.chain.from_iterable(
+            [
+                result["properties_assured"].split(",")
+                for result in results_as_list
+                if "properties_assured" in result
+            ]
+        )
+    )
 
     # Label list combining sectors, methods, and properties
-    label = sectors + methods + properties
+    label: list[str] = list(sectors) + list(methods) + list(properties)
 
     # Map sectors, methods, and properties to their index in the label list
-    sector_index = {sector: i for i, sector in enumerate(sectors)}
-    method_index = {method: i + len(sectors) for i, method in enumerate(methods)}
+    sector_index = {sector.strip(): i for i, sector in enumerate(sectors)}
+    method_index = {
+        method.strip(): i + len(sectors) for i, method in enumerate(methods)
+    }
     property_index = {
-        property: i + len(sectors) + len(methods)
-        for i, property in enumerate(properties)
+        current_property.strip(): i + len(sectors) + len(methods)
+        for i, current_property in enumerate(properties)
     }
 
     # Aggregate data
-    for _, row in df.iterrows():
+    for row in results_as_list:
+
         sector = row["sector"]
-        if pd.notna(row["assurance_methods"]) and pd.notna(row["properties_assured"]):
+        if (
+            "assurance_methods" in row
+            and row["assurance_methods"] is not None
+            and "properties_assured" in row
+            and row["properties_assured"] is not None
+        ):
             for method in row["assurance_methods"].split(", "):
                 # Connect sector to method
-                source.append(sector_index[sector])
-                target.append(method_index[method])
+                source.append(sector_index[sector.strip()])
+                target.append(method_index[method.strip()])
                 value.append(1)  # Increment the value for this connection by 1
 
-                for property in row["properties_assured"].split(", "):
+                for current_property in row["properties_assured"].split(", "):
                     # Connect method to property
-                    source.append(method_index[method])
-                    target.append(property_index[property])
-                    value.append(1)  # Increment the value for this connection by 1
+                    source.append(method_index[method.strip()])
+                    target.append(property_index[current_property.strip()])
+                    value.append(
+                        1
+                    )  # Increment the value for this connection by 1
 
     return source, target, value, label
 
@@ -79,15 +110,14 @@ def create_sankey_chart(source, target, value, label):
     return fig
 
 
-conn = create_connection(DATABASE_FILE)
-if conn:
-    source, target, value, label = query_sankey_data(conn)
+client: MongoClient = mongo_utils.init_connection()
+if client:
+    source, target, value, label = query_sankey_data(client)
 
     # Create and display the Sankey chart
     sankey_chart = create_sankey_chart(source, target, value, label)
     st.plotly_chart(sankey_chart)
 
-    conn.close()
 else:
     st.error("Could not connect to the database.")
 
