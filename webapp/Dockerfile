@@ -2,6 +2,15 @@
 
 FROM python:3.10-slim
 
+EXPOSE 8000
+EXPOSE 27017
+
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /webapp
 
 RUN apt-get update && apt-get install -y \
@@ -15,7 +24,6 @@ COPY  . .
 
 RUN pip3 install -r requirements.txt
 
-EXPOSE 8000
 
 HEALTHCHECK CMD curl --fail http://localhost:8000/_stcore/health
 
