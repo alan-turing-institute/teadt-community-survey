@@ -1,6 +1,8 @@
 import streamlit as st
 import pycountry
+from utils import generate_streamlit_element
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
+from survey_questions import questions
 from pymongo import MongoClient
 import mongo_utils
 from config import USER_ID_STATE_KEY
@@ -17,7 +19,6 @@ st.markdown(
     "of digital twins."
 )
 
-
 # Disable the submit button after it is clicked
 def disable():
     st.session_state.disabled = True
@@ -27,97 +28,40 @@ def disable():
 if "disabled" not in st.session_state:
     st.session_state.disabled = False
 
+# Define the tags of questions to display in this section
+tags_to_display = ["sector", "location", "role", "primary_responsibilities"]
+
 # Wrap your input elements and submit button in a form
 with st.form("survey_form"):
-    # Question 1.1
-    sector = st.selectbox(
-        "What sector best represents your field of work?",
-        [
-            "Select",
-            "Aerospace",
-            "Architecture",
-            "Artificial Intelligence",
-            "Automotive",
-            "Aviation",
-            "Construction",
-            "Consumer Goods",
-            "Defence",
-            "Education",
-            "Electronics",
-            "Engineering",
-            "Environment and Conservation",
-            "Finance",
-            "Food and Agriculture",
-            "Freight",
-            "Healthcare",
-            "International Government",
-            "Local Government",
-            "Manufacturing",
-            "Maritime",
-            "Media",
-            "Mining",
-            "National Government",
-            "Nuclear Energy",
-            "Oil and Gas",
-            "Place Leadership",
-            "Rail",
-            "Renewable Energy",
-            "Smart Cities",
-            "Supply Chain and Logistics",
-            "Technology",
-            "Telecommunications",
-            "Transport",
-            "Utilities",
-            "Waste and Recycling",
-            "Water",
-        ],
-        disabled="submitted" in st.session_state,
+   # Generate Streamlit elements and assign responses to variables
+    tag = "sector"
+    sector = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag
+    )
+    tag = "location"
+    location = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag
+    )
+    tag = "role"
+    role = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag
     )
 
-    # Question 1.2
-    countries = [country.name for country in pycountry.countries]
-    location = st.selectbox(
-        "Where is your organisation located?",
-        countries,
-        disabled="submitted" in st.session_state,
-    )
-
-    # Question 1.3
-    role = st.selectbox(
-        "What is your role within your organisation?",
-        [
-            "Select",
-            "Developer/Engineer",
-            "Project/Program Manager",
-            "Executive/Decision-Maker",
-            "Researcher/Academic",
-            "Compliance Officer/Regulatory Affairs Manager",
-            "Technical Manager/Lead Developer",
-            "Industry Consultant/Advisor",
-            "Ontology Engineer/Framework Architect",
-            "Data Scientist/Analyst",
-            "Middleware/API Developer",
-            "Governance Specialist",
-            "Semantic Web Technologist",
-            "Platform Developer",
-            "Other",
-        ],
-        disabled="submitted" in st.session_state,
-    )
-
-    # Question 1.4
-    primary_responsibilities = st.multiselect(
-        "What are your primary responsibilities?",
-        [
-            "Select",
-            "Designing and Implementing",
-            "Strategizing and Directing",
-            "Ensuring Compliance",
-            "Advising and Consulting",
-            "Developing Tools and Frameworks",
-            "Other",
-        ],
-        disabled="submitted" in st.session_state,
+    tag = "primary_responsibilities"
+    primary_responsibilities = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag
     )
 
     # Submit button for the form
@@ -128,7 +72,7 @@ with st.form("survey_form"):
         st.session_state["submitted"] = True  # Mark the form as submitted
 
 # Actions to take after the form is submitted
-if submitted:
+if False:#submitted:
     client: MongoClient = mongo_utils.init_connection()
     if client:
         data: dict[str, Any] = {
