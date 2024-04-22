@@ -2,24 +2,35 @@
 
 This is a repository for a demo web app built using [streamlit](https://streamlit.io).
 
+
+## Prerequisites
+
+Before running the app, make sure you have the following prerequisites installed:
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [MongoDB](https://www.mongodb.com/try/download/community)
+
+## Installation
+
+
 To run the app, clone the repository onto your local machine and create a new virtual environment:
 
 ```shell
-git clone https://github.com/chrisdburr/teadt-streamlit-app.git
-cd teadt-streamlit-app
-conda create --name teadt-streamlit-app python=3.11
+git clone https://github.com/alan-turing-institute/teadt-community-survey.git
+cd teadt-community-survey
+conda create --name teadt-survey python=3.11
 ```
 
-## Install with pip
-
-Then install the project dependencies and run the development server:
+Start Docker Desktop then install the project dependencies:
 
 ```shell
-pip install -r requirements.txt
+make install-dependencies
+make set-up-db
 ```
 
-## Run the app
+
+## Run the app 
 
 ```shell
-streamlit run Home.py
+run-local-container
 ```

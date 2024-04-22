@@ -7,7 +7,12 @@ build-and-push-image:
 install-dependencies:
 	cd webapp && python -m pip install -r requirements.txt
 
+set-up-db:
+	docker run --name mongodb -d mongodb/mongodb-community-server:latest
+
 run-local-container:
+	cd webapp && \
+	docker build -t teadtstreamlitapp:latest -f Dockerfile .
 	docker run --rm -it -p 8000:8000 -p 27017:27017 \
 	 -e 'CONNECTION_STRING=mongodb://host.docker.internal:27017' -e 'DB_NAME=teadt_assurance' \
 	 -e 'COLLECTION_NAME=assurance_survey' teadtstreamlitapp:latest
