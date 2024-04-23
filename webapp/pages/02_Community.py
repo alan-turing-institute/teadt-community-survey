@@ -1,5 +1,4 @@
 import streamlit as st
-import pycountry
 from utils import generate_streamlit_element
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
@@ -22,7 +21,6 @@ st.markdown(
 # Disable the submit button after it is clicked
 def disable():
     st.session_state.disabled = True
-
 
 # Initialize disabled for form_submit_button to False
 if "disabled" not in st.session_state:
