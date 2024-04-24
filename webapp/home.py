@@ -49,6 +49,15 @@ st.markdown(
 st.caption(
     "This work is conducted as a part of the Trustworthy and Ethical Assurance of Digital Twins project, and is generously funded by an award from the UKRI’s Arts and Humanities Research Council as part of the BRAID programme. You can read more about the project here: https://www.turing.ac.uk/research/research-projects/trustworthy-and-ethical-assurance-digital-twins-tea-dt "
 )
+# Logo and Navigation
+col_foot_l, col_foot_m, col_foot_r = st.columns((3, 2, 3))
+with col_foot_l:
+    st.image(Image.open("webapp/img/BRAIDLogo_RGB_Landscape-tag.png"))
+with col_foot_r:
+    st.image(Image.open("webapp/img/UKRI%20logo.png"))
+
+st.write("#")
+st.write("#")
 
 # Captcha
 # Define a container to encapsulate captcha and user input fields
