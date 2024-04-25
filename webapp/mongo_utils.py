@@ -55,4 +55,6 @@ def get_field_values(client: MongoClient, field_name: str) -> dict[str, list]:
 
     query_results: Cursor = collection.find(filter={}, projection=[field_name])
 
-    return {field_name: [document[field_name] for document in list(query_results)]}
+    return {
+        field_name: [document[field_name] for document in list(query_results)]
+    }

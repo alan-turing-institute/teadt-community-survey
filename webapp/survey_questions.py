@@ -110,15 +110,18 @@ questions: dict[str, Any] = {
         "options": [
             "Bias Reviews (e.g., identifying and mitigating biases in "
             "processes or outputs)",
-            "Compliance Audits (e.g., verifying adherence to laws and " "regulations)",
+            "Compliance Audits (e.g., verifying adherence to laws and "
+            "regulations)",
             "Conformity Assessments (e.g., alignment with standards and "
             "expectations)",
             "Stakeholder Feedback Systems",
             "Risk Assessment (e.g., evaluating potential risks in projects)",
             "Impact Assessment (e.g., assessing effects on stakeholders and "
             "environments)",
-            "Information Security Reviews (e.g., safeguarding data and " "systems)",
-            "Data Quality Checks (e.g., ensuring accuracy and reliability of" " data)",
+            "Information Security Reviews (e.g., safeguarding data and "
+            "systems)",
+            "Data Quality Checks (e.g., ensuring accuracy and reliability of"
+            " data)",
             "Formal Verification (e.g., rigorously proving system properties)",
             "Post-Implementation Evaluation (e.g., reviewing performance and"
             " outcomes after deployment)",

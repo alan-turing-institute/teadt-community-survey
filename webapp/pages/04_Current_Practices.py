@@ -103,13 +103,19 @@ if st.session_state.continue_clicked:
                 "governance_requirements": ", ".join(
                     st.session_state["governance_requirements"]
                 ),
-                "assurance_methods": ", ".join(st.session_state["assurance_methods"]),
-                "properties_assured": ", ".join(st.session_state["properties_assured"]),
+                "assurance_methods": ", ".join(
+                    st.session_state["assurance_methods"]
+                ),
+                "properties_assured": ", ".join(
+                    st.session_state["properties_assured"]
+                ),
             }
             # Assuming 'insert_survey_result' is a function you've defined to
             # insert
             # data into your database
-            mongo_utils.add_survey_results(client, data)  # Update table name as needed
+            mongo_utils.add_survey_results(
+                client, data
+            )  # Update table name as needed
             st.success("Survey result saved successfully!")
         else:
             st.error("Could not connect to the database.")

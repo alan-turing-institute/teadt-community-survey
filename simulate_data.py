@@ -119,7 +119,9 @@ def create_mock_database(db_file, entries=100):
 # Specify the name of your mock database file and the number of mock entries
 # you want
 mock_db_file = "mock_survey_results.db"
-mock_entries = 100  # Change this number based on how many mock entries you want
+mock_entries = (
+    100  # Change this number based on how many mock entries you want
+)
 
 # Create the mock database
 create_mock_database(mock_db_file, mock_entries)

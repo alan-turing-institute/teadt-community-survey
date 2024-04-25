@@ -49,7 +49,9 @@ with st.form("section4_form"):
 
     # Display an image
     image_path = Image.open("webapp/img/gemini_principles.png")
-    st.image(image_path, caption="Illustration of Digital Twin Ethical Frameworks")
+    st.image(
+        image_path, caption="Illustration of Digital Twin Ethical Frameworks"
+    )
 
     # Define tags for the questions to be displayed
     tags_to_display = [

@@ -1,7 +1,9 @@
 import streamlit as st
 
 
-def generate_streamlit_element(question_text, question_type, options=None, key=None):
+def generate_streamlit_element(
+    question_text, question_type, options=None, key=None
+):
     """
     Returns the appropriate Streamlit input element based on the question type.
 

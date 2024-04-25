@@ -80,7 +80,9 @@ def query_sankey_data(client: MongoClient):
                     # Connect method to property
                     source.append(method_index[method.strip()])
                     target.append(property_index[current_property.strip()])
-                    value.append(1)  # Increment the value for this connection by 1
+                    value.append(
+                        1
+                    )  # Increment the value for this connection by 1
 
     return source, target, value, label
 
@@ -102,7 +104,8 @@ def create_sankey_chart(source, target, value, label):
     )
 
     fig.update_layout(
-        title_text="Flow from Sector to Assurance Methods to Properties " "Assured",
+        title_text="Flow from Sector to Assurance Methods to Properties "
+        "Assured",
         font_size=10,
     )
     return fig

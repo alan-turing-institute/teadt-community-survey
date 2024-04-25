@@ -30,4 +30,4 @@ run-linter:
 	python -m flake8
 
 run-formatter:
-	python -m black .
+	python -m black --line-length=79 .
