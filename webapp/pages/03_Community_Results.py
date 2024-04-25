@@ -38,4 +38,4 @@ else:
 if st.button("Next"):
     # Redirect to the next section of the survey
     st.write("Redirecting to next part...")
-    switch_page("Capabilities")
+    switch_page("Current_Practices")

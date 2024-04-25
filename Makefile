@@ -5,7 +5,7 @@ build-and-push-image:
 	docker push teadt.azurecr.io/teadtstreamlitlinux:latest
 
 install-dependencies:
-	cd webapp && python -m pip install -r requirements.txt
+	cd webapp && python -m pip install -r requirements.txt -r dev-requirements.txt  
 
 set-up-db:
 	docker run --name mongodb -d mongodb/mongodb-community-server:latest
@@ -23,3 +23,11 @@ run-local:
 	export COLLECTION_NAME=assurance_survey && \
 	streamlit run webapp/Home.py
 	
+run-type-checker:
+	python -m mypy .
+
+run-linter:
+	python -m flake8
+
+run-formatter:
+	python -m black .

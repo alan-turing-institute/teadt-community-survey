@@ -1,6 +1,6 @@
 import streamlit as st
 from utils import generate_streamlit_element
-from streamlit_extras.switch_page_button import switch_page  # type: ignore
+from streamlit_extras.switch_page_button import switch_page
 from survey_questions import questions
 from pymongo import MongoClient
 import mongo_utils
@@ -14,13 +14,16 @@ st.set_page_config(initial_sidebar_state="expanded")
 
 st.title("Part 1: Community Composition")
 st.markdown(
-    "This section explores your understanding and current practices around assurance "
+    "This section explores your understanding and current practices around "
+    "assurance "
     "of digital twins."
 )
+
 
 # Disable the submit button after it is clicked
 def disable():
     st.session_state.disabled = True
+
 
 # Initialize disabled for form_submit_button to False
 if "disabled" not in st.session_state:
@@ -31,27 +34,27 @@ tags_to_display = ["sector", "location", "role", "primary_responsibilities"]
 
 # Wrap your input elements and submit button in a form
 with st.form("survey_form"):
-   # Generate Streamlit elements and assign responses to variables
+    # Generate Streamlit elements and assign responses to variables
     tag = "sector"
     sector = generate_streamlit_element(
         questions[tag]["question"],
         questions[tag]["type"],
         options=questions[tag].get("options"),
-        key=tag
+        key=tag,
     )
     tag = "location"
     location = generate_streamlit_element(
         questions[tag]["question"],
         questions[tag]["type"],
         options=questions[tag].get("options"),
-        key=tag
+        key=tag,
     )
     tag = "role"
     role = generate_streamlit_element(
         questions[tag]["question"],
         questions[tag]["type"],
         options=questions[tag].get("options"),
-        key=tag
+        key=tag,
     )
 
     tag = "primary_responsibilities"
@@ -59,7 +62,7 @@ with st.form("survey_form"):
         questions[tag]["question"],
         questions[tag]["type"],
         options=questions[tag].get("options"),
-        key=tag
+        key=tag,
     )
 
     # Submit button for the form
@@ -70,7 +73,7 @@ with st.form("survey_form"):
         st.session_state["submitted"] = True  # Mark the form as submitted
 
 # Actions to take after the form is submitted
-if False:#submitted:
+if submitted:
     client: MongoClient = mongo_utils.init_connection()
     if client:
         data: dict[str, Any] = {
