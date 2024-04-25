@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_extras.switch_page_button import switch_page 
+from streamlit_extras.switch_page_button import switch_page  #type:ignore
 
 # Continue hiding sidebar toggle
 st.markdown(
@@ -16,7 +16,8 @@ st.markdown(
 st.title("Participant Information for the TEA-DT Survey")
 
 # Display the survey and project information
-st.markdown("""
+st.markdown(
+    """
 ### About the Survey
 This survey is a key part of the Trustworthy and Ethical Assurance for Digital Twins (TEA-DT) project, which focuses on enhancing the development and application of digital twins (DTs) through ethical assurance. The survey aims to gather insights from DT practitioners like you to understand the current landscape of practices, needs, and perceptions around building trustworthy and ethical DTs. Your participation will help us identify how DT projects can be better supported to integrate ethical principles effectively.
             
@@ -42,10 +43,13 @@ Your insights are invaluable to us, and we thank you for contributing to the adv
 
 
 **Your insights are invaluable to us, and we thank you for contributing to the advancement of trustworthy and ethical digital twins.**
-""")
+"""
+)
 
 st.markdown("## Informed Consent")
-st.markdown("Please take some time to read through the statements on the consent form below before agreeing to take part in the survey.")
+st.markdown(
+    "Please take some time to read through the statements on the consent form below before agreeing to take part in the survey."
+)
 
 # Consent questions - all must be checked 'Yes' to proceed
 consent_questions = [
@@ -58,19 +62,22 @@ consent_questions = [
     "I understand that in any report or use of the results of this research my identity will remain anonymous. I understand that my name will not be recorded.",
     "I understand that a copy of my survey results will be stored securely by The Alan Turing Institute and retained for a period of at least 5 years.",
     "I understand that all information I provide for this survey will be treated securely and confidentially.",
-    "I understand that I am free to contact any of the people involved in the research to seek further clarification and information."
+    "I understand that I am free to contact any of the people involved in the research to seek further clarification and information.",
 ]
 
 # Create a toggle for each consent statement
-consent_given = [st.toggle(statement, value=False, key=f"consent_{i}") for i, statement in enumerate(consent_questions)]
+consent_given = [
+    st.toggle(statement, value=False, key=f"consent_{i}")
+    for i, statement in enumerate(consent_questions)
+]
 
 # Check if all checkboxes are checked
 if all(consent_given):
     st.success("All consent given. Proceed to the next section of the survey.")
     # If all checkboxes are checked, show the 'Next' button
-    if st.button('Next'):
+    if st.button("Next"):
         # Redirect to the next section of the survey
-        st.write("Redirecting to the next section...")  
+        st.write("Redirecting to the next section...")
         switch_page("Community")
 
 else:
