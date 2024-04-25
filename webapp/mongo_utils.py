@@ -4,7 +4,11 @@ from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.cursor import Cursor
 import os
-from config import DATABASE_NAME_ENV, COLLECTION_NAME_ENV, CONNECTION_STRING_ENV
+from config import (
+    DATABASE_NAME_ENV,
+    COLLECTION_NAME_ENV,
+    CONNECTION_STRING_ENV,
+)
 from typing import Optional
 
 
@@ -16,7 +20,8 @@ def init_connection() -> MongoClient:
         client.server_info()
     except pymongo.errors.ServerSelectionTimeoutError:
         raise TimeoutError(
-            "Invalid API for MongoDB connection string or timed out when attempting "
+            "Invalid API for MongoDB connection string or timed out when"
+            " attempting "
             "to connect"
         )
 
@@ -50,4 +55,6 @@ def get_field_values(client: MongoClient, field_name: str) -> dict[str, list]:
 
     query_results: Cursor = collection.find(filter={}, projection=[field_name])
 
-    return {field_name: [document[field_name] for document in list(query_results)]}
+    return {
+        field_name: [document[field_name] for document in list(query_results)]
+    }

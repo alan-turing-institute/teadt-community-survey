@@ -104,7 +104,8 @@ def create_sankey_chart(source, target, value, label):
     )
 
     fig.update_layout(
-        title_text="Flow from Sector to Assurance Methods to Properties Assured",
+        title_text="Flow from Sector to Assurance Methods to Properties "
+        "Assured",
         font_size=10,
     )
     return fig

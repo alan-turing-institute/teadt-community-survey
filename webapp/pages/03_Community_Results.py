@@ -19,7 +19,9 @@ if client:
 
     # Plot pie charts and display them in their respective columns
     with col1:
-        sector_chart = plot_pie_chart(sector_data["sector"], "Sectors Distribution")
+        sector_chart = plot_pie_chart(
+            sector_data["sector"], "Sectors Distribution"
+        )
         st.pyplot(sector_chart)
 
     with col2:
@@ -38,4 +40,4 @@ else:
 if st.button("Next"):
     # Redirect to the next section of the survey
     st.write("Redirecting to next part...")
-    switch_page("Capabilities")
+    switch_page("Current_Practices")
