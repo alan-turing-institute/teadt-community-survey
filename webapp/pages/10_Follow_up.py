@@ -23,6 +23,7 @@ workshop_interest = st.checkbox(
     "I would like to join a more in-depth workshop to learn about assurance methodology"
     " & build my own assurance case under the guidance of experts.",
     "I would like to be kept up-to-date on the TEA-DT project and the outcomes of this survey.",
+    "I would like to be emailed my responses to this form (or download below)"
 )
 
 email = st.text_input("Enter your email:")
