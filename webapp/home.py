@@ -151,7 +151,6 @@ if not st.session_state["controllo"]:
                     string.ascii_uppercase + string.digits, k=length_captcha
                 )
             )
-            print("the captcha is: ", st.session_state["Captcha"])
 
         st.caption("Please verify you are human.")
         col1, col2 = st.columns(2)
@@ -161,7 +160,6 @@ if not st.session_state["controllo"]:
         captcha_text = col2.text_input("Enter captcha text")
 
         if st.button("Verify the code"):
-            print(captcha_text, st.session_state["Captcha"])
             captcha_text = captcha_text.replace(" ", "")
             # If the captcha is correct, set 'controllo' session state to True
             if (
