@@ -1,5 +1,6 @@
 import streamlit as st
 import logging
+from typing import Any, Optional
 
 WIDGET_SUFFIX: str = "widget"
 
@@ -32,8 +33,11 @@ def load_from_session(keys: list[str]) -> None:
 
 
 def generate_streamlit_element(
-    question_text, question_type, options=None, key=None
-):
+    question_text: str,
+    question_type: str,
+    options: Optional[list] = None,
+    key: Optional[str] = None,
+) -> Any:
     """
     Returns the appropriate Streamlit input element based on the question type.
 
@@ -49,23 +53,23 @@ def generate_streamlit_element(
     """
 
     widget_key: str = f"{key}_{WIDGET_SUFFIX}"
-    if question_type == "multiple_choice":
+    if question_type == "multiple_choice" and options is not None:
         return st.selectbox(
             question_text,
             options,
             key=widget_key,
             on_change=store_in_session,
-            args=[key],
+            args=(key,),
         )
-    elif question_type == "select_all":
+    elif question_type == "select_all" and options is not None:
         return st.multiselect(
             question_text,
             options,
             key=widget_key,
             on_change=store_in_session,
-            args=[key],
+            args=(key,),
         )
-    elif question_type == "likert":
+    elif question_type == "likert" and options is not None:
         # scale labels e.g. ['Strongly Disagree', 'Disagree', 'Neutral',
         #  'Agree', 'Strongly Agree']
         likert_scale_labels = options
@@ -74,22 +78,22 @@ def generate_streamlit_element(
             likert_scale_labels,
             key=widget_key,
             on_change=store_in_session,
-            args=[key],
+            args=(key,),
         )
     elif question_type == "text_area":
         return st.text_area(
             question_text,
             key=widget_key,
             on_change=store_in_session,
-            args=[key],
+            args=(key,),
         )
-    elif question_type == "radio":
+    elif question_type == "radio" and options is not None:
         return st.radio(
             question_text,
             options,
             key=widget_key,
             on_change=store_in_session,
-            args=[key],
+            args=(key,),
         )
     else:
         raise ValueError(f"Invalid question type: {question_type}")

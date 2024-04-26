@@ -4,6 +4,7 @@ beautifulsoup4==4.12.3
 black==24.3.0
 blinker==1.7.0
 cachetools==5.3.3
+captcha==0.5.0
 certifi==2024.2.2
 charset-normalizer==3.3.2
 click==8.1.7
@@ -57,6 +58,7 @@ referencing==0.34.0
 requests==2.31.0
 rich==13.7.1
 rpds-py==0.18.0
+setuptools==68.2.2
 six==1.16.0
 smmap==5.0.1
 soupsieve==2.5

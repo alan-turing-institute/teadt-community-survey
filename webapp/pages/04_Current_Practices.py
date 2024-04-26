@@ -10,6 +10,7 @@ from config import (
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
     ASSURED_PROPERTIES_STATE_KEY,
+    ASSET_DATA_SHARING_STATE_KEY,
     PARTNER_TRUST_DIFFICULTY_STATE_KEY,
     PARTNER_TRUST_CHALLENGES_STATE_KEY,
     RELIANCE_ON_EVIDENCE_STATE_KEY,
@@ -18,6 +19,7 @@ from config import (
 page_element_keys: list[str] = [
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
+    ASSET_DATA_SHARING_STATE_KEY,
     ASSURED_PROPERTIES_STATE_KEY,
     PARTNER_TRUST_DIFFICULTY_STATE_KEY,
     PARTNER_TRUST_CHALLENGES_STATE_KEY,
@@ -80,7 +82,7 @@ if st.session_state.show_def:
         unsafe_allow_html=True,
     )
 
-    if st.button("Continue"):
+    if st.button("Understood"):
         st.session_state.continue_clicked = True
 
 if st.session_state.continue_clicked:
@@ -89,35 +91,64 @@ if st.session_state.continue_clicked:
     with container:
         st.subheader("Current Assurance Practices")
         # Generate Streamlit elements for the rest of the questions
-        for tag in page_element_keys:
-            if tag != ASSURANCE_MEANING_STATE_KEY:
-                _ = generate_streamlit_element(
-                    questions[tag]["question"],
-                    questions[tag]["type"],
-                    options=questions[tag].get("options"),
-                    key=tag,
-                )
+        assurance_mechanisms = generate_streamlit_element(
+            questions["assurance_mechanisms"]["question"],
+            questions["assurance_mechanisms"]["type"],
+            options=questions["assurance_mechanisms"].get("options"),
+            key=ASSURANCE_MECHANISMS_STATE_KEY,
+        )
+
+        assured_properties = generate_streamlit_element(
+            questions["assured_properties"]["question"],
+            questions["assured_properties"]["type"],
+            options=questions["assured_properties"].get("options"),
+            key=ASSURED_PROPERTIES_STATE_KEY,
+        )
+
+        asset_data_sharing = generate_streamlit_element(
+            questions["asset_data_sharing"]["question"],
+            questions["asset_data_sharing"]["type"],
+            options=questions["asset_data_sharing"].get("options"),
+            key=ASSET_DATA_SHARING_STATE_KEY,
+        )
+
+        partner_trust_difficulty = generate_streamlit_element(
+            questions["partner_trust_difficulty"]["question"],
+            questions["partner_trust_difficulty"]["type"],
+            options=questions["partner_trust_difficulty"].get("options"),
+            key=PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+        )
+
+        partner_trust_challenges = generate_streamlit_element(
+            questions["partner_trust_challenges"]["question"],
+            questions["partner_trust_challenges"]["type"],
+            options=questions["partner_trust_challenges"].get("options"),
+            key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
+        )
+
+        reliance_on_evidence = generate_streamlit_element(
+            questions["reliance_on_evidence"]["question"],
+            questions["reliance_on_evidence"]["type"],
+            options=questions["reliance_on_evidence"].get("options"),
+            key=RELIANCE_ON_EVIDENCE_STATE_KEY,
+        )
 
     # Submit button for the rest of the survey
-    if st.button("Submit & See Results"):
+    if st.button("Continue"):
         client: MongoClient = mongo_utils.init_connection()
         if client:
 
             # Update the data dictionary to match the questions from this
             # section
             data = {
-                USER_ID_STATE_KEY: st.session_state[USER_ID_STATE_KEY],
+                "_id": st.session_state[USER_ID_STATE_KEY],
                 ASSURANCE_MEANING_STATE_KEY: assurance_meaning,
-                # TODO(cptanalatriste): Persistence is broken here. Fix later!
-                # "governance_requirements": ", ".join(
-                #     st.session_state["governance_requirements"]
-                # ),
-                # "assurance_methods": ", ".join(
-                #     st.session_state["assurance_methods"]
-                # ),
-                # "properties_assured": ", ".join(
-                #     st.session_state["properties_assured"]
-                # ),
+                ASSURANCE_MECHANISMS_STATE_KEY: assurance_mechanisms,
+                ASSURED_PROPERTIES_STATE_KEY: assured_properties,
+                ASSET_DATA_SHARING_STATE_KEY: asset_data_sharing,
+                PARTNER_TRUST_DIFFICULTY_STATE_KEY: partner_trust_difficulty,
+                PARTNER_TRUST_CHALLENGES_STATE_KEY: partner_trust_challenges,
+                RELIANCE_ON_EVIDENCE_STATE_KEY: reliance_on_evidence,
             }
             # Assuming 'insert_survey_result' is a function you've defined to
             # insert
@@ -129,5 +160,4 @@ if st.session_state.continue_clicked:
         else:
             st.error("Could not connect to the database.")
 
-        # TODO(saranas): Please check if this page transition logic is right.
         switch_page("Current_Practices_Results")

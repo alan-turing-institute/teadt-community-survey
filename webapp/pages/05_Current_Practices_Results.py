@@ -122,8 +122,7 @@ if client:
 else:
     st.error("Could not connect to the database.")
 
-if st.button("Next"):
+if st.button("Continue"):
     # Redirect to the next section of the survey
     st.write("Redirecting to next part...")
-    # TODO(saranas): Please check if this navigation change is valid.
     switch_page("Satisfaction")

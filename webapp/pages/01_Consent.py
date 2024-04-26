@@ -1,5 +1,7 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page  # type:ignore
+from config import CONSENT_STATE_KEY
+from utils import load_from_session, WIDGET_SUFFIX, store_in_session
 
 # Continue hiding sidebar toggle
 st.markdown(
@@ -114,7 +116,7 @@ st.markdown(
 )
 
 # Consent questions - all must be checked 'Yes' to proceed
-consent_questions = [
+consent_questions: list[str] = [
     "I understand and consent to participating in this survey.",
     "I understand that my participation in this survey is voluntary.",
     "I understand that I will not benefit directly from participating in this "
@@ -140,9 +142,19 @@ consent_questions = [
     "research to seek further clarification and information.",
 ]
 
+load_from_session(
+    [f"{CONSENT_STATE_KEY}_{index}" for index in range(len(consent_questions))]
+)
+
 # Create a toggle for each consent statement
 consent_given = [
-    st.toggle(statement, value=False, key=f"consent_{i}")
+    st.toggle(
+        statement,
+        value=False,
+        key=f"{CONSENT_STATE_KEY}_{i}_{WIDGET_SUFFIX}",
+        on_change=store_in_session,
+        args=(f"{CONSENT_STATE_KEY}_{i}",),
+    )
     for i, statement in enumerate(consent_questions)
 ]
 

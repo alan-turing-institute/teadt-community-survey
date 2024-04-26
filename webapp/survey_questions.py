@@ -92,6 +92,45 @@ questions: dict[str, Any] = {
         ],
         "section": "community_composition",  # Example section
     },
+    "established_dt": {
+        "tag": "established_dt",
+        "question": "Has your organisation established one"
+        "or more Digital Twins?",
+        "type": "multiple_choice",
+        "options": ["Yes", "No"],
+        "section": "community_composition",
+    },
+    "type_dt": {
+        "tag": "type_dt",
+        "question": "What type of digital twin?",
+        "type": "select_all",
+        "options": [
+            "Product",
+            "Process",
+            "Plant",
+            "System Digital Twin",
+            "Other (Please specify)",
+        ],
+        "section": "community_composition",  # Example section
+    },
+    "no_dt_reason": {
+        "tag": "no_dt_reason",
+        "question": "What is the main reason? ",
+        "type": "select_all",
+        "options": [
+            "Unclear business case/ROI",
+            "Insufficient digital awareness/skills",
+            "Lack of goodwill/competence/data assurance"
+            "trust in partner organisation",
+            "Concerns re confidentiality of data",
+            "Intellectual property rights",
+            "Regulatory concerns re DP",
+            "Info security",
+            "Legal agreement barriers",
+            "Other",
+        ],
+        "section": "community_composition",  # Example section
+    },
     ###
     # section Current practices & Understanding
     ###
@@ -468,7 +507,7 @@ questions: dict[str, Any] = {
         "question": "How prepared do you feel to develop a structured argument"
         " for how your current assurance activities relate to broader ethical "
         "goals?",
-        "type": "multiple_choice",
+        "type": "likert",
         "options": [
             "Very prepared",
             "Somewhat prepared",

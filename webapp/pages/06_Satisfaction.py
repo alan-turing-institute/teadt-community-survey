@@ -44,7 +44,7 @@ for tag in tags_to_display:
 
 # Submit button for the form
 submitted = st.button(
-    "Submit", on_click=disable_button, disabled=st.session_state.disabled
+    "Continue", on_click=disable_button, disabled=st.session_state.disabled
 )
 if submitted:
     st.session_state["submitted"] = True  # Mark the form as submitted
@@ -60,5 +60,4 @@ if submitted:
     else:
         st.error("Could not connect to the database.")
 
-    # TODO(saranas): Check if this change applies.
     switch_page("Goals_Frameworks")

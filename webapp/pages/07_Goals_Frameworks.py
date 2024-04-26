@@ -31,14 +31,15 @@ tags_to_display: list[str] = [
 ]
 load_from_session(tags_to_display)
 
-responses = {}
-for tag in tags_to_display:
-    responses[tag] = generate_streamlit_element(
-        questions[tag]["question"],
-        questions[tag]["type"],
-        options=questions[tag].get("options"),
-        key=tag,
-    )
+with st.container():
+    responses = {}
+    for tag in tags_to_display:
+        responses[tag] = generate_streamlit_element(
+            questions[tag]["question"],
+            questions[tag]["type"],
+            options=questions[tag].get("options"),
+            key=tag,
+        )
 
 # Display an image
 image_path = Image.open("webapp/img/gemini_principles.png")
@@ -59,15 +60,8 @@ for tag in tags_to_display:
         key=tag,
     )
 
-# Submit button for the form
-submitted = st.button(
-    "Submit", on_click=disable_button, disabled=st.session_state.disabled
-)
-if submitted:
-    st.session_state["submitted"] = True  # Mark the form as submitted
-
 # Actions to take after the form is submitted
-if submitted:
+if st.button("Continue"):
     client: MongoClient = mongo_utils.init_connection()
     if client:
         data: dict[str, Any] = {"_id": st.session_state[USER_ID_STATE_KEY]}
@@ -77,5 +71,4 @@ if submitted:
     else:
         st.error("Could not connect to the database.")
 
-    # TODO(saranas): Check if this page change is correct
     switch_page("Communicating_Assurance")

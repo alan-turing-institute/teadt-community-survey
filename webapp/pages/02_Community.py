@@ -10,6 +10,9 @@ from config import (
     LOCATION_STATE_KEY,
     ROLE_STATE_KEY,
     RESPONSIBILITIES_STATE_KEY,
+    ESTABLISHED_DT_STATE_KEY,
+    TYPE_DT_STATE_KEY,
+    NO_DT_REASON_STATE_KEY,
 )
 from typing import Any
 from utils import load_from_session, disable_button
@@ -22,6 +25,9 @@ page_element_keys: list[str] = [
     LOCATION_STATE_KEY,
     ROLE_STATE_KEY,
     RESPONSIBILITIES_STATE_KEY,
+    ESTABLISHED_DT_STATE_KEY,
+    TYPE_DT_STATE_KEY,
+    NO_DT_REASON_STATE_KEY,
 ]
 
 load_from_session(page_element_keys)
@@ -33,9 +39,8 @@ st.set_page_config(initial_sidebar_state="expanded")
 
 st.title("Part 1: Community Composition")
 st.markdown(
-    "This section explores your understanding and current practices around "
-    "assurance "
-    "of digital twins."
+    "Here we aim to understand the diverse backgrounds"
+    "within the digital twin community."
 )
 
 # Initialize disabled for form_submit_button to False
@@ -77,16 +82,32 @@ primary_responsibilities = generate_streamlit_element(
     key=tag,
 )
 
-# Submit button for the form
-submitted = st.button(
-    "Submit", on_click=disable_button, disabled=st.session_state.disabled
+tag = ESTABLISHED_DT_STATE_KEY
+established_dt = generate_streamlit_element(
+    questions[tag]["question"],
+    questions[tag]["type"],
+    options=questions[tag].get("options"),
+    key=tag,
 )
 
+tag = TYPE_DT_STATE_KEY
+type_dt = generate_streamlit_element(
+    questions[tag]["question"],
+    questions[tag]["type"],
+    options=questions[tag].get("options"),
+    key=tag,
+)
 
-if submitted:
-    st.session_state["submitted"] = True  # Mark the form as submitted
+tag = NO_DT_REASON_STATE_KEY
+no_dt_reason = generate_streamlit_element(
+    questions[tag]["question"],
+    questions[tag]["type"],
+    options=questions[tag].get("options"),
+    key=tag,
+)
 
-    # Actions to take after the form is submitted
+# Actions to take after the form is submitted
+if st.button("Continue"):
     client: MongoClient = mongo_utils.init_connection()
     if client:
         page_responses: dict[str, Any] = {
@@ -97,6 +118,9 @@ if submitted:
             RESPONSIBILITIES_STATE_KEY: ", ".join(
                 primary_responsibilities
             ),  # Joining list into a string
+            ESTABLISHED_DT_STATE_KEY: established_dt,
+            TYPE_DT_STATE_KEY: type_dt,
+            NO_DT_REASON_STATE_KEY: ", ".join(no_dt_reason),
         }
 
         mongo_utils.add_survey_results(client, page_responses)
