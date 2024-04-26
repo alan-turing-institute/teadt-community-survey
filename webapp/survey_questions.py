@@ -91,8 +91,6 @@ questions: dict[str, Any] = {
             "Other",
         ],
         "section": "community_composition",  # Example section
-<<<<<<< HEAD
-=======
     },
     "established_dt": {
         "tag": "established_dt",
@@ -134,7 +132,6 @@ questions: dict[str, Any] = {
             "Other"
         ],
         "section": "community_composition",  # Example section
->>>>>>> e1403b1 (fixing saving variables + adding missing questions)
     },
     ###
     # section Current practices & Understanding
@@ -512,11 +509,7 @@ questions: dict[str, Any] = {
         "question": "How prepared do you feel to develop a structured argument"
         " for how your current assurance activities relate to broader ethical "
         "goals?",
-<<<<<<< HEAD
         "type": "likert",
-=======
-        "type": "multiple_choice",
->>>>>>> e1403b1 (fixing saving variables + adding missing questions)
         "options": [
             "Very prepared",
             "Somewhat prepared",
