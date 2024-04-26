@@ -2,6 +2,10 @@
 import pycountry
 from typing import Any
 
+countries = [country.name for country in pycountry.countries]
+countries.sort()
+countries.insert(0, "Select")
+
 questions: dict[str, Any] = {
     "sector": {
         "tag": "sector",
@@ -52,7 +56,7 @@ questions: dict[str, Any] = {
         "tag": "location",
         "question": "Where is your organisation located?",
         "type": "multiple_choice",
-        "options": [country.name for country in pycountry.countries],
+        "options": countries,
         "section": "community_composition",  # Example section
     },
     "role": {
