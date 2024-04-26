@@ -468,7 +468,7 @@ questions: dict[str, Any] = {
         "question": "How prepared do you feel to develop a structured argument"
         " for how your current assurance activities relate to broader ethical "
         "goals?",
-        "type": "multiple_choice",
+        "type": "likert",
         "options": [
             "Very prepared",
             "Somewhat prepared",
