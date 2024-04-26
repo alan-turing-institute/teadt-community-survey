@@ -13,7 +13,9 @@ st.set_page_config(initial_sidebar_state="expanded")
 
 
 st.title("Part 1: Community Composition")
-st.markdown('Here we aim to understand the diverse backgrounds within the digital twin community.'
+st.markdown(
+    'Here we aim to understand the diverse backgrounds'
+    'within the digital twin community.'
 )
 
 

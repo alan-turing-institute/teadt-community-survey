@@ -94,9 +94,10 @@ questions: dict[str, Any] = {
 <<<<<<< HEAD
 =======
     },
-     "established_dt" : {
+    "established_dt": {
         "tag": "established_dt",
-        "question": "Has your organisation established one or more Digital Twins?",
+        "question": "Has your organisation established one"
+        "or more Digital Twins?",
         "type" : "multiple_choice",
         "options": [
             "Yes",
@@ -104,7 +105,7 @@ questions: dict[str, Any] = {
         ],
         "section": "community_composition"
     },
-    "type_of_dt" : {
+    "type_of_dt": {
         "tag": "type_of_dt",
         "question": "What type of digital twin?",
         "type": "select_all",
@@ -117,7 +118,7 @@ questions: dict[str, Any] = {
         ],
         "section": "community_composition",  # Example section
     },
-    "no_dt_reason" : {
+    "no_dt_reason": {
         "tag": "no_dt_reason",
         "question": "What is the main reason? ",
         "type": "select_all",
