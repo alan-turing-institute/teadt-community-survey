@@ -96,12 +96,9 @@ questions: dict[str, Any] = {
         "tag": "established_dt",
         "question": "Has your organisation established one"
         "or more Digital Twins?",
-        "type" : "multiple_choice",
-        "options": [
-            "Yes",
-            "No"
-        ],
-        "section": "community_composition"
+        "type": "multiple_choice",
+        "options": ["Yes", "No"],
+        "section": "community_composition",
     },
     "type_of_dt": {
         "tag": "type_of_dt",
@@ -123,13 +120,14 @@ questions: dict[str, Any] = {
         "options": [
             "Unclear business case/ROI",
             "Insufficient digital awareness/skills",
-            "Lack of goodwill/competence/data assurance trust in partner organisation",
+            "Lack of goodwill/competence/data assurance"
+            "trust in partner organisation",
             "Concerns re confidentiality of data",
             "Intellectual property rights",
             "Regulatory concerns re DP",
             "Info security",
             "Legal agreement barriers",
-            "Other"
+            "Other",
         ],
         "section": "community_composition",  # Example section
     },

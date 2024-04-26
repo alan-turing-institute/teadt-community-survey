@@ -14,8 +14,8 @@ st.set_page_config(initial_sidebar_state="expanded")
 
 st.title("Part 1: Community Composition")
 st.markdown(
-    'Here we aim to understand the diverse backgrounds'
-    'within the digital twin community.'
+    "Here we aim to understand the diverse backgrounds"
+    "within the digital twin community."
 )
 
 
@@ -32,7 +32,7 @@ if "disabled" not in st.session_state:
 tags_to_display = ["sector", "location", "role", "primary_responsibilities"]
 
 # Wrap your input elements and submit button in a form
-with st.form("survey_form"):
+with st.container("survey_form"):
     # Generate Streamlit elements and assign responses to variables
     tag = "sector"
     sector = generate_streamlit_element(
@@ -109,9 +109,7 @@ if submitted:
             ),  # Joining list into a string
             "established_dt": established_dt,
             "type_dt": type_dt,
-            "no_dt_reason": ", ".join(
-                no_dt_reason
-            ),
+            "no_dt_reason": ", ".join(no_dt_reason),
         }
 
         mongo_utils.add_survey_results(client, data)

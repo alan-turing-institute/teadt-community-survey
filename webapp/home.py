@@ -10,9 +10,9 @@ length_captcha = 4
 width = 200
 height = 150
 
-# Initialize session state for controlling the captcha and "Let's Start!" button
-if 'controllo' not in st.session_state or st.session_state['controllo'] == False:
-    st.session_state['controllo'] = False
+# Initialize session states
+if not st.session_state.get("controllo", False):
+    st.session_state["controllo"] = False
 
 # Disable the sidebar
 st.set_page_config(initial_sidebar_state="collapsed")
@@ -38,16 +38,28 @@ with col_r:
 st.write("#")
 
 # Title
-st.markdown("# Welcome to the Community Pulse Check on Assurance of Digital Twin Systems")
+st.markdown(
+    "# Welcome to the Community Pulse Check"
+    "on Assurance of Digital Twin Systems"
+)
 
 # Description
 st.markdown(
-    "Are you confident that digital twins are trustworthy and ethical? Share your approaches and challenges in ensuring and promoting trustworthiness across the digital twin ecosystem, and help shape the future assurance standards. "
+    "Are you confident that digital twins are trustworthy and ethical?"
+    "Share your approaches and challenges in ensuring"
+    "and promoting trustworthiness across the digital twin "
+    "ecosystem, and help shape the future assurance standards."
 )
 
 # Funding
 st.caption(
-    "This work is conducted as a part of the Trustworthy and Ethical Assurance of Digital Twins project, and is generously funded by an award from the UKRI’s Arts and Humanities Research Council as part of the BRAID programme. You can read more about the project here: https://www.turing.ac.uk/research/research-projects/trustworthy-and-ethical-assurance-digital-twins-tea-dt "
+    "This work is conducted as a part of the Trustworthy and Ethical "
+    "Assurance of Digital Twins project, and is generously funded by "
+    "an award from the UKRI’s Arts and Humanities Research Council "
+    "as part of the BRAID programme. "
+    "You can read more about the project here:"
+    " https://www.turing.ac.uk/research/research-projects/"
+    "trustworthy-and-ethical-assurance-digital-twins-tea-dt "
 )
 # Logo and Navigation
 col_foot_l, col_foot_m, col_foot_r = st.columns((3, 2, 3))
@@ -63,31 +75,39 @@ st.write("#")
 # Define a container to encapsulate captcha and user input fields
 captcha_cont = st.empty()
 # Render captcha only if it's not verified yet
-if not st.session_state['controllo']:
+if not st.session_state["controllo"]:
 
     with captcha_cont.container():
         # Setup the captcha widget
-        if 'Captcha' not in st.session_state:
-            st.session_state['Captcha'] = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length_captcha))
-            print("the captcha is: ", st.session_state['Captcha'])
+        if "Captcha" not in st.session_state:
+            st.session_state["Captcha"] = \
+                "".join(
+                random.choices(
+                    string.ascii_uppercase + string.digits, k=length_captcha
+                )
+            )
+            print("the captcha is: ", st.session_state["Captcha"])
 
         st.caption("Please verify you are human.")
         col1, col2 = st.columns(2)
         image = ImageCaptcha(width=width, height=height)
-        data = image.generate(st.session_state['Captcha'])
+        data = image.generate(st.session_state["Captcha"])
         col1.image(data)
-        captcha_text = col2.text_input('Enter captcha text')
+        captcha_text = col2.text_input("Enter captcha text")
 
         if st.button("Verify the code"):
-            print(captcha_text, st.session_state['Captcha'])
+            print(captcha_text, st.session_state["Captcha"])
             captcha_text = captcha_text.replace(" ", "")
             # If the captcha is correct, set 'controllo' session state to True
-            if st.session_state['Captcha'].lower() == captcha_text.lower().strip():
-                del st.session_state['Captcha']
-                st.session_state['controllo'] = True
+            if (
+                st.session_state["Captcha"].lower()
+                == captcha_text.lower().strip()
+            ):
+                del st.session_state["Captcha"]
+                st.session_state["controllo"] = True
 
 # Show "Let's Start!" button if captcha is verified
-if st.session_state['controllo']:
+if st.session_state["controllo"]:
     captcha_cont.empty()
     st.success("Success!")
     st.write("#")
