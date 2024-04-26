@@ -3,8 +3,28 @@ from streamlit_extras.switch_page_button import switch_page
 import mongo_utils
 from pymongo import MongoClient
 from config import USER_ID_STATE_KEY
-from utils import generate_streamlit_element
+from utils import generate_streamlit_element, disable_button, load_from_session
 from survey_questions import questions
+from config import (
+    USER_ID_STATE_KEY,
+    ASSURANCE_MEANING_STATE_KEY,
+    ASSURANCE_MECHANISMS_STATE_KEY,
+    ASSURED_PROPERTIES_STATE_KEY,
+    PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+    PARTNER_TRUST_CHALLENGES_STATE_KEY,
+    RELIANCE_ON_EVIDENCE_STATE_KEY,
+)
+
+page_element_keys: list[str] = [
+    ASSURANCE_MEANING_STATE_KEY,
+    ASSURANCE_MECHANISMS_STATE_KEY,
+    ASSURED_PROPERTIES_STATE_KEY,
+    PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+    PARTNER_TRUST_CHALLENGES_STATE_KEY,
+    RELIANCE_ON_EVIDENCE_STATE_KEY,
+]
+
+load_from_session(page_element_keys)
 
 st.title("Current Assurance Practices and Understanding ")
 st.markdown(
@@ -20,32 +40,26 @@ if "continue_clicked" not in st.session_state:
     st.session_state.continue_clicked = False
 
 
-# Disable the submit button after it is clicked
-def disable():
-    st.session_state.disabled = True
-
-
 # Initialize disabled for form_submit_button to False
 st.session_state.disabled = False
 
-# Start with the first question in its own form
-with st.form("question_1_form"):
-    # Question 2.1
-    assurance_meaning = generate_streamlit_element(
-        questions["assurance_meaning"]["question"],
-        questions["assurance_meaning"]["type"],
-        key="assurance_meaning",
-    )
 
-    # Submit button for assurance definition
-    submit_1 = st.form_submit_button(
-        "Submit Definition",
-        on_click=disable,
-        disabled=st.session_state.disabled,
-    )
-    if submit_1:
-        st.session_state["submit_1"] = True  # Mark the form as submitted
-        st.session_state.show_def = True
+# Question 2.1
+assurance_meaning = generate_streamlit_element(
+    questions["assurance_meaning"]["question"],
+    questions["assurance_meaning"]["type"],
+    key=ASSURANCE_MEANING_STATE_KEY,
+)
+
+# Submit button for assurance definition
+submit_definition_clicked = st.button(
+    "Submit Definition",
+    on_click=disable_button,
+    disabled=st.session_state.disabled,
+)
+if submit_definition_clicked:
+    st.session_state["submit_1"] = True  # Mark the form as submitted
+    st.session_state.show_def = True
 
 # If the response to the first question is submitted, show the rest of the
 # content
@@ -75,20 +89,14 @@ if st.session_state.continue_clicked:
     with container:
         st.subheader("Current Assurance Practices")
         # Generate Streamlit elements for the rest of the questions
-        for tag in [
-            "assurance_mechanisms",
-            "assured_properties",
-            "asset_data_sharing",
-            "partner_trust_difficulty",
-            "partner_trust_challenges",
-            "reliance_on_evidence",
-        ]:
-            element = generate_streamlit_element(
-                questions[tag]["question"],
-                questions[tag]["type"],
-                options=questions[tag].get("options"),
-                key=tag,
-            )
+        for tag in page_element_keys:
+            if tag != ASSURANCE_MEANING_STATE_KEY:
+                _ = generate_streamlit_element(
+                    questions[tag]["question"],
+                    questions[tag]["type"],
+                    options=questions[tag].get("options"),
+                    key=tag,
+                )
 
     # Submit button for the rest of the survey
     if st.button("Submit & See Results"):
@@ -98,17 +106,18 @@ if st.session_state.continue_clicked:
             # Update the data dictionary to match the questions from this
             # section
             data = {
-                "_id": st.session_state[USER_ID_STATE_KEY],
-                "assurance_meaning": assurance_meaning,
-                "governance_requirements": ", ".join(
-                    st.session_state["governance_requirements"]
-                ),
-                "assurance_methods": ", ".join(
-                    st.session_state["assurance_methods"]
-                ),
-                "properties_assured": ", ".join(
-                    st.session_state["properties_assured"]
-                ),
+                USER_ID_STATE_KEY: st.session_state[USER_ID_STATE_KEY],
+                ASSURANCE_MEANING_STATE_KEY: assurance_meaning,
+                # TODO(cptanalatriste): Persistence is broken here. Fix later!
+                # "governance_requirements": ", ".join(
+                #     st.session_state["governance_requirements"]
+                # ),
+                # "assurance_methods": ", ".join(
+                #     st.session_state["assurance_methods"]
+                # ),
+                # "properties_assured": ", ".join(
+                #     st.session_state["properties_assured"]
+                # ),
             }
             # Assuming 'insert_survey_result' is a function you've defined to
             # insert
@@ -120,4 +129,5 @@ if st.session_state.continue_clicked:
         else:
             st.error("Could not connect to the database.")
 
-        switch_page("Capabilities_Results")
+        # TODO(saranas): Please check if this page transition logic is right.
+        switch_page("Current_Practices_Results")

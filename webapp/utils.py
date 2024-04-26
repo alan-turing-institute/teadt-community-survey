@@ -1,6 +1,12 @@
 import streamlit as st
+import logging
 
 WIDGET_SUFFIX: str = "widget"
+
+
+# Disable the submit button after it is clicked
+def disable_button() -> None:
+    st.session_state.disabled = True
 
 
 def store_in_session(key: str) -> None:
@@ -8,12 +14,21 @@ def store_in_session(key: str) -> None:
 
 
 def load_from_session(keys: list[str]) -> None:
+
+    for key in st.session_state.keys():
+        logging.debug(f"{key=} {st.session_state[key]=}")
+
     for key in keys:
-        if (
-            key in st.session_state
-            and f"{key}_{WIDGET_SUFFIX}" in st.session_state
-        ):
-            st.session_state[f"{key}_{WIDGET_SUFFIX}"] = st.session_state[key]
+        if key in st.session_state:
+            widget_session_key = f"{key}_{WIDGET_SUFFIX}"
+            session_value = st.session_state[key]
+            st.session_state[widget_session_key] = session_value
+            logging.debug(
+                f"Loading value {session_value} into widget "
+                f"{widget_session_key}"
+            )
+        else:
+            logging.debug(f"No value to load for session key {key}")
 
 
 def generate_streamlit_element(

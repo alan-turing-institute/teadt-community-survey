@@ -2,6 +2,14 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 from config import USER_ID_STATE_KEY
 import uuid
+import logging
+
+logging.basicConfig()
+
+logging.basicConfig()
+# TODO(cgavidia): Level should be customisable
+logging.getLogger().setLevel(logging.DEBUG)
+
 
 if USER_ID_STATE_KEY not in st.session_state:
     st.session_state[USER_ID_STATE_KEY] = str(uuid.uuid4())

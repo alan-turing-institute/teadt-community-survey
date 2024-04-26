@@ -12,16 +12,19 @@ from config import (
     RESPONSIBILITIES_STATE_KEY,
 )
 from typing import Any
-from utils import load_from_session
+from utils import load_from_session, disable_button
+import logging
 
-load_from_session(
-    [
-        SECTOR_STATE_KEY,
-        LOCATION_STATE_KEY,
-        ROLE_STATE_KEY,
-        RESPONSIBILITIES_STATE_KEY,
-    ]
-)
+logging.debug("Loading the community page")
+
+page_element_keys: list[str] = [
+    SECTOR_STATE_KEY,
+    LOCATION_STATE_KEY,
+    ROLE_STATE_KEY,
+    RESPONSIBILITIES_STATE_KEY,
+]
+
+load_from_session(page_element_keys)
 
 # reintroduce sidebar (collapse button will stay hidden as CSS cannot by
 # dynamically altered)
@@ -35,12 +38,6 @@ st.markdown(
     "of digital twins."
 )
 
-
-# Disable the submit button after it is clicked
-def disable_button():
-    st.session_state.disabled = True
-
-
 # Initialize disabled for form_submit_button to False
 if "disabled" not in st.session_state:
     st.session_state.disabled = False
@@ -50,17 +47,13 @@ tags_to_display = ["sector", "location", "role", "primary_responsibilities"]
 
 # Generate Streamlit elements and assign responses to variables
 tag: str = SECTOR_STATE_KEY
-# TODO: Remove later
-print(f"{tag=}")
-if tag in st.session_state:
-    print(f"{st.session_state[tag]=}")
-
 sector = generate_streamlit_element(
     questions[tag]["question"],
     questions[tag]["type"],
     options=questions[tag].get("options"),
     key=tag,
 )
+
 tag = LOCATION_STATE_KEY
 location = generate_streamlit_element(
     questions[tag]["question"],
@@ -88,6 +81,8 @@ primary_responsibilities = generate_streamlit_element(
 submitted = st.button(
     "Submit", on_click=disable_button, disabled=st.session_state.disabled
 )
+
+
 if submitted:
     st.session_state["submitted"] = True  # Mark the form as submitted
 

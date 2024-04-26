@@ -12,6 +12,7 @@ from config import (
 from typing import Optional
 from datetime import datetime
 
+
 @st.cache_resource
 def init_connection() -> MongoClient:
     client: MongoClient = MongoClient(os.getenv(CONNECTION_STRING_ENV))
@@ -31,10 +32,11 @@ def init_connection() -> MongoClient:
 def add_survey_results(client: MongoClient, data: dict[str, str]) -> None:
 
     collection: Collection = get_survey_collection(client)
+    data["modification_date"] = str(datetime.today().replace(microsecond=0))
+
     collection.update_one(
         {
             "_id": data["_id"],
-            "modification_date": datetime.today().replace(microsecond=0),
         },
         {"$set": data},
         upsert=True,

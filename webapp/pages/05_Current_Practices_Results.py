@@ -125,4 +125,5 @@ else:
 if st.button("Next"):
     # Redirect to the next section of the survey
     st.write("Redirecting to next part...")
-    switch_page("Goals_Frameworks")
+    # TODO(saranas): Please check if this navigation change is valid.
+    switch_page("Satisfaction")
