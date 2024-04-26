@@ -62,9 +62,33 @@ with st.form("survey_form"):
         key=tag,
     )
 
+    tag = "established_dt"
+    established_dt = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag,
+    )
+
+    tag = "type_dt"
+    type_dt = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag,
+    )
+
+    tag = "no_dt_reason"
+    no_dt_reason = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag,
+    )
+
     # Submit button for the form
     submitted = st.form_submit_button(
-        "Continue", on_click=disable, disabled=st.session_state.disabled
+        "Submit", on_click=disable, disabled=st.session_state.disabled
     )
     if submitted:
         st.session_state["submitted"] = True  # Mark the form as submitted
@@ -78,9 +102,14 @@ if submitted:
             "sector": sector,
             "location": location,
             "role": role,
-            "responsibilities": ", ".join(
+            "primiary_responsibilities": ", ".join(
                 primary_responsibilities
             ),  # Joining list into a string
+            "established_dt": established_dt,
+            "type_dt": type_dt,
+            "no_dt_reason": ", ".join(
+                no_dt_reason
+            ),
         }
 
         mongo_utils.add_survey_results(client, data)
