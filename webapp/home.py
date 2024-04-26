@@ -44,16 +44,66 @@ st.write("#")
 
 # Title
 st.markdown(
-    "# Welcome to the Community Pulse Check"
+    "# Welcome to the Community Pulse Check "
     "on Assurance of Digital Twin Systems"
 )
 
 # Description
 st.markdown(
     "Are you confident that digital twins are trustworthy and ethical?"
-    "Share your approaches and challenges in ensuring"
-    "and promoting trustworthiness across the digital twin "
+)
+st.markdown(
+    "Take 15 minutes to share your approaches and pain points for assuring"
+    " trustworthiness of digital twinning technology "
     "ecosystem, and help shape the future assurance standards."
+)
+
+st.markdown(
+    "The Alan Turing Institute's TRIC-DT and CPC DT Hub are conducting a "
+    "community pulse check on the topic of' Assurance of Digital Twin "
+    "Systems'. We designed this pulse check with support from the "
+    "Responsible Technology Adoption Unit to ensure alignment with "
+    "national AI assurance guidelines from the "
+    "Department for Science, Innovation, and Technology (DSIT). "
+    "Are you developing, deploying or overseeing digital twin technologies"
+    " or systems? We want to hear from business leaders, developers, "
+    "and researchers to help us understand your perspective,"
+    " current challenges, and needs when it comes to assuring "
+    "digital twins."  
+
+    "Although digital twins promise vast societal benefits, "
+    "their increasing reliance on various forms of AI "
+    "and their role in safety-critical settings pose significant challenges."
+    " These challenges must be addressed to ensure their "
+    "ethical and trustworthy development. "
+    "We are creating an open-source and community-based online tool "
+    "that will assist users and project teams to define, put into practice, "
+    "and implement ethical principles as assurance goals. "
+    "Your opinions and experiences are crucial in developing this tool,"
+    " ensuring it addresses industry pain points, "
+    "and setting standards that enhance transparency and trust."
+)
+
+st.markdown(
+    "The Community Pulse Check is a dynamic survey "
+    "that allows you to see some of the results immediately, "
+    "providing instant feedback on how your experiences and views align"
+    " with those of your peers. "
+)
+
+st.markdown(
+    "Participating will take approximately 15 – 20 minutes "
+    "and can be completed entirely anonymously if you choose."
+)
+
+st.markdown(
+    "By participating, you join a select group of professionals "
+    "contributing to the responsible evolution of digital twin technologies. "
+    "Your expertise does more than shape industry standards; "
+    "it fosters a collaborative environment where knowledge sharing "
+    "enhances community practices."
+    "As we collectively contribute, we refine and enrich the standards "
+    "that will benefit everyone in this transformative field." 
 )
 
 # Funding
@@ -61,7 +111,10 @@ st.caption(
     "This work is conducted as a part of the Trustworthy and Ethical "
     "Assurance of Digital Twins project, and is generously funded by "
     "an award from the UKRI’s Arts and Humanities Research Council "
-    "as part of the BRAID programme. "
+    "as part of the BRAID programme. The survey questions were designed with"
+    " support from Centre for Assuring Autonomy and the Responsible Technology"
+    " Adoption Unit to ensure alignment with national AI assurance guidelines "
+    "from the Department for Science, Innovation, and Technology (DSIT)."
     "You can read more about the project here:"
     " https://www.turing.ac.uk/research/research-projects/"
     "trustworthy-and-ethical-assurance-digital-twins-tea-dt "
@@ -72,6 +125,14 @@ with col_foot_l:
     st.image(Image.open("webapp/img/BRAIDLogo_RGB_Landscape-tag.png"))
 with col_foot_r:
     st.image(Image.open("webapp/img/UKRI%20logo.png"))
+
+st.write("#")
+
+col_small_l, col_small_m, col_small_r = st.columns((3, 2, 3))
+with col_small_m:
+    st.image(Image.open("webapp/img/"
+                        "thumbnail_CfAA_Logo_Landscape_RGB.jpg"), width=200)
+
 
 st.write("#")
 st.write("#")
