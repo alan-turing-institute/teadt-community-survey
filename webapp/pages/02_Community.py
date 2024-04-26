@@ -31,7 +31,7 @@ if "disabled" not in st.session_state:
 # Define the tags of questions to display in this section
 tags_to_display = ["sector", "location", "role", "primary_responsibilities"]
 
-# Wrap your input elements and submit button in a form
+# Wrap your input elements in a container
 with st.container():
     # Generate Streamlit elements and assign responses to variables
     tag = "sector"
