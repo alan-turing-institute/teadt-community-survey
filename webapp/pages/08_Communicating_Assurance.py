@@ -63,12 +63,9 @@ with st.form("evidence_based_assurance_form"):
     )
 
     # Submit button for the form
-    submitted = st.form_submit_button("Submit")
+    submitted = st.form_submit_button("Continue")
 
 # Actions to take after the form is submitted, such as saving responses or
 # navigating
 if submitted:
-    # Here you would include logic to save responses or process them
-    st.success("Thank you for your responses!")
-    # Optionally switch to another page, such as results or another section
-    switch_page("next_section_page")
+    switch_page("Follow_up")

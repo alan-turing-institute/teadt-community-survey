@@ -91,7 +91,7 @@ if st.session_state.continue_clicked:
             )
 
     # Submit button for the rest of the survey
-    if st.button("Submit & See Results"):
+    if st.button("Continue"):
         client: MongoClient = mongo_utils.init_connection()
         if client:
 
@@ -120,4 +120,4 @@ if st.session_state.continue_clicked:
         else:
             st.error("Could not connect to the database.")
 
-        switch_page("Capabilities_Results")
+        switch_page("Current_Practices_Results")

@@ -50,7 +50,7 @@ with st.form("survey_form"):
 
     # Submit button for the form
     submitted = st.form_submit_button(
-        "Submit", on_click=disable, disabled=st.session_state.disabled
+        "Continue", on_click=disable, disabled=st.session_state.disabled
     )
     if submitted:
         st.session_state["submitted"] = True  # Mark the form as submitted
@@ -66,4 +66,4 @@ if submitted:
     else:
         st.error("Could not connect to the database.")
 
-    switch_page("Community_Results")
+    switch_page("Goals_Frameworks")

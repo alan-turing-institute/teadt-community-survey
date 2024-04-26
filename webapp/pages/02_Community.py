@@ -13,10 +13,7 @@ st.set_page_config(initial_sidebar_state="expanded")
 
 
 st.title("Part 1: Community Composition")
-st.markdown(
-    "This section explores your understanding and current practices around "
-    "assurance "
-    "of digital twins."
+st.markdown('Here we aim to understand the diverse backgrounds within the digital twin community.'
 )
 
 
@@ -67,7 +64,7 @@ with st.form("survey_form"):
 
     # Submit button for the form
     submitted = st.form_submit_button(
-        "Submit", on_click=disable, disabled=st.session_state.disabled
+        "Continue", on_click=disable, disabled=st.session_state.disabled
     )
     if submitted:
         st.session_state["submitted"] = True  # Mark the form as submitted
