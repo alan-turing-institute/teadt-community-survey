@@ -101,7 +101,7 @@ questions: dict[str, Any] = {
         "question": "Has your organisation established one"
         "or more Digital Twins?",
         "type": "multiple_choice",
-        "options": ["Yes", "No"],
+        "options": ["Select","Yes", "No"],
         "section": "community_composition",
     },
     "type_dt": {

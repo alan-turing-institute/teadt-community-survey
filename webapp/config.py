@@ -19,6 +19,7 @@ ROLE_STATE_KEY: str = "role"
 RESPONSIBILITIES_STATE_KEY: str = "primary_responsibilities"
 ESTABLISHED_DT_STATE_KEY: str = "established_dt"
 TYPE_DT_STATE_KEY: str = "type_dt"
+TYPE_DT_OTHER_STATE_KEY: str = "type_dt_other"
 NO_DT_REASON_STATE_KEY: str = "no_dt_reason"
 
 # Current Practices Page Keys
