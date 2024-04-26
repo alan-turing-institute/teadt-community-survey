@@ -100,8 +100,8 @@ questions: dict[str, Any] = {
         "options": ["Yes", "No"],
         "section": "community_composition",
     },
-    "type_of_dt": {
-        "tag": "type_of_dt",
+    "type_dt": {
+        "tag": "type_dt",
         "question": "What type of digital twin?",
         "type": "select_all",
         "options": [

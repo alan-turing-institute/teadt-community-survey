@@ -80,8 +80,7 @@ if not st.session_state["controllo"]:
     with captcha_cont.container():
         # Setup the captcha widget
         if "Captcha" not in st.session_state:
-            st.session_state["Captcha"] = \
-                "".join(
+            st.session_state["Captcha"] = "".join(
                 random.choices(
                     string.ascii_uppercase + string.digits, k=length_captcha
                 )

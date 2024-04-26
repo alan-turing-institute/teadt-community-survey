@@ -32,7 +32,7 @@ if "disabled" not in st.session_state:
 tags_to_display = ["sector", "location", "role", "primary_responsibilities"]
 
 # Wrap your input elements and submit button in a form
-with st.container("survey_form"):
+with st.container():
     # Generate Streamlit elements and assign responses to variables
     tag = "sector"
     sector = generate_streamlit_element(
@@ -88,15 +88,8 @@ with st.container("survey_form"):
         key=tag,
     )
 
-    # Submit button for the form
-    submitted = st.form_submit_button(
-        "Submit", on_click=disable, disabled=st.session_state.disabled
-    )
-    if submitted:
-        st.session_state["submitted"] = True  # Mark the form as submitted
-
 # Actions to take after the form is submitted
-if submitted:
+if st.button("Continue"):
     client: MongoClient = mongo_utils.init_connection()
     if client:
         data: dict[str, Any] = {

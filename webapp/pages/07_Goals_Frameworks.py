@@ -36,8 +36,7 @@ tags_to_display = [
     "framework_development",
 ]
 
-# Wrap input elements and submit button in a form
-with st.form("section4_form"):
+with st.container():
     responses = {}
     for tag in tags_to_display:
         responses[tag] = generate_streamlit_element(
@@ -67,15 +66,8 @@ with st.form("section4_form"):
             key=tag,
         )
 
-    # Submit button for the form
-    submitted = st.form_submit_button(
-        "Continue", on_click=disable, disabled=st.session_state.disabled
-    )
-    if submitted:
-        st.session_state["submitted"] = True  # Mark the form as submitted
-
 # Actions to take after the form is submitted
-if submitted:
+if st.button("Continue"):
     client: MongoClient = mongo_utils.init_connection()
     if client:
         data: dict[str, Any] = {"_id": st.session_state[USER_ID_STATE_KEY]}
