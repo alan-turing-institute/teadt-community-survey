@@ -119,4 +119,4 @@ if st.session_state["controllo"]:
     if st.button("Let's Start!"):
         # Redirect to the next section of the survey
         st.write("Redirecting to the Community Pulse Check...")
-        switch_page("Community")
+        switch_page("Consent")
