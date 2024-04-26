@@ -3,7 +3,12 @@ import random
 import string
 from captcha.image import ImageCaptcha
 from PIL import Image
+from config import USER_ID_STATE_KEY
+import uuid
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
+
+if USER_ID_STATE_KEY not in st.session_state:
+    st.session_state[USER_ID_STATE_KEY] = str(uuid.uuid4())
 
 # Define the constants
 length_captcha = 4
