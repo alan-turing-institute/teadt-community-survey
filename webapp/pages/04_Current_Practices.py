@@ -66,7 +66,7 @@ if st.session_state.show_def:
         unsafe_allow_html=True,
     )
 
-    if st.button("Continue"):
+    if st.button("Understood"):
         st.session_state.continue_clicked = True
 
 if st.session_state.continue_clicked:
@@ -75,23 +75,50 @@ if st.session_state.continue_clicked:
     with container:
         st.subheader("Current Assurance Practices")
         # Generate Streamlit elements for the rest of the questions
-        for tag in [
-            "assurance_mechanisms",
-            "assured_properties",
-            "asset_data_sharing",
-            "partner_trust_difficulty",
-            "partner_trust_challenges",
-            "reliance_on_evidence",
-        ]:
-            element = generate_streamlit_element(
-                questions[tag]["question"],
-                questions[tag]["type"],
-                options=questions[tag].get("options"),
-                key=tag,
-            )
+        assurance_mechanisms = generate_streamlit_element(
+            questions["assurance_mechanisms"]["question"],
+            questions["assurance_mechanisms"]["type"],
+            options=questions["assurance_mechanisms"].get("options"),
+            key="assurance_mechanisms",
+        )
+
+        assured_properties = generate_streamlit_element(
+            questions["assured_properties"]["question"],
+            questions["assured_properties"]["type"],
+            options=questions["assured_properties"].get("options"),
+            key="assured_properties",
+        )
+
+        asset_data_sharing = generate_streamlit_element(
+            questions["asset_data_sharing"]["question"],
+            questions["asset_data_sharing"]["type"],
+            options=questions["asset_data_sharing"].get("options"),
+            key="asset_data_sharing",
+        )
+
+        partner_trust_difficulty = generate_streamlit_element(
+            questions["partner_trust_difficulty"]["question"],
+            questions["partner_trust_difficulty"]["type"],
+            options=questions["partner_trust_difficulty"].get("options"),
+            key="partner_trust_difficulty",
+        )
+
+        partner_trust_challenges = generate_streamlit_element(
+            questions["partner_trust_challenges"]["question"],
+            questions["partner_trust_challenges"]["type"],
+            options=questions["partner_trust_challenges"].get("options"),
+            key="partner_trust_challenges",
+        )
+
+        reliance_on_evidence = generate_streamlit_element(
+            questions["reliance_on_evidence"]["question"],
+            questions["reliance_on_evidence"]["type"],
+            options=questions["reliance_on_evidence"].get("options"),
+            key="reliance_on_evidence",
+        )
 
     # Submit button for the rest of the survey
-    if st.button("Submit & See Results"):
+    if st.button("Continue"):
         client: MongoClient = mongo_utils.init_connection()
         if client:
 
@@ -100,15 +127,12 @@ if st.session_state.continue_clicked:
             data = {
                 "_id": st.session_state[USER_ID_STATE_KEY],
                 "assurance_meaning": assurance_meaning,
-                "governance_requirements": ", ".join(
-                    st.session_state["governance_requirements"]
-                ),
-                "assurance_methods": ", ".join(
-                    st.session_state["assurance_methods"]
-                ),
-                "properties_assured": ", ".join(
-                    st.session_state["properties_assured"]
-                ),
+                "assurance_mechanisms": assurance_mechanisms,
+                "assured_properties": assured_properties,
+                "asset_data_sharing": asset_data_sharing,
+                "partner_trust_difficulty": partner_trust_difficulty,
+                "partner_trust_challenges": partner_trust_challenges,
+                "reliance_on_evidence": reliance_on_evidence,
             }
             # Assuming 'insert_survey_result' is a function you've defined to
             # insert
@@ -120,4 +144,4 @@ if st.session_state.continue_clicked:
         else:
             st.error("Could not connect to the database.")
 
-        switch_page("Capabilities_Results")
+        switch_page("Current_Practices_Results")

@@ -14,9 +14,8 @@ st.set_page_config(initial_sidebar_state="expanded")
 
 st.title("Part 1: Community Composition")
 st.markdown(
-    "This section explores your understanding and current practices around "
-    "assurance "
-    "of digital twins."
+    "Here we aim to understand the diverse backgrounds"
+    "within the digital twin community."
 )
 
 
@@ -32,8 +31,8 @@ if "disabled" not in st.session_state:
 # Define the tags of questions to display in this section
 tags_to_display = ["sector", "location", "role", "primary_responsibilities"]
 
-# Wrap your input elements and submit button in a form
-with st.form("survey_form"):
+# Wrap your input elements in a container
+with st.container():
     # Generate Streamlit elements and assign responses to variables
     tag = "sector"
     sector = generate_streamlit_element(
@@ -65,15 +64,32 @@ with st.form("survey_form"):
         key=tag,
     )
 
-    # Submit button for the form
-    submitted = st.form_submit_button(
-        "Submit", on_click=disable, disabled=st.session_state.disabled
+    tag = "established_dt"
+    established_dt = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag,
     )
-    if submitted:
-        st.session_state["submitted"] = True  # Mark the form as submitted
+
+    tag = "type_dt"
+    type_dt = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag,
+    )
+
+    tag = "no_dt_reason"
+    no_dt_reason = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag,
+    )
 
 # Actions to take after the form is submitted
-if submitted:
+if st.button("Continue"):
     client: MongoClient = mongo_utils.init_connection()
     if client:
         data: dict[str, Any] = {
@@ -81,9 +97,12 @@ if submitted:
             "sector": sector,
             "location": location,
             "role": role,
-            "responsibilities": ", ".join(
+            "primiary_responsibilities": ", ".join(
                 primary_responsibilities
             ),  # Joining list into a string
+            "established_dt": established_dt,
+            "type_dt": type_dt,
+            "no_dt_reason": ", ".join(no_dt_reason),
         }
 
         mongo_utils.add_survey_results(client, data)
