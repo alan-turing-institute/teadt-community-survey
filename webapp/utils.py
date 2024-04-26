@@ -16,19 +16,19 @@ def store_in_session(key: str) -> None:
 def load_from_session(keys: list[str]) -> None:
 
     for key in st.session_state.keys():
-        logging.debug(f"{key=} {st.session_state[key]=}")
+        logging.info(f"{key=} {st.session_state[key]=}")
 
     for key in keys:
         if key in st.session_state:
             widget_session_key = f"{key}_{WIDGET_SUFFIX}"
             session_value = st.session_state[key]
             st.session_state[widget_session_key] = session_value
-            logging.debug(
+            logging.info(
                 f"Loading value {session_value} into widget "
                 f"{widget_session_key}"
             )
         else:
-            logging.debug(f"No value to load for session key {key}")
+            logging.info(f"No value to load for session key {key}")
 
 
 def generate_streamlit_element(

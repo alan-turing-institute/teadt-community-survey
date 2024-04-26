@@ -15,7 +15,7 @@ from typing import Any
 from utils import load_from_session, disable_button
 import logging
 
-logging.debug("Loading the community page")
+logging.info("Loading the community page")
 
 page_element_keys: list[str] = [
     SECTOR_STATE_KEY,

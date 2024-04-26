@@ -8,7 +8,7 @@ logging.basicConfig()
 
 logging.basicConfig()
 # TODO(cgavidia): Level should be customisable
-logging.getLogger().setLevel(logging.DEBUG)
+logging.getLogger().setLevel(logging.INFO)
 
 
 if USER_ID_STATE_KEY not in st.session_state:

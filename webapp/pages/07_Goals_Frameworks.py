@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import generate_streamlit_element
+from utils import generate_streamlit_element, disable_button, load_from_session
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
 from pymongo import MongoClient
@@ -19,60 +19,52 @@ This section dives deeper into the frameworks and principles guiding the"
 """
 )
 
-
-# Disable the submit button after it is clicked
-def disable():
-    st.session_state.disabled = True
-
-
 # Initialize disabled for form_submit_button to False
 if "disabled" not in st.session_state:
     st.session_state.disabled = False
 
 # Define tags for the questions to be displayed
-tags_to_display = [
+tags_to_display: list[str] = [
     "ethical_framework_existence",
     "framework_description",
     "framework_development",
 ]
+load_from_session(tags_to_display)
 
-# Wrap input elements and submit button in a form
-with st.form("section4_form"):
-    responses = {}
-    for tag in tags_to_display:
-        responses[tag] = generate_streamlit_element(
-            questions[tag]["question"],
-            questions[tag]["type"],
-            options=questions[tag].get("options"),
-            key=tag,
-        )
-
-    # Display an image
-    image_path = Image.open("webapp/img/gemini_principles.png")
-    st.image(
-        image_path, caption="Illustration of Digital Twin Ethical Frameworks"
+responses = {}
+for tag in tags_to_display:
+    responses[tag] = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag,
     )
 
-    # Define tags for the questions to be displayed
-    tags_to_display = [
-        "value_of_guiding_principles",
-        "familiarity_with_gemini_principles",
-    ]
+# Display an image
+image_path = Image.open("webapp/img/gemini_principles.png")
+st.image(image_path, caption="Illustration of Digital Twin Ethical Frameworks")
 
-    for tag in tags_to_display:
-        responses[tag] = generate_streamlit_element(
-            questions[tag]["question"],
-            questions[tag]["type"],
-            options=questions[tag].get("options"),
-            key=tag,
-        )
+# Define tags for the questions to be displayed
+tags_to_display = [
+    "value_of_guiding_principles",
+    "familiarity_with_gemini_principles",
+]
+load_from_session(tags_to_display)
 
-    # Submit button for the form
-    submitted = st.form_submit_button(
-        "Submit", on_click=disable, disabled=st.session_state.disabled
+for tag in tags_to_display:
+    responses[tag] = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag,
     )
-    if submitted:
-        st.session_state["submitted"] = True  # Mark the form as submitted
+
+# Submit button for the form
+submitted = st.button(
+    "Submit", on_click=disable_button, disabled=st.session_state.disabled
+)
+if submitted:
+    st.session_state["submitted"] = True  # Mark the form as submitted
 
 # Actions to take after the form is submitted
 if submitted:
@@ -85,4 +77,5 @@ if submitted:
     else:
         st.error("Could not connect to the database.")
 
-    switch_page("Community_Results")
+    # TODO(saranas): Check if this page change is correct
+    switch_page("Communicating_Assurance")
