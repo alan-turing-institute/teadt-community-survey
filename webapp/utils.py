@@ -109,6 +109,7 @@ def generate_streamlit_element(
             key=widget_key,
             on_change=store_in_session,
             args=(key,),
+            index=None,
         )
     else:
         raise ValueError(f"Invalid question type: {question_type}")

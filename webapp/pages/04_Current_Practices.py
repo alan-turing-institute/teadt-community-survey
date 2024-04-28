@@ -7,6 +7,7 @@ from config import (
     ASSURANCE_MECHANISMS_STATE_KEY,
     ASSURANCE_MECHANISM_OTHER_STATE_KEY,
     ASSURED_PROPERTIES_STATE_KEY,
+    ASSURED_PROPERTIES_OTHER_STATE_KEY,
     ASSET_DATA_SHARING_STATE_KEY,
     PARTNER_TRUST_DIFFICULTY_STATE_KEY,
     PARTNER_TRUST_CHALLENGES_STATE_KEY,
@@ -16,8 +17,10 @@ from config import (
 page_element_keys: list[str] = [
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
-    ASSET_DATA_SHARING_STATE_KEY,
+    ASSURANCE_MECHANISM_OTHER_STATE_KEY,
     ASSURED_PROPERTIES_STATE_KEY,
+    ASSURED_PROPERTIES_OTHER_STATE_KEY,
+    ASSET_DATA_SHARING_STATE_KEY,
     PARTNER_TRUST_DIFFICULTY_STATE_KEY,
     PARTNER_TRUST_CHALLENGES_STATE_KEY,
     RELIANCE_ON_EVIDENCE_STATE_KEY,
@@ -114,6 +117,10 @@ if st.session_state.continue_clicked:
             options=questions["assured_properties"].get("options"),
             key=ASSURED_PROPERTIES_STATE_KEY,
         )
+
+        if "Other (Please specify)" in assured_properties:
+            tag = ASSURED_PROPERTIES_OTHER_STATE_KEY
+            assured_properties_other = st.text_area('Please specify')
 
         st.subheader("Assurance for Connected Digital Twins")
         asset_data_sharing = generate_streamlit_element(

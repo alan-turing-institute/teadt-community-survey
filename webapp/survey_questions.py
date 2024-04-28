@@ -207,7 +207,7 @@ questions: dict[str, Any] = {
             "Ethical Integrity",
             "Interoperability",
             "None",
-            "Other (Please Specify)",
+            "Other (Please specify)",
         ],
         "section": "current_assurance_practices",
     },
@@ -469,7 +469,7 @@ questions: dict[str, Any] = {
         "tag": "communication_methods",
         "question": "How do you currently communicate your project’s assurance"
         " strategies to your stakeholders or partner organisations?",
-        "type": "multiple_choice",
+        "type": "select_all",
         "options": [
             "Written Reports following established standards",
             "Non-standardized written Reports",
@@ -489,6 +489,7 @@ questions: dict[str, Any] = {
         "with key ethical goals enhance trust in your digital twin(s)?",
         "type": "multiple_choice",
         "options": [
+            "Select",
             "Yes",
             "No",
             "I need to know more about this tool to decide",

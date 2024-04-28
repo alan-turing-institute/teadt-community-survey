@@ -129,7 +129,7 @@ with st.container():
         )
    
     st.write(questions["relevance_of_principles"]["question"])
-    ## for each gemini principles
+    # for each gemini principles
     relevance_good = generate_streamlit_element(
             'Public Good',
             'likert_col',
