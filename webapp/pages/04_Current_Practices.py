@@ -5,6 +5,7 @@ from survey_questions import questions
 from config import (
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
+    ASSURANCE_MECHANISM_OTHER_STATE_KEY,
     ASSURED_PROPERTIES_STATE_KEY,
     ASSET_DATA_SHARING_STATE_KEY,
     PARTNER_TRUST_DIFFICULTY_STATE_KEY,
@@ -103,6 +104,10 @@ if st.session_state.continue_clicked:
             key=ASSURANCE_MECHANISMS_STATE_KEY,
         )
 
+        if "Other (Please specify)" in assurance_mechanisms:
+            tag = ASSURANCE_MECHANISM_OTHER_STATE_KEY
+            assurance_mechanism_other = st.text_area('Please specify')
+
         assured_properties = generate_streamlit_element(
             questions["assured_properties"]["question"],
             questions["assured_properties"]["type"],
@@ -110,6 +115,7 @@ if st.session_state.continue_clicked:
             key=ASSURED_PROPERTIES_STATE_KEY,
         )
 
+        st.subheader("Assurance for Connected Digital Twins")
         asset_data_sharing = generate_streamlit_element(
             questions["asset_data_sharing"]["question"],
             questions["asset_data_sharing"]["type"],
@@ -117,26 +123,27 @@ if st.session_state.continue_clicked:
             key=ASSET_DATA_SHARING_STATE_KEY,
         )
 
-        partner_trust_difficulty = generate_streamlit_element(
-            questions["partner_trust_difficulty"]["question"],
-            questions["partner_trust_difficulty"]["type"],
-            options=questions["partner_trust_difficulty"].get("options"),
-            key=PARTNER_TRUST_DIFFICULTY_STATE_KEY,
-        )
+        if asset_data_sharing == 'Yes':
+            partner_trust_difficulty = generate_streamlit_element(
+                questions["partner_trust_difficulty"]["question"],
+                questions["partner_trust_difficulty"]["type"],
+                options=questions["partner_trust_difficulty"].get("options"),
+                key=PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+            )
 
-        partner_trust_challenges = generate_streamlit_element(
-            questions["partner_trust_challenges"]["question"],
-            questions["partner_trust_challenges"]["type"],
-            options=questions["partner_trust_challenges"].get("options"),
-            key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
-        )
+            partner_trust_challenges = generate_streamlit_element(
+                questions["partner_trust_challenges"]["question"],
+                questions["partner_trust_challenges"]["type"],
+                options=questions["partner_trust_challenges"].get("options"),
+                key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
+            )
 
-        reliance_on_evidence = generate_streamlit_element(
-            questions["reliance_on_evidence"]["question"],
-            questions["reliance_on_evidence"]["type"],
-            options=questions["reliance_on_evidence"].get("options"),
-            key=RELIANCE_ON_EVIDENCE_STATE_KEY,
-        )
+            reliance_on_evidence = generate_streamlit_element(
+                questions["reliance_on_evidence"]["question"],
+                questions["reliance_on_evidence"]["type"],
+                options=questions["reliance_on_evidence"].get("options"),
+                key=RELIANCE_ON_EVIDENCE_STATE_KEY,
+            )
 
     # Submit button for the rest of the survey
     if st.button("Continue"):

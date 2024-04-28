@@ -101,7 +101,7 @@ questions: dict[str, Any] = {
         "question": "Has your organisation established one"
         "or more Digital Twins?",
         "type": "multiple_choice",
-        "options": ["Select","Yes", "No"],
+        "options": ["Select", "Yes", "No"],
         "section": "community_composition",
     },
     "type_dt": {
@@ -149,7 +149,7 @@ questions: dict[str, Any] = {
         "tag": "assurance_mechanisms",
         "question": "Which of the following assurance mechanisms do you"
         " currently use (if any)?",
-        "type": "multiple_choice",
+        "type": "select_all",
         "options": [
             "Bias Reviews (e.g., identifying and mitigating biases in "
             "processes or outputs)",
@@ -216,7 +216,7 @@ questions: dict[str, Any] = {
         "question": "Have you considered sharing your asset-related data"
         " or models with other organisations to form connected digital twins?",
         "type": "multiple_choice",
-        "options": ["Yes", "No"],
+        "options": ["Select", "Yes", "No"],
         "section": "current_assurance_practices",
     },
     "partner_trust_difficulty": {
@@ -367,6 +367,7 @@ questions: dict[str, Any] = {
         " framework for 'trustworthy' and 'ethical' digital twins?",
         "type": "multiple_choice",
         "options": [
+            "Select",
             "Yes",
             "No, but we have related frameworks / guidelines",
             "No",
@@ -416,11 +417,11 @@ questions: dict[str, Any] = {
         "question": "How familiar are you with the Gemini principles?",
         "type": "multiple_choice",
         "options": [
-            "Unfamiliar: This is the first time I've heard of them.",
-            "Slightly Familiar: I've heard of them but don't know much.",
-            "Somewhat Familiar: I've seen them but don't use them in my work.",
-            "Familiar: I incorporate them in my work as guidelines.",
-            "Expert: I have helped develop them.",
+            "This is the first time I've heard of them.",
+            "I've heard of them but don't know much.",
+            "I've seen them but don't use them in my work.",
+            "I incorporate them in my work as guidelines.",
+            "I have helped develop them.",
         ],
         "section": "ethical_assurance_frameworks",
     },

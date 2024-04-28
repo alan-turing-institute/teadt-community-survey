@@ -25,6 +25,7 @@ NO_DT_REASON_STATE_KEY: str = "no_dt_reason"
 # Current Practices Page Keys
 ASSURANCE_MEANING_STATE_KEY: str = "assurance_meaning"
 ASSURANCE_MECHANISMS_STATE_KEY: str = "assurance_mechanisms"
+ASSURANCE_MECHANISM_OTHER_STATE_KEY: str = "assurance_mechanism_other"
 ASSURED_PROPERTIES_STATE_KEY: str = "assured_properties"
 ASSET_DATA_SHARING_STATE_KEY: str = "asset_data_sharing"
 PARTNER_TRUST_DIFFICULTY_STATE_KEY: str = "partner_trust_difficulty"
