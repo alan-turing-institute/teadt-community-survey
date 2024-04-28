@@ -44,9 +44,28 @@ ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY: str = "ethical_framework_existence"
 FRAMEWORK_DESCRIPTION_STATE_KEY: str = "framework_description"
 FRAMEWORK_DEVELOPMENT_STATE_KEY: str = "framework_development"
 VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY: str = "value_of_guiding_principles"
-FAMILIARITY_WITH_GEMINI_PRINCIPLES_STATE_KEY: str = (
+FAMILIARITY_WITH_GEMINI_PRINCIPLES_STATE_KEY: str = \
     "familiarity_with_gemini_principles"
-)
+RELEVANCE_GOOD_STATE_KEY: str = "relevance_good"
+RELEVANCE_VALUE_STATE_KEY: str = "relevance_value"
+RELEVANCE_INSIGHT_STATE_KEY: str = "relevance_insight"
+RELEVANCE_SECURITY_STATE_KEY: str = "relevance_security"
+RELEVANCE_OPENNESS_STATE_KEY: str = "relevance_openness"
+RELEVANCE_QUALITY_STATE_KEY: str = "relevance_quality"
+RELEVANCE_FEDERATION_STATE_KEY: str = "relevance_federation"
+RELEVANCE_CURATION_STATE_KEY: str = "relevance_curation"
+RELEVANCE_EVOLUTION_STATE_KEY: str = "relevance_evolution"
+CHALLENGE_GOOD_STATE_KEY: str = "challenge_good"
+CHALLENGE_VALUE_STATE_KEY: str = "challenge_value"
+CHALLENGE_INSIGHT_STATE_KEY: str = "challenge_insight"
+CHALLENGE_SECURITY_STATE_KEY: str = "challenge_security"
+CHALLENGE_OPENNESS_STATE_KEY: str = "challenge_openness"
+CHALLENGE_QUALITY_STATE_KEY: str = "challenge_quality"
+CHALLENGE_FEDERATION_STATE_KEY: str = "challenge_federation"
+CHALLENGE_CURATION_STATE_KEY: str = "challenge_curation"
+CHALLENGE_EVOLUTION_STATE_KEY: str = "challenge_evolution"
+OPERATIONALIZATION_CHALLENGES_STATE_KEY: str = "operationalization_challenges"
+
 
 # Communicating Assurance Page Keys
 COMMUNICATION_METHODS_STATE_KEY: str = "communication_methods"
