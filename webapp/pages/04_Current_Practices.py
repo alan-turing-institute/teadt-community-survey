@@ -1,12 +1,8 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
-import mongo_utils
-from pymongo import MongoClient
-from config import USER_ID_STATE_KEY
 from utils import generate_streamlit_element, disable_button, load_from_session
 from survey_questions import questions
 from config import (
-    USER_ID_STATE_KEY,
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
     ASSURED_PROPERTIES_STATE_KEY,
@@ -135,29 +131,4 @@ if st.session_state.continue_clicked:
 
     # Submit button for the rest of the survey
     if st.button("Continue"):
-        client: MongoClient = mongo_utils.init_connection()
-        if client:
-
-            # Update the data dictionary to match the questions from this
-            # section
-            data = {
-                "_id": st.session_state[USER_ID_STATE_KEY],
-                ASSURANCE_MEANING_STATE_KEY: assurance_meaning,
-                ASSURANCE_MECHANISMS_STATE_KEY: assurance_mechanisms,
-                ASSURED_PROPERTIES_STATE_KEY: assured_properties,
-                ASSET_DATA_SHARING_STATE_KEY: asset_data_sharing,
-                PARTNER_TRUST_DIFFICULTY_STATE_KEY: partner_trust_difficulty,
-                PARTNER_TRUST_CHALLENGES_STATE_KEY: partner_trust_challenges,
-                RELIANCE_ON_EVIDENCE_STATE_KEY: reliance_on_evidence,
-            }
-            # Assuming 'insert_survey_result' is a function you've defined to
-            # insert
-            # data into your database
-            mongo_utils.add_survey_results(
-                client, data
-            )  # Update table name as needed
-            st.success("Survey result saved successfully!")
-        else:
-            st.error("Could not connect to the database.")
-
         switch_page("Current_Practices_Results")

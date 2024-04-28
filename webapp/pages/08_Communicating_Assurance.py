@@ -46,9 +46,9 @@ effectively to both internal teams and external partners.
 communication_methods = st.selectbox(
     questions["communication_methods"]["question"],
     options=questions["communication_methods"]["options"],
-    key=f"{COMMUNICATION_METHODS_STATE_KEY}_{WIDGET_SUFFIX}",
     on_change=store_in_session,
     args=(COMMUNICATION_METHODS_STATE_KEY,),
+    key=f"{COMMUNICATION_METHODS_STATE_KEY}_{WIDGET_SUFFIX}",
 )
 
 need_for_visual_tool = st.radio(

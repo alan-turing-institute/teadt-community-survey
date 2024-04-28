@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page  # type:ignore
-from config import CONSENT_STATE_KEY
+from config import CONSENT_STATE_KEY, ALL_CONSENT_STATE_KEYS
 from utils import load_from_session, WIDGET_SUFFIX, store_in_session
 
 # Continue hiding sidebar toggle
@@ -142,9 +142,7 @@ consent_questions: list[str] = [
     "research to seek further clarification and information.",
 ]
 
-load_from_session(
-    [f"{CONSENT_STATE_KEY}_{index}" for index in range(len(consent_questions))]
-)
+load_from_session(ALL_CONSENT_STATE_KEYS)
 
 # Create a toggle for each consent statement
 consent_given = [
