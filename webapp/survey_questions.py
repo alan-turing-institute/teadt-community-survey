@@ -100,8 +100,8 @@ questions: dict[str, Any] = {
         "tag": "established_dt",
         "question": "Has your organisation established one"
         "or more Digital Twins?",
-        "type": "multiple_choice",
-        "options": ["Select", "Yes", "No"],
+        "type": "radio",
+        "options": ["Yes", "No"],
         "section": "community_composition",
     },
     "type_dt": {
@@ -215,8 +215,8 @@ questions: dict[str, Any] = {
         "tag": "asset_data_sharing",
         "question": "Have you considered sharing your asset-related data"
         " or models with other organisations to form connected digital twins?",
-        "type": "multiple_choice",
-        "options": ["Select", "Yes", "No"],
+        "type": "radio",
+        "options": ["Yes", "No"],
         "section": "current_assurance_practices",
     },
     "partner_trust_difficulty": {
@@ -365,9 +365,8 @@ questions: dict[str, Any] = {
         "tag": "ethical_framework_existence",
         "question": "Does your organisation have an established definition or"
         " framework for 'trustworthy' and 'ethical' digital twins?",
-        "type": "multiple_choice",
+        "type": "radio",
         "options": [
-            "Select",
             "Yes",
             "No, but we have related frameworks / guidelines",
             "No",
@@ -417,6 +416,7 @@ questions: dict[str, Any] = {
         "question": "How familiar are you with the Gemini principles?",
         "type": "multiple_choice",
         "options": [
+            "Select",
             "This is the first time I've heard of them.",
             "I've heard of them but don't know much.",
             "I've seen them but don't use them in my work.",
@@ -487,9 +487,8 @@ questions: dict[str, Any] = {
         "question": "Would a visual tool that helps you demonstrate and"
         " communicate how your evidence-based assurance measures align "
         "with key ethical goals enhance trust in your digital twin(s)?",
-        "type": "multiple_choice",
+        "type": "radio",
         "options": [
-            "Select",
             "Yes",
             "No",
             "I need to know more about this tool to decide",

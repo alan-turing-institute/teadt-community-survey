@@ -62,23 +62,23 @@ with st.container():
         key=ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
     )
 
-    if (
-        ethical_framework_existence == "Yes"
-        or ethical_framework_existence.startswith("No, but")
-    ):
-        framework_description = generate_streamlit_element(
-            questions["framework_description"]["question"],
-            questions["framework_description"]["type"],
-            options=questions["framework_description"].get("options"),
-            key=FRAMEWORK_DESCRIPTION_STATE_KEY,
-        )
+    if ethical_framework_existence is not None:
+        if (ethical_framework_existence == "Yes" 
+            or ethical_framework_existence.startswith("No, but")):
+            
+            framework_description = generate_streamlit_element(
+                questions["framework_description"]["question"],
+                questions["framework_description"]["type"],
+                options=questions["framework_description"].get("options"),
+                key=FRAMEWORK_DESCRIPTION_STATE_KEY,
+            )
 
-        framework_development = generate_streamlit_element(
-            questions["framework_development"]["question"],
-            questions["framework_development"]["type"],
-            options=questions["framework_development"].get("options"),
-            key=FRAMEWORK_DEVELOPMENT_STATE_KEY,
-        )
+            framework_development = generate_streamlit_element(
+                questions["framework_development"]["question"],
+                questions["framework_development"]["type"],
+                options=questions["framework_development"].get("options"),
+                key=FRAMEWORK_DEVELOPMENT_STATE_KEY,
+            )
 st.write("#")
 
 with st.container():
