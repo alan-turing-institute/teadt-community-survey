@@ -62,7 +62,7 @@ if submit_definition_clicked:
     st.session_state.disabled = True
 
 if submit_definition_clicked:
-    st.session_state["submit_1"] = True  
+    st.session_state["submit_1"] = True
     st.session_state.show_def = True
 
 # If the response to the first question is submitted, show the rest
@@ -75,7 +75,7 @@ if st.session_state.show_def:
     """,
         unsafe_allow_html=True,
         help="This definition follows the Department of Science, Innovation, "
-        "and Technology's \"Introduction to AI Assurance\""
+        'and Technology\'s "Introduction to AI Assurance"',
     )
     st.markdown(
         """
@@ -109,7 +109,7 @@ if st.session_state.continue_clicked:
 
         if "Other (Please specify)" in assurance_mechanisms:
             tag = ASSURANCE_MECHANISM_OTHER_STATE_KEY
-            assurance_mechanism_other = st.text_area('Please specify')
+            assurance_mechanism_other = st.text_area("Please specify")
 
         assured_properties = generate_streamlit_element(
             questions["assured_properties"]["question"],
@@ -120,7 +120,7 @@ if st.session_state.continue_clicked:
 
         if "Other (Please specify)" in assured_properties:
             tag = ASSURED_PROPERTIES_OTHER_STATE_KEY
-            assured_properties_other = st.text_area('Please specify')
+            assured_properties_other = st.text_area("Please specify")
 
         st.subheader("Assurance for Connected Digital Twins")
         asset_data_sharing = generate_streamlit_element(
@@ -130,7 +130,7 @@ if st.session_state.continue_clicked:
             key=ASSET_DATA_SHARING_STATE_KEY,
         )
 
-        if asset_data_sharing == 'Yes':
+        if asset_data_sharing == "Yes":
             partner_trust_difficulty = generate_streamlit_element(
                 questions["partner_trust_difficulty"]["question"],
                 questions["partner_trust_difficulty"]["type"],

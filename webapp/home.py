@@ -139,13 +139,13 @@ st.write("#")
 col_small_l, col_small_m, col_small_r = st.columns((3, 2, 3))
 with col_small_l:
     st.image(
-         Image.open("webapp/img/RTAU_BLK_MASTER_AW.png"),
-         width=100,
+        Image.open("webapp/img/RTAU_BLK_MASTER_AW.png"),
+        width=100,
     )
 with col_small_m:
     st.image(
-         Image.open("webapp/img/" "thumbnail_CfAA_Logo_Landscape_RGB.jpg"),
-         width=200,
+        Image.open("webapp/img/" "thumbnail_CfAA_Logo_Landscape_RGB.jpg"),
+        width=200,
     )
 
 

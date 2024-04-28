@@ -47,21 +47,21 @@ effectively to both internal teams and external partners.
 # Display each question using the utility function to handle different
 # input types
 communication_methods = generate_streamlit_element(
-        questions["communication_methods"]["question"],
-        questions["communication_methods"]["type"],
-        options=questions["communication_methods"].get("options"),
-        key=COMMUNICATION_METHODS_STATE_KEY,
+    questions["communication_methods"]["question"],
+    questions["communication_methods"]["type"],
+    options=questions["communication_methods"].get("options"),
+    key=COMMUNICATION_METHODS_STATE_KEY,
 )
 
 st.write("#")
 st.subheader("A New Responsible Research And Innovation Tool")
 
 st.markdown(
-    """One way to present a structured argument that clearly shows 
-how your assurance measures meet ethical goals is to use graph notation 
-to create a visual map. This visual approach simplifies complex information 
-and standardizes assurance communication, allowing stakeholders to see the 
-direct connections between actions and outcomes. 
+    """One way to present a structured argument that clearly shows
+how your assurance measures meet ethical goals is to use graph notation
+to create a visual map. This visual approach simplifies complex information
+and standardizes assurance communication, allowing stakeholders to see the
+direct connections between actions and outcomes.
 """
 )
 
@@ -70,19 +70,19 @@ image_path = Image.open("webapp/img/aba_example_case.png")
 st.image(image_path, width=600)
 
 need_for_visual_tool = generate_streamlit_element(
-            questions["need_for_visual_tool"]["question"],
-            questions["need_for_visual_tool"]["type"],
-            options=questions["need_for_visual_tool"].get("options"),
-            key=NEED_FOR_VISUAL_TOOL_STATE_KEY,
+    questions["need_for_visual_tool"]["question"],
+    questions["need_for_visual_tool"]["type"],
+    options=questions["need_for_visual_tool"].get("options"),
+    key=NEED_FOR_VISUAL_TOOL_STATE_KEY,
 )
 
 if need_for_visual_tool == "Yes":
     benefits_of_visual_tool = generate_streamlit_element(
-            questions["benefits_of_visual_tool"]["question"],
-            questions["benefits_of_visual_tool"]["type"],
-            options=questions["benefits_of_visual_tool"].get("options"),
-            key=BENEFITS_OF_VISUAL_TOOL_STATE_KEY,
-    )  
+        questions["benefits_of_visual_tool"]["question"],
+        questions["benefits_of_visual_tool"]["type"],
+        options=questions["benefits_of_visual_tool"].get("options"),
+        key=BENEFITS_OF_VISUAL_TOOL_STATE_KEY,
+    )
 
 if need_for_visual_tool == "No":
     reasons_against_visual_tool = generate_streamlit_element(
@@ -90,25 +90,25 @@ if need_for_visual_tool == "No":
         questions["reasons_against_visual_tool"]["type"],
         options=questions["reasons_against_visual_tool"].get("options"),
         key=REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
-    )  
+    )
 
 preparedness_for_argument = generate_streamlit_element(
-        questions["preparedness_for_argument"]["question"],
-        questions["preparedness_for_argument"]["type"],
-        options=questions["preparedness_for_argument"].get("options"),
-        key=PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
+    questions["preparedness_for_argument"]["question"],
+    questions["preparedness_for_argument"]["type"],
+    options=questions["preparedness_for_argument"].get("options"),
+    key=PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
 )
 
 support_for_assurance = generate_streamlit_element(
-        questions["support_for_assurance"]["question"],
-        questions["support_for_assurance"]["type"],
-        options=questions["support_for_assurance"].get("options"),
-        key=SUPPORT_FOR_ASSURANCE_STATE_KEY,
-)  
+    questions["support_for_assurance"]["question"],
+    questions["support_for_assurance"]["type"],
+    options=questions["support_for_assurance"].get("options"),
+    key=SUPPORT_FOR_ASSURANCE_STATE_KEY,
+)
 
 if "Other (Please specify)" in support_for_assurance:
-        tag = SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY
-        support_for_assurance_other = st.text_area('Please specify')
+    tag = SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY
+    support_for_assurance_other = st.text_area("Please specify")
 
 
 # Submit button for the form

@@ -45,8 +45,9 @@ ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY: str = "ethical_framework_existence"
 FRAMEWORK_DESCRIPTION_STATE_KEY: str = "framework_description"
 FRAMEWORK_DEVELOPMENT_STATE_KEY: str = "framework_development"
 VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY: str = "value_of_guiding_principles"
-FAMILIARITY_WITH_GEMINI_PRINCIPLES_STATE_KEY: str = \
+FAMILIARITY_WITH_GEMINI_PRINCIPLES_STATE_KEY: str = (
     "familiarity_with_gemini_principles"
+)
 RELEVANCE_GOOD_STATE_KEY: str = "relevance_good"
 RELEVANCE_VALUE_STATE_KEY: str = "relevance_value"
 RELEVANCE_INSIGHT_STATE_KEY: str = "relevance_insight"

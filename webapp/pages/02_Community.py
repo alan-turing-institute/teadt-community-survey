@@ -90,7 +90,7 @@ established_dt = generate_streamlit_element(
 )
 
 tag = TYPE_DT_STATE_KEY
-if established_dt == 'Yes':
+if established_dt == "Yes":
     type_dt = generate_streamlit_element(
         questions[tag]["question"],
         questions[tag]["type"],
@@ -99,8 +99,8 @@ if established_dt == 'Yes':
     )
     if "Other (Please specify)" in type_dt:
         tag = TYPE_DT_OTHER_STATE_KEY
-        type_dt_other = st.text_area('Please specify')
-        
+        type_dt_other = st.text_area("Please specify")
+
     tag = NO_DT_REASON_STATE_KEY
     no_dt_reason = generate_streamlit_element(
         questions[tag]["question"],
