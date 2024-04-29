@@ -46,7 +46,7 @@ for tag in tags_to_display:
 
 # Submit button for the form
 submitted = st.button(
-    "Continue", on_click=disable_button, disabled=st.session_state.disabled
+    "Continue", disabled=st.session_state.disabled
 )
 if submitted:
     st.session_state["submitted"] = True  # Mark the form as submitted
