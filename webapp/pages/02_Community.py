@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import generate_streamlit_element
+from streamlit_utils import generate_streamlit_element
 from streamlit_extras.switch_page_button import switch_page
 from survey_questions import questions
 from config import (
@@ -12,7 +12,7 @@ from config import (
     TYPE_DT_OTHER_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
 )
-from utils import load_from_session
+from streamlit_utils import load_from_session
 import logging
 
 logging.info("Loading the community page")

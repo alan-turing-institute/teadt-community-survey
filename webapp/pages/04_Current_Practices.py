@@ -1,6 +1,10 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
-from utils import generate_streamlit_element, disable_button, load_from_session
+from streamlit_utils import (
+    generate_streamlit_element,
+    disable_button,
+    load_from_session,
+)
 from survey_questions import questions
 from config import (
     ASSURANCE_MEANING_STATE_KEY,

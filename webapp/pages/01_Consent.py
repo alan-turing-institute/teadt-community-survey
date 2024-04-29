@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page  # type:ignore
 from config import CONSENT_STATE_KEY, ALL_CONSENT_STATE_KEYS
-from utils import load_from_session, WIDGET_SUFFIX, store_in_session
+from streamlit_utils import load_from_session, WIDGET_SUFFIX, store_in_session
 
 # Continue hiding sidebar toggle
 st.markdown(

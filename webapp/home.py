@@ -15,7 +15,9 @@ logging.basicConfig()
 logging.getLogger().setLevel(logging.INFO)
 
 
-if USER_ID_STATE_KEY not in st.session_state:
+if (USER_ID_STATE_KEY not in st.session_state) or (
+    st.session_state[USER_ID_STATE_KEY] is None
+):
     st.session_state[USER_ID_STATE_KEY] = str(uuid.uuid4())
     logging.info(f"Id for user: {st.session_state[USER_ID_STATE_KEY]=}")
 

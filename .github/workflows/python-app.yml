@@ -26,9 +26,6 @@ jobs:
     - name: Install dependencies
       run: |
         make install-dependencies
-    - name: Format with black
-      run: |
-        make run-formatter
     - name: Lint with flake8
       run:  |
         make run-linter

@@ -1,6 +1,6 @@
 import streamlit as st
 from survey_questions import questions
-from utils import generate_streamlit_element, load_from_session
+from streamlit_utils import generate_streamlit_element, load_from_session
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from PIL import Image
 from config import (
