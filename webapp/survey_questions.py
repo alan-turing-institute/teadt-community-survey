@@ -2,8 +2,9 @@
 import pycountry
 from typing import Any
 
-countries = ["Select"] + sorted([
-        country.name for country in pycountry.countries])
+countries = ["Select"] + sorted(
+    [country.name for country in pycountry.countries]
+)
 
 questions: dict[str, Any] = {
     "sector": {
@@ -115,7 +116,7 @@ questions: dict[str, Any] = {
             "Other (Please specify)",
         ],
         "section": "community_composition",
-        },
+    },
     "type_dt_other": {
         "tag": "type_dt_other",
         "question": "Please specify the type",
