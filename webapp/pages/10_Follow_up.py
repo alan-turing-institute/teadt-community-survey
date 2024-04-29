@@ -1,5 +1,4 @@
 import streamlit as st
-from email_validator import validate_email, EmailNotValidError
 from config import (
     ADDITIONAL_INSIGHTS_STATE_KEY,
     WORKSHOP_INTEREST_STATE_KEY,
@@ -7,11 +6,19 @@ from config import (
     EMAIL_INTEREST_STATE_KEY,
     EMAIL_STATE_KEY,
     ALL_SESSION_KEYS,
+    SURVEY_SUBMITTED_SESSION_KEY,
 )
-from utils import load_from_session, WIDGET_SUFFIX, store_in_session
+from streamlit_utils import (
+    load_from_session,
+    WIDGET_SUFFIX,
+    store_in_session,
+    verify_user,
+)
 import mongo_utils
 from pymongo import MongoClient
 from typing import Any
+
+verify_user()
 
 page_element_keys: list[str] = [
     ADDITIONAL_INSIGHTS_STATE_KEY,
@@ -76,11 +83,6 @@ st.markdown("*We'll only use your email to contact you regarding follow-ups.*")
 
 if st.button("Submit"):
     try:
-        # Validate.
-        valid = validate_email(email)
-        # Update with the normalized form.
-        email = valid.email
-        st.success("Valid email address.")
 
         client: MongoClient = mongo_utils.init_connection()
         if client:
@@ -91,7 +93,9 @@ if st.button("Submit"):
             }
 
         mongo_utils.add_survey_results(client, data)
-        st.success("Survey result saved successfully!")
-    except EmailNotValidError as e:
-        # Email is not valid, exception message is human-readable
+        st.session_state[SURVEY_SUBMITTED_SESSION_KEY] = True
+        verify_user()
+
+    except ValueError as e:
+        # Exception message is human-readable
         st.error(str(e))

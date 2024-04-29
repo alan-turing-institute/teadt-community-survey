@@ -1,6 +1,8 @@
 import streamlit as st
 import logging
 from typing import Any, Optional
+from streamlit_extras.switch_page_button import switch_page
+from config import SURVEY_SUBMITTED_SESSION_KEY, SUCCESS_PAGE
 
 WIDGET_SUFFIX: str = "widget"
 
@@ -10,8 +12,38 @@ def disable_button() -> None:
     st.session_state.disabled = True
 
 
+def disable_sidebar() -> None:
+    # Disable the sidebar
+    st.set_page_config(initial_sidebar_state="collapsed")
+
+    st.markdown(
+        """
+    <style>
+        [data-testid="collapsedControl"] {
+            display: none
+        }
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
+
+
 def store_in_session(key: str) -> None:
     st.session_state[key] = st.session_state[f"{key}_{WIDGET_SUFFIX}"]
+
+
+def verify_user() -> bool:
+
+    # hide_pages([SUCCESS_PAGE])
+
+    if (
+        SURVEY_SUBMITTED_SESSION_KEY in st.session_state
+        and st.session_state[SURVEY_SUBMITTED_SESSION_KEY]
+    ):
+        switch_page(SUCCESS_PAGE)
+        return False
+
+    return True
 
 
 def load_from_session(keys: list[str]) -> None:

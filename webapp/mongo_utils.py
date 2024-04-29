@@ -9,10 +9,13 @@ from config import (
     DATABASE_NAME_ENV,
     COLLECTION_NAME_ENV,
     CONNECTION_STRING_ENV,
+    EMAIL_STATE_KEY,
 )
 from typing import Optional
 from datetime import datetime
 import logging
+from email_validator import validate_email, ValidatedEmail
+from typing import Any
 
 
 @st.cache_resource
@@ -31,7 +34,21 @@ def init_connection() -> MongoClient:
     return client
 
 
+def validate_survey_results(data: dict[str, Any]):
+    # Validate.
+    provided_mail: str = (
+        data[EMAIL_STATE_KEY] if EMAIL_STATE_KEY in data else None
+    )
+
+    if provided_mail:
+        validated_email: ValidatedEmail = validate_email(provided_mail)
+        # Update with the normalized form.
+        data[EMAIL_STATE_KEY] = validated_email.email
+
+
 def add_survey_results(client: MongoClient, data: dict[str, str]) -> None:
+
+    validate_survey_results(data)
 
     collection: Collection = get_survey_collection(client)
     data["modification_date"] = str(datetime.today().replace(microsecond=0))

@@ -3,6 +3,9 @@ from streamlit_extras.switch_page_button import switch_page
 from plot_utils import plot_pie_chart
 import mongo_utils
 from pymongo import MongoClient
+from streamlit_utils import verify_user
+
+verify_user()
 
 st.title("Part 1 Results: Community Composition")
 

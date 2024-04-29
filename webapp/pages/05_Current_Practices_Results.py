@@ -6,6 +6,9 @@ from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.cursor import Cursor
 import itertools
+from streamlit_utils import verify_user
+
+verify_user()
 
 st.title("Part 2 Results: Current Practices")
 

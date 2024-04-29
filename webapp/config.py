@@ -2,6 +2,8 @@ CONNECTION_STRING_ENV: str = "CONNECTION_STRING"
 DATABASE_NAME_ENV: str = "DB_NAME"
 COLLECTION_NAME_ENV: str = "COLLECTION_NAME"
 
+SURVEY_SUBMITTED_SESSION_KEY: str = "survey_submitted"
+
 # TODO: Maybe move them to each page?
 
 # Consent Page Keys
@@ -146,3 +148,6 @@ ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
     EMAIL_INTEREST_STATE_KEY,
     EMAIL_STATE_KEY,
 ]
+
+# Page catalogue
+SUCCESS_PAGE: str = "Success"
