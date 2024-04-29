@@ -109,7 +109,11 @@ if st.session_state.continue_clicked:
 
         if "Other (Please specify)" in assurance_mechanisms:
             tag = ASSURANCE_MECHANISM_OTHER_STATE_KEY
-            assurance_mechanism_other = st.text_area("Please specify")
+            assurance_mechanism_other = generate_streamlit_element(
+                questions[tag]["question"],
+                questions[tag]["type"],
+                key=ASSURANCE_MECHANISM_OTHER_STATE_KEY,
+            )
 
         assured_properties = generate_streamlit_element(
             questions["assured_properties"]["question"],
@@ -120,7 +124,11 @@ if st.session_state.continue_clicked:
 
         if "Other (Please specify)" in assured_properties:
             tag = ASSURED_PROPERTIES_OTHER_STATE_KEY
-            assured_properties_other = st.text_area("Please specify")
+            assured_properties_other = generate_streamlit_element(
+                questions[tag]["question"],
+                questions[tag]["type"],
+                key=ASSURED_PROPERTIES_OTHER_STATE_KEY,
+            )
 
         st.subheader("Assurance for Connected Digital Twins")
         asset_data_sharing = generate_streamlit_element(

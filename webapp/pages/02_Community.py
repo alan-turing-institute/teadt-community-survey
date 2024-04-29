@@ -24,6 +24,7 @@ page_element_keys: list[str] = [
     RESPONSIBILITIES_STATE_KEY,
     ESTABLISHED_DT_STATE_KEY,
     TYPE_DT_STATE_KEY,
+    TYPE_DT_OTHER_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
 ]
 
@@ -99,8 +100,12 @@ if established_dt == "Yes":
     )
     if "Other (Please specify)" in type_dt:
         tag = TYPE_DT_OTHER_STATE_KEY
-        type_dt_other = st.text_area("Please specify")
-
+        type_dt = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        key=tag,
+    )
+        
     tag = NO_DT_REASON_STATE_KEY
     no_dt_reason = generate_streamlit_element(
         questions[tag]["question"],
