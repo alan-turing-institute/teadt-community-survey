@@ -6,9 +6,18 @@ from PIL import Image
 from config import USER_ID_STATE_KEY
 import uuid
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
+import logging
+
+logging.basicConfig()
+
+logging.basicConfig()
+# TODO(cgavidia): Level should be customisable
+logging.getLogger().setLevel(logging.INFO)
+
 
 if USER_ID_STATE_KEY not in st.session_state:
     st.session_state[USER_ID_STATE_KEY] = str(uuid.uuid4())
+    logging.info(f"Id for user: {st.session_state[USER_ID_STATE_KEY]=}")
 
 # Define the constants
 length_captcha = 4
@@ -69,8 +78,7 @@ st.markdown(
     " or systems? We want to hear from business leaders, developers, "
     "and researchers to help us understand your perspective,"
     " current challenges, and needs when it comes to assuring "
-    "digital twins."  
-
+    "digital twins."
     "Although digital twins promise vast societal benefits, "
     "their increasing reliance on various forms of AI "
     "and their role in safety-critical settings pose significant challenges."
@@ -103,7 +111,7 @@ st.markdown(
     "it fosters a collaborative environment where knowledge sharing "
     "enhances community practices."
     "As we collectively contribute, we refine and enrich the standards "
-    "that will benefit everyone in this transformative field." 
+    "that will benefit everyone in this transformative field."
 )
 
 # Funding
@@ -129,9 +137,12 @@ with col_foot_r:
 st.write("#")
 
 col_small_l, col_small_m, col_small_r = st.columns((3, 2, 3))
-with col_small_m:
-    st.image(Image.open("webapp/img/"
-                        "thumbnail_CfAA_Logo_Landscape_RGB.jpg"), width=200)
+# TODO(cgavidia): Temporarily removed until image is provided.
+# with col_small_m:
+#     st.image(
+#         Image.open("webapp/img/" "thumbnail_CfAA_Logo_Landscape_RGB.jpg"),
+#         width=200,
+#     )
 
 
 st.write("#")

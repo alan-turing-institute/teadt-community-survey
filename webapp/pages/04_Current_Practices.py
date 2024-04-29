@@ -1,10 +1,28 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
-import mongo_utils
-from pymongo import MongoClient
-from config import USER_ID_STATE_KEY
-from utils import generate_streamlit_element
+from utils import generate_streamlit_element, disable_button, load_from_session
 from survey_questions import questions
+from config import (
+    ASSURANCE_MEANING_STATE_KEY,
+    ASSURANCE_MECHANISMS_STATE_KEY,
+    ASSURED_PROPERTIES_STATE_KEY,
+    ASSET_DATA_SHARING_STATE_KEY,
+    PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+    PARTNER_TRUST_CHALLENGES_STATE_KEY,
+    RELIANCE_ON_EVIDENCE_STATE_KEY,
+)
+
+page_element_keys: list[str] = [
+    ASSURANCE_MEANING_STATE_KEY,
+    ASSURANCE_MECHANISMS_STATE_KEY,
+    ASSET_DATA_SHARING_STATE_KEY,
+    ASSURED_PROPERTIES_STATE_KEY,
+    PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+    PARTNER_TRUST_CHALLENGES_STATE_KEY,
+    RELIANCE_ON_EVIDENCE_STATE_KEY,
+]
+
+load_from_session(page_element_keys)
 
 st.title("Current Assurance Practices and Understanding ")
 st.markdown(
@@ -20,32 +38,26 @@ if "continue_clicked" not in st.session_state:
     st.session_state.continue_clicked = False
 
 
-# Disable the submit button after it is clicked
-def disable():
-    st.session_state.disabled = True
-
-
 # Initialize disabled for form_submit_button to False
 st.session_state.disabled = False
 
-# Start with the first question in its own form
-with st.form("question_1_form"):
-    # Question 2.1
-    assurance_meaning = generate_streamlit_element(
-        questions["assurance_meaning"]["question"],
-        questions["assurance_meaning"]["type"],
-        key="assurance_meaning",
-    )
 
-    # Submit button for assurance definition
-    submit_1 = st.form_submit_button(
-        "Submit Definition",
-        on_click=disable,
-        disabled=st.session_state.disabled,
-    )
-    if submit_1:
-        st.session_state["submit_1"] = True  # Mark the form as submitted
-        st.session_state.show_def = True
+# Question 2.1
+assurance_meaning = generate_streamlit_element(
+    questions["assurance_meaning"]["question"],
+    questions["assurance_meaning"]["type"],
+    key=ASSURANCE_MEANING_STATE_KEY,
+)
+
+# Submit button for assurance definition
+submit_definition_clicked = st.button(
+    "Submit Definition",
+    on_click=disable_button,
+    disabled=st.session_state.disabled,
+)
+if submit_definition_clicked:
+    st.session_state["submit_1"] = True  # Mark the form as submitted
+    st.session_state.show_def = True
 
 # If the response to the first question is submitted, show the rest of the
 # content
@@ -79,69 +91,44 @@ if st.session_state.continue_clicked:
             questions["assurance_mechanisms"]["question"],
             questions["assurance_mechanisms"]["type"],
             options=questions["assurance_mechanisms"].get("options"),
-            key="assurance_mechanisms",
+            key=ASSURANCE_MECHANISMS_STATE_KEY,
         )
 
         assured_properties = generate_streamlit_element(
             questions["assured_properties"]["question"],
             questions["assured_properties"]["type"],
             options=questions["assured_properties"].get("options"),
-            key="assured_properties",
+            key=ASSURED_PROPERTIES_STATE_KEY,
         )
 
         asset_data_sharing = generate_streamlit_element(
             questions["asset_data_sharing"]["question"],
             questions["asset_data_sharing"]["type"],
             options=questions["asset_data_sharing"].get("options"),
-            key="asset_data_sharing",
+            key=ASSET_DATA_SHARING_STATE_KEY,
         )
 
         partner_trust_difficulty = generate_streamlit_element(
             questions["partner_trust_difficulty"]["question"],
             questions["partner_trust_difficulty"]["type"],
             options=questions["partner_trust_difficulty"].get("options"),
-            key="partner_trust_difficulty",
+            key=PARTNER_TRUST_DIFFICULTY_STATE_KEY,
         )
 
         partner_trust_challenges = generate_streamlit_element(
             questions["partner_trust_challenges"]["question"],
             questions["partner_trust_challenges"]["type"],
             options=questions["partner_trust_challenges"].get("options"),
-            key="partner_trust_challenges",
+            key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
         )
 
         reliance_on_evidence = generate_streamlit_element(
             questions["reliance_on_evidence"]["question"],
             questions["reliance_on_evidence"]["type"],
             options=questions["reliance_on_evidence"].get("options"),
-            key="reliance_on_evidence",
+            key=RELIANCE_ON_EVIDENCE_STATE_KEY,
         )
 
     # Submit button for the rest of the survey
     if st.button("Continue"):
-        client: MongoClient = mongo_utils.init_connection()
-        if client:
-
-            # Update the data dictionary to match the questions from this
-            # section
-            data = {
-                "_id": st.session_state[USER_ID_STATE_KEY],
-                "assurance_meaning": assurance_meaning,
-                "assurance_mechanisms": assurance_mechanisms,
-                "assured_properties": assured_properties,
-                "asset_data_sharing": asset_data_sharing,
-                "partner_trust_difficulty": partner_trust_difficulty,
-                "partner_trust_challenges": partner_trust_challenges,
-                "reliance_on_evidence": reliance_on_evidence,
-            }
-            # Assuming 'insert_survey_result' is a function you've defined to
-            # insert
-            # data into your database
-            mongo_utils.add_survey_results(
-                client, data
-            )  # Update table name as needed
-            st.success("Survey result saved successfully!")
-        else:
-            st.error("Could not connect to the database.")
-
         switch_page("Current_Practices_Results")

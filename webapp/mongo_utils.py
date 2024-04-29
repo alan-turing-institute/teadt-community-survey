@@ -3,6 +3,7 @@ import pymongo
 from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.cursor import Cursor
+from pymongo.results import UpdateResult
 import os
 from config import (
     DATABASE_NAME_ENV,
@@ -10,6 +11,8 @@ from config import (
     CONNECTION_STRING_ENV,
 )
 from typing import Optional
+from datetime import datetime
+import logging
 
 
 @st.cache_resource
@@ -31,7 +34,18 @@ def init_connection() -> MongoClient:
 def add_survey_results(client: MongoClient, data: dict[str, str]) -> None:
 
     collection: Collection = get_survey_collection(client)
-    collection.update_one({"_id": data["_id"]}, {"$set": data}, upsert=True)
+    data["modification_date"] = str(datetime.today().replace(microsecond=0))
+
+    logging.info(f"Storing responses with {data['_id']=}")
+
+    result: UpdateResult = collection.update_one(
+        {
+            "_id": data["_id"],
+        },
+        {"$set": data},
+        upsert=True,
+    )
+    logging.info(f"Updated documents: {result.modified_count=}")
 
 
 def get_survey_collection(client: MongoClient) -> Collection:
@@ -56,5 +70,9 @@ def get_field_values(client: MongoClient, field_name: str) -> dict[str, list]:
     query_results: Cursor = collection.find(filter={}, projection=[field_name])
 
     return {
-        field_name: [document[field_name] for document in list(query_results)]
+        field_name: [
+            document[field_name]
+            for document in list(query_results)
+            if field_name in document
+        ]
     }
