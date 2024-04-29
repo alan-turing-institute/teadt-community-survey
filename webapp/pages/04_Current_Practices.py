@@ -5,7 +5,9 @@ from survey_questions import questions
 from config import (
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
+    ASSURANCE_MECHANISM_OTHER_STATE_KEY,
     ASSURED_PROPERTIES_STATE_KEY,
+    ASSURED_PROPERTIES_OTHER_STATE_KEY,
     ASSET_DATA_SHARING_STATE_KEY,
     PARTNER_TRUST_DIFFICULTY_STATE_KEY,
     PARTNER_TRUST_CHALLENGES_STATE_KEY,
@@ -15,8 +17,10 @@ from config import (
 page_element_keys: list[str] = [
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
-    ASSET_DATA_SHARING_STATE_KEY,
+    ASSURANCE_MECHANISM_OTHER_STATE_KEY,
     ASSURED_PROPERTIES_STATE_KEY,
+    ASSURED_PROPERTIES_OTHER_STATE_KEY,
+    ASSET_DATA_SHARING_STATE_KEY,
     PARTNER_TRUST_DIFFICULTY_STATE_KEY,
     PARTNER_TRUST_CHALLENGES_STATE_KEY,
     RELIANCE_ON_EVIDENCE_STATE_KEY,
@@ -31,16 +35,13 @@ st.markdown(
     "digital twins. "
 )
 
-# Initialize session state for showing additional content
+# Initialize session state for showing additional content / disabling buttons
+if "disabled" not in st.session_state:
+    st.session_state.disabled = False
 if "show_def" not in st.session_state:
     st.session_state.show_def = False
 if "continue_clicked" not in st.session_state:
     st.session_state.continue_clicked = False
-
-
-# Initialize disabled for form_submit_button to False
-st.session_state.disabled = False
-
 
 # Question 2.1
 assurance_meaning = generate_streamlit_element(
@@ -55,24 +56,36 @@ submit_definition_clicked = st.button(
     on_click=disable_button,
     disabled=st.session_state.disabled,
 )
+
+# Disable the button after it's clicked once
 if submit_definition_clicked:
-    st.session_state["submit_1"] = True  # Mark the form as submitted
+    st.session_state.disabled = True
+
+if submit_definition_clicked:
+    st.session_state["submit_1"] = True
     st.session_state.show_def = True
 
-# If the response to the first question is submitted, show the rest of the
-# content
+# If the response to the first question is submitted, show the rest
 if st.session_state.show_def:
     st.markdown(
         """
     :::info
     **Background & Definition of Assurance:**
-    *Assurance is the process of measuring, evaluating and communicating
+    :::
+    """,
+        unsafe_allow_html=True,
+        help="This definition follows the Department of Science, Innovation, "
+        'and Technology\'s "Introduction to AI Assurance"',
+    )
+    st.markdown(
+        """
+    :::info
+    Assurance is the process of measuring, evaluating and communicating
     something about a system or product (e.g. a digital twin).
-    (Following the definition of the Department of Science, Innovation, and
-    Technology's "Introduction to AI Assurance")
+
     This can include a range of activities such as conducting a system audit,
     validating a dataset, carrying out training around ethical practices or
-    achieving certified compliance with a specific standard.*
+    achieving certified compliance with a specific standard.
     :::
     """,
         unsafe_allow_html=True,
@@ -94,6 +107,14 @@ if st.session_state.continue_clicked:
             key=ASSURANCE_MECHANISMS_STATE_KEY,
         )
 
+        if "Other (Please specify)" in assurance_mechanisms:
+            tag = ASSURANCE_MECHANISM_OTHER_STATE_KEY
+            assurance_mechanism_other = generate_streamlit_element(
+                questions[tag]["question"],
+                questions[tag]["type"],
+                key=ASSURANCE_MECHANISM_OTHER_STATE_KEY,
+            )
+
         assured_properties = generate_streamlit_element(
             questions["assured_properties"]["question"],
             questions["assured_properties"]["type"],
@@ -101,6 +122,15 @@ if st.session_state.continue_clicked:
             key=ASSURED_PROPERTIES_STATE_KEY,
         )
 
+        if "Other (Please specify)" in assured_properties:
+            tag = ASSURED_PROPERTIES_OTHER_STATE_KEY
+            assured_properties_other = generate_streamlit_element(
+                questions[tag]["question"],
+                questions[tag]["type"],
+                key=ASSURED_PROPERTIES_OTHER_STATE_KEY,
+            )
+
+        st.subheader("Assurance for Connected Digital Twins")
         asset_data_sharing = generate_streamlit_element(
             questions["asset_data_sharing"]["question"],
             questions["asset_data_sharing"]["type"],
@@ -108,26 +138,27 @@ if st.session_state.continue_clicked:
             key=ASSET_DATA_SHARING_STATE_KEY,
         )
 
-        partner_trust_difficulty = generate_streamlit_element(
-            questions["partner_trust_difficulty"]["question"],
-            questions["partner_trust_difficulty"]["type"],
-            options=questions["partner_trust_difficulty"].get("options"),
-            key=PARTNER_TRUST_DIFFICULTY_STATE_KEY,
-        )
+        if asset_data_sharing == "Yes":
+            partner_trust_difficulty = generate_streamlit_element(
+                questions["partner_trust_difficulty"]["question"],
+                questions["partner_trust_difficulty"]["type"],
+                options=questions["partner_trust_difficulty"].get("options"),
+                key=PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+            )
 
-        partner_trust_challenges = generate_streamlit_element(
-            questions["partner_trust_challenges"]["question"],
-            questions["partner_trust_challenges"]["type"],
-            options=questions["partner_trust_challenges"].get("options"),
-            key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
-        )
+            partner_trust_challenges = generate_streamlit_element(
+                questions["partner_trust_challenges"]["question"],
+                questions["partner_trust_challenges"]["type"],
+                options=questions["partner_trust_challenges"].get("options"),
+                key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
+            )
 
-        reliance_on_evidence = generate_streamlit_element(
-            questions["reliance_on_evidence"]["question"],
-            questions["reliance_on_evidence"]["type"],
-            options=questions["reliance_on_evidence"].get("options"),
-            key=RELIANCE_ON_EVIDENCE_STATE_KEY,
-        )
+            reliance_on_evidence = generate_streamlit_element(
+                questions["reliance_on_evidence"]["question"],
+                questions["reliance_on_evidence"]["type"],
+                options=questions["reliance_on_evidence"].get("options"),
+                key=RELIANCE_ON_EVIDENCE_STATE_KEY,
+            )
 
     # Submit button for the rest of the survey
     if st.button("Continue"):

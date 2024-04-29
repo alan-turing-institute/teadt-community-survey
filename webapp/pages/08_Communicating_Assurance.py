@@ -1,6 +1,8 @@
 import streamlit as st
 from survey_questions import questions
+from utils import generate_streamlit_element, load_from_session
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
+from PIL import Image
 from config import (
     COMMUNICATION_METHODS_STATE_KEY,
     NEED_FOR_VISUAL_TOOL_STATE_KEY,
@@ -8,8 +10,8 @@ from config import (
     REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
     PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
     SUPPORT_FOR_ASSURANCE_STATE_KEY,
+    SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
 )
-from utils import load_from_session, WIDGET_SUFFIX, store_in_session
 
 page_element_keys: list[str] = [
     COMMUNICATION_METHODS_STATE_KEY,
@@ -18,6 +20,7 @@ page_element_keys: list[str] = [
     REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
     PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
     SUPPORT_FOR_ASSURANCE_STATE_KEY,
+    SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
 ]
 load_from_session(page_element_keys)
 
@@ -28,8 +31,8 @@ st.title("Section 5: Communicating Assurance")
 # Introduction to the section
 st.markdown(
     """
-Assurance of your digital twin involves more than just implementing the right"
-" technologies and processes.
+Assurance of your digital twin involves more than just implementing the right
+ technologies and processes.
 It also requires demonstrating to all stakeholders that your actions
 are backed by evidence and clearly support broader goals of trustworthiness
 and ethics.
@@ -43,53 +46,74 @@ effectively to both internal teams and external partners.
 
 # Display each question using the utility function to handle different
 # input types
-communication_methods = st.selectbox(
+communication_methods = generate_streamlit_element(
     questions["communication_methods"]["question"],
-    options=questions["communication_methods"]["options"],
-    on_change=store_in_session,
-    args=(COMMUNICATION_METHODS_STATE_KEY,),
-    key=f"{COMMUNICATION_METHODS_STATE_KEY}_{WIDGET_SUFFIX}",
+    questions["communication_methods"]["type"],
+    options=questions["communication_methods"].get("options"),
+    key=COMMUNICATION_METHODS_STATE_KEY,
 )
 
-need_for_visual_tool = st.radio(
+st.write("#")
+st.subheader("A New Responsible Research And Innovation Tool")
+
+st.markdown(
+    """One way to present a structured argument that clearly shows
+how your assurance measures meet ethical goals is to use graph notation
+to create a visual map. This visual approach simplifies complex information
+and standardizes assurance communication, allowing stakeholders to see the
+direct connections between actions and outcomes.
+"""
+)
+
+# Display an image
+image_path = Image.open("webapp/img/aba_example_case.png")
+st.image(image_path, width=600)
+
+need_for_visual_tool = generate_streamlit_element(
     questions["need_for_visual_tool"]["question"],
-    options=questions["need_for_visual_tool"]["options"],
-    on_change=store_in_session,
-    args=(NEED_FOR_VISUAL_TOOL_STATE_KEY,),
-    key=f"{NEED_FOR_VISUAL_TOOL_STATE_KEY}_{WIDGET_SUFFIX}",
+    questions["need_for_visual_tool"]["type"],
+    options=questions["need_for_visual_tool"].get("options"),
+    key=NEED_FOR_VISUAL_TOOL_STATE_KEY,
 )
 
 if need_for_visual_tool == "Yes":
-    benefits_of_visual_tool = st.text_area(
+    benefits_of_visual_tool = generate_streamlit_element(
         questions["benefits_of_visual_tool"]["question"],
-        on_change=store_in_session,
-        args=(BENEFITS_OF_VISUAL_TOOL_STATE_KEY,),
-        key=f"{BENEFITS_OF_VISUAL_TOOL_STATE_KEY}_{WIDGET_SUFFIX}",
+        questions["benefits_of_visual_tool"]["type"],
+        options=questions["benefits_of_visual_tool"].get("options"),
+        key=BENEFITS_OF_VISUAL_TOOL_STATE_KEY,
     )
 
 if need_for_visual_tool == "No":
-    reasons_against_visual_tool = st.text_area(
+    reasons_against_visual_tool = generate_streamlit_element(
         questions["reasons_against_visual_tool"]["question"],
-        on_change=store_in_session,
-        args=(REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,),
-        key=f"{REASONS_AGAINST_VISUAL_TOOL_STATE_KEY}_{WIDGET_SUFFIX}",
+        questions["reasons_against_visual_tool"]["type"],
+        options=questions["reasons_against_visual_tool"].get("options"),
+        key=REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
     )
 
-preparedness_for_argument = st.selectbox(
+preparedness_for_argument = generate_streamlit_element(
     questions["preparedness_for_argument"]["question"],
-    options=questions["preparedness_for_argument"]["options"],
-    on_change=store_in_session,
-    args=(PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,),
-    key=f"{PREPAREDNESS_FOR_ARGUMENT_STATE_KEY}_{WIDGET_SUFFIX}",
+    questions["preparedness_for_argument"]["type"],
+    options=questions["preparedness_for_argument"].get("options"),
+    key=PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
 )
 
-support_for_assurance = st.multiselect(
+support_for_assurance = generate_streamlit_element(
     questions["support_for_assurance"]["question"],
-    options=questions["support_for_assurance"]["options"],
-    on_change=store_in_session,
-    args=(SUPPORT_FOR_ASSURANCE_STATE_KEY,),
-    key=f"{SUPPORT_FOR_ASSURANCE_STATE_KEY}_{WIDGET_SUFFIX}",
+    questions["support_for_assurance"]["type"],
+    options=questions["support_for_assurance"].get("options"),
+    key=SUPPORT_FOR_ASSURANCE_STATE_KEY,
 )
+
+if "Other (Please specify)" in support_for_assurance:
+    tag = SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY
+    support_for_assurance_other = generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
+    )
 
 # Submit button for the form
 submitted = st.button("Continue")

@@ -2,6 +2,10 @@
 import pycountry
 from typing import Any
 
+countries = ["Select"] + sorted(
+    [country.name for country in pycountry.countries]
+)
+
 questions: dict[str, Any] = {
     "sector": {
         "tag": "sector",
@@ -52,7 +56,7 @@ questions: dict[str, Any] = {
         "tag": "location",
         "question": "Where is your organisation located?",
         "type": "multiple_choice",
-        "options": [country.name for country in pycountry.countries],
+        "options": countries,
         "section": "community_composition",  # Example section
     },
     "role": {
@@ -96,7 +100,7 @@ questions: dict[str, Any] = {
         "tag": "established_dt",
         "question": "Has your organisation established one"
         "or more Digital Twins?",
-        "type": "multiple_choice",
+        "type": "radio",
         "options": ["Yes", "No"],
         "section": "community_composition",
     },
@@ -111,7 +115,13 @@ questions: dict[str, Any] = {
             "System Digital Twin",
             "Other (Please specify)",
         ],
-        "section": "community_composition",  # Example section
+        "section": "community_composition",
+    },
+    "type_dt_other": {
+        "tag": "type_dt_other",
+        "question": "Please specify the type",
+        "type": "text_area",
+        "section": "community_composition",
     },
     "no_dt_reason": {
         "tag": "no_dt_reason",
@@ -145,7 +155,7 @@ questions: dict[str, Any] = {
         "tag": "assurance_mechanisms",
         "question": "Which of the following assurance mechanisms do you"
         " currently use (if any)?",
-        "type": "multiple_choice",
+        "type": "select_all",
         "options": [
             "Bias Reviews (e.g., identifying and mitigating biases in "
             "processes or outputs)",
@@ -176,6 +186,12 @@ questions: dict[str, Any] = {
         ],
         "section": "current_assurance_practices",
     },
+    "assurance_mechanism_other": {
+        "tag": "assurance_mechanism_other",
+        "question": "Please specify which assurance mechanism",
+        "type": "text_area",
+        "section": "current_assurance_practices",
+    },
     "assured_properties": {
         "tag": "assured_properties",
         "question": "Which of the following properties (or goals) do you"
@@ -203,15 +219,21 @@ questions: dict[str, Any] = {
             "Ethical Integrity",
             "Interoperability",
             "None",
-            "Other (Please Specify)",
+            "Other (Please specify)",
         ],
+        "section": "current_assurance_practices",
+    },
+    "assured_properties_other": {
+        "tag": "assured_properties_other",
+        "question": "Please specify which property",
+        "type": "text_area",
         "section": "current_assurance_practices",
     },
     "asset_data_sharing": {
         "tag": "asset_data_sharing",
         "question": "Have you considered sharing your asset-related data"
         " or models with other organisations to form connected digital twins?",
-        "type": "multiple_choice",
+        "type": "radio",
         "options": ["Yes", "No"],
         "section": "current_assurance_practices",
     },
@@ -361,7 +383,7 @@ questions: dict[str, Any] = {
         "tag": "ethical_framework_existence",
         "question": "Does your organisation have an established definition or"
         " framework for 'trustworthy' and 'ethical' digital twins?",
-        "type": "multiple_choice",
+        "type": "radio",
         "options": [
             "Yes",
             "No, but we have related frameworks / guidelines",
@@ -382,6 +404,7 @@ questions: dict[str, Any] = {
         "question": "How was this definition or framework developed?",
         "type": "multiple_choice",
         "options": [
+            "Select",
             "Consensus-based process (e.g., collaborative efforts of industry"
             " consortia)",
             "Internal governance process",
@@ -412,11 +435,12 @@ questions: dict[str, Any] = {
         "question": "How familiar are you with the Gemini principles?",
         "type": "multiple_choice",
         "options": [
-            "Unfamiliar: This is the first time I've heard of them.",
-            "Slightly Familiar: I've heard of them but don't know much.",
-            "Somewhat Familiar: I've seen them but don't use them in my work.",
-            "Familiar: I incorporate them in my work as guidelines.",
-            "Expert: I have helped develop them.",
+            "Select",
+            "This is the first time I've heard of them.",
+            "I've heard of them but don't know much.",
+            "I've seen them but don't use them in my work.",
+            "I incorporate them in my work as guidelines.",
+            "I have helped develop them.",
         ],
         "section": "ethical_assurance_frameworks",
     },
@@ -464,7 +488,7 @@ questions: dict[str, Any] = {
         "tag": "communication_methods",
         "question": "How do you currently communicate your project’s assurance"
         " strategies to your stakeholders or partner organisations?",
-        "type": "multiple_choice",
+        "type": "select_all",
         "options": [
             "Written Reports following established standards",
             "Non-standardized written Reports",
@@ -482,7 +506,7 @@ questions: dict[str, Any] = {
         "question": "Would a visual tool that helps you demonstrate and"
         " communicate how your evidence-based assurance measures align "
         "with key ethical goals enhance trust in your digital twin(s)?",
-        "type": "multiple_choice",
+        "type": "radio",
         "options": [
             "Yes",
             "No",
@@ -534,6 +558,12 @@ questions: dict[str, Any] = {
             " assurance arguments / best practices",
             "Other (Please specify)",
         ],
+        "section": "evidence_based_assurance",
+    },
+    "support_for_assurance_other": {
+        "tag": "support_for_assurance_other",
+        "question": "Please specify which support",
+        "type": "text_area",
         "section": "evidence_based_assurance",
     },
     "ranking_support_options": {

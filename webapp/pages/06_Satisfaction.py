@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import generate_streamlit_element, disable_button, load_from_session
+from utils import generate_streamlit_element, load_from_session
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
 from config import (
@@ -45,9 +45,7 @@ for tag in tags_to_display:
     )
 
 # Submit button for the form
-submitted = st.button(
-    "Continue", on_click=disable_button, disabled=st.session_state.disabled
-)
+submitted = st.button("Continue", disabled=st.session_state.disabled)
 if submitted:
     st.session_state["submitted"] = True  # Mark the form as submitted
 

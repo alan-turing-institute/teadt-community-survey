@@ -80,6 +80,23 @@ def generate_streamlit_element(
             on_change=store_in_session,
             args=(key,),
         )
+    elif question_type == "likert_col" and options is not None:
+        likert_scale_labels = options
+        # Create two columns
+        left_column, right_column = st.columns([1, 3])
+        # Question text in the left column
+        with left_column:
+            st.write(question_text)
+        # Likert scale slider in the right column
+        with right_column:
+            return st.select_slider(
+                "",
+                likert_scale_labels,
+                key=widget_key,
+                label_visibility="collapsed",
+                on_change=store_in_session,
+                args=(key,),
+            )
     elif question_type == "text_area":
         return st.text_area(
             question_text,
@@ -94,6 +111,7 @@ def generate_streamlit_element(
             key=widget_key,
             on_change=store_in_session,
             args=(key,),
+            index=None,
         )
     else:
         raise ValueError(f"Invalid question type: {question_type}")

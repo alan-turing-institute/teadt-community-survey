@@ -47,7 +47,7 @@ col_l, col_m, col_r = st.columns((3, 2, 3))
 with col_l:
     st.image(Image.open("webapp/img/Alan_Turing_Institute_logo.png"))
 with col_r:
-    st.image(Image.open("webapp/img/DTHub_logo.jpg"))
+    st.image(Image.open("webapp/img/DTH logo_primary_CMYK (2).jpg"))
 
 st.write("#")
 
@@ -137,12 +137,16 @@ with col_foot_r:
 st.write("#")
 
 col_small_l, col_small_m, col_small_r = st.columns((3, 2, 3))
-# TODO(cgavidia): Temporarily removed until image is provided.
-# with col_small_m:
-#     st.image(
-#         Image.open("webapp/img/" "thumbnail_CfAA_Logo_Landscape_RGB.jpg"),
-#         width=200,
-#     )
+with col_small_l:
+    st.image(
+        Image.open("webapp/img/RTAU_BLK_MASTER_AW.png"),
+        width=100,
+    )
+with col_small_m:
+    st.image(
+        Image.open("webapp/img/" "thumbnail_CfAA_Logo_Landscape_RGB.jpg"),
+        width=200,
+    )
 
 
 st.write("#")
