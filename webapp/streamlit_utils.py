@@ -2,8 +2,7 @@ import streamlit as st
 import logging
 from typing import Any, Optional
 from streamlit_extras.switch_page_button import switch_page
-from st_pages import hide_pages
-from config import ALL_SESSION_KEYS, SURVEY_SUBMITTED_SESSION_KEY, SUCCESS_PAGE
+from config import SURVEY_SUBMITTED_SESSION_KEY, SUCCESS_PAGE
 
 WIDGET_SUFFIX: str = "widget"
 
