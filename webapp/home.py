@@ -7,8 +7,7 @@ from config import USER_ID_STATE_KEY
 import uuid
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 import logging
-
-logging.basicConfig()
+from streamlit_utils import disable_sidebar
 
 logging.basicConfig()
 # TODO(cgavidia): Level should be customisable
@@ -30,19 +29,7 @@ height = 150
 if not st.session_state.get("controllo", False):
     st.session_state["controllo"] = False
 
-# Disable the sidebar
-st.set_page_config(initial_sidebar_state="collapsed")
-
-st.markdown(
-    """
-<style>
-    [data-testid="collapsedControl"] {
-        display: none
-    }
-</style>
-""",
-    unsafe_allow_html=True,
-)
+disable_sidebar()
 
 # Logo and Navigation
 col_l, col_m, col_r = st.columns((3, 2, 3))

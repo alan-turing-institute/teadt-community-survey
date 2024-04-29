@@ -6,11 +6,19 @@ from config import (
     EMAIL_INTEREST_STATE_KEY,
     EMAIL_STATE_KEY,
     ALL_SESSION_KEYS,
+    SURVEY_SUBMITTED_SESSION_KEY,
 )
-from streamlit_utils import load_from_session, WIDGET_SUFFIX, store_in_session
+from streamlit_utils import (
+    load_from_session,
+    WIDGET_SUFFIX,
+    store_in_session,
+    verify_user,
+)
 import mongo_utils
 from pymongo import MongoClient
 from typing import Any
+
+verify_user()
 
 page_element_keys: list[str] = [
     ADDITIONAL_INSIGHTS_STATE_KEY,
@@ -85,7 +93,9 @@ if st.button("Submit"):
             }
 
         mongo_utils.add_survey_results(client, data)
-        st.success("Survey result saved successfully!")
+        st.session_state[SURVEY_SUBMITTED_SESSION_KEY] = True
+        verify_user()
+
     except ValueError as e:
         # Exception message is human-readable
         st.error(str(e))

@@ -4,6 +4,7 @@ from streamlit_utils import (
     generate_streamlit_element,
     disable_button,
     load_from_session,
+    verify_user,
 )
 from survey_questions import questions
 from config import (
@@ -17,6 +18,8 @@ from config import (
     PARTNER_TRUST_CHALLENGES_STATE_KEY,
     RELIANCE_ON_EVIDENCE_STATE_KEY,
 )
+
+verify_user()
 
 page_element_keys: list[str] = [
     ASSURANCE_MEANING_STATE_KEY,

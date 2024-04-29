@@ -1,6 +1,10 @@
 import streamlit as st
 from survey_questions import questions
-from streamlit_utils import generate_streamlit_element, load_from_session
+from streamlit_utils import (
+    generate_streamlit_element,
+    load_from_session,
+    verify_user,
+)
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from PIL import Image
 from config import (
@@ -12,6 +16,9 @@ from config import (
     SUPPORT_FOR_ASSURANCE_STATE_KEY,
     SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
 )
+
+verify_user()
+
 
 page_element_keys: list[str] = [
     COMMUNICATION_METHODS_STATE_KEY,

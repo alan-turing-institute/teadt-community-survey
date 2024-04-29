@@ -1,5 +1,9 @@
 import streamlit as st
-from streamlit_utils import generate_streamlit_element, load_from_session
+from streamlit_utils import (
+    generate_streamlit_element,
+    load_from_session,
+    verify_user,
+)
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
 from config import (
@@ -8,6 +12,8 @@ from config import (
     LINK_ASSURANCE_ACTIVITIES_STATE_KEY,
     SATISFACTION_JUSTIFICATION_STATE_KEY,
 )
+
+verify_user()
 
 # Define the tags of questions to display in this section
 tags_to_display = [

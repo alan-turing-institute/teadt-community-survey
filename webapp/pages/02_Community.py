@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_utils import generate_streamlit_element
+from streamlit_utils import generate_streamlit_element, verify_user
 from streamlit_extras.switch_page_button import switch_page
 from survey_questions import questions
 from config import (
@@ -15,6 +15,7 @@ from config import (
 from streamlit_utils import load_from_session
 import logging
 
+
 logging.info("Loading the community page")
 
 page_element_keys: list[str] = [
@@ -29,6 +30,8 @@ page_element_keys: list[str] = [
 ]
 
 load_from_session(page_element_keys)
+
+verify_user()
 
 # reintroduce sidebar (collapse button will stay hidden as CSS cannot by
 # dynamically altered)

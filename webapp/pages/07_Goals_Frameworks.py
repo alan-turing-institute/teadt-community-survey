@@ -1,5 +1,9 @@
 import streamlit as st
-from streamlit_utils import generate_streamlit_element, load_from_session
+from streamlit_utils import (
+    generate_streamlit_element,
+    load_from_session,
+    verify_user,
+)
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
 from config import (
@@ -30,6 +34,9 @@ from config import (
 )
 
 from PIL import Image
+
+verify_user()
+
 
 # Set page configuration and sidebar state
 st.set_page_config(initial_sidebar_state="expanded")

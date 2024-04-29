@@ -1,19 +1,17 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page  # type:ignore
 from config import CONSENT_STATE_KEY, ALL_CONSENT_STATE_KEYS
-from streamlit_utils import load_from_session, WIDGET_SUFFIX, store_in_session
-
-# Continue hiding sidebar toggle
-st.markdown(
-    """
-<style>
-    [data-testid="collapsedControl"] {
-        display: none
-    }
-</style>
-""",
-    unsafe_allow_html=True,
+from streamlit_utils import (
+    load_from_session,
+    WIDGET_SUFFIX,
+    store_in_session,
+    verify_user,
+    disable_sidebar,
 )
+
+verify_user()
+
+disable_sidebar()
 
 st.title("Participant Information for the TEA-DT Survey")
 
