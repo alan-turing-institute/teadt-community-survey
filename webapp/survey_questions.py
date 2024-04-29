@@ -2,9 +2,8 @@
 import pycountry
 from typing import Any
 
-countries = [country.name for country in pycountry.countries]
-countries.sort()
-countries.insert(0, "Select")
+countries = ["Select"] + sorted([
+        country.name for country in pycountry.countries])
 
 questions: dict[str, Any] = {
     "sector": {
