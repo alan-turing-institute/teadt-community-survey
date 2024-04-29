@@ -115,13 +115,13 @@ questions: dict[str, Any] = {
             "System Digital Twin",
             "Other (Please specify)",
         ],
-        "section": "community_composition",  
-    },
+        "section": "community_composition",
+        },
     "type_dt_other": {
         "tag": "type_dt_other",
         "question": "Please specify the type",
         "type": "text_area",
-        "section": "community_composition"
+        "section": "community_composition",
     },
     "no_dt_reason": {
         "tag": "no_dt_reason",
@@ -190,7 +190,7 @@ questions: dict[str, Any] = {
         "tag": "assurance_mechanism_other",
         "question": "Please specify which assurance mechanism",
         "type": "text_area",
-        "section": "current_assurance_practices"
+        "section": "current_assurance_practices",
     },
     "assured_properties": {
         "tag": "assured_properties",
@@ -223,11 +223,11 @@ questions: dict[str, Any] = {
         ],
         "section": "current_assurance_practices",
     },
-     "assured_properties_other": {
+    "assured_properties_other": {
         "tag": "assured_properties_other",
         "question": "Please specify which property",
         "type": "text_area",
-        "section": "current_assurance_practices"
+        "section": "current_assurance_practices",
     },
     "asset_data_sharing": {
         "tag": "asset_data_sharing",
@@ -404,6 +404,7 @@ questions: dict[str, Any] = {
         "question": "How was this definition or framework developed?",
         "type": "multiple_choice",
         "options": [
+            "Select",
             "Consensus-based process (e.g., collaborative efforts of industry"
             " consortia)",
             "Internal governance process",
@@ -563,7 +564,7 @@ questions: dict[str, Any] = {
         "tag": "support_for_assurance_other",
         "question": "Please specify which support",
         "type": "text_area",
-        "section": "evidence_based_assurance"
+        "section": "evidence_based_assurance",
     },
     "ranking_support_options": {
         "tag": "ranking_support_options",

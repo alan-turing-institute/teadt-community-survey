@@ -82,7 +82,7 @@ if st.session_state.show_def:
     :::info
     Assurance is the process of measuring, evaluating and communicating
     something about a system or product (e.g. a digital twin).
-    
+
     This can include a range of activities such as conducting a system audit,
     validating a dataset, carrying out training around ethical practices or
     achieving certified compliance with a specific standard.

@@ -109,11 +109,11 @@ support_for_assurance = generate_streamlit_element(
 if "Other (Please specify)" in support_for_assurance:
     tag = SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY
     support_for_assurance_other = generate_streamlit_element(
-    questions[tag]["question"],
-    questions[tag]["type"],
-    options=questions[tag].get("options"),
-    key=SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
-)
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
+    )
 
 # Submit button for the form
 submitted = st.button("Continue")

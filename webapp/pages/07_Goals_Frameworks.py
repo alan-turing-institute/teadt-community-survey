@@ -63,9 +63,10 @@ with st.container():
     )
 
     if ethical_framework_existence is not None:
-        if (ethical_framework_existence == "Yes" 
-            or ethical_framework_existence.startswith("No, but")):
-            
+        if (
+            ethical_framework_existence == "Yes"
+            or ethical_framework_existence.startswith("No, but")
+        ):
             framework_description = generate_streamlit_element(
                 questions["framework_description"]["question"],
                 questions["framework_description"]["type"],

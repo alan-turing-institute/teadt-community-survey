@@ -101,11 +101,11 @@ if established_dt == "Yes":
     if "Other (Please specify)" in type_dt:
         tag = TYPE_DT_OTHER_STATE_KEY
         type_dt = generate_streamlit_element(
-        questions[tag]["question"],
-        questions[tag]["type"],
-        key=tag,
-    )
-        
+            questions[tag]["question"],
+            questions[tag]["type"],
+            key=tag,
+        )
+
     tag = NO_DT_REASON_STATE_KEY
     no_dt_reason = generate_streamlit_element(
         questions[tag]["question"],

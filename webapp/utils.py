@@ -94,6 +94,8 @@ def generate_streamlit_element(
                 likert_scale_labels,
                 key=widget_key,
                 label_visibility="collapsed",
+                on_change=store_in_session,
+                args=(key,),
             )
     elif question_type == "text_area":
         return st.text_area(
