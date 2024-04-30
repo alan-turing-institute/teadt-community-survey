@@ -1,17 +1,22 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page  # type:ignore
-from config import CONSENT_STATE_KEY, ALL_CONSENT_STATE_KEYS
+from config import (
+    CONSENT_STATE_KEY,
+    ALL_CONSENT_STATE_KEYS,
+    CONSENT_PAGE,
+    COMMUNITY_PAGE,
+)
 from streamlit_utils import (
     load_from_session,
     WIDGET_SUFFIX,
     store_in_session,
     verify_user,
     disable_sidebar,
+    display_error_messages,
 )
 
-verify_user()
-
-disable_sidebar()
+verify_user(CONSENT_PAGE)
+display_error_messages()
 
 st.title("Participant Information for the TEA-DT Survey")
 
@@ -161,7 +166,7 @@ if all(consent_given):
     if st.button("Next"):
         # Redirect to the next section of the survey
         st.write("Redirecting to the next section...")
-        switch_page("Community")
+        switch_page(COMMUNITY_PAGE)
 
 else:
     st.write("Please check check all statements to proceed.")

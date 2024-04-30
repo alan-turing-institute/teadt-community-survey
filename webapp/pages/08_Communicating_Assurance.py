@@ -4,6 +4,7 @@ from streamlit_utils import (
     generate_streamlit_element,
     load_from_session,
     verify_user,
+    display_error_messages,
 )
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from PIL import Image
@@ -15,9 +16,12 @@ from config import (
     PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
     SUPPORT_FOR_ASSURANCE_STATE_KEY,
     SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
+    COMMUNICATING_ASSURANCE_PAGE,
+    FOLLOW_UP_PAGE,
 )
 
-verify_user()
+verify_user(COMMUNICATING_ASSURANCE_PAGE)
+display_error_messages()
 
 
 page_element_keys: list[str] = [
@@ -128,4 +132,4 @@ submitted = st.button("Continue")
 # Actions to take after the form is submitted, such as saving responses or
 # navigating
 if submitted:
-    switch_page("Follow_up")
+    switch_page(FOLLOW_UP_PAGE)

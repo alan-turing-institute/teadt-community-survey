@@ -1,8 +1,12 @@
+# Database management
 CONNECTION_STRING_ENV: str = "CONNECTION_STRING"
 DATABASE_NAME_ENV: str = "DB_NAME"
 COLLECTION_NAME_ENV: str = "COLLECTION_NAME"
 
+# Application management
+USER_ID_STATE_KEY: str = "_id"
 SURVEY_SUBMITTED_SESSION_KEY: str = "survey_submitted"
+ERROR_MESSAGES_KEY: str = "error_messages"
 
 # TODO: Maybe move them to each page?
 
@@ -14,7 +18,6 @@ ALL_CONSENT_STATE_KEYS: list[str] = [
 ]
 
 # Community Page Keys
-USER_ID_STATE_KEY: str = "_id"
 SECTOR_STATE_KEY: str = "sector"
 LOCATION_STATE_KEY: str = "location"
 ROLE_STATE_KEY: str = "role"
@@ -150,4 +153,15 @@ ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
 ]
 
 # Page catalogue
+# TODO(cgavidia): This can be an Enum
+HOME_PAGE: str = "home"
+CONSENT_PAGE: str = "Consent"
+COMMUNITY_PAGE: str = "Community"
+COMMUNITY_RESULTS_PAGE: str = "Community_Results"
+CURRENT_PRACTICES_PAGE: str = "Current_Practices"
+CURRENT_PRACTICES_RESULTS_PAGE: str = "Current_Practices_Results"
+SATISFACTION_PAGE: str = "Satisfaction"
+GOALS_FRAMEWORK_PAGE: str = "Goals_Frameworks"
+COMMUNICATING_ASSURANCE_PAGE: str = "Communicating_Assurance"
+FOLLOW_UP_PAGE: str = "Follow_up"
 SUCCESS_PAGE: str = "Success"

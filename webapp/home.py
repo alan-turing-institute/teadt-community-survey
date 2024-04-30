@@ -3,7 +3,7 @@ import random
 import string
 from captcha.image import ImageCaptcha
 from PIL import Image
-from config import USER_ID_STATE_KEY
+from config import USER_ID_STATE_KEY, CONSENT_PAGE
 import uuid
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 import logging
@@ -182,4 +182,4 @@ if st.session_state["controllo"]:
     if st.button("Let's Start!"):
         # Redirect to the next section of the survey
         st.write("Redirecting to the Community Pulse Check...")
-        switch_page("Consent")
+        switch_page(CONSENT_PAGE)

@@ -1,8 +1,17 @@
 import streamlit as st
 import logging
 from typing import Any, Optional
-from streamlit_extras.switch_page_button import switch_page
-from config import SURVEY_SUBMITTED_SESSION_KEY, SUCCESS_PAGE
+from streamlit_extras import switch_page_button
+from config import (
+    SURVEY_SUBMITTED_SESSION_KEY,
+    SUCCESS_PAGE,
+    USER_ID_STATE_KEY,
+    HOME_PAGE,
+    CONSENT_PAGE,
+    ERROR_MESSAGES_KEY,
+    ALL_CONSENT_STATE_KEYS,
+    CONSENT_QUESTIONS,
+)
 
 WIDGET_SUFFIX: str = "widget"
 
@@ -32,34 +41,64 @@ def store_in_session(key: str) -> None:
     st.session_state[key] = st.session_state[f"{key}_{WIDGET_SUFFIX}"]
 
 
-def verify_user() -> bool:
-
-    # hide_pages([SUCCESS_PAGE])
-
+def verify_user(current_page: str) -> bool:
+    logging.info(f"Verifying user at {current_page}")
     if (
         SURVEY_SUBMITTED_SESSION_KEY in st.session_state
         and st.session_state[SURVEY_SUBMITTED_SESSION_KEY]
     ):
-        switch_page(SUCCESS_PAGE)
+        switch_page_button.switch_page(SUCCESS_PAGE)
         return False
+
+    if (
+        USER_ID_STATE_KEY not in st.session_state
+        or st.session_state[USER_ID_STATE_KEY] is None
+    ):
+        switch_page_button.switch_page(HOME_PAGE)
+        return False
+
+    consent_responses: list[bool] = [
+        st.session_state[state_key]
+        for state_key in ALL_CONSENT_STATE_KEYS
+        if state_key in st.session_state
+    ]
+
+    if current_page != CONSENT_PAGE and (
+        len(consent_responses) != CONSENT_QUESTIONS
+        or not all(consent_responses)
+    ):
+        logging.info(f"Consent not given! Redirecting to {CONSENT_PAGE} page.")
+        st.session_state[ERROR_MESSAGES_KEY] = (
+            "You did not provide consent for your data to be stored."
+        )
+        switch_page_button.switch_page(CONSENT_PAGE)
 
     return True
 
 
+def display_error_messages():
+    if ERROR_MESSAGES_KEY in st.session_state:
+        logging.info(f"{st.session_state[ERROR_MESSAGES_KEY]}")
+        st.error(st.session_state[ERROR_MESSAGES_KEY])
+        del st.session_state[ERROR_MESSAGES_KEY]
+    else:
+        logging.info("No messages to display")
+
+
 def load_from_session(keys: list[str]) -> None:
 
-    for key in st.session_state.keys():
-        logging.info(f"{key=} {st.session_state[key]=}")
+    # for key in st.session_state.keys():
+    #     logging.info(f"{key=} {st.session_state[key]=}")
 
     for key in keys:
         if key in st.session_state:
             widget_session_key = f"{key}_{WIDGET_SUFFIX}"
             session_value = st.session_state[key]
             st.session_state[widget_session_key] = session_value
-            logging.info(
-                f"Loading value {session_value} into widget "
-                f"{widget_session_key}"
-            )
+            # logging.info(
+            #     f"Loading value {session_value} into widget "
+            #     f"{widget_session_key}"
+            # )
         else:
             logging.info(f"No value to load for session key {key}")
 

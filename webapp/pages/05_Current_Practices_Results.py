@@ -6,9 +6,15 @@ from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.cursor import Cursor
 import itertools
-from streamlit_utils import verify_user
+from streamlit_utils import verify_user, display_error_messages
+from config import (
+    SECTOR_STATE_KEY,
+    CURRENT_PRACTICES_RESULTS_PAGE,
+    SATISFACTION_PAGE,
+)
 
-verify_user()
+verify_user(CURRENT_PRACTICES_RESULTS_PAGE)
+display_error_messages()
 
 st.title("Part 2 Results: Current Practices")
 
@@ -20,7 +26,11 @@ def query_sankey_data(client: MongoClient):
     collection: Collection = mongo_utils.get_survey_collection(client)
     query_results: Cursor = collection.find(
         filter={},
-        projection=["sector", "assurance_methods", "properties_assured"],
+        projection=[
+            SECTOR_STATE_KEY,
+            "assurance_methods",
+            "properties_assured",
+        ],
     )
     results_as_list: list[dict] = list(query_results)
 
@@ -30,7 +40,11 @@ def query_sankey_data(client: MongoClient):
     value = []
 
     # Unique lists for sectors, methods, and properties to build labels
-    sectors: set[str] = {result["sector"] for result in results_as_list}
+    sectors: set[str] = {
+        result[SECTOR_STATE_KEY]
+        for result in results_as_list
+        if SECTOR_STATE_KEY in result
+    }
     methods: set[str] = set(
         itertools.chain.from_iterable(
             [
@@ -128,4 +142,4 @@ else:
 if st.button("Continue"):
     # Redirect to the next section of the survey
     st.write("Redirecting to next part...")
-    switch_page("Satisfaction")
+    switch_page(SATISFACTION_PAGE)

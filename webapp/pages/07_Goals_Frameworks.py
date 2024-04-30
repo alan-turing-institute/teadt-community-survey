@@ -3,6 +3,7 @@ from streamlit_utils import (
     generate_streamlit_element,
     load_from_session,
     verify_user,
+    display_error_messages,
 )
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
@@ -31,11 +32,14 @@ from config import (
     CHALLENGE_CURATION_STATE_KEY,
     CHALLENGE_EVOLUTION_STATE_KEY,
     OPERATIONALIZATION_CHALLENGES_STATE_KEY,
+    GOALS_FRAMEWORK_PAGE,
+    COMMUNICATING_ASSURANCE_PAGE,
 )
 
 from PIL import Image
 
-verify_user()
+verify_user(GOALS_FRAMEWORK_PAGE)
+display_error_messages()
 
 
 # Set page configuration and sidebar state
@@ -279,4 +283,4 @@ with st.container():
 
 # Actions to take after the form is submitted
 if st.button("Continue"):
-    switch_page("Communicating_Assurance")
+    switch_page(COMMUNICATING_ASSURANCE_PAGE)

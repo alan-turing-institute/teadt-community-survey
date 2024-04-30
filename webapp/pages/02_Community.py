@@ -11,8 +11,10 @@ from config import (
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
+    COMMUNITY_PAGE,
+    COMMUNITY_RESULTS_PAGE,
 )
-from streamlit_utils import load_from_session
+from streamlit_utils import load_from_session, display_error_messages
 import logging
 
 
@@ -31,7 +33,8 @@ page_element_keys: list[str] = [
 
 load_from_session(page_element_keys)
 
-verify_user()
+verify_user(COMMUNITY_PAGE)
+display_error_messages()
 
 # reintroduce sidebar (collapse button will stay hidden as CSS cannot by
 # dynamically altered)
@@ -119,4 +122,4 @@ if established_dt == "Yes":
 
 # Actions to take after the form is submitted
 if st.button("Continue"):
-    switch_page("Community_Results")
+    switch_page(COMMUNITY_RESULTS_PAGE)

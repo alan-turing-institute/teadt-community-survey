@@ -7,18 +7,21 @@ from config import (
     EMAIL_STATE_KEY,
     ALL_SESSION_KEYS,
     SURVEY_SUBMITTED_SESSION_KEY,
+    FOLLOW_UP_PAGE,
 )
 from streamlit_utils import (
     load_from_session,
     WIDGET_SUFFIX,
     store_in_session,
     verify_user,
+    display_error_messages,
 )
 import mongo_utils
 from pymongo import MongoClient
 from typing import Any
 
-verify_user()
+verify_user(FOLLOW_UP_PAGE)
+display_error_messages()
 
 page_element_keys: list[str] = [
     ADDITIONAL_INSIGHTS_STATE_KEY,
@@ -94,8 +97,9 @@ if st.button("Submit"):
 
         mongo_utils.add_survey_results(client, data)
         st.session_state[SURVEY_SUBMITTED_SESSION_KEY] = True
-        verify_user()
 
     except ValueError as e:
         # Exception message is human-readable
         st.error(str(e))
+
+verify_user(FOLLOW_UP_PAGE)
