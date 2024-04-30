@@ -17,6 +17,7 @@ from streamlit_utils import (
 
 verify_user(CONSENT_PAGE)
 display_error_messages()
+disable_sidebar()
 
 st.title("Participant Information for the TEA-DT Survey")
 
