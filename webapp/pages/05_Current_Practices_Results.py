@@ -80,13 +80,15 @@ def query_sankey_data(client: MongoClient):
     # Aggregate data
     for row in results_as_list:
 
-        sector = row["sector"]
         if (
-            "assurance_methods" in row
+            SECTOR_STATE_KEY in row
+            and row[SECTOR_STATE_KEY] is not None
+            and "assurance_methods" in row
             and row["assurance_methods"] is not None
             and "properties_assured" in row
             and row["properties_assured"] is not None
         ):
+            sector = row[SECTOR_STATE_KEY]
             for method in row["assurance_methods"].split(", "):
                 # Connect sector to method
                 source.append(sector_index[sector.strip()])

@@ -11,6 +11,7 @@ from config import (
     ERROR_MESSAGES_STATE_KEY,
     ALL_CONSENT_STATE_KEYS,
     CONSENT_QUESTIONS,
+    VALID_CAPTCHA_ENTRY_STATE_KEY,
 )
 
 WIDGET_SUFFIX: str = "widget"
@@ -47,13 +48,17 @@ def verify_user(current_page: str) -> bool:
         SURVEY_SUBMITTED_STATE_KEY in st.session_state
         and st.session_state[SURVEY_SUBMITTED_STATE_KEY]
     ):
+        logging.info("Answers submitted! Redirecting to Success")
         switch_page_button.switch_page(SUCCESS_PAGE)
         return False
 
     if (
         USER_ID_STATE_KEY not in st.session_state
         or st.session_state[USER_ID_STATE_KEY] is None
+        or VALID_CAPTCHA_ENTRY_STATE_KEY not in st.session_state
+        or not st.session_state[VALID_CAPTCHA_ENTRY_STATE_KEY]
     ):
+        logging.info("Invalid user! Redirecting to home")
         switch_page_button.switch_page(HOME_PAGE)
         return False
 

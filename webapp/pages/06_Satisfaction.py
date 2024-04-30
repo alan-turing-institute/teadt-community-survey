@@ -39,11 +39,6 @@ st.markdown(
     "infrastructure, and support resources."
 )
 
-# Initialize disabled for form_submit_button to False
-if "disabled" not in st.session_state:
-    st.session_state.disabled = False
-
-
 # Generate Streamlit elements and assign responses to variables
 responses = {}
 for tag in tags_to_display:
@@ -55,9 +50,7 @@ for tag in tags_to_display:
     )
 
 # Submit button for the form
-submitted = st.button("Continue", disabled=st.session_state.disabled)
-if submitted:
-    st.session_state["submitted"] = True  # Mark the form as submitted
+submitted = st.button("Continue")
 
 # Actions to take after the form is submitted
 if submitted:

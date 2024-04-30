@@ -18,21 +18,10 @@ logging.basicConfig()
 # TODO(cgavidia): Level should be customisable
 logging.getLogger().setLevel(logging.INFO)
 
-
-if (USER_ID_STATE_KEY not in st.session_state) or (
-    st.session_state[USER_ID_STATE_KEY] is None
-):
-    st.session_state[USER_ID_STATE_KEY] = str(uuid.uuid4())
-    logging.info(f"Id for user: {st.session_state[USER_ID_STATE_KEY]=}")
-
 # Define the constants
 length_captcha = 4
 width = 200
 height = 150
-
-# Initialize session states
-if not st.session_state.get("controllo", False):
-    st.session_state["controllo"] = False
 
 disable_sidebar()
 
@@ -176,10 +165,10 @@ if (
             user_provided_text = user_provided_text.replace(" ", "")
             # If the captcha is correct, set 'controllo' session state to True
             # TODO(cptanalatriste)REMOVE LATER!
-            logging.info(
-                f"{st.session_state[CAPTCHA_TEXT_STATE_KEY].lower()=} "
-                f"{user_provided_text.lower().strip()=}"
-            )
+            # logging.info(
+            #     f"{st.session_state[CAPTCHA_TEXT_STATE_KEY].lower()=} "
+            #     f"{user_provided_text.lower().strip()=}"
+            # )
 
             if (
                 st.session_state[CAPTCHA_TEXT_STATE_KEY].lower()
@@ -187,6 +176,10 @@ if (
             ):
                 del st.session_state[CAPTCHA_TEXT_STATE_KEY]
                 st.session_state[VALID_CAPTCHA_ENTRY_STATE_KEY] = True
+                st.session_state[USER_ID_STATE_KEY] = str(uuid.uuid4())
+                logging.info(
+                    f"Id for user: " f"{st.session_state[USER_ID_STATE_KEY]=}"
+                )
             else:
                 del st.session_state[VALID_CAPTCHA_ENTRY_STATE_KEY]
                 st.error("Incorrect text. Please try again.")
