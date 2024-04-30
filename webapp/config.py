@@ -5,8 +5,10 @@ COLLECTION_NAME_ENV: str = "COLLECTION_NAME"
 
 # Application management
 USER_ID_STATE_KEY: str = "_id"
-SURVEY_SUBMITTED_SESSION_KEY: str = "survey_submitted"
-ERROR_MESSAGES_KEY: str = "error_messages"
+SURVEY_SUBMITTED_STATE_KEY: str = "survey_submitted"
+ERROR_MESSAGES_STATE_KEY: str = "error_messages"
+VALID_CAPTCHA_ENTRY_STATE_KEY: str = "controllo"
+CAPTCHA_TEXT_STATE_KEY: str = "Captcha"
 
 # TODO: Maybe move them to each page?
 

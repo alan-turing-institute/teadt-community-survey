@@ -3,12 +3,12 @@ import logging
 from typing import Any, Optional
 from streamlit_extras import switch_page_button
 from config import (
-    SURVEY_SUBMITTED_SESSION_KEY,
+    SURVEY_SUBMITTED_STATE_KEY,
     SUCCESS_PAGE,
     USER_ID_STATE_KEY,
     HOME_PAGE,
     CONSENT_PAGE,
-    ERROR_MESSAGES_KEY,
+    ERROR_MESSAGES_STATE_KEY,
     ALL_CONSENT_STATE_KEYS,
     CONSENT_QUESTIONS,
 )
@@ -44,8 +44,8 @@ def store_in_session(key: str) -> None:
 def verify_user(current_page: str) -> bool:
     logging.info(f"Verifying user at {current_page}")
     if (
-        SURVEY_SUBMITTED_SESSION_KEY in st.session_state
-        and st.session_state[SURVEY_SUBMITTED_SESSION_KEY]
+        SURVEY_SUBMITTED_STATE_KEY in st.session_state
+        and st.session_state[SURVEY_SUBMITTED_STATE_KEY]
     ):
         switch_page_button.switch_page(SUCCESS_PAGE)
         return False
@@ -68,7 +68,7 @@ def verify_user(current_page: str) -> bool:
         or not all(consent_responses)
     ):
         logging.info(f"Consent not given! Redirecting to {CONSENT_PAGE} page.")
-        st.session_state[ERROR_MESSAGES_KEY] = (
+        st.session_state[ERROR_MESSAGES_STATE_KEY] = (
             "You did not provide consent for your data to be stored."
         )
         switch_page_button.switch_page(CONSENT_PAGE)
@@ -77,10 +77,10 @@ def verify_user(current_page: str) -> bool:
 
 
 def display_error_messages():
-    if ERROR_MESSAGES_KEY in st.session_state:
-        logging.info(f"{st.session_state[ERROR_MESSAGES_KEY]}")
-        st.error(st.session_state[ERROR_MESSAGES_KEY])
-        del st.session_state[ERROR_MESSAGES_KEY]
+    if ERROR_MESSAGES_STATE_KEY in st.session_state:
+        logging.info(f"{st.session_state[ERROR_MESSAGES_STATE_KEY]}")
+        st.error(st.session_state[ERROR_MESSAGES_STATE_KEY])
+        del st.session_state[ERROR_MESSAGES_STATE_KEY]
     else:
         logging.info("No messages to display")
 

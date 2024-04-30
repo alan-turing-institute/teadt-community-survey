@@ -3,7 +3,12 @@ import random
 import string
 from captcha.image import ImageCaptcha
 from PIL import Image
-from config import USER_ID_STATE_KEY, CONSENT_PAGE
+from config import (
+    USER_ID_STATE_KEY,
+    CONSENT_PAGE,
+    VALID_CAPTCHA_ENTRY_STATE_KEY,
+    CAPTCHA_TEXT_STATE_KEY,
+)
 import uuid
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 import logging
@@ -145,12 +150,16 @@ st.write("#")
 # Define a container to encapsulate captcha and user input fields
 captcha_cont = st.empty()
 # Render captcha only if it's not verified yet
-if not st.session_state["controllo"]:
+if (
+    VALID_CAPTCHA_ENTRY_STATE_KEY not in st.session_state
+    or st.session_state[VALID_CAPTCHA_ENTRY_STATE_KEY] is False
+):
+    st.session_state[VALID_CAPTCHA_ENTRY_STATE_KEY] = False
 
     with captcha_cont.container():
         # Setup the captcha widget
-        if "Captcha" not in st.session_state:
-            st.session_state["Captcha"] = "".join(
+        if CAPTCHA_TEXT_STATE_KEY not in st.session_state:
+            st.session_state[CAPTCHA_TEXT_STATE_KEY] = "".join(
                 random.choices(
                     string.ascii_uppercase + string.digits, k=length_captcha
                 )
@@ -158,23 +167,35 @@ if not st.session_state["controllo"]:
 
         st.caption("Please verify you are human.")
         col1, col2 = st.columns(2)
-        image = ImageCaptcha(width=width, height=height)
-        data = image.generate(st.session_state["Captcha"])
+        captcha_image: ImageCaptcha = ImageCaptcha(width=width, height=height)
+        data = captcha_image.generate(st.session_state[CAPTCHA_TEXT_STATE_KEY])
         col1.image(data)
-        captcha_text = col2.text_input("Enter captcha text")
+        user_provided_text: str = col2.text_input("Enter captcha text")
 
         if st.button("Verify the code"):
-            captcha_text = captcha_text.replace(" ", "")
+            user_provided_text = user_provided_text.replace(" ", "")
             # If the captcha is correct, set 'controllo' session state to True
+            # TODO(cptanalatriste)REMOVE LATER!
+            logging.info(
+                f"{st.session_state[CAPTCHA_TEXT_STATE_KEY].lower()=} "
+                f"{user_provided_text.lower().strip()=}"
+            )
+
             if (
-                st.session_state["Captcha"].lower()
-                == captcha_text.lower().strip()
+                st.session_state[CAPTCHA_TEXT_STATE_KEY].lower()
+                == user_provided_text.lower().strip()
             ):
-                del st.session_state["Captcha"]
-                st.session_state["controllo"] = True
+                del st.session_state[CAPTCHA_TEXT_STATE_KEY]
+                st.session_state[VALID_CAPTCHA_ENTRY_STATE_KEY] = True
+            else:
+                del st.session_state[VALID_CAPTCHA_ENTRY_STATE_KEY]
+                st.error("Incorrect text. Please try again.")
 
 # Show "Let's Start!" button if captcha is verified
-if st.session_state["controllo"]:
+if (
+    VALID_CAPTCHA_ENTRY_STATE_KEY in st.session_state
+    and st.session_state[VALID_CAPTCHA_ENTRY_STATE_KEY]
+):
     captcha_cont.empty()
     st.success("Success!")
     st.write("#")

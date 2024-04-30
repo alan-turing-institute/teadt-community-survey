@@ -6,7 +6,7 @@ from config import (
     EMAIL_INTEREST_STATE_KEY,
     EMAIL_STATE_KEY,
     ALL_SESSION_KEYS,
-    SURVEY_SUBMITTED_SESSION_KEY,
+    SURVEY_SUBMITTED_STATE_KEY,
     FOLLOW_UP_PAGE,
 )
 from streamlit_utils import (
@@ -96,7 +96,7 @@ if st.button("Submit"):
             }
 
         mongo_utils.add_survey_results(client, data)
-        st.session_state[SURVEY_SUBMITTED_SESSION_KEY] = True
+        st.session_state[SURVEY_SUBMITTED_STATE_KEY] = True
 
     except ValueError as e:
         # Exception message is human-readable
