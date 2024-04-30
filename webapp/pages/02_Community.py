@@ -112,6 +112,7 @@ if established_dt == "Yes":
             key=tag,
         )
 
+if established_dt == "No":
     tag = NO_DT_REASON_STATE_KEY
     no_dt_reason = generate_streamlit_element(
         questions[tag]["question"],
