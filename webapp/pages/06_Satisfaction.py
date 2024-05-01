@@ -3,6 +3,7 @@ from streamlit_utils import (
     generate_streamlit_element,
     load_from_session,
     verify_user,
+    display_error_messages,
 )
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
@@ -11,9 +12,12 @@ from config import (
     COMMUNICATION_IMPACT_STATE_KEY,
     LINK_ASSURANCE_ACTIVITIES_STATE_KEY,
     SATISFACTION_JUSTIFICATION_STATE_KEY,
+    SATISFACTION_PAGE,
+    GOALS_FRAMEWORK_PAGE,
 )
 
-verify_user()
+verify_user(SATISFACTION_PAGE)
+display_error_messages()
 
 # Define the tags of questions to display in this section
 tags_to_display = [
@@ -35,11 +39,6 @@ st.markdown(
     "infrastructure, and support resources."
 )
 
-# Initialize disabled for form_submit_button to False
-if "disabled" not in st.session_state:
-    st.session_state.disabled = False
-
-
 # Generate Streamlit elements and assign responses to variables
 responses = {}
 for tag in tags_to_display:
@@ -51,10 +50,8 @@ for tag in tags_to_display:
     )
 
 # Submit button for the form
-submitted = st.button("Continue", disabled=st.session_state.disabled)
-if submitted:
-    st.session_state["submitted"] = True  # Mark the form as submitted
+submitted = st.button("Continue")
 
 # Actions to take after the form is submitted
 if submitted:
-    switch_page("Goals_Frameworks")
+    switch_page(GOALS_FRAMEWORK_PAGE)

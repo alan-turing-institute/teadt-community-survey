@@ -10,6 +10,8 @@ from config import (
     COLLECTION_NAME_ENV,
     CONNECTION_STRING_ENV,
     EMAIL_STATE_KEY,
+    ALL_CONSENT_STATE_KEYS,
+    CONSENT_QUESTIONS,
 )
 from typing import Optional
 from datetime import datetime
@@ -44,6 +46,20 @@ def validate_survey_results(data: dict[str, Any]):
         validated_email: ValidatedEmail = validate_email(provided_mail)
         # Update with the normalized form.
         data[EMAIL_STATE_KEY] = validated_email.email
+
+    consent_responses: list[bool] = [
+        data[state_key]
+        for state_key in ALL_CONSENT_STATE_KEYS
+        if state_key in data
+    ]
+
+    if len(consent_responses) != CONSENT_QUESTIONS or not all(
+        consent_responses
+    ):
+        raise ValueError(
+            "You did not provide consent for your data to be stored."
+            " Please go back to the Consent page."
+        )
 
 
 def add_survey_results(client: MongoClient, data: dict[str, str]) -> None:

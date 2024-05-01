@@ -5,6 +5,7 @@ from streamlit_utils import (
     disable_button,
     load_from_session,
     verify_user,
+    display_error_messages,
 )
 from survey_questions import questions
 from config import (
@@ -17,9 +18,12 @@ from config import (
     PARTNER_TRUST_DIFFICULTY_STATE_KEY,
     PARTNER_TRUST_CHALLENGES_STATE_KEY,
     RELIANCE_ON_EVIDENCE_STATE_KEY,
+    CURRENT_PRACTICES_PAGE,
+    CURRENT_PRACTICES_RESULTS_PAGE,
 )
 
-verify_user()
+verify_user(CURRENT_PRACTICES_PAGE)
+display_error_messages()
 
 page_element_keys: list[str] = [
     ASSURANCE_MEANING_STATE_KEY,
@@ -169,4 +173,4 @@ if st.session_state.continue_clicked:
 
     # Submit button for the rest of the survey
     if st.button("Continue"):
-        switch_page("Current_Practices_Results")
+        switch_page(CURRENT_PRACTICES_RESULTS_PAGE)

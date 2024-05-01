@@ -3,9 +3,11 @@ from streamlit_extras.switch_page_button import switch_page
 from plot_utils import plot_pie_chart
 import mongo_utils
 from pymongo import MongoClient
-from streamlit_utils import verify_user
+from streamlit_utils import verify_user, display_error_messages
+from config import CURRENT_PRACTICES_PAGE, COMMUNITY_RESULTS_PAGE
 
-verify_user()
+verify_user(COMMUNITY_RESULTS_PAGE)
+display_error_messages()
 
 st.title("Part 1 Results: Community Composition")
 
@@ -43,4 +45,4 @@ else:
 if st.button("Continue"):
     # Redirect to the next section of the survey
     st.write("Redirecting to next part...")
-    switch_page("Current_Practices")
+    switch_page(CURRENT_PRACTICES_PAGE)
