@@ -18,6 +18,7 @@ from config import (
     SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
     COMMUNICATING_ASSURANCE_PAGE,
     FOLLOW_UP_PAGE,
+    REQUIRED_MESSAGE,
 )
 
 verify_user(COMMUNICATING_ASSURANCE_PAGE)
@@ -54,6 +55,7 @@ for demonstrating and communicating your project's assurance strategies
 effectively to both internal teams and external partners.
 """
 )
+st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
 
 # Display each question using the utility function to handle different
 # input types

@@ -34,6 +34,7 @@ from config import (
     OPERATIONALIZATION_CHALLENGES_STATE_KEY,
     GOALS_FRAMEWORK_PAGE,
     COMMUNICATING_ASSURANCE_PAGE,
+    REQUIRED_MESSAGE,
 )
 
 from PIL import Image
@@ -52,6 +53,8 @@ This section dives deeper into the frameworks and principles guiding the"
  ethical and trustworthy development of digital twins.
 """
 )
+st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
+
 
 # Initialize disabled for form_submit_button to False
 if "disabled" not in st.session_state:

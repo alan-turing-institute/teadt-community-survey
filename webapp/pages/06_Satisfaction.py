@@ -14,6 +14,7 @@ from config import (
     SATISFACTION_JUSTIFICATION_STATE_KEY,
     SATISFACTION_PAGE,
     GOALS_FRAMEWORK_PAGE,
+    REQUIRED_MESSAGE,
 )
 
 verify_user(SATISFACTION_PAGE)
@@ -38,6 +39,8 @@ st.markdown(
     " assurance processes, "
     "infrastructure, and support resources."
 )
+st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
+
 
 # Generate Streamlit elements and assign responses to variables
 responses = {}

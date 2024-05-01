@@ -13,6 +13,7 @@ from config import (
     NO_DT_REASON_STATE_KEY,
     COMMUNITY_PAGE,
     COMMUNITY_RESULTS_PAGE,
+    REQUIRED_MESSAGE,
 )
 from streamlit_utils import load_from_session, display_error_messages
 import logging
@@ -46,6 +47,8 @@ st.markdown(
     "Here we aim to understand the diverse backgrounds"
     "within the digital twin community."
 )
+
+st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
 
 # Initialize disabled for form_submit_button to False
 if "disabled" not in st.session_state:

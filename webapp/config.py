@@ -167,3 +167,121 @@ GOALS_FRAMEWORK_PAGE: str = "Goals_Frameworks"
 COMMUNICATING_ASSURANCE_PAGE: str = "Communicating_Assurance"
 FOLLOW_UP_PAGE: str = "Follow_up"
 SUCCESS_PAGE: str = "Success"
+
+# Required logic
+REQUIRED_MESSAGE = "*Fields marked with* "
+"<span style='color:red;'>*</span> *are required.*"
+
+# REQUIRED_QUESTIONS
+# TODO: fix dealing with conditional but required questions:
+
+
+ALL_REQUIRED_KEYS: list[str] = [
+    SECTOR_STATE_KEY,
+    LOCATION_STATE_KEY,
+    ROLE_STATE_KEY,
+    RESPONSIBILITIES_STATE_KEY,
+    ESTABLISHED_DT_STATE_KEY,
+    TYPE_DT_STATE_KEY,
+    TYPE_DT_OTHER_STATE_KEY,
+    NO_DT_REASON_STATE_KEY,
+    ASSURANCE_MECHANISMS_STATE_KEY,
+    ASSURANCE_MECHANISM_OTHER_STATE_KEY,
+    ASSURED_PROPERTIES_STATE_KEY,
+    ASSURED_PROPERTIES_OTHER_STATE_KEY,
+    ASSET_DATA_SHARING_STATE_KEY,
+    PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+    PARTNER_TRUST_CHALLENGES_STATE_KEY,
+    RELIANCE_ON_EVIDENCE_STATE_KEY,
+    INTEGRATE_ASSURANCE_STATE_KEY,
+    COMMUNICATION_IMPACT_STATE_KEY,
+    LINK_ASSURANCE_ACTIVITIES_STATE_KEY,
+    SATISFACTION_JUSTIFICATION_STATE_KEY,
+    ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
+    FRAMEWORK_DESCRIPTION_STATE_KEY,
+    FRAMEWORK_DEVELOPMENT_STATE_KEY,
+    VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY,
+    FAMILIARITY_WITH_GEMINI_PRINCIPLES_STATE_KEY,
+    RELEVANCE_GOOD_STATE_KEY,
+    RELEVANCE_VALUE_STATE_KEY,
+    RELEVANCE_INSIGHT_STATE_KEY,
+    RELEVANCE_SECURITY_STATE_KEY,
+    RELEVANCE_OPENNESS_STATE_KEY,
+    RELEVANCE_QUALITY_STATE_KEY,
+    RELEVANCE_FEDERATION_STATE_KEY,
+    RELEVANCE_CURATION_STATE_KEY,
+    RELEVANCE_EVOLUTION_STATE_KEY,
+    CHALLENGE_GOOD_STATE_KEY,
+    CHALLENGE_VALUE_STATE_KEY,
+    CHALLENGE_INSIGHT_STATE_KEY,
+    CHALLENGE_SECURITY_STATE_KEY,
+    CHALLENGE_OPENNESS_STATE_KEY,
+    CHALLENGE_QUALITY_STATE_KEY,
+    CHALLENGE_FEDERATION_STATE_KEY,
+    CHALLENGE_CURATION_STATE_KEY,
+    CHALLENGE_EVOLUTION_STATE_KEY,
+    OPERATIONALIZATION_CHALLENGES_STATE_KEY,
+    COMMUNICATION_METHODS_STATE_KEY,
+    NEED_FOR_VISUAL_TOOL_STATE_KEY,
+    BENEFITS_OF_VISUAL_TOOL_STATE_KEY,
+    REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
+    PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
+    SUPPORT_FOR_ASSURANCE_STATE_KEY,
+    SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
+]
+
+conditional_keys = {
+    TYPE_DT_OTHER_STATE_KEY: {
+        "depends_on_key": TYPE_DT_STATE_KEY,
+        "depends_on_response": "Other (Please specify)"
+    },
+    NO_DT_REASON_STATE_KEY: {
+        "depends_on_key": ESTABLISHED_DT_STATE_KEY,
+        "depends_on_response": "No"
+    },
+    TYPE_DT_STATE_KEY: {
+        "depends_on_key": ESTABLISHED_DT_STATE_KEY,
+        "depends_on_response": "Yes"
+    },
+    ASSURED_PROPERTIES_OTHER_STATE_KEY: {
+        "depends_on_key": ASSURED_PROPERTIES_STATE_KEY,
+        "depends_on_response": "Other (Please specify)"
+    },
+    ASSURANCE_MECHANISM_OTHER_STATE_KEY: {
+        "depends_on_key": ASSURANCE_MECHANISMS_STATE_KEY,
+        "depends_on_response": "Other (Please specify)"
+    },
+    SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY: {
+        "depends_on_key": SUPPORT_FOR_ASSURANCE_STATE_KEY,
+        "depends_on_response": "Other (Please specify)"
+    },
+    FRAMEWORK_DESCRIPTION_STATE_KEY: {
+        "depends_on_key": ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
+        "depends_on_response": "Other (Please specify)"
+    },
+    FRAMEWORK_DEVELOPMENT_STATE_KEY: {
+        "depends_on_key": ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
+        "depends_on_response": "Other (Please specify)"
+    },
+    REASONS_AGAINST_VISUAL_TOOL_STATE_KEY: {
+        "depends_on_key": NEED_FOR_VISUAL_TOOL_STATE_KEY,
+        "depends_on_response": "No"
+    },
+    BENEFITS_OF_VISUAL_TOOL_STATE_KEY: {
+        "depends_on_key": NEED_FOR_VISUAL_TOOL_STATE_KEY,
+        "depends_on_response": "Yes"
+    },
+    PARTNER_TRUST_DIFFICULTY_STATE_KEY: {
+        "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,
+        "depends_on_response": "Yes"
+    },
+    PARTNER_TRUST_CHALLENGES_STATE_KEY: {
+        "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,
+        "depends_on_response": "Yes"
+    },
+    RELIANCE_ON_EVIDENCE_STATE_KEY: {
+        "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,
+        "depends_on_response": "Yes"
+    },
+
+}

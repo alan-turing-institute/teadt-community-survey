@@ -12,7 +12,8 @@ from config import (
     EMAIL_STATE_KEY,
     ALL_CONSENT_STATE_KEYS,
     CONSENT_QUESTIONS,
-)
+    ALL_REQUIRED_KEYS,
+    conditional_keys,)
 from typing import Optional
 from datetime import datetime
 import logging
@@ -53,6 +54,25 @@ def validate_survey_results(data: dict[str, Any]):
         if state_key in data
     ]
 
+    # Validate required questions
+    required_keys = ALL_REQUIRED_KEYS.copy()
+
+    # Check conditional keys and remove those not shown
+    for key, conditions in conditional_keys.items():
+        depends_on_key = conditions["depends_on_key"]
+        depends_on_response = conditions["depends_on_response"]
+        if depends_on_key in data and data[depends_on_key] != depends_on_response:
+            if key in required_keys:
+                required_keys.remove(key)
+
+    for question_key in required_keys:
+        if question_key not in data:
+
+            raise ValueError(
+                f"{question_key} not answered"
+                " Please go back and fill in all required questions."
+            )
+        
     if len(consent_responses) != CONSENT_QUESTIONS or not all(
         consent_responses
     ):

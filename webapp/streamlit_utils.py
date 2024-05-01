@@ -12,6 +12,7 @@ from config import (
     ALL_CONSENT_STATE_KEYS,
     CONSENT_QUESTIONS,
     VALID_CAPTCHA_ENTRY_STATE_KEY,
+    ALL_REQUIRED_KEYS,
 )
 
 WIDGET_SUFFIX: str = "widget"
@@ -127,6 +128,8 @@ def generate_streamlit_element(
     Returns:
         Streamlit input element
     """
+    if key in ALL_REQUIRED_KEYS:
+        question_text += " :red[*]"
 
     widget_key: str = f"{key}_{WIDGET_SUFFIX}"
     if question_type == "multiple_choice" and options is not None:

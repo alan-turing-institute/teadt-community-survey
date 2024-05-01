@@ -20,6 +20,7 @@ from config import (
     RELIANCE_ON_EVIDENCE_STATE_KEY,
     CURRENT_PRACTICES_PAGE,
     CURRENT_PRACTICES_RESULTS_PAGE,
+    REQUIRED_MESSAGE,
 )
 
 verify_user(CURRENT_PRACTICES_PAGE)
@@ -45,6 +46,8 @@ st.markdown(
     "assurance of "
     "digital twins. "
 )
+st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
+
 
 # Initialize session state for showing additional content / disabling buttons
 if "disabled" not in st.session_state:
