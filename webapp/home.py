@@ -35,67 +35,61 @@ with col_r:
 st.write("#")
 
 # Title
-st.markdown(
-    "# Welcome to the Community Pulse Check "
-    "on Assurance of Digital Twin Systems"
-)
+st.markdown("# Welcome!")
+
+st.markdown("# Community Pulse Check: " "Assurance of Digital Twin Systems")
+
+st.write("#")
 
 # Description
 st.markdown(
-    "Are you confident that digital twins are trustworthy and ethical?"
-)
-st.markdown(
-    "Take 15 minutes to share your approaches and pain points for assuring"
-    " trustworthiness of digital twinning technology "
-    "ecosystem, and help shape the future assurance standards."
+    "<h2 style='text-align: center;'>"
+    "Are you confident that digital twins are trustworthy and ethical?</h2>",
+    unsafe_allow_html=True,
 )
 
+st.write("#")
 st.markdown(
     "The Alan Turing Institute's TRIC-DT and CPC DT Hub are conducting a "
     "community pulse check on the topic of' Assurance of Digital Twin "
-    "Systems'. We designed this pulse check with support from the "
-    "Responsible Technology Adoption Unit to ensure alignment with "
-    "national AI assurance guidelines from the "
-    "Department for Science, Innovation, and Technology (DSIT). "
+    "Systems'."
+)
+st.markdown(
     "Are you developing, deploying or overseeing digital twin technologies"
     " or systems? We want to hear from business leaders, developers, "
     "and researchers to help us understand your perspective,"
     " current challenges, and needs when it comes to assuring "
     "digital twins."
-    "Although digital twins promise vast societal benefits, "
-    "their increasing reliance on various forms of AI "
-    "and their role in safety-critical settings pose significant challenges."
-    " These challenges must be addressed to ensure their "
-    "ethical and trustworthy development. "
-    "We are creating an open-source and community-based online tool "
-    "that will assist users and project teams to define, put into practice, "
-    "and implement ethical principles as assurance goals. "
-    "Your opinions and experiences are crucial in developing this tool,"
-    " ensuring it addresses industry pain points, "
-    "and setting standards that enhance transparency and trust."
-)
-
-st.markdown(
-    "The Community Pulse Check is a dynamic survey "
-    "that allows you to see some of the results immediately, "
-    "providing instant feedback on how your experiences and views align"
-    " with those of your peers. "
-)
-
-st.markdown(
-    "Participating will take approximately 15 – 20 minutes "
-    "and can be completed entirely anonymously if you choose."
-)
-
-st.markdown(
-    "By participating, you join a select group of professionals "
+    " By participating, you join a select group of professionals "
     "contributing to the responsible evolution of digital twin technologies. "
-    "Your expertise does more than shape industry standards; "
-    "it fosters a collaborative environment where knowledge sharing "
-    "enhances community practices."
-    "As we collectively contribute, we refine and enrich the standards "
-    "that will benefit everyone in this transformative field."
+    "Your expertise will shape industry standards "
+    "and fosters a collaborative environment where knowledge sharing enhances "
+    "community practices."
 )
+
+# TODO reactive this for stage 2 data collection
+# st.markdown(
+#     "The Community Pulse Check is a dynamic survey "
+#     "that allows you to see some of the results immediately, "
+#     "providing instant feedback on how your experiences and views align"
+#     " with those of your peers. "
+# )
+
+st.markdown(
+    "- Participating will take approximately 15 – 20 minutes\n"
+    "- It can be completed entirely anonymously if you choose.",
+    unsafe_allow_html=True,
+)
+
+
+st.markdown(
+    "<h3 style='text-align: center;'>"
+    "Take 15 minutes to share your approach and pain points"
+    " and help us build assurance tools "
+    "that promote trustworthy and ethical digital twins.</h3>",
+    unsafe_allow_html=True,
+)
+
 
 # Funding
 st.caption(
