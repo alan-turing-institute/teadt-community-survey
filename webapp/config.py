@@ -233,55 +233,54 @@ ALL_REQUIRED_KEYS: list[str] = [
 conditional_keys = {
     TYPE_DT_OTHER_STATE_KEY: {
         "depends_on_key": TYPE_DT_STATE_KEY,
-        "depends_on_response": "Other (Please specify)"
+        "depends_on_response": "Other (Please specify)",
     },
     NO_DT_REASON_STATE_KEY: {
         "depends_on_key": ESTABLISHED_DT_STATE_KEY,
-        "depends_on_response": "No"
+        "depends_on_response": "No",
     },
     TYPE_DT_STATE_KEY: {
         "depends_on_key": ESTABLISHED_DT_STATE_KEY,
-        "depends_on_response": "Yes"
+        "depends_on_response": "Yes",
     },
     ASSURED_PROPERTIES_OTHER_STATE_KEY: {
         "depends_on_key": ASSURED_PROPERTIES_STATE_KEY,
-        "depends_on_response": "Other (Please specify)"
+        "depends_on_response": "Other (Please specify)",
     },
     ASSURANCE_MECHANISM_OTHER_STATE_KEY: {
         "depends_on_key": ASSURANCE_MECHANISMS_STATE_KEY,
-        "depends_on_response": "Other (Please specify)"
+        "depends_on_response": "Other (Please specify)",
     },
     SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY: {
         "depends_on_key": SUPPORT_FOR_ASSURANCE_STATE_KEY,
-        "depends_on_response": "Other (Please specify)"
+        "depends_on_response": "Other (Please specify)",
     },
     FRAMEWORK_DESCRIPTION_STATE_KEY: {
         "depends_on_key": ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
-        "depends_on_response": "Other (Please specify)"
+        "depends_on_response": "Other (Please specify)",
     },
     FRAMEWORK_DEVELOPMENT_STATE_KEY: {
         "depends_on_key": ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
-        "depends_on_response": "Other (Please specify)"
+        "depends_on_response": "Other (Please specify)",
     },
     REASONS_AGAINST_VISUAL_TOOL_STATE_KEY: {
         "depends_on_key": NEED_FOR_VISUAL_TOOL_STATE_KEY,
-        "depends_on_response": "No"
+        "depends_on_response": "No",
     },
     BENEFITS_OF_VISUAL_TOOL_STATE_KEY: {
         "depends_on_key": NEED_FOR_VISUAL_TOOL_STATE_KEY,
-        "depends_on_response": "Yes"
+        "depends_on_response": "Yes",
     },
     PARTNER_TRUST_DIFFICULTY_STATE_KEY: {
         "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,
-        "depends_on_response": "Yes"
+        "depends_on_response": "Yes",
     },
     PARTNER_TRUST_CHALLENGES_STATE_KEY: {
         "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,
-        "depends_on_response": "Yes"
+        "depends_on_response": "Yes",
     },
     RELIANCE_ON_EVIDENCE_STATE_KEY: {
         "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,
-        "depends_on_response": "Yes"
+        "depends_on_response": "Yes",
     },
-
 }
