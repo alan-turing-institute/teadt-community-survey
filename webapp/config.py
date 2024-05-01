@@ -169,8 +169,11 @@ FOLLOW_UP_PAGE: str = "Follow_up"
 SUCCESS_PAGE: str = "Success"
 
 # Required logic
-REQUIRED_MESSAGE = "*Fields marked with* "
-"<span style='color:red;'>*</span> *are required.*"
+REQUIRED_MESSAGE = REQUIRED_MESSAGE = (
+    "*Fields marked with*"
+    " <span style='color:red;'>*</span>"
+    " *are required.*"
+)
 
 # REQUIRED_QUESTIONS
 # TODO: fix dealing with conditional but required questions:
