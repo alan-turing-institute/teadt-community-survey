@@ -231,7 +231,7 @@ questions: dict[str, Any] = {
     },
     "asset_data_sharing": {
         "tag": "asset_data_sharing",
-        "question": "Have you considered sharing your asset-related data"
+        "question": "Have you considered sharing asset-related data"
         " or models with other organisations to form connected digital twins?",
         "type": "radio",
         "options": ["Yes", "No"],
