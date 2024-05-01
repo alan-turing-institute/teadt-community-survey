@@ -61,7 +61,8 @@ def validate_survey_results(data: dict[str, Any]):
     # Check conditional keys and remove those not shown
     for key, conditions in conditional_keys.items():
         depends_on_key = conditions["depends_on_key"]
-        depends_on_response = conditions["depends_on_response"]
+        depends_on_response = conditions[
+            "depends_on_response"]
         if (
             depends_on_key in data
             and data[depends_on_key] != depends_on_response
@@ -71,7 +72,6 @@ def validate_survey_results(data: dict[str, Any]):
 
     for question_key in required_keys:
         if question_key not in data:
-
             raise ValueError(
                 f"{question_key} not answered"
                 " Please go back and fill in all required questions."
