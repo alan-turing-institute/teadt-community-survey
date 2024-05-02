@@ -110,7 +110,7 @@ def load_from_session(keys: list[str]) -> None:
             logging.info(f"No value to load for session key {key}")
 
 
-def check_required_fields(page_element_keys: list[str]) -> list[str]:
+def check_required_fields(page_element_keys: list[str]) -> None:
     data: dict[str, Any] = {
         session_key: st.session_state[session_key]
         for session_key in page_element_keys
