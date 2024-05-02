@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_utils import (
-    generate_streamlit_element,
+    SurveyQuestion,
     load_from_session,
     verify_user,
     display_error_messages,
@@ -18,6 +18,7 @@ from config import (
     REQUIRED_MESSAGE,
 )
 
+SECTION_NUM = 3
 
 verify_user(SATISFACTION_PAGE)
 display_error_messages()
@@ -43,11 +44,13 @@ st.markdown(
 )
 st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
 
+question_generator = SurveyQuestion()
 
 # Generate Streamlit elements and assign responses to variables
 responses = {}
 for tag in tags_to_display:
-    responses[tag] = generate_streamlit_element(
+    responses[tag] = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         questions[tag]["question"],
         questions[tag]["type"],
         options=questions[tag].get("options"),

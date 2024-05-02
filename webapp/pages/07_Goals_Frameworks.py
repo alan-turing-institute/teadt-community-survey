@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_utils import (
-    generate_streamlit_element,
+    SurveyQuestion,
     load_from_session,
     verify_user,
     display_error_messages,
@@ -73,7 +73,11 @@ display_error_messages()
 # Set page configuration and sidebar state
 st.set_page_config(initial_sidebar_state="expanded")
 
-st.title("Section 4: High-Level Assurance Goals and Ethical Frameworks")
+SECTION_NUM = 4
+
+st.title(
+    f"Section {SECTION_NUM}: High-Level Assurance Goals and Ethical Frameworks"
+)
 st.markdown(
     """
 This section dives deeper into the frameworks and principles guiding the"
@@ -95,12 +99,16 @@ tags_to_display: list[str] = [
 ]
 load_from_session(tags_to_display)
 
+question_generator = SurveyQuestion()
 with st.container():
-    ethical_framework_existence = generate_streamlit_element(
-        questions["ethical_framework_existence"]["question"],
-        questions["ethical_framework_existence"]["type"],
-        options=questions["ethical_framework_existence"].get("options"),
-        key=ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
+    ethical_framework_existence = (
+        question_generator.generate_streamlit_element(
+            SECTION_NUM,
+            questions["ethical_framework_existence"]["question"],
+            questions["ethical_framework_existence"]["type"],
+            options=questions["ethical_framework_existence"].get("options"),
+            key=ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
+        )
     )
 
     if ethical_framework_existence is not None:
@@ -108,18 +116,24 @@ with st.container():
             ethical_framework_existence == "Yes  / Something similar"
             or ethical_framework_existence.startswith("No, but")
         ):
-            framework_description = generate_streamlit_element(
-                questions["framework_description"]["question"],
-                questions["framework_description"]["type"],
-                options=questions["framework_description"].get("options"),
-                key=FRAMEWORK_DESCRIPTION_STATE_KEY,
+            framework_description = (
+                question_generator.generate_streamlit_element(
+                    SECTION_NUM,
+                    questions["framework_description"]["question"],
+                    questions["framework_description"]["type"],
+                    options=questions["framework_description"].get("options"),
+                    key=FRAMEWORK_DESCRIPTION_STATE_KEY,
+                )
             )
 
-            framework_development = generate_streamlit_element(
-                questions["framework_development"]["question"],
-                questions["framework_development"]["type"],
-                options=questions["framework_development"].get("options"),
-                key=FRAMEWORK_DEVELOPMENT_STATE_KEY,
+            framework_development = (
+                question_generator.generate_streamlit_element(
+                    SECTION_NUM,
+                    questions["framework_development"]["question"],
+                    questions["framework_development"]["type"],
+                    options=questions["framework_development"].get("options"),
+                    key=FRAMEWORK_DEVELOPMENT_STATE_KEY,
+                )
             )
 st.write("#")
 
@@ -158,79 +172,96 @@ with st.container():
     ]
     load_from_session(tags_to_display)
 
-    value_of_guiding_principles = generate_streamlit_element(
-        questions["value_of_guiding_principles"]["question"],
-        questions["value_of_guiding_principles"]["type"],
-        options=questions["value_of_guiding_principles"].get("options"),
-        key=VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY,
+    value_of_guiding_principles = (
+        question_generator.generate_streamlit_element(
+            SECTION_NUM,
+            questions["value_of_guiding_principles"]["question"],
+            questions["value_of_guiding_principles"]["type"],
+            options=questions["value_of_guiding_principles"].get("options"),
+            key=VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY,
+        )
     )
 
-    familiarity_with_gemini_principles = generate_streamlit_element(
-        questions["familiarity_with_gemini_principles"]["question"],
-        questions["familiarity_with_gemini_principles"]["type"],
-        options=questions["familiarity_with_gemini_principles"].get("options"),
-        key=FAMILIARITY_WITH_GEMINI_PRINCIPLES_STATE_KEY,
+    familiarity_with_gemini_principles = (
+        question_generator.generate_streamlit_element(
+            SECTION_NUM,
+            questions["familiarity_with_gemini_principles"]["question"],
+            questions["familiarity_with_gemini_principles"]["type"],
+            options=questions["familiarity_with_gemini_principles"].get(
+                "options"
+            ),
+            key=FAMILIARITY_WITH_GEMINI_PRINCIPLES_STATE_KEY,
+        )
     )
 
     st.write(questions["relevance_of_principles"]["question"])
     # for each gemini principles
-    relevance_good = generate_streamlit_element(
+    relevance_good = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Public Good",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_GOOD_STATE_KEY,
     )
 
-    relevance_value = generate_streamlit_element(
+    relevance_value = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Value Creation",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_VALUE_STATE_KEY,
     )
 
-    relevance_insight = generate_streamlit_element(
+    relevance_insight = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Insight",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_INSIGHT_STATE_KEY,
     )
 
-    relevance_security = generate_streamlit_element(
+    relevance_security = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Security",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_SECURITY_STATE_KEY,
     )
 
-    relevance_openness = generate_streamlit_element(
+    relevance_openness = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Openness",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_OPENNESS_STATE_KEY,
     )
 
-    relevance_quality = generate_streamlit_element(
+    relevance_quality = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Quality",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_QUALITY_STATE_KEY,
     )
 
-    relevance_federation = generate_streamlit_element(
+    relevance_federation = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Federation",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_FEDERATION_STATE_KEY,
     )
 
-    relevance_curation = generate_streamlit_element(
+    relevance_curation = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Curation",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_CURATION_STATE_KEY,
     )
 
-    relevance_evolution = generate_streamlit_element(
+    relevance_evolution = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Evolution",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
@@ -239,63 +270,72 @@ with st.container():
 
     st.write("#")
     st.write(questions["challenge_in_application"]["question"])
-    challenge_good = generate_streamlit_element(
+    challenge_good = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Good",
         "likert_col",
         options=questions["challenge_in_application"].get("options"),
         key=CHALLENGE_GOOD_STATE_KEY,
     )
 
-    challenge_value = generate_streamlit_element(
+    challenge_value = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Value",
         "likert_col",
         options=questions["challenge_in_application"].get("options"),
         key=CHALLENGE_VALUE_STATE_KEY,
     )
 
-    challenge_insight = generate_streamlit_element(
+    challenge_insight = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Insight",
         "likert_col",
         options=questions["challenge_in_application"].get("options"),
         key=CHALLENGE_INSIGHT_STATE_KEY,
     )
 
-    challenge_security = generate_streamlit_element(
+    challenge_security = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Security",
         "likert_col",
         options=questions["challenge_in_application"].get("options"),
         key=CHALLENGE_SECURITY_STATE_KEY,
     )
 
-    challenge_openness = generate_streamlit_element(
+    challenge_openness = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Openness",
         "likert_col",
         options=questions["challenge_in_application"].get("options"),
         key=CHALLENGE_OPENNESS_STATE_KEY,
     )
 
-    challenge_quality = generate_streamlit_element(
+    challenge_quality = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Quality",
         "likert_col",
         options=questions["challenge_in_application"].get("options"),
         key=CHALLENGE_QUALITY_STATE_KEY,
     )
 
-    challenge_federation = generate_streamlit_element(
+    challenge_federation = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Federation",
         "likert_col",
         options=questions["challenge_in_application"].get("options"),
         key=CHALLENGE_FEDERATION_STATE_KEY,
     )
 
-    challenge_curation = generate_streamlit_element(
+    challenge_curation = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Curation",
         "likert_col",
         options=questions["challenge_in_application"].get("options"),
         key=CHALLENGE_CURATION_STATE_KEY,
     )
 
-    challenge_evolution = generate_streamlit_element(
+    challenge_evolution = question_generator.generate_streamlit_element(
+        SECTION_NUM,
         "Evolution",
         "likert_col",
         options=questions["challenge_in_application"].get("options"),
@@ -303,11 +343,14 @@ with st.container():
     )
 
     st.write("#")
-    operationalization_challenges = generate_streamlit_element(
-        questions["operationalization_challenges"]["question"],
-        questions["operationalization_challenges"]["type"],
-        options=questions["operationalization_challenges"].get("options"),
-        key=OPERATIONALIZATION_CHALLENGES_STATE_KEY,
+    operationalization_challenges = (
+        question_generator.generate_streamlit_element(
+            SECTION_NUM,
+            questions["operationalization_challenges"]["question"],
+            questions["operationalization_challenges"]["type"],
+            options=questions["operationalization_challenges"].get("options"),
+            key=OPERATIONALIZATION_CHALLENGES_STATE_KEY,
+        )
     )
 
 # Actions to take after the form is submitted

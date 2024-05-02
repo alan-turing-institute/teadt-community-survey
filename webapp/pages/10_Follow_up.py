@@ -35,8 +35,9 @@ page_element_keys: list[str] = [
 load_from_session(page_element_keys)
 
 st.title("Follow-Up")
+SECTION_NUM = 6
 
-st.header("Section 5: Final Open-Ended Question")
+st.header(f"Section {SECTION_NUM}: Final Open-Ended Question")
 
 # Open-ended question
 st.subheader("1. Additional Insights")
