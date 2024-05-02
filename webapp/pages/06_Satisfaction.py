@@ -1,9 +1,10 @@
 import streamlit as st
 from streamlit_utils import (
-    generate_streamlit_element,
+    QuestionGenerator,
     load_from_session,
     verify_user,
     display_error_messages,
+    check_required_fields,
 )
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
@@ -14,7 +15,10 @@ from config import (
     SATISFACTION_JUSTIFICATION_STATE_KEY,
     SATISFACTION_PAGE,
     GOALS_FRAMEWORK_PAGE,
+    REQUIRED_MESSAGE,
 )
+
+SECTION_NUM = 3
 
 verify_user(SATISFACTION_PAGE)
 display_error_messages()
@@ -38,20 +42,26 @@ st.markdown(
     " assurance processes, "
     "infrastructure, and support resources."
 )
+st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
+
+question_generator = QuestionGenerator(SECTION_NUM)
 
 # Generate Streamlit elements and assign responses to variables
 responses = {}
 for tag in tags_to_display:
-    responses[tag] = generate_streamlit_element(
+    responses[tag] = question_generator.generate_streamlit_element(
         questions[tag]["question"],
         questions[tag]["type"],
         options=questions[tag].get("options"),
         key=tag,
     )
 
-# Submit button for the form
-submitted = st.button("Continue")
 
 # Actions to take after the form is submitted
-if submitted:
-    switch_page(GOALS_FRAMEWORK_PAGE)
+if st.button("Continue"):
+    try:
+        check_required_fields(tags_to_display, give_hint=True)
+        switch_page(GOALS_FRAMEWORK_PAGE)
+    except ValueError as e:
+        # Exception message is human-readable
+        st.error(str(e))

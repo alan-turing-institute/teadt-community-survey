@@ -1,10 +1,11 @@
 import streamlit as st
 from survey_questions import questions
 from streamlit_utils import (
-    generate_streamlit_element,
+    QuestionGenerator,
     load_from_session,
     verify_user,
     display_error_messages,
+    check_required_fields,
 )
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from PIL import Image
@@ -18,6 +19,7 @@ from config import (
     SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
     COMMUNICATING_ASSURANCE_PAGE,
     FOLLOW_UP_PAGE,
+    REQUIRED_MESSAGE,
 )
 
 verify_user(COMMUNICATING_ASSURANCE_PAGE)
@@ -35,9 +37,10 @@ page_element_keys: list[str] = [
 ]
 load_from_session(page_element_keys)
 
+SECTION_NUM = 5
 # Set the page configuration and title
 st.set_page_config(page_title="Communicating Assurance", layout="wide")
-st.title("Section 5: Communicating Assurance")
+st.title(f"Section {SECTION_NUM}: Communicating Assurance")
 
 # Introduction to the section
 st.markdown(
@@ -54,10 +57,13 @@ for demonstrating and communicating your project's assurance strategies
 effectively to both internal teams and external partners.
 """
 )
+st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
+
+question_generator = QuestionGenerator(SECTION_NUM)
 
 # Display each question using the utility function to handle different
 # input types
-communication_methods = generate_streamlit_element(
+communication_methods = question_generator.generate_streamlit_element(
     questions["communication_methods"]["question"],
     questions["communication_methods"]["type"],
     options=questions["communication_methods"].get("options"),
@@ -77,10 +83,10 @@ direct connections between actions and outcomes.
 )
 
 # Display an image
-image_path = Image.open("webapp/img/aba_example_case.png")
+image_path = Image.open("img/aba_example_case.png")
 st.image(image_path, width=600)
 
-need_for_visual_tool = generate_streamlit_element(
+need_for_visual_tool = question_generator.generate_streamlit_element(
     questions["need_for_visual_tool"]["question"],
     questions["need_for_visual_tool"]["type"],
     options=questions["need_for_visual_tool"].get("options"),
@@ -88,7 +94,7 @@ need_for_visual_tool = generate_streamlit_element(
 )
 
 if need_for_visual_tool == "Yes":
-    benefits_of_visual_tool = generate_streamlit_element(
+    benefits_of_visual_tool = question_generator.generate_streamlit_element(
         questions["benefits_of_visual_tool"]["question"],
         questions["benefits_of_visual_tool"]["type"],
         options=questions["benefits_of_visual_tool"].get("options"),
@@ -96,21 +102,23 @@ if need_for_visual_tool == "Yes":
     )
 
 if need_for_visual_tool == "No":
-    reasons_against_visual_tool = generate_streamlit_element(
-        questions["reasons_against_visual_tool"]["question"],
-        questions["reasons_against_visual_tool"]["type"],
-        options=questions["reasons_against_visual_tool"].get("options"),
-        key=REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
+    reasons_against_visual_tool = (
+        question_generator.generate_streamlit_element(
+            questions["reasons_against_visual_tool"]["question"],
+            questions["reasons_against_visual_tool"]["type"],
+            options=questions["reasons_against_visual_tool"].get("options"),
+            key=REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
+        )
     )
 
-preparedness_for_argument = generate_streamlit_element(
+preparedness_for_argument = question_generator.generate_streamlit_element(
     questions["preparedness_for_argument"]["question"],
     questions["preparedness_for_argument"]["type"],
     options=questions["preparedness_for_argument"].get("options"),
     key=PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
 )
 
-support_for_assurance = generate_streamlit_element(
+support_for_assurance = question_generator.generate_streamlit_element(
     questions["support_for_assurance"]["question"],
     questions["support_for_assurance"]["type"],
     options=questions["support_for_assurance"].get("options"),
@@ -119,17 +127,21 @@ support_for_assurance = generate_streamlit_element(
 
 if "Other (Please specify)" in support_for_assurance:
     tag = SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY
-    support_for_assurance_other = generate_streamlit_element(
-        questions[tag]["question"],
-        questions[tag]["type"],
-        options=questions[tag].get("options"),
-        key=SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
+    support_for_assurance_other = (
+        question_generator.generate_streamlit_element(
+            questions[tag]["question"],
+            questions[tag]["type"],
+            options=questions[tag].get("options"),
+            key=SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
+        )
     )
-
-# Submit button for the form
-submitted = st.button("Continue")
 
 # Actions to take after the form is submitted, such as saving responses or
 # navigating
-if submitted:
-    switch_page(FOLLOW_UP_PAGE)
+if st.button("Continue"):
+    try:
+        check_required_fields(page_element_keys, give_hint=True)
+        switch_page(FOLLOW_UP_PAGE)
+    except ValueError as e:
+        # Exception message is human-readable
+        st.error(str(e))

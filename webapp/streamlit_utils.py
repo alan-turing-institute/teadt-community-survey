@@ -12,6 +12,8 @@ from config import (
     ALL_CONSENT_STATE_KEYS,
     CONSENT_QUESTIONS,
     VALID_CAPTCHA_ENTRY_STATE_KEY,
+    ALL_REQUIRED_KEYS,
+    conditional_keys,
 )
 
 WIDGET_SUFFIX: str = "widget"
@@ -108,89 +110,165 @@ def load_from_session(keys: list[str]) -> None:
             logging.info(f"No value to load for session key {key}")
 
 
-def generate_streamlit_element(
-    question_text: str,
-    question_type: str,
-    options: Optional[list] = None,
-    key: Optional[str] = None,
-) -> Any:
-    """
-    Returns the appropriate Streamlit input element based on the question type.
+def check_required_fields(
+    page_element_keys: list[str], give_hint: bool = False
+) -> None:
+    data: dict[str, Any] = {
+        session_key: st.session_state[session_key]
+        for session_key in page_element_keys
+        if session_key in st.session_state
+    }
 
-    Parameters:
-        question_text (str): The text of the question.
-        question_type (str): The type of the question.
-        options (list): The list of options for multiple choice or select
-            all questions.
-        key (str): The key to identify the input element uniquely.
+    # Check conditional keys and remove those not showing
+    for key, conditions in conditional_keys.items():
+        depends_on_key = conditions["depends_on_key"]
+        depends_on_response = conditions["depends_on_response"]
 
-    Returns:
-        Streamlit input element
-    """
+        if depends_on_key not in data:
+            if key in page_element_keys:
+                page_element_keys.remove(key)
+        elif (
+            data[depends_on_key] != depends_on_response
+            and depends_on_response not in data[depends_on_key]
+        ):
+            if key in page_element_keys:
+                page_element_keys.remove(key)
 
-    widget_key: str = f"{key}_{WIDGET_SUFFIX}"
-    if question_type == "multiple_choice" and options is not None:
-        return st.selectbox(
-            question_text,
-            options,
-            key=widget_key,
-            on_change=store_in_session,
-            args=(key,),
-        )
-    elif question_type == "select_all" and options is not None:
-        return st.multiselect(
-            question_text,
-            options,
-            key=widget_key,
-            on_change=store_in_session,
-            args=(key,),
-        )
-    elif question_type == "likert" and options is not None:
-        # scale labels e.g. ['Strongly Disagree', 'Disagree', 'Neutral',
-        #  'Agree', 'Strongly Agree']
-        likert_scale_labels = options
-        return st.select_slider(
-            question_text,
-            likert_scale_labels,
-            key=widget_key,
-            on_change=store_in_session,
-            args=(key,),
-        )
-    elif question_type == "likert_col" and options is not None:
-        likert_scale_labels = options
-        # Create two columns
-        left_column, right_column = st.columns([1, 3])
-        # Question text in the left column
-        with left_column:
-            st.write(question_text)
-        # Likert scale slider in the right column
-        with right_column:
-            return st.select_slider(
-                "",
-                likert_scale_labels,
+    # Reduce required keys to only those of current page
+    required_keys = [
+        key for key in ALL_REQUIRED_KEYS if key in page_element_keys
+    ]
+    missing_fields = []
+
+    # Function to retrieve question number based on index
+    def get_question_number(key):
+        return page_element_keys.index(key) + 1
+
+    for question_key in required_keys:
+        if question_key not in data:
+            missing_fields.append(
+                (question_key, get_question_number(question_key))
+            )
+        elif data[question_key] == "Select":
+            missing_fields.append(
+                (question_key, get_question_number(question_key))
+            )
+        elif not data[question_key]:
+            missing_fields.append(
+                (question_key, get_question_number(question_key))
+            )
+
+    if missing_fields:
+        if give_hint:
+            question_numbers = ", ".join(
+                str(question[1]) for question in missing_fields
+            )
+            raise ValueError(
+                f"You did not fill in all required fields. "
+                f"Please complete question(s) {question_numbers}."
+            )
+        else:
+            raise ValueError(
+                "You did not fill in all required fields."
+                " Please go back and complete the survey."
+            )
+
+
+class QuestionGenerator:
+    def __init__(self, section_number: int):
+        self.section_number = section_number
+        self.number = 0
+
+    def generate_streamlit_element(
+        self,
+        question_text: str,
+        question_type: str,
+        options: Optional[list] = None,
+        key: Optional[str] = None,
+    ) -> Any:
+        """
+        Returns the appropriate Streamlit input element
+         based on the question type.
+
+        Parameters:
+            question_text (str): The text of the question.
+            question_type (str): The type of the question.
+            options (list): The list of options for multiple choice or select
+                all questions.
+            key (str): The key to identify the input element uniquely.
+
+        Returns:
+            Streamlit input element
+        """
+        self.number += 1
+        question_text = f"{self.section_number}.{self.number}. {question_text}"
+
+        if key in ALL_REQUIRED_KEYS:
+            question_text += " :red[*]"
+
+        widget_key: str = f"{key}_{WIDGET_SUFFIX}"
+        if question_type == "multiple_choice" and options is not None:
+            return st.selectbox(
+                question_text,
+                options,
                 key=widget_key,
-                label_visibility="collapsed",
                 on_change=store_in_session,
                 args=(key,),
             )
-    elif question_type == "text_area":
-        return st.text_area(
-            question_text,
-            key=widget_key,
-            on_change=store_in_session,
-            args=(key,),
-        )
-    elif question_type == "radio" and options is not None:
-        return st.radio(
-            question_text,
-            options,
-            key=widget_key,
-            on_change=store_in_session,
-            args=(key,),
-            index=None,
-        )
-    else:
-        raise ValueError(f"Invalid question type: {question_type}")
+        elif question_type == "select_all" and options is not None:
+            return st.multiselect(
+                question_text,
+                options,
+                key=widget_key,
+                on_change=store_in_session,
+                args=(key,),
+            )
+        elif question_type == "likert" and options is not None:
+            # scale labels e.g. ['Strongly Disagree', 'Disagree', 'Neutral',
+            #  'Agree', 'Strongly Agree']
+            likert_scale_labels = options
+            return st.select_slider(
+                question_text,
+                likert_scale_labels,
+                key=widget_key,
+                on_change=store_in_session,
+                args=(key,),
+            )
+        elif question_type == "likert_col" and options is not None:
+            likert_scale_labels = options
+            # Create two columns
+            left_column, right_column = st.columns([1, 3])
+            # Question text in the left column
+            with left_column:
+                st.write(question_text)
+            # Likert scale slider in the right column
+            with right_column:
+                return st.select_slider(
+                    "",
+                    likert_scale_labels,
+                    key=widget_key,
+                    label_visibility="collapsed",
+                    on_change=store_in_session,
+                    args=(key,),
+                )
+        elif question_type == "text_area":
+            return st.text_area(
+                question_text,
+                key=widget_key,
+                on_change=store_in_session,
+                args=(key,),
+            )
+        elif question_type == "radio" and options is not None:
+            return st.radio(
+                question_text,
+                options,
+                key=widget_key,
+                on_change=store_in_session,
+                args=(key,),
+                index=None,
+            )
+        else:
+            raise ValueError(f"Invalid question type: {question_type}")
 
 
 # Example usage:

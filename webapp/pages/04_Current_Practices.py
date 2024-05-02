@@ -1,11 +1,12 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 from streamlit_utils import (
-    generate_streamlit_element,
+    QuestionGenerator,
     disable_button,
     load_from_session,
     verify_user,
     display_error_messages,
+    check_required_fields,
 )
 from survey_questions import questions
 from config import (
@@ -20,6 +21,7 @@ from config import (
     RELIANCE_ON_EVIDENCE_STATE_KEY,
     CURRENT_PRACTICES_PAGE,
     CURRENT_PRACTICES_RESULTS_PAGE,
+    REQUIRED_MESSAGE,
 )
 
 verify_user(CURRENT_PRACTICES_PAGE)
@@ -37,6 +39,9 @@ page_element_keys: list[str] = [
     RELIANCE_ON_EVIDENCE_STATE_KEY,
 ]
 
+SECTION_NUM = 2
+
+
 load_from_session(page_element_keys)
 
 st.title("Current Assurance Practices and Understanding ")
@@ -45,6 +50,8 @@ st.markdown(
     "assurance of "
     "digital twins. "
 )
+st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
+
 
 # Initialize session state for showing additional content / disabling buttons
 if "disabled" not in st.session_state:
@@ -55,7 +62,9 @@ if "continue_clicked" not in st.session_state:
     st.session_state.continue_clicked = False
 
 # Question 2.1
-assurance_meaning = generate_streamlit_element(
+question_generator = QuestionGenerator(SECTION_NUM)
+
+assurance_meaning = question_generator.generate_streamlit_element(
     questions["assurance_meaning"]["question"],
     questions["assurance_meaning"]["type"],
     key=ASSURANCE_MEANING_STATE_KEY,
@@ -111,7 +120,7 @@ if st.session_state.continue_clicked:
     with container:
         st.subheader("Current Assurance Practices")
         # Generate Streamlit elements for the rest of the questions
-        assurance_mechanisms = generate_streamlit_element(
+        assurance_mechanisms = question_generator.generate_streamlit_element(
             questions["assurance_mechanisms"]["question"],
             questions["assurance_mechanisms"]["type"],
             options=questions["assurance_mechanisms"].get("options"),
@@ -120,13 +129,15 @@ if st.session_state.continue_clicked:
 
         if "Other (Please specify)" in assurance_mechanisms:
             tag = ASSURANCE_MECHANISM_OTHER_STATE_KEY
-            assurance_mechanism_other = generate_streamlit_element(
-                questions[tag]["question"],
-                questions[tag]["type"],
-                key=ASSURANCE_MECHANISM_OTHER_STATE_KEY,
+            assurance_mechanism_other = (
+                question_generator.generate_streamlit_element(
+                    questions[tag]["question"],
+                    questions[tag]["type"],
+                    key=ASSURANCE_MECHANISM_OTHER_STATE_KEY,
+                )
             )
 
-        assured_properties = generate_streamlit_element(
+        assured_properties = question_generator.generate_streamlit_element(
             questions["assured_properties"]["question"],
             questions["assured_properties"]["type"],
             options=questions["assured_properties"].get("options"),
@@ -135,14 +146,16 @@ if st.session_state.continue_clicked:
 
         if "Other (Please specify)" in assured_properties:
             tag = ASSURED_PROPERTIES_OTHER_STATE_KEY
-            assured_properties_other = generate_streamlit_element(
-                questions[tag]["question"],
-                questions[tag]["type"],
-                key=ASSURED_PROPERTIES_OTHER_STATE_KEY,
+            assured_properties_other = (
+                question_generator.generate_streamlit_element(
+                    questions[tag]["question"],
+                    questions[tag]["type"],
+                    key=ASSURED_PROPERTIES_OTHER_STATE_KEY,
+                )
             )
 
         st.subheader("Assurance for Connected Digital Twins")
-        asset_data_sharing = generate_streamlit_element(
+        asset_data_sharing = question_generator.generate_streamlit_element(
             questions["asset_data_sharing"]["question"],
             questions["asset_data_sharing"]["type"],
             options=questions["asset_data_sharing"].get("options"),
@@ -150,27 +163,42 @@ if st.session_state.continue_clicked:
         )
 
         if asset_data_sharing == "Yes":
-            partner_trust_difficulty = generate_streamlit_element(
-                questions["partner_trust_difficulty"]["question"],
-                questions["partner_trust_difficulty"]["type"],
-                options=questions["partner_trust_difficulty"].get("options"),
-                key=PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+            partner_trust_difficulty = (
+                question_generator.generate_streamlit_element(
+                    questions["partner_trust_difficulty"]["question"],
+                    questions["partner_trust_difficulty"]["type"],
+                    options=questions["partner_trust_difficulty"].get(
+                        "options"
+                    ),
+                    key=PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+                )
             )
 
-            partner_trust_challenges = generate_streamlit_element(
-                questions["partner_trust_challenges"]["question"],
-                questions["partner_trust_challenges"]["type"],
-                options=questions["partner_trust_challenges"].get("options"),
-                key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
+            partner_trust_challenges = (
+                question_generator.generate_streamlit_element(
+                    questions["partner_trust_challenges"]["question"],
+                    questions["partner_trust_challenges"]["type"],
+                    options=questions["partner_trust_challenges"].get(
+                        "options"
+                    ),
+                    key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
+                )
             )
 
-            reliance_on_evidence = generate_streamlit_element(
-                questions["reliance_on_evidence"]["question"],
-                questions["reliance_on_evidence"]["type"],
-                options=questions["reliance_on_evidence"].get("options"),
-                key=RELIANCE_ON_EVIDENCE_STATE_KEY,
+            reliance_on_evidence = (
+                question_generator.generate_streamlit_element(
+                    questions["reliance_on_evidence"]["question"],
+                    questions["reliance_on_evidence"]["type"],
+                    options=questions["reliance_on_evidence"].get("options"),
+                    key=RELIANCE_ON_EVIDENCE_STATE_KEY,
+                )
             )
 
     # Submit button for the rest of the survey
     if st.button("Continue"):
-        switch_page(CURRENT_PRACTICES_RESULTS_PAGE)
+        try:
+            check_required_fields(page_element_keys, give_hint=True)
+            switch_page(CURRENT_PRACTICES_RESULTS_PAGE)
+        except ValueError as e:
+            # Exception message is human-readable
+            st.error(str(e))

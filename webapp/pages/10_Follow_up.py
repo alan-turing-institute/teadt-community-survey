@@ -8,6 +8,7 @@ from config import (
     ALL_SESSION_KEYS,
     SURVEY_SUBMITTED_STATE_KEY,
     FOLLOW_UP_PAGE,
+    ALL_REQUIRED_KEYS,
 )
 from streamlit_utils import (
     load_from_session,
@@ -15,6 +16,7 @@ from streamlit_utils import (
     store_in_session,
     verify_user,
     display_error_messages,
+    check_required_fields,
 )
 import mongo_utils
 from pymongo import MongoClient
@@ -34,8 +36,9 @@ page_element_keys: list[str] = [
 load_from_session(page_element_keys)
 
 st.title("Follow-Up")
+SECTION_NUM = 6
 
-st.header("Section 5: Final Open-Ended Question")
+st.header(f"Section {SECTION_NUM}: Final Open-Ended Question")
 
 # Open-ended question
 st.subheader("1. Additional Insights")
@@ -86,6 +89,7 @@ st.markdown("*We'll only use your email to contact you regarding follow-ups.*")
 
 if st.button("Submit"):
     try:
+        check_required_fields(ALL_REQUIRED_KEYS)
 
         client: MongoClient = mongo_utils.init_connection()
         if client:
