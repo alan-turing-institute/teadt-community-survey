@@ -8,6 +8,7 @@ from config import (
     ALL_SESSION_KEYS,
     SURVEY_SUBMITTED_STATE_KEY,
     FOLLOW_UP_PAGE,
+    ALL_REQUIRED_KEYS,
 )
 from streamlit_utils import (
     load_from_session,
@@ -88,7 +89,7 @@ st.markdown("*We'll only use your email to contact you regarding follow-ups.*")
 
 if st.button("Submit"):
     try:
-        check_required_fields(page_element_keys)
+        check_required_fields(ALL_REQUIRED_KEYS)
 
         client: MongoClient = mongo_utils.init_connection()
         if client:

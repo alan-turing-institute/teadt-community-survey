@@ -143,14 +143,11 @@ if "Other (Please specify)" in support_for_assurance:
         )
     )
 
-# Submit button for the form
-submitted = st.button("Continue")
-
 # Actions to take after the form is submitted, such as saving responses or
 # navigating
 if st.button("Continue"):
     try:
-        check_required_fields(page_element_keys)
+        check_required_fields(page_element_keys, give_hint=True)
         switch_page(FOLLOW_UP_PAGE)
     except ValueError as e:
         # Exception message is human-readable

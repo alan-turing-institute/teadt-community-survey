@@ -356,7 +356,7 @@ with st.container():
 # Actions to take after the form is submitted
 if st.button("Continue"):
     try:
-        check_required_fields(all_page_elements)
+        check_required_fields(all_page_elements, give_hint=True)
         switch_page(COMMUNICATING_ASSURANCE_PAGE)
     except ValueError as e:
         # Exception message is human-readable

@@ -110,12 +110,29 @@ def load_from_session(keys: list[str]) -> None:
             logging.info(f"No value to load for session key {key}")
 
 
-def check_required_fields(page_element_keys: list[str]) -> None:
+def check_required_fields(
+    page_element_keys: list[str], give_hint: bool = False
+) -> None:
     data: dict[str, Any] = {
         session_key: st.session_state[session_key]
         for session_key in page_element_keys
         if session_key in st.session_state
     }
+
+    # Check conditional keys and remove those not showing
+    for key, conditions in conditional_keys.items():
+        depends_on_key = conditions["depends_on_key"]
+        depends_on_response = conditions["depends_on_response"]
+
+        if depends_on_key not in data:
+            if key in page_element_keys:
+                page_element_keys.remove(key)
+        elif (
+            data[depends_on_key] != depends_on_response
+            and depends_on_response not in data[depends_on_key]
+        ):
+            if key in page_element_keys:
+                page_element_keys.remove(key)
 
     # Reduce required keys to only those of current page
     required_keys = [
@@ -123,33 +140,38 @@ def check_required_fields(page_element_keys: list[str]) -> None:
     ]
     missing_fields = []
 
-    # Check conditional keys and remove those not shown
-    for key, conditions in conditional_keys.items():
-        depends_on_key = conditions["depends_on_key"]
-        depends_on_response = conditions["depends_on_response"]
+    # Function to retrieve question number based on index
+    def get_question_number(key):
+        return page_element_keys.index(key) + 1
 
-        if depends_on_key not in data:
-            if key in required_keys:
-                required_keys.remove(key)
-        elif (
-            data[depends_on_key] != depends_on_response
-            and depends_on_response not in data[depends_on_key]
-        ):
-            if key in required_keys:
-                required_keys.remove(key)
     for question_key in required_keys:
         if question_key not in data:
-            missing_fields.append(question_key)
+            missing_fields.append(
+                (question_key, get_question_number(question_key))
+            )
         elif data[question_key] == "Select":
-            missing_fields.append(question_key)
+            missing_fields.append(
+                (question_key, get_question_number(question_key))
+            )
         elif not data[question_key]:
-            missing_fields.append(question_key)
+            missing_fields.append(
+                (question_key, get_question_number(question_key))
+            )
 
     if missing_fields:
-        raise ValueError(
-            "You did not fill in all required fields."
-            " Please go back and complete the survey."
-        )
+        if give_hint:
+            question_numbers = ", ".join(
+                str(question[1]) for question in missing_fields
+            )
+            raise ValueError(
+                f"You did not fill in all required fields. "
+                f"Please complete question(s) {question_numbers}."
+            )
+        else:
+            raise ValueError(
+                "You did not fill in all required fields."
+                " Please go back and complete the survey."
+            )
 
 
 class SurveyQuestion:

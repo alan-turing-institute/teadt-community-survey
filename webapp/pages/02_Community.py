@@ -141,7 +141,7 @@ if established_dt == "No":
 # Actions to take after the form is submitted
 if st.button("Continue"):
     try:
-        check_required_fields(page_element_keys)
+        check_required_fields(page_element_keys, give_hint=True)
         switch_page(COMMUNITY_RESULTS_PAGE)
     except ValueError as e:
         # Exception message is human-readable

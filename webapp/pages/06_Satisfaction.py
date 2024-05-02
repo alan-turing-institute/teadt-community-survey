@@ -57,13 +57,11 @@ for tag in tags_to_display:
         key=tag,
     )
 
-# Submit button for the form
-submitted = st.button("Continue")
 
 # Actions to take after the form is submitted
 if st.button("Continue"):
     try:
-        check_required_fields(tags_to_display)
+        check_required_fields(tags_to_display, give_hint=True)
         switch_page(GOALS_FRAMEWORK_PAGE)
     except ValueError as e:
         # Exception message is human-readable

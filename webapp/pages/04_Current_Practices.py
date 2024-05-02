@@ -206,7 +206,7 @@ if st.session_state.continue_clicked:
     # Submit button for the rest of the survey
     if st.button("Continue"):
         try:
-            check_required_fields(page_element_keys)
+            check_required_fields(page_element_keys, give_hint=True)
             switch_page(CURRENT_PRACTICES_RESULTS_PAGE)
         except ValueError as e:
             # Exception message is human-readable
