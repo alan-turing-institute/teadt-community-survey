@@ -127,7 +127,7 @@ def check_required_fields(page_element_keys: list[str]) -> list[str]:
     for key, conditions in conditional_keys.items():
         depends_on_key = conditions["depends_on_key"]
         depends_on_response = conditions["depends_on_response"]
-                    
+
         if depends_on_key not in data:
             if key in required_keys:
                 required_keys.remove(key)
