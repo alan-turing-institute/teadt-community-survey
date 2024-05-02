@@ -15,6 +15,7 @@ from streamlit_utils import (
     store_in_session,
     verify_user,
     display_error_messages,
+    check_required_fields,
 )
 import mongo_utils
 from pymongo import MongoClient
@@ -86,6 +87,7 @@ st.markdown("*We'll only use your email to contact you regarding follow-ups.*")
 
 if st.button("Submit"):
     try:
+        check_required_fields(page_element_keys)
 
         client: MongoClient = mongo_utils.init_connection()
         if client:

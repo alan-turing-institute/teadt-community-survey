@@ -4,6 +4,7 @@ from streamlit_utils import (
     load_from_session,
     verify_user,
     display_error_messages,
+    check_required_fields,
 )
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
@@ -16,6 +17,7 @@ from config import (
     GOALS_FRAMEWORK_PAGE,
     REQUIRED_MESSAGE,
 )
+
 
 verify_user(SATISFACTION_PAGE)
 display_error_messages()
@@ -56,5 +58,10 @@ for tag in tags_to_display:
 submitted = st.button("Continue")
 
 # Actions to take after the form is submitted
-if submitted:
-    switch_page(GOALS_FRAMEWORK_PAGE)
+if st.button("Continue"):
+    try:
+        check_required_fields(tags_to_display)
+        switch_page(GOALS_FRAMEWORK_PAGE)
+    except ValueError as e:
+        # Exception message is human-readable
+        st.error(str(e))

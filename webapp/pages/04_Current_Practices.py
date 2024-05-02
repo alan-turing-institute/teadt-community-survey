@@ -6,6 +6,7 @@ from streamlit_utils import (
     load_from_session,
     verify_user,
     display_error_messages,
+    check_required_fields,
 )
 from survey_questions import questions
 from config import (
@@ -176,4 +177,9 @@ if st.session_state.continue_clicked:
 
     # Submit button for the rest of the survey
     if st.button("Continue"):
-        switch_page(CURRENT_PRACTICES_RESULTS_PAGE)
+        try:
+            check_required_fields(page_element_keys)
+            switch_page(CURRENT_PRACTICES_RESULTS_PAGE)
+        except ValueError as e:
+            # Exception message is human-readable
+            st.error(str(e))

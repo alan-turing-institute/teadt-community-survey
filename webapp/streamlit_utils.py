@@ -13,6 +13,7 @@ from config import (
     CONSENT_QUESTIONS,
     VALID_CAPTCHA_ENTRY_STATE_KEY,
     ALL_REQUIRED_KEYS,
+    conditional_keys,
 )
 
 WIDGET_SUFFIX: str = "widget"
@@ -107,6 +108,48 @@ def load_from_session(keys: list[str]) -> None:
             # )
         else:
             logging.info(f"No value to load for session key {key}")
+
+
+def check_required_fields(page_element_keys: list[str]) -> list[str]:
+    data: dict[str, Any] = {
+        session_key: st.session_state[session_key]
+        for session_key in page_element_keys
+        if session_key in st.session_state
+    }
+
+    # Reduce required keys to only those of current page
+    required_keys = [
+        key for key in ALL_REQUIRED_KEYS if key in page_element_keys
+    ]
+    missing_fields = []
+
+    # Check conditional keys and remove those not shown
+    for key, conditions in conditional_keys.items():
+        depends_on_key = conditions["depends_on_key"]
+        depends_on_response = conditions["depends_on_response"]
+                    
+        if depends_on_key not in data:
+            if key in required_keys:
+                required_keys.remove(key)
+        elif (
+            data[depends_on_key] != depends_on_response
+            and depends_on_response not in data[depends_on_key]
+        ):
+            if key in required_keys:
+                required_keys.remove(key)
+    for question_key in required_keys:
+        if question_key not in data:
+            missing_fields.append(question_key)
+        elif data[question_key] == "Select":
+            missing_fields.append(question_key)
+        elif not data[question_key]:
+            missing_fields.append(question_key)
+
+    if missing_fields:
+        raise ValueError(
+            "You did not fill in all required fields."
+            " Please go back and complete the survey."
+        )
 
 
 def generate_streamlit_element(

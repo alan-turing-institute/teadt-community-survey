@@ -1,5 +1,9 @@
 import streamlit as st
-from streamlit_utils import generate_streamlit_element, verify_user
+from streamlit_utils import (
+    generate_streamlit_element,
+    verify_user,
+    check_required_fields,
+)
 from streamlit_extras.switch_page_button import switch_page
 from survey_questions import questions
 from config import (
@@ -126,4 +130,9 @@ if established_dt == "No":
 
 # Actions to take after the form is submitted
 if st.button("Continue"):
-    switch_page(COMMUNITY_RESULTS_PAGE)
+    try:
+        check_required_fields(page_element_keys)
+        switch_page(COMMUNITY_RESULTS_PAGE)
+    except ValueError as e:
+        # Exception message is human-readable
+        st.error(str(e))

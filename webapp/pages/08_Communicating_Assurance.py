@@ -5,6 +5,7 @@ from streamlit_utils import (
     load_from_session,
     verify_user,
     display_error_messages,
+    check_required_fields,
 )
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from PIL import Image
@@ -133,5 +134,10 @@ submitted = st.button("Continue")
 
 # Actions to take after the form is submitted, such as saving responses or
 # navigating
-if submitted:
-    switch_page(FOLLOW_UP_PAGE)
+if st.button("Continue"):
+    try:
+        check_required_fields(page_element_keys)
+        switch_page(FOLLOW_UP_PAGE)
+    except ValueError as e:
+        # Exception message is human-readable
+        st.error(str(e))

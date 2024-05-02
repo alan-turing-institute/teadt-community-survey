@@ -260,11 +260,11 @@ conditional_keys = {
     },
     FRAMEWORK_DESCRIPTION_STATE_KEY: {
         "depends_on_key": ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
-        "depends_on_response": "Other (Please specify)",
+        "depends_on_response": "Yes  / Something similar",
     },
     FRAMEWORK_DEVELOPMENT_STATE_KEY: {
         "depends_on_key": ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
-        "depends_on_response": "Other (Please specify)",
+        "depends_on_response": "Yes  / Something similar",
     },
     REASONS_AGAINST_VISUAL_TOOL_STATE_KEY: {
         "depends_on_key": NEED_FOR_VISUAL_TOOL_STATE_KEY,

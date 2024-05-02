@@ -4,7 +4,9 @@ from streamlit_utils import (
     load_from_session,
     verify_user,
     display_error_messages,
+    check_required_fields,
 )
+from PIL import Image
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
 from config import (
@@ -37,7 +39,32 @@ from config import (
     REQUIRED_MESSAGE,
 )
 
-from PIL import Image
+all_page_elements = [
+    ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
+    FRAMEWORK_DESCRIPTION_STATE_KEY,
+    FRAMEWORK_DEVELOPMENT_STATE_KEY,
+    VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY,
+    FAMILIARITY_WITH_GEMINI_PRINCIPLES_STATE_KEY,
+    RELEVANCE_GOOD_STATE_KEY,
+    RELEVANCE_VALUE_STATE_KEY,
+    RELEVANCE_INSIGHT_STATE_KEY,
+    RELEVANCE_SECURITY_STATE_KEY,
+    RELEVANCE_OPENNESS_STATE_KEY,
+    RELEVANCE_QUALITY_STATE_KEY,
+    RELEVANCE_FEDERATION_STATE_KEY,
+    RELEVANCE_CURATION_STATE_KEY,
+    RELEVANCE_EVOLUTION_STATE_KEY,
+    CHALLENGE_GOOD_STATE_KEY,
+    CHALLENGE_VALUE_STATE_KEY,
+    CHALLENGE_INSIGHT_STATE_KEY,
+    CHALLENGE_SECURITY_STATE_KEY,
+    CHALLENGE_OPENNESS_STATE_KEY,
+    CHALLENGE_QUALITY_STATE_KEY,
+    CHALLENGE_FEDERATION_STATE_KEY,
+    CHALLENGE_CURATION_STATE_KEY,
+    CHALLENGE_EVOLUTION_STATE_KEY,
+    OPERATIONALIZATION_CHALLENGES_STATE_KEY,
+]
 
 verify_user(GOALS_FRAMEWORK_PAGE)
 display_error_messages()
@@ -78,7 +105,7 @@ with st.container():
 
     if ethical_framework_existence is not None:
         if (
-            ethical_framework_existence == "Yes"
+            ethical_framework_existence == "Yes  / Something similar"
             or ethical_framework_existence.startswith("No, but")
         ):
             framework_description = generate_streamlit_element(
@@ -283,7 +310,11 @@ with st.container():
         key=OPERATIONALIZATION_CHALLENGES_STATE_KEY,
     )
 
-
 # Actions to take after the form is submitted
 if st.button("Continue"):
-    switch_page(COMMUNICATING_ASSURANCE_PAGE)
+    try:
+        check_required_fields(all_page_elements)
+        switch_page(COMMUNICATING_ASSURANCE_PAGE)
+    except ValueError as e:
+        # Exception message is human-readable
+        st.error(str(e))

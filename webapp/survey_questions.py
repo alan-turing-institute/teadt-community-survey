@@ -385,8 +385,7 @@ questions: dict[str, Any] = {
         " framework for 'trustworthy' and 'ethical' digital twins?",
         "type": "radio",
         "options": [
-            "Yes",
-            "No, but we have related frameworks / guidelines",
+            "Yes  / Something similar",
             "No",
             "I don’t know",
         ],
