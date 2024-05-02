@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 from streamlit_utils import (
-    SurveyQuestion,
+    QuestionGenerator,
     disable_button,
     load_from_session,
     verify_user,
@@ -62,10 +62,9 @@ if "continue_clicked" not in st.session_state:
     st.session_state.continue_clicked = False
 
 # Question 2.1
-question_generator = SurveyQuestion()
+question_generator = QuestionGenerator(SECTION_NUM)
 
 assurance_meaning = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions["assurance_meaning"]["question"],
     questions["assurance_meaning"]["type"],
     key=ASSURANCE_MEANING_STATE_KEY,
@@ -122,7 +121,6 @@ if st.session_state.continue_clicked:
         st.subheader("Current Assurance Practices")
         # Generate Streamlit elements for the rest of the questions
         assurance_mechanisms = question_generator.generate_streamlit_element(
-            SECTION_NUM,
             questions["assurance_mechanisms"]["question"],
             questions["assurance_mechanisms"]["type"],
             options=questions["assurance_mechanisms"].get("options"),
@@ -133,7 +131,6 @@ if st.session_state.continue_clicked:
             tag = ASSURANCE_MECHANISM_OTHER_STATE_KEY
             assurance_mechanism_other = (
                 question_generator.generate_streamlit_element(
-                    SECTION_NUM,
                     questions[tag]["question"],
                     questions[tag]["type"],
                     key=ASSURANCE_MECHANISM_OTHER_STATE_KEY,
@@ -141,7 +138,6 @@ if st.session_state.continue_clicked:
             )
 
         assured_properties = question_generator.generate_streamlit_element(
-            SECTION_NUM,
             questions["assured_properties"]["question"],
             questions["assured_properties"]["type"],
             options=questions["assured_properties"].get("options"),
@@ -152,7 +148,6 @@ if st.session_state.continue_clicked:
             tag = ASSURED_PROPERTIES_OTHER_STATE_KEY
             assured_properties_other = (
                 question_generator.generate_streamlit_element(
-                    SECTION_NUM,
                     questions[tag]["question"],
                     questions[tag]["type"],
                     key=ASSURED_PROPERTIES_OTHER_STATE_KEY,
@@ -161,7 +156,6 @@ if st.session_state.continue_clicked:
 
         st.subheader("Assurance for Connected Digital Twins")
         asset_data_sharing = question_generator.generate_streamlit_element(
-            SECTION_NUM,
             questions["asset_data_sharing"]["question"],
             questions["asset_data_sharing"]["type"],
             options=questions["asset_data_sharing"].get("options"),
@@ -171,7 +165,6 @@ if st.session_state.continue_clicked:
         if asset_data_sharing == "Yes":
             partner_trust_difficulty = (
                 question_generator.generate_streamlit_element(
-                    SECTION_NUM,
                     questions["partner_trust_difficulty"]["question"],
                     questions["partner_trust_difficulty"]["type"],
                     options=questions["partner_trust_difficulty"].get(
@@ -183,7 +176,6 @@ if st.session_state.continue_clicked:
 
             partner_trust_challenges = (
                 question_generator.generate_streamlit_element(
-                    SECTION_NUM,
                     questions["partner_trust_challenges"]["question"],
                     questions["partner_trust_challenges"]["type"],
                     options=questions["partner_trust_challenges"].get(
@@ -195,7 +187,6 @@ if st.session_state.continue_clicked:
 
             reliance_on_evidence = (
                 question_generator.generate_streamlit_element(
-                    SECTION_NUM,
                     questions["reliance_on_evidence"]["question"],
                     questions["reliance_on_evidence"]["type"],
                     options=questions["reliance_on_evidence"].get("options"),

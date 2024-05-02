@@ -174,13 +174,13 @@ def check_required_fields(
             )
 
 
-class SurveyQuestion:
-    def __init__(self):
+class QuestionGenerator:
+    def __init__(self, section_number: int):
+        self.section_number = section_number
         self.number = 0
 
     def generate_streamlit_element(
         self,
-        section_number: int,
         question_text: str,
         question_type: str,
         options: Optional[list] = None,
@@ -201,7 +201,7 @@ class SurveyQuestion:
             Streamlit input element
         """
         self.number += 1
-        question_text = f"{section_number}.{self.number}. {question_text}"
+        question_text = f"{self.section_number}.{self.number}. {question_text}"
 
         if key in ALL_REQUIRED_KEYS:
             question_text += " :red[*]"

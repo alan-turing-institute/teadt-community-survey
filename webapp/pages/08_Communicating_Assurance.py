@@ -1,7 +1,7 @@
 import streamlit as st
 from survey_questions import questions
 from streamlit_utils import (
-    SurveyQuestion,
+    QuestionGenerator,
     load_from_session,
     verify_user,
     display_error_messages,
@@ -59,12 +59,11 @@ effectively to both internal teams and external partners.
 )
 st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
 
-question_generator = SurveyQuestion()
+question_generator = QuestionGenerator(SECTION_NUM)
 
 # Display each question using the utility function to handle different
 # input types
 communication_methods = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions["communication_methods"]["question"],
     questions["communication_methods"]["type"],
     options=questions["communication_methods"].get("options"),
@@ -84,11 +83,10 @@ direct connections between actions and outcomes.
 )
 
 # Display an image
-image_path = Image.open("webapp/img/aba_example_case.png")
+image_path = Image.open("img/aba_example_case.png")
 st.image(image_path, width=600)
 
 need_for_visual_tool = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions["need_for_visual_tool"]["question"],
     questions["need_for_visual_tool"]["type"],
     options=questions["need_for_visual_tool"].get("options"),
@@ -97,7 +95,6 @@ need_for_visual_tool = question_generator.generate_streamlit_element(
 
 if need_for_visual_tool == "Yes":
     benefits_of_visual_tool = question_generator.generate_streamlit_element(
-        SECTION_NUM,
         questions["benefits_of_visual_tool"]["question"],
         questions["benefits_of_visual_tool"]["type"],
         options=questions["benefits_of_visual_tool"].get("options"),
@@ -107,7 +104,6 @@ if need_for_visual_tool == "Yes":
 if need_for_visual_tool == "No":
     reasons_against_visual_tool = (
         question_generator.generate_streamlit_element(
-            SECTION_NUM,
             questions["reasons_against_visual_tool"]["question"],
             questions["reasons_against_visual_tool"]["type"],
             options=questions["reasons_against_visual_tool"].get("options"),
@@ -116,7 +112,6 @@ if need_for_visual_tool == "No":
     )
 
 preparedness_for_argument = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions["preparedness_for_argument"]["question"],
     questions["preparedness_for_argument"]["type"],
     options=questions["preparedness_for_argument"].get("options"),
@@ -124,7 +119,6 @@ preparedness_for_argument = question_generator.generate_streamlit_element(
 )
 
 support_for_assurance = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions["support_for_assurance"]["question"],
     questions["support_for_assurance"]["type"],
     options=questions["support_for_assurance"].get("options"),
@@ -135,7 +129,6 @@ if "Other (Please specify)" in support_for_assurance:
     tag = SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY
     support_for_assurance_other = (
         question_generator.generate_streamlit_element(
-            SECTION_NUM,
             questions[tag]["question"],
             questions[tag]["type"],
             options=questions[tag].get("options"),

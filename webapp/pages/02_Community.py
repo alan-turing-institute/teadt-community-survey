@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_utils import (
     verify_user,
     check_required_fields,
-    SurveyQuestion,
+    QuestionGenerator,
 )
 from streamlit_extras.switch_page_button import switch_page
 from survey_questions import questions
@@ -60,13 +60,12 @@ st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
 if "disabled" not in st.session_state:
     st.session_state.disabled = False
 
-question_generator = SurveyQuestion()
+question_generator = QuestionGenerator(SECTION_NUM)
 
 # Define the tags of questions to display in this section
 # Generate Streamlit elements and assign responses to variables
 tag: str = SECTOR_STATE_KEY
 sector = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions[tag]["question"],
     questions[tag]["type"],
     options=questions[tag].get("options"),
@@ -77,7 +76,6 @@ sector = question_generator.generate_streamlit_element(
 # default value.
 tag = LOCATION_STATE_KEY
 location = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions[tag]["question"],
     questions[tag]["type"],
     options=questions[tag].get("options"),
@@ -85,7 +83,6 @@ location = question_generator.generate_streamlit_element(
 )
 tag = ROLE_STATE_KEY
 role = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions[tag]["question"],
     questions[tag]["type"],
     options=questions[tag].get("options"),
@@ -94,7 +91,6 @@ role = question_generator.generate_streamlit_element(
 
 tag = RESPONSIBILITIES_STATE_KEY
 primary_responsibilities = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions[tag]["question"],
     questions[tag]["type"],
     options=questions[tag].get("options"),
@@ -103,7 +99,6 @@ primary_responsibilities = question_generator.generate_streamlit_element(
 
 tag = ESTABLISHED_DT_STATE_KEY
 established_dt = question_generator.generate_streamlit_element(
-    SECTION_NUM,
     questions[tag]["question"],
     questions[tag]["type"],
     options=questions[tag].get("options"),
@@ -113,7 +108,6 @@ established_dt = question_generator.generate_streamlit_element(
 tag = TYPE_DT_STATE_KEY
 if established_dt == "Yes":
     type_dt = question_generator.generate_streamlit_element(
-        SECTION_NUM,
         questions[tag]["question"],
         questions[tag]["type"],
         options=questions[tag].get("options"),
@@ -122,7 +116,6 @@ if established_dt == "Yes":
     if "Other (Please specify)" in type_dt:
         tag = TYPE_DT_OTHER_STATE_KEY
         type_dt = question_generator.generate_streamlit_element(
-            SECTION_NUM,
             questions[tag]["question"],
             questions[tag]["type"],
             key=tag,
@@ -131,7 +124,6 @@ if established_dt == "Yes":
 if established_dt == "No":
     tag = NO_DT_REASON_STATE_KEY
     no_dt_reason = question_generator.generate_streamlit_element(
-        SECTION_NUM,
         questions[tag]["question"],
         questions[tag]["type"],
         options=questions[tag].get("options"),
