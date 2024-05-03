@@ -41,6 +41,7 @@ questions: dict[str, Any] = {
             "Place Leadership",
             "Rail",
             "Renewable Energy",
+            "Research"
             "Smart Cities",
             "Supply Chain and Logistics",
             "Technology",
@@ -49,6 +50,7 @@ questions: dict[str, Any] = {
             "Utilities",
             "Waste and Recycling",
             "Water",
+            "Other"
         ],
         "section": "community_composition",  # Example section
     },
@@ -99,7 +101,7 @@ questions: dict[str, Any] = {
     "established_dt": {
         "tag": "established_dt",
         "question": "Has your organisation established one"
-        "or more Digital Twins?",
+        " or more Digital Twins?",
         "type": "radio",
         "options": ["Yes", "No"],
         "section": "community_composition",

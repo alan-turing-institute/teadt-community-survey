@@ -45,7 +45,7 @@ SECTION_NUM = 2
 load_from_session(page_element_keys)
 
 st.title("Current Assurance Practices and Understanding ")
-st.markdown(
+st.warning(
     "This section explores your understanding and current practices around "
     "assurance of "
     "digital twins. "
@@ -72,7 +72,7 @@ assurance_meaning = question_generator.generate_streamlit_element(
 
 # Submit button for assurance definition
 submit_definition_clicked = st.button(
-    "Submit Definition",
+    "Submit",
     on_click=disable_button,
     disabled=st.session_state.disabled,
 )
@@ -89,29 +89,22 @@ if submit_definition_clicked:
 if st.session_state.show_def:
     st.markdown(
         """
-    :::info
-    **Background & Definition of Assurance:**
-    :::
+    **For the purpose of this survey we will assume the following definition:**
     """,
-        unsafe_allow_html=True,
         help="This definition follows the Department of Science, Innovation, "
         'and Technology\'s "Introduction to AI Assurance"',
     )
-    st.markdown(
+    st.info(
         """
-    :::info
     Assurance is the process of measuring, evaluating and communicating
     something about a system or product (e.g. a digital twin).
 
     This can include a range of activities such as conducting a system audit,
     validating a dataset, carrying out training around ethical practices or
     achieving certified compliance with a specific standard.
-    :::
-    """,
-        unsafe_allow_html=True,
-    )
+    """    )
 
-    if st.button("Understood"):
+    if st.button("Proceed"):
         st.session_state.continue_clicked = True
 
 if st.session_state.continue_clicked:

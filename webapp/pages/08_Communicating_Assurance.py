@@ -39,11 +39,11 @@ load_from_session(page_element_keys)
 
 SECTION_NUM = 5
 # Set the page configuration and title
-st.set_page_config(page_title="Communicating Assurance", layout="wide")
-st.title(f"Section {SECTION_NUM}: Communicating Assurance")
+st.set_page_config(page_title="Communicating Assurance")
+st.title(f"{SECTION_NUM} - Communicating Assurance")
 
 # Introduction to the section
-st.markdown(
+st.warning(
     """
 Assurance of your digital twin involves more than just implementing the right
  technologies and processes.
@@ -73,10 +73,10 @@ communication_methods = question_generator.generate_streamlit_element(
 st.write("#")
 st.subheader("A New Responsible Research And Innovation Tool")
 
-st.markdown(
+st.info(
     """One way to present a structured argument that clearly shows
 how your assurance measures meet ethical goals is to use graph notation
-to create a visual map. This visual approach simplifies complex information
+to create a structured argument. This structured approach simplifies complex information
 and standardizes assurance communication, allowing stakeholders to see the
 direct connections between actions and outcomes.
 """

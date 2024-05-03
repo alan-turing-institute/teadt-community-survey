@@ -35,13 +35,21 @@ page_element_keys: list[str] = [
 
 load_from_session(page_element_keys)
 
-st.title("Follow-Up")
 SECTION_NUM = 6
 
-st.header(f"Section {SECTION_NUM}: Final Open-Ended Question")
+st.title(f"{SECTION_NUM} - Follow-Up")
+# Introduction to the section
+st.warning(
+    """
+You are almost done!
+Here is a final chance to share any other remarks
+ and to share your email if you would like to be 
+kept up to date.
+"""
+)
 
 # Open-ended question
-st.subheader("1. Additional Insights")
+st.subheader("Additional Insights")
 additional_insights = st.text_area(
     "Is there anything else pertinent to the assurance of digital twins, "
     "which has not"

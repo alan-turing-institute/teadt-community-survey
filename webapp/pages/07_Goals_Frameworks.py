@@ -78,7 +78,7 @@ SECTION_NUM = 4
 st.title(
     f"Section {SECTION_NUM}: High-Level Assurance Goals and Ethical Frameworks"
 )
-st.markdown(
+st.warning(
     """
 This section dives deeper into the frameworks and principles guiding the"
  ethical and trustworthy development of digital twins.
