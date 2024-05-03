@@ -49,7 +49,7 @@ st.set_page_config(initial_sidebar_state="expanded")
 
 
 st.title(f"Part {SECTION_NUM}: Community Composition")
-st.markdown(
+st.warning(
     "Here we aim to understand the diverse backgrounds"
     "within the digital twin community."
 )

@@ -37,7 +37,7 @@ load_from_session(tags_to_display)
 st.set_page_config(initial_sidebar_state="expanded")
 
 st.title("Part 3: Satisfaction with Assurance Practices")
-st.markdown(
+st.warning(
     "This section assesses the community’s satisfaction levels with current"
     " assurance processes, "
     "infrastructure, and support resources."
