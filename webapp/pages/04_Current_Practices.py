@@ -102,7 +102,8 @@ if st.session_state.show_def:
     This can include a range of activities such as conducting a system audit,
     validating a dataset, carrying out training around ethical practices or
     achieving certified compliance with a specific standard.
-    """    )
+    """
+    )
 
     if st.button("Proceed"):
         st.session_state.continue_clicked = True
@@ -153,6 +154,12 @@ if st.session_state.continue_clicked:
             questions["asset_data_sharing"]["type"],
             options=questions["asset_data_sharing"].get("options"),
             key=ASSET_DATA_SHARING_STATE_KEY,
+            help="""
+            In the context of digital twins, **asset-related data**
+             refers to the digital representation of information
+             pertaining to the characteristics, status,
+             and usage of physical assets in real-time.
+            """,
         )
 
         if asset_data_sharing == "Yes":

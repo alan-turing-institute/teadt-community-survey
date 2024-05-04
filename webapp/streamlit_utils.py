@@ -185,6 +185,7 @@ class QuestionGenerator:
         question_type: str,
         options: Optional[list] = None,
         key: Optional[str] = None,
+        help: Optional[str] = None,
     ) -> Any:
         """
         Returns the appropriate Streamlit input element
@@ -265,6 +266,7 @@ class QuestionGenerator:
                 key=widget_key,
                 on_change=store_in_session,
                 args=(key,),
+                help=help,
                 index=None,
             )
         else:

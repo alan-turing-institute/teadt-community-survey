@@ -103,7 +103,7 @@ withdraw from the survey at any time without any adverse consequences.
 ### Further Information and Contact
 This survey is overseen by the Alan Turing Institute. If you have any questions
 or require further information about the survey or the TEA-DT project, please
-contact Dr. Sophie Arana at sarana@turing.ac.uk.
+contact us at digitaltwins@turing.ac.uk.
 Your insights are invaluable to us, and we thank you for contributing to the
 advancement of trustworthy and ethical digital twins.
 
@@ -126,7 +126,7 @@ consent_questions: list[str] = [
     "I understand that I will not benefit directly from participating in this "
     "research.",
     "The purpose and nature of this study and the survey have been explained "
-    "to me in writing and I am able to contact someone to ask questions.",
+    "to me above and I am able to contact someone to ask questions.",
     "I understand that participation in this survey involves answering "
     "questions on my views and my work with regard to the assurance of digital"
     " twins, and will include discussing my own perceptions and attitudes"

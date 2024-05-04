@@ -43,8 +43,8 @@ st.warning(
     """
 You are almost done!
 Here is a final chance to share any other remarks
- and to share your email if you would like to be 
-kept up to date.
+ and to share your email if you would like to be
+ kept up to date.
 """
 )
 

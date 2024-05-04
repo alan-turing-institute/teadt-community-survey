@@ -50,9 +50,16 @@ st.markdown(
 
 st.write("#")
 st.markdown(
-    "The Alan Turing Institute's TRIC-DT and CPC DT Hub are conducting a "
-    "community pulse check on the topic of' Assurance of Digital Twin "
-    "Systems'."
+    """
+    The Alan Turing Institute's
+     [Turing Research and Innovation Cluster in Digital Twins
+    ](https://www.turing.ac.uk/research/research-projects/tric-dt)
+     and
+     [Conncected Places Catapult Digital Twin Hub](
+        https://digitaltwinhub.co.uk/)
+     are conducting a community pulse check on the topic of
+     'Assurance of Digital Twin Systems'.
+    """
 )
 st.markdown(
     "Are you developing, deploying or overseeing digital twin technologies"
@@ -129,6 +136,10 @@ with col_small_m:
 st.write("#")
 st.write("#")
 
+st.markdown(
+    "<h4>" "To begin the survey, please enter the Captcha below.</h4>",
+    unsafe_allow_html=True,
+)
 # Captcha
 # Define a container to encapsulate captcha and user input fields
 captcha_cont = st.empty()

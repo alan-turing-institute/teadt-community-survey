@@ -76,9 +76,10 @@ st.subheader("A New Responsible Research And Innovation Tool")
 st.info(
     """One way to present a structured argument that clearly shows
 how your assurance measures meet ethical goals is to use graph notation
-to create a structured argument. This structured approach simplifies complex information
-and standardizes assurance communication, allowing stakeholders to see the
-direct connections between actions and outcomes.
+to create a structured argument. This structured approach simplifies
+ complex information and standardizes assurance communication,
+ allowing stakeholders to see the direct connections
+ between actions and outcomes.
 """
 )
 
@@ -109,6 +110,13 @@ if need_for_visual_tool == "No":
             options=questions["reasons_against_visual_tool"].get("options"),
             key=REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
         )
+    )
+
+if need_for_visual_tool == "I need to know more about this tool to decide":
+    st.info(
+        "If you would like to learn more later, visit "
+        "our [documentation]"
+        "(https://alan-turing-institute.github.io/AssurancePlatform/)"
     )
 
 preparedness_for_argument = question_generator.generate_streamlit_element(
