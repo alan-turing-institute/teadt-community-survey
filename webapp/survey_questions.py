@@ -41,8 +41,7 @@ questions: dict[str, Any] = {
             "Place Leadership",
             "Rail",
             "Renewable Energy",
-            "Research"
-            "Smart Cities",
+            "Research" "Smart Cities",
             "Supply Chain and Logistics",
             "Technology",
             "Telecommunications",
@@ -50,7 +49,7 @@ questions: dict[str, Any] = {
             "Utilities",
             "Waste and Recycling",
             "Water",
-            "Other"
+            "Other",
         ],
         "section": "community_composition",  # Example section
     },
@@ -447,7 +446,7 @@ questions: dict[str, Any] = {
     },
     "relevance_of_principles": {
         "tag": "relevance_of_principles",
-        "question": "Please rate, for each Gemini principle individually,"
+        "question": "Please rate, for each of the following Gemini principles,"
         " the extent to which it focuses on issues that you believe to be"
         " relevant for your work",
         "type": "likert",
@@ -462,7 +461,7 @@ questions: dict[str, Any] = {
     },
     "challenge_in_application": {
         "tag": "challenge_in_application",
-        "question": "For each of the following ethical principles, please rate"
+        "question": "Please rate, for each of the following Gemini principles,"
         " how challenging you find it to determine if you have adequately"
         " addressed the principle in practice.",
         "type": "likert",
@@ -477,7 +476,7 @@ questions: dict[str, Any] = {
     },
     "operationalization_challenges": {
         "tag": "operationalization_challenges",
-        "question": "For those rated very difficult or extremely difficult"
+        "question": "For those rated very challenging or extremely challenging"
         " to operationalize, what are the main challenges you face?",
         "type": "text_area",
         "section": "ethical_assurance_frameworks",
@@ -534,11 +533,11 @@ questions: dict[str, Any] = {
         "goals?",
         "type": "likert",
         "options": [
-            "Very prepared",
-            "Somewhat prepared",
-            "Neutral",
-            "Somewhat unprepared",
             "Not prepared at all",
+            "Somewhat unprepared",
+            "Neutral",
+            "Somewhat prepared",
+            "Very prepared",
         ],
         "section": "evidence_based_assurance",
     },
