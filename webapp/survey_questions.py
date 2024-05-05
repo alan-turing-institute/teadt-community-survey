@@ -86,7 +86,7 @@ questions: dict[str, Any] = {
     "primary_responsibilities": {
         "tag": "primary_responsibilities",
         "question": "What are your primary responsibilities? Please select all that apply.",
-        "type": "select_all",
+        "type": "checkbox_select_all",
         "options": [
             "Designing and Implementing",
             "Strategizing and Directing",
@@ -108,7 +108,7 @@ questions: dict[str, Any] = {
     "type_dt": {
         "tag": "type_dt",
         "question": "What type of digital twin? Please select all that apply.",
-        "type": "select_all",
+        "type": "checkbox_select_all",
         "options": [
             "Product",
             "Process",
@@ -127,7 +127,7 @@ questions: dict[str, Any] = {
     "no_dt_reason": {
         "tag": "no_dt_reason",
         "question": "What is the main reason? Please select all that apply.",
-        "type": "select_all",
+        "type": "checkbox_select_all",
         "options": [
             "Unclear business case/ROI",
             "Insufficient digital awareness/skills",
@@ -156,33 +156,33 @@ questions: dict[str, Any] = {
         "tag": "assurance_mechanisms",
         "question": "Which of the following assurance mechanisms do you"
         " currently use (if any)? Please select all that apply.",
-        "type": "select_all",
+        "type": "checkbox_select_all",
         "options": [
-            "Bias Reviews (e.g., identifying and mitigating biases in "
-            "processes or outputs)",
-            "Compliance Audits (e.g., verifying adherence to laws and "
-            "regulations)",
-            "Conformity Assessments (e.g., alignment with standards and "
-            "expectations)",
+            "Bias Reviews /e.g., identifying and mitigating biases in "
+            "processes or outputs",
+            "Compliance Audits /e.g., verifying adherence to laws and "
+            "regulations",
+            "Conformity Assessments /e.g., alignment with standards and "
+            "expectations",
             "Stakeholder Feedback Systems",
-            "Risk Assessment (e.g., evaluating potential risks in projects)",
-            "Impact Assessment (e.g., assessing effects on stakeholders and "
-            "environments)",
-            "Information Security Reviews (e.g., safeguarding data and "
-            "systems)",
-            "Data Quality Checks (e.g., ensuring accuracy and reliability of"
-            " data)",
-            "Formal Verification (e.g., rigorously proving system properties)",
-            "Post-Implementation Evaluation (e.g., reviewing performance and"
-            " outcomes after deployment)",
-            "Service Continuity Management (e.g., ensuring ongoing operational"
-            " reliability)",
-            "Performance Monitoring (e.g., continuous assessment of system"
-            " efficiency and effectiveness)",
-            "Operational Audits (e.g., reviewing operational processes to"
-            " ensure they meet standards and are efficient)",
-            "Service Quality Reviews (e.g., assessing and improving the"
-            " quality and reliability of ongoing services)",
+            "Risk Assessment /e.g., evaluating potential risks in projects",
+            "Impact Assessment /e.g., assessing effects on stakeholders and "
+            "environments",
+            "Information Security Reviews /e.g., safeguarding data and "
+            "systems",
+            "Data Quality Checks /e.g., ensuring accuracy and reliability of"
+            " data",
+            "Formal Verification /e.g., rigorously proving system properties",
+            "Post-Implementation Evaluation /e.g., reviewing performance and"
+            " outcomes after deployment",
+            "Service Continuity Management /e.g., ensuring ongoing operational"
+            " reliability",
+            "Performance Monitoring /e.g., continuous assessment of system"
+            " efficiency and effectiveness",
+            "Operational Audits /e.g., reviewing operational processes to"
+            " ensure they meet standards and are efficient",
+            "Service Quality Reviews /e.g., assessing and improving the"
+            " quality and reliability of ongoing services",
             "Other (Please specify)",
             "None"
         ],
@@ -198,7 +198,7 @@ questions: dict[str, Any] = {
         "tag": "assured_properties",
         "question": "Which of the following properties (or goals) do you"
         " currently consider when assuring your digital twinning technology? Please select all that apply.",
-        "type": "select_all",
+        "type": "checkbox_select_all",
         "options": [
             "Safety",
             "Security",
@@ -258,7 +258,7 @@ questions: dict[str, Any] = {
     "partner_trust_challenges": {
         "tag": "partner_trust_challenges",
         "question": "What are/were the major challenges to overcome? Please select all that apply.",
-        "type": "select_all",
+        "type": "checkbox_select_all",
         "options": [
             "Unclear business case and issues around fairly distributed "
             "return on investment",
@@ -346,7 +346,7 @@ questions: dict[str, Any] = {
         "tag": "lifecycle_assurance",
         "question": "At which stages in the project lifecycle are you"
         " implementing assurance? Please select all that apply.",
-        "type": "select_all",
+        "type": "checkbox_select_all",
         "options": [
             "Project planning",
             "Problem formulation",
@@ -489,7 +489,7 @@ questions: dict[str, Any] = {
         "tag": "communication_methods",
         "question": "How do you currently communicate your project’s assurance"
         " strategies to your stakeholders or partner organisations? Please select all that apply.",
-        "type": "select_all",
+        "type": "checkbox_select_all",
         "options": [
             "Written Reports following established standards",
             "Non-standardized written Reports",
@@ -547,7 +547,7 @@ questions: dict[str, Any] = {
         "question": "What type of support might help you in creating sound"
         " assurance arguments around ethical principles for your digital"
         " twin project? Please select all that apply.",
-        "type": "select_all",
+        "type": "checkbox_select_all",
         "options": [
             "Step-by-Step Guidance / Skills Training",
             "Awareness Programs for Assurance",
