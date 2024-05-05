@@ -10,7 +10,6 @@ from streamlit_utils import (
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
 from config import (
-    FONT_SIZE,
     INTEGRATE_ASSURANCE_STATE_KEY,
     COMMUNICATION_IMPACT_STATE_KEY,
     LINK_ASSURANCE_ACTIVITIES_STATE_KEY,

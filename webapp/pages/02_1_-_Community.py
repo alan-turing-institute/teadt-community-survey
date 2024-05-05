@@ -9,7 +9,6 @@ from streamlit_utils import (
 from streamlit_extras.switch_page_button import switch_page
 from survey_questions import questions
 from config import (
-    FONT_SIZE,
     SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
     ROLE_STATE_KEY,
