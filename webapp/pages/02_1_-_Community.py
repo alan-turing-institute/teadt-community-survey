@@ -1,4 +1,6 @@
 import streamlit as st
+from st_pages import hide_pages
+
 from streamlit_utils import (
     verify_user,
     check_required_fields,
@@ -7,6 +9,7 @@ from streamlit_utils import (
 from streamlit_extras.switch_page_button import switch_page
 from survey_questions import questions
 from config import (
+    FONT_SIZE,
     SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
     ROLE_STATE_KEY,
@@ -21,7 +24,6 @@ from config import (
 )
 from streamlit_utils import load_from_session, display_error_messages
 import logging
-
 
 logging.info("Loading the community page")
 
@@ -46,6 +48,7 @@ display_error_messages()
 # reintroduce sidebar (collapse button will stay hidden as CSS cannot by
 # dynamically altered)
 st.set_page_config(initial_sidebar_state="expanded")
+hide_pages(["Success"])
 
 
 st.title(f"Part {SECTION_NUM}: Community Composition")

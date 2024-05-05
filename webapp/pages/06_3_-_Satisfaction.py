@@ -1,4 +1,5 @@
 import streamlit as st
+from st_pages import hide_pages
 from streamlit_utils import (
     QuestionGenerator,
     load_from_session,
@@ -9,6 +10,7 @@ from streamlit_utils import (
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from survey_questions import questions
 from config import (
+    FONT_SIZE,
     INTEGRATE_ASSURANCE_STATE_KEY,
     COMMUNICATION_IMPACT_STATE_KEY,
     LINK_ASSURANCE_ACTIVITIES_STATE_KEY,
@@ -35,6 +37,7 @@ load_from_session(tags_to_display)
 # Reintroduce sidebar (collapse button will stay hidden as CSS cannot be
 #  dynamically altered)
 st.set_page_config(initial_sidebar_state="expanded")
+hide_pages(["Success"])
 
 st.title("Part 3: Satisfaction with Assurance Practices")
 st.warning(
@@ -55,8 +58,7 @@ for tag in tags_to_display:
         options=questions[tag].get("options"),
         key=tag,
     )
-
-
+    
 # Actions to take after the form is submitted
 if st.button("Continue"):
     try:

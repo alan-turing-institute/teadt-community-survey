@@ -5,10 +5,11 @@ import mongo_utils
 from pymongo import MongoClient
 from streamlit_utils import verify_user, display_error_messages
 from config import CURRENT_PRACTICES_PAGE, COMMUNITY_RESULTS_PAGE
+from st_pages import hide_pages
 
 verify_user(COMMUNITY_RESULTS_PAGE)
 display_error_messages()
-
+hide_pages(["Success"])
 st.title("Part 1 Results: Community Composition")
 
 client: MongoClient = mongo_utils.init_connection()

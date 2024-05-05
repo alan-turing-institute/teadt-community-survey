@@ -1,4 +1,5 @@
 import streamlit as st
+from st_pages import hide_pages
 from streamlit_extras.switch_page_button import switch_page
 from streamlit_utils import (
     QuestionGenerator,
@@ -43,6 +44,7 @@ SECTION_NUM = 2
 
 
 load_from_session(page_element_keys)
+hide_pages(["Success"])
 
 st.title("Current Assurance Practices and Understanding ")
 st.warning(
@@ -193,6 +195,7 @@ if st.session_state.continue_clicked:
                     key=RELIANCE_ON_EVIDENCE_STATE_KEY,
                 )
             )
+
 
     # Submit button for the rest of the survey
     if st.button("Continue"):
