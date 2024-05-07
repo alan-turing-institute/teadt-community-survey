@@ -87,7 +87,7 @@ questions: dict[str, Any] = {
         "tag": "primary_responsibilities",
         "question": "What are your primary responsibilities?"
         " Please select all that apply.",
-        "type": "checkbox_select_all",
+        "type": "select_all",
         "options": [
             "Designing and Implementing",
             "Strategizing and Directing",
@@ -109,7 +109,7 @@ questions: dict[str, Any] = {
     "type_dt": {
         "tag": "type_dt",
         "question": "What type of digital twin? Please select all that apply.",
-        "type": "checkbox_select_all",
+        "type": "select_all",
         "options": [
             "Product",
             "Process",
@@ -128,7 +128,7 @@ questions: dict[str, Any] = {
     "no_dt_reason": {
         "tag": "no_dt_reason",
         "question": "What is the main reason? Please select all that apply.",
-        "type": "checkbox_select_all",
+        "type": "select_all",
         "options": [
             "Unclear business case/ROI",
             "Insufficient digital awareness/skills",
@@ -157,7 +157,7 @@ questions: dict[str, Any] = {
         "tag": "assurance_mechanisms",
         "question": "Which of the following assurance mechanisms do you"
         " currently use (if any)? Please select all that apply.",
-        "type": "checkbox_select_all",
+        "type": "select_all",
         "options": [
             "Bias Reviews /e.g., identifying and mitigating biases in "
             "processes or outputs",
@@ -200,7 +200,7 @@ questions: dict[str, Any] = {
         "question": "Which of the following properties (or goals) do you"
         " currently consider when assuring your digital twinning technology?"
         " Please select all that apply.",
-        "type": "checkbox_select_all",
+        "type": "select_all",
         "options": [
             "Safety",
             "Security",
@@ -261,7 +261,7 @@ questions: dict[str, Any] = {
         "tag": "partner_trust_challenges",
         "question": "What are/were the major challenges to overcome?"
         " Please select all that apply.",
-        "type": "checkbox_select_all",
+        "type": "select_all",
         "options": [
             "Unclear business case and issues around fairly distributed "
             "return on investment",
@@ -349,7 +349,7 @@ questions: dict[str, Any] = {
         "tag": "lifecycle_assurance",
         "question": "At which stages in the project lifecycle are you"
         " implementing assurance? Please select all that apply.",
-        "type": "checkbox_select_all",
+        "type": "select_all",
         "options": [
             "Project planning",
             "Problem formulation",
@@ -493,7 +493,7 @@ questions: dict[str, Any] = {
         "question": "How do you currently communicate your project’s assurance"
         " strategies to your stakeholders or partner organisations?"
         " Please select all that apply.",
-        "type": "checkbox_select_all",
+        "type": "select_all",
         "options": [
             "Written Reports following established standards",
             "Non-standardized written Reports",
@@ -551,7 +551,7 @@ questions: dict[str, Any] = {
         "question": "What type of support might help you in creating sound"
         " assurance arguments around ethical principles for your digital"
         " twin project? Please select all that apply.",
-        "type": "checkbox_select_all",
+        "type": "select_all",
         "options": [
             "Step-by-Step Guidance / Skills Training",
             "Awareness Programs for Assurance",
