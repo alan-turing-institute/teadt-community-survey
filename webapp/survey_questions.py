@@ -85,7 +85,8 @@ questions: dict[str, Any] = {
     },
     "primary_responsibilities": {
         "tag": "primary_responsibilities",
-        "question": "What are your primary responsibilities? Please select all that apply.",
+        "question": "What are your primary responsibilities?"
+        " Please select all that apply.",
         "type": "checkbox_select_all",
         "options": [
             "Designing and Implementing",
@@ -184,7 +185,7 @@ questions: dict[str, Any] = {
             "Service Quality Reviews /e.g., assessing and improving the"
             " quality and reliability of ongoing services",
             "Other (Please specify)",
-            "None"
+            "None",
         ],
         "section": "current_assurance_practices",
     },
@@ -197,7 +198,8 @@ questions: dict[str, Any] = {
     "assured_properties": {
         "tag": "assured_properties",
         "question": "Which of the following properties (or goals) do you"
-        " currently consider when assuring your digital twinning technology? Please select all that apply.",
+        " currently consider when assuring your digital twinning technology?"
+        " Please select all that apply.",
         "type": "checkbox_select_all",
         "options": [
             "Safety",
@@ -257,7 +259,8 @@ questions: dict[str, Any] = {
     },
     "partner_trust_challenges": {
         "tag": "partner_trust_challenges",
-        "question": "What are/were the major challenges to overcome? Please select all that apply.",
+        "question": "What are/were the major challenges to overcome?"
+        " Please select all that apply.",
         "type": "checkbox_select_all",
         "options": [
             "Unclear business case and issues around fairly distributed "
@@ -488,7 +491,8 @@ questions: dict[str, Any] = {
     "communication_methods": {
         "tag": "communication_methods",
         "question": "How do you currently communicate your project’s assurance"
-        " strategies to your stakeholders or partner organisations? Please select all that apply.",
+        " strategies to your stakeholders or partner organisations?"
+        " Please select all that apply.",
         "type": "checkbox_select_all",
         "options": [
             "Written Reports following established standards",

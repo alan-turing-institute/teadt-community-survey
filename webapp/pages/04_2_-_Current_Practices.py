@@ -196,7 +196,6 @@ if st.session_state.continue_clicked:
                 )
             )
 
-
     # Submit button for the rest of the survey
     if st.button("Continue"):
         try:

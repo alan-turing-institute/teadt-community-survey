@@ -57,7 +57,7 @@ for tag in tags_to_display:
         options=questions[tag].get("options"),
         key=tag,
     )
-    
+
 # Actions to take after the form is submitted
 if st.button("Continue"):
     try:

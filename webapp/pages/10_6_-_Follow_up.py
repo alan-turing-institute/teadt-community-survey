@@ -22,6 +22,7 @@ from streamlit_utils import (
 import mongo_utils
 from pymongo import MongoClient
 from typing import Any
+
 hide_pages(["Success"])
 
 verify_user(FOLLOW_UP_PAGE)
