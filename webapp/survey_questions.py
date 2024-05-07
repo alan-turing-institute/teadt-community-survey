@@ -2,7 +2,7 @@
 import pycountry
 from typing import Any
 
-countries = ["Select"] + sorted(
+countries = ["Select", "Global"] + sorted(
     [country.name for country in pycountry.countries]
 )
 
@@ -29,6 +29,7 @@ questions: dict[str, Any] = {
             "Food and Agriculture",
             "Freight",
             "Healthcare",
+            "Information technology / Software",
             "International Government",
             "Local Government",
             "Manufacturing",
@@ -41,7 +42,8 @@ questions: dict[str, Any] = {
             "Place Leadership",
             "Rail",
             "Renewable Energy",
-            "Research" "Smart Cities",
+            "Research",
+            "Smart Cities",
             "Supply Chain and Logistics",
             "Technology",
             "Telecommunications",
@@ -111,9 +113,11 @@ questions: dict[str, Any] = {
         "question": "What type of digital twin? Please select all that apply.",
         "type": "select_all",
         "options": [
+            "Organizational digital twins",
             "Product",
             "Process",
             "Plant",
+            "Physical assets",
             "System Digital Twin",
             "Other (Please specify)",
         ],
