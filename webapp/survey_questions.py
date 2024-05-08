@@ -190,31 +190,31 @@ questions: dict[str, Any] = {
         " currently use (if any)? Please select all that apply.",
         "type": "select_all",
         "options": [
-            "Bias Reviews /e.g., identifying and mitigating biases in "
-            "processes or outputs",
-            "Compliance Audits /e.g., verifying adherence to laws and "
-            "regulations",
-            "Conformity Assessments /e.g., alignment with standards and "
-            "expectations",
+            "Bias Reviews (e.g., identifying and mitigating biases in "
+            "processes or outputs)",
+            "Compliance Audits (e.g., verifying adherence to laws and "
+            "regulations)",
+            "Conformity Assessments (e.g., alignment with standards and "
+            "expectations)",
             "Stakeholder Feedback Systems",
-            "Risk Assessment /e.g., evaluating potential risks in projects",
-            "Impact Assessment /e.g., assessing effects on stakeholders and "
-            "environments",
-            "Information Security Reviews /e.g., safeguarding data and "
-            "systems",
-            "Data Quality Checks /e.g., ensuring accuracy and reliability of"
-            " data",
-            "Formal Verification /e.g., rigorously proving system properties",
-            "Post-Implementation Evaluation /e.g., reviewing performance and"
-            " outcomes after deployment",
-            "Service Continuity Management /e.g., ensuring ongoing operational"
-            " reliability",
-            "Performance Monitoring /e.g., continuous assessment of system"
-            " efficiency and effectiveness",
-            "Operational Audits /e.g., reviewing operational processes to"
-            " ensure they meet standards and are efficient",
-            "Service Quality Reviews /e.g., assessing and improving the"
-            " quality and reliability of ongoing services",
+            "Risk Assessment (e.g., evaluating potential risks in projects)",
+            "Impact Assessment (e.g., assessing effects on stakeholders and "
+            "environments)",
+            "Information Security Reviews (e.g., safeguarding data and "
+            "systems)",
+            "Data Quality Checks (e.g., ensuring accuracy and reliability of"
+            " data)",
+            "Formal Verification (e.g., rigorously proving system properties)",
+            "Post-Implementation Evaluation (e.g., reviewing performance and"
+            " outcomes after deployment)",
+            "Service Continuity Management (e.g., ensuring ongoing operational"
+            " reliability)",
+            "Performance Monitoring (e.g., continuous assessment of system"
+            " efficiency and effectiveness)",
+            "Operational Audits (e.g., reviewing operational processes to"
+            " ensure they meet standards and are efficient)",
+            "Service Quality Reviews (e.g., assessing and improving the"
+            " quality and reliability of ongoing services)",
             "Other (Please specify)",
             "None",
         ],

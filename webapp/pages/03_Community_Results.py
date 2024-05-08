@@ -25,6 +25,7 @@ hide_pages(["Success"])
 st.title("Results: Your Representation")
 page_element_keys = [SECTOR_STATE_KEY, ROLE_STATE_KEY, TYPE_DT_STATE_KEY]
 
+# Check if section has been filled in and retrieve relevant input fields
 try:
     check_required_fields(page_element_keys, give_hint=True)
     current_user_sector = st.session_state[SECTOR_STATE_KEY]
@@ -36,7 +37,7 @@ except ValueError:
         "please make sure to fill in the Community section."
     )
 
-
+# Retrieve data from database and output info/graphics
 client: MongoClient = mongo_utils.init_connection()
 if client:
     # Query data for charts
@@ -57,34 +58,32 @@ if client:
     profile_min_value = response_data[profile_min_name]
 
     # Providing feedback based on the count
+    st.write("Based on your profile:")
     if response_data["sector"] > 1:
-        st.success(
-            f"""
-            We've had **{response_data['sector']}** responses
+        message = f"""
+            :white_check_mark: We've had
+             **{response_data['sector']}** responses
              from digital twin practitioners in your sector.
              Continue filling in the pulse check
              and find out how your answers compare against theirs!
             """
-        )
     elif profile_max_value > 1:
-        st.success(
-            f"""
-            We've had {profile_max_value} responses from people
+        message = f"""
+            :white_check_mark: We've had {profile_max_value}
+             responses from people
              with a similar profile ({profile_max_name}).
              Continue filling in the pulse check and
              find out how your answers compare against theirs!
             """
-        )
     else:
-        st.info(
-            """
-            We had too few responses from people with your profile
+        message = """
+            :warning: We had too few responses from people with your profile
              to share detailed results. Help us enhance representation
              by sharing this survey with others.
              Improved representation will allow you to more effectively compare
              your responses with those of your peers when we share the results!
             """
-        )
+    st.write(message)
 
     st.write("#")
 

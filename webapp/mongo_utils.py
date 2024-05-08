@@ -132,11 +132,15 @@ def get_survey_collection(client: MongoClient) -> Collection:
     return collection
 
 
-def get_field_values(client: MongoClient, field_name: str) -> dict[str, list]:
+def get_field_values(
+    client: MongoClient, field_name: str, myfilter: dict[str, str] = {}
+) -> dict[str, list]:
 
     collection: Collection = get_survey_collection(client)
 
-    query_results: Cursor = collection.find(filter={}, projection=[field_name])
+    query_results: Cursor = collection.find(
+        filter=myfilter, projection=[field_name]
+    )
 
     return {
         field_name: [

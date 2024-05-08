@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 from collections import Counter
 from matplotlib.cm import get_cmap
+from plotly.subplots import make_subplots
 
 
 # Function to plot a pie chart
-def plot_pie_chart(data: list, current_user_sector, title, figsize=(4, 4)):
+def plot_pie_chart(data: list, current_user_sector, title, figsize=(2, 2)):
     # Count occurrences
     sector_counts = Counter(data)
 
@@ -39,3 +40,68 @@ def plot_pie_chart(data: list, current_user_sector, title, figsize=(4, 4)):
     )  # Equal aspect ratio ensures that pie is drawn as a circle.
     ax.set_title(title, pad=25)
     return fig
+
+
+def horizontal_bar_labels(categories):
+    subplots = make_subplots(
+        rows=len(categories),
+        cols=1,
+        subplot_titles=[x["name"] for x in categories],
+        shared_xaxes=True,
+        print_grid=False,
+        vertical_spacing=(0.45 / len(categories)),
+    )
+    subplots["layout"].update(
+        width=550,
+        plot_bgcolor="#fff",
+    )
+
+    # add bars for the categories
+    for k, x in enumerate(categories):
+        subplots.add_trace(
+            dict(
+                type="bar",
+                orientation="h",
+                y=[x["name"]],
+                x=[x["value"]],
+                text=["{:,.0f}".format(x["value"])],
+                hoverinfo="text",
+                textposition="auto",
+                marker=dict(
+                    color="#7030a0",
+                ),
+            ),
+            k + 1,
+            1,
+        )
+
+    # update the layout
+    subplots["layout"].update(
+        showlegend=False,
+    )
+    for x in subplots["layout"]["annotations"]:
+        x["x"] = 0
+        x["xanchor"] = "left"
+        x["align"] = "left"
+        x["font"] = dict(
+            size=12,
+        )
+
+    # hide the axes
+    for axis in subplots["layout"]:
+        if axis.startswith("yaxis") or axis.startswith("xaxis"):
+            subplots["layout"][axis]["visible"] = False
+
+    # update the margins and size
+    subplots["layout"]["margin"] = {
+        "l": 0,
+        "r": 0,
+        "t": 20,
+        "b": 1,
+    }
+    height_calc = 45 * len(categories)
+    height_calc = max([height_calc, 350])
+    subplots["layout"]["height"] = height_calc
+    subplots["layout"]["width"] = height_calc
+
+    return subplots
