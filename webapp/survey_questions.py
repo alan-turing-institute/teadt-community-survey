@@ -103,9 +103,15 @@ questions: dict[str, Any] = {
     "established_dt": {
         "tag": "established_dt",
         "question": "Has your organisation established one"
-        " or more digital wwins?",
+        " or more digital twins?",
         "type": "radio",
-        "options": ["Yes", "No"],
+        "options": [
+            "Yes",
+            "No",
+            "Indirectly "
+            "(We support clients or provide components"
+            " for their digital twins)",
+        ],
         "section": "community_composition",
     },
     "type_dt": {
@@ -142,7 +148,7 @@ questions: dict[str, Any] = {
             "(e.g. enhancing customer experience or market understanding.",
             "Research and Development",
         ],
-        "section": "community_composition"
+        "section": "community_composition",
     },
     "type_dt_other": {
         "tag": "type_dt_other",
