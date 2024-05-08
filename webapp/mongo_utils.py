@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.cursor import Cursor
 from pymongo.results import UpdateResult
+from itertools import combinations
 import os
 from config import (
     DATABASE_NAME_ENV,
@@ -34,6 +35,41 @@ def init_connection() -> MongoClient:
         )
 
     return client
+
+
+def count_responses(client, query):
+    """
+    Count the number of documents in a MongoDB collection
+    that match each individual query item
+    and every combination of query items.
+
+    Args:
+        client (MongoClient): The MongoDB client.
+        database_name (str): The name of the database.
+        collection_name (str): The name of the collection.
+        query (dict): A dictionary representing the MongoDB query.
+
+    Returns:
+        dict: A dictionary with keys as the query item combinations
+        and values as their respective counts.
+    """
+
+    db = client[os.getenv(DATABASE_NAME_ENV)]
+    collection = db[os.getenv(COLLECTION_NAME_ENV)]
+
+    results = {}
+    # Generate all possible combinations of query keys
+    keys = list(query.keys())
+    for r in range(1, len(keys) + 1):
+        for combo in combinations(keys, r):
+            # Build the subquery for current combination
+            subquery = {key: query[key] for key in combo}
+            # Count documents that match the subquery
+            count = collection.count_documents(subquery)
+            # Store the count with a descriptive key
+            results[", ".join(combo)] = count
+
+    return results
 
 
 def validate_survey_results(data: dict[str, Any]):
