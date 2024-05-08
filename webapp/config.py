@@ -27,6 +27,7 @@ RESPONSIBILITIES_STATE_KEY: str = "primary_responsibilities"
 ESTABLISHED_DT_STATE_KEY: str = "established_dt"
 TYPE_DT_STATE_KEY: str = "type_dt"
 TYPE_DT_OTHER_STATE_KEY: str = "type_dt_other"
+PURPOSE_DT_STATE_KEY: str = "purpose_dt"
 NO_DT_REASON_STATE_KEY: str = "no_dt_reason"
 
 # Current Practices Page Keys
@@ -102,6 +103,7 @@ ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
     ESTABLISHED_DT_STATE_KEY,
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
+    PURPOSE_DT_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,

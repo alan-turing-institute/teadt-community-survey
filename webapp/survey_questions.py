@@ -103,25 +103,46 @@ questions: dict[str, Any] = {
     "established_dt": {
         "tag": "established_dt",
         "question": "Has your organisation established one"
-        " or more Digital Twins?",
+        " or more digital wwins?",
         "type": "radio",
         "options": ["Yes", "No"],
         "section": "community_composition",
     },
     "type_dt": {
         "tag": "type_dt",
-        "question": "What type of digital twin? Please select all that apply.",
+        "question": "What type of digital twin(s)?"
+        " Please select all that apply.",
         "type": "select_all",
         "options": [
-            "Organizational digital twins",
-            "Product",
-            "Process",
-            "Plant",
-            "Physical assets",
-            "System Digital Twin",
+            "System (e.g., IT systems, organizational structure)",
+            "Place/Infrastructure Digital Twin "
+            "(e.g., cities, transportation networks)"
+            "Product (e.g., consumer goods, industrial machines)",
+            "Process (e.g., manufacturing processes, workflow optimization)",
+            "Physical asset "
+            "(e.g. building, manufacturing plant, power station)",
             "Other (Please specify)",
         ],
         "section": "community_composition",
+    },
+    "purpose_dt": {
+        "tag": "primary_purpose_dt",
+        "question": "Which of the following best describes the purpose"
+        " of your digital twin(s)? Select all that apply",
+        "type": "select_all",
+        "options": [
+            "Internal Operations "
+            "(enhancing internal decision-making, process optimization, "
+            "and operational efficiency within our organization)",
+            "External Collaboration "
+            "(facilitating collaboration with business partners "
+            "or stakeholders outside the organization)",
+            "Public Impact (directly affect the public or consumers)",
+            "Market / Customer Engagement "
+            "(e.g. enhancing customer experience or market understanding.",
+            "Research and Development",
+        ],
+        "section": "community_composition"
     },
     "type_dt_other": {
         "tag": "type_dt_other",
