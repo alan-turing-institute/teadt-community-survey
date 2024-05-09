@@ -1,4 +1,6 @@
 import streamlit as st
+from st_pages import hide_pages
+
 from streamlit_utils import (
     verify_user,
     check_required_fields,
@@ -14,6 +16,7 @@ from config import (
     ESTABLISHED_DT_STATE_KEY,
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
+    PURPOSE_DT_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
     COMMUNITY_PAGE,
     COMMUNITY_RESULTS_PAGE,
@@ -21,7 +24,6 @@ from config import (
 )
 from streamlit_utils import load_from_session, display_error_messages
 import logging
-
 
 logging.info("Loading the community page")
 
@@ -46,6 +48,7 @@ display_error_messages()
 # reintroduce sidebar (collapse button will stay hidden as CSS cannot by
 # dynamically altered)
 st.set_page_config(initial_sidebar_state="expanded")
+hide_pages(["Success"])
 
 
 st.title(f"Part {SECTION_NUM}: Community Composition")
@@ -106,7 +109,10 @@ established_dt = question_generator.generate_streamlit_element(
 )
 
 tag = TYPE_DT_STATE_KEY
-if established_dt == "Yes":
+if (established_dt == "Yes") or (
+    established_dt == "Indirectly "
+    "(We support clients or provide components for their digital twins)"
+):
     type_dt = question_generator.generate_streamlit_element(
         questions[tag]["question"],
         questions[tag]["type"],
@@ -120,6 +126,13 @@ if established_dt == "Yes":
             questions[tag]["type"],
             key=tag,
         )
+    tag = PURPOSE_DT_STATE_KEY
+    type_dt = question_generator.generate_streamlit_element(
+        questions[tag]["question"],
+        questions[tag]["type"],
+        options=questions[tag].get("options"),
+        key=tag,
+    )
 
 if established_dt == "No":
     tag = NO_DT_REASON_STATE_KEY

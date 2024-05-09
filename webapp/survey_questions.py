@@ -2,7 +2,7 @@
 import pycountry
 from typing import Any
 
-countries = ["Select"] + sorted(
+countries = ["Select", "Global"] + sorted(
     [country.name for country in pycountry.countries]
 )
 
@@ -29,6 +29,7 @@ questions: dict[str, Any] = {
             "Food and Agriculture",
             "Freight",
             "Healthcare",
+            "Information technology / Software",
             "International Government",
             "Local Government",
             "Manufacturing",
@@ -41,7 +42,8 @@ questions: dict[str, Any] = {
             "Place Leadership",
             "Rail",
             "Renewable Energy",
-            "Research" "Smart Cities",
+            "Research",
+            "Smart Cities",
             "Supply Chain and Logistics",
             "Technology",
             "Telecommunications",
@@ -85,7 +87,8 @@ questions: dict[str, Any] = {
     },
     "primary_responsibilities": {
         "tag": "primary_responsibilities",
-        "question": "What are your primary responsibilities?",
+        "question": "What are your primary responsibilities?"
+        " Please select all that apply.",
         "type": "select_all",
         "options": [
             "Designing and Implementing",
@@ -100,21 +103,50 @@ questions: dict[str, Any] = {
     "established_dt": {
         "tag": "established_dt",
         "question": "Has your organisation established one"
-        " or more Digital Twins?",
+        " or more digital twins?",
         "type": "radio",
-        "options": ["Yes", "No"],
+        "options": [
+            "Yes",
+            "No",
+            "Indirectly "
+            "(We support clients or provide components"
+            " for their digital twins)",
+        ],
         "section": "community_composition",
     },
     "type_dt": {
         "tag": "type_dt",
-        "question": "What type of digital twin?",
+        "question": "What type of digital twin(s)?"
+        " Please select all that apply.",
         "type": "select_all",
         "options": [
-            "Product",
-            "Process",
-            "Plant",
-            "System Digital Twin",
+            "System (e.g., IT systems, organizational structure)",
+            "Place/Infrastructure Digital Twin "
+            "(e.g., cities, transportation networks)"
+            "Product (e.g., consumer goods, industrial machines)",
+            "Process (e.g., manufacturing processes, workflow optimization)",
+            "Physical asset "
+            "(e.g. building, manufacturing plant, power station)",
             "Other (Please specify)",
+        ],
+        "section": "community_composition",
+    },
+    "purpose_dt": {
+        "tag": "primary_purpose_dt",
+        "question": "Which of the following best describes the purpose"
+        " of your digital twin(s)? Select all that apply",
+        "type": "select_all",
+        "options": [
+            "Internal Operations "
+            "(enhancing internal decision-making, process optimization, "
+            "and operational efficiency within our organization)",
+            "External Collaboration "
+            "(facilitating collaboration with business partners "
+            "or stakeholders outside the organization)",
+            "Public Impact (directly affect the public or consumers)",
+            "Market / Customer Engagement "
+            "(e.g. enhancing customer experience or market understanding.",
+            "Research and Development",
         ],
         "section": "community_composition",
     },
@@ -126,7 +158,7 @@ questions: dict[str, Any] = {
     },
     "no_dt_reason": {
         "tag": "no_dt_reason",
-        "question": "What is the main reason? ",
+        "question": "What is the main reason? Please select all that apply.",
         "type": "select_all",
         "options": [
             "Unclear business case/ROI",
@@ -155,7 +187,7 @@ questions: dict[str, Any] = {
     "assurance_mechanisms": {
         "tag": "assurance_mechanisms",
         "question": "Which of the following assurance mechanisms do you"
-        " currently use (if any)?",
+        " currently use (if any)? Please select all that apply.",
         "type": "select_all",
         "options": [
             "Bias Reviews (e.g., identifying and mitigating biases in "
@@ -184,6 +216,7 @@ questions: dict[str, Any] = {
             "Service Quality Reviews (e.g., assessing and improving the"
             " quality and reliability of ongoing services)",
             "Other (Please specify)",
+            "None",
         ],
         "section": "current_assurance_practices",
     },
@@ -196,7 +229,8 @@ questions: dict[str, Any] = {
     "assured_properties": {
         "tag": "assured_properties",
         "question": "Which of the following properties (or goals) do you"
-        " currently consider when assuring your digital twinning technology?",
+        " currently consider when assuring your digital twinning technology?"
+        " Please select all that apply.",
         "type": "select_all",
         "options": [
             "Safety",
@@ -256,7 +290,8 @@ questions: dict[str, Any] = {
     },
     "partner_trust_challenges": {
         "tag": "partner_trust_challenges",
-        "question": "What are/were the major challenges to overcome?",
+        "question": "What are/were the major challenges to overcome?"
+        " Please select all that apply.",
         "type": "select_all",
         "options": [
             "Unclear business case and issues around fairly distributed "
@@ -344,7 +379,7 @@ questions: dict[str, Any] = {
     "lifecycle_assurance": {
         "tag": "lifecycle_assurance",
         "question": "At which stages in the project lifecycle are you"
-        " implementing assurance?",
+        " implementing assurance? Please select all that apply.",
         "type": "select_all",
         "options": [
             "Project planning",
@@ -487,7 +522,8 @@ questions: dict[str, Any] = {
     "communication_methods": {
         "tag": "communication_methods",
         "question": "How do you currently communicate your project’s assurance"
-        " strategies to your stakeholders or partner organisations?",
+        " strategies to your stakeholders or partner organisations?"
+        " Please select all that apply.",
         "type": "select_all",
         "options": [
             "Written Reports following established standards",
@@ -545,7 +581,7 @@ questions: dict[str, Any] = {
         "tag": "support_for_assurance",
         "question": "What type of support might help you in creating sound"
         " assurance arguments around ethical principles for your digital"
-        " twin project?",
+        " twin project? Please select all that apply.",
         "type": "select_all",
         "options": [
             "Step-by-Step Guidance / Skills Training",

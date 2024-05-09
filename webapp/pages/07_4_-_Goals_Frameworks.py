@@ -1,4 +1,5 @@
 import streamlit as st
+from st_pages import hide_pages
 from streamlit_utils import (
     QuestionGenerator,
     load_from_session,
@@ -72,6 +73,7 @@ display_error_messages()
 
 # Set page configuration and sidebar state
 st.set_page_config(initial_sidebar_state="expanded")
+hide_pages(["Success"])
 
 SECTION_NUM = 4
 

@@ -27,6 +27,7 @@ RESPONSIBILITIES_STATE_KEY: str = "primary_responsibilities"
 ESTABLISHED_DT_STATE_KEY: str = "established_dt"
 TYPE_DT_STATE_KEY: str = "type_dt"
 TYPE_DT_OTHER_STATE_KEY: str = "type_dt_other"
+PURPOSE_DT_STATE_KEY: str = "purpose_dt"
 NO_DT_REASON_STATE_KEY: str = "no_dt_reason"
 
 # Current Practices Page Keys
@@ -102,6 +103,7 @@ ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
     ESTABLISHED_DT_STATE_KEY,
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
+    PURPOSE_DT_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
@@ -158,14 +160,14 @@ ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
 # TODO(cgavidia): This can be an Enum
 HOME_PAGE: str = "home"
 CONSENT_PAGE: str = "Consent"
-COMMUNITY_PAGE: str = "Community"
+COMMUNITY_PAGE: str = "1 - Community"
 COMMUNITY_RESULTS_PAGE: str = "Community_Results"
-CURRENT_PRACTICES_PAGE: str = "Current_Practices"
+CURRENT_PRACTICES_PAGE: str = "2 - Current_Practices"
 CURRENT_PRACTICES_RESULTS_PAGE: str = "Current_Practices_Results"
-SATISFACTION_PAGE: str = "Satisfaction"
-GOALS_FRAMEWORK_PAGE: str = "Goals_Frameworks"
-COMMUNICATING_ASSURANCE_PAGE: str = "Communicating_Assurance"
-FOLLOW_UP_PAGE: str = "Follow_up"
+SATISFACTION_PAGE: str = "3 - Satisfaction"
+GOALS_FRAMEWORK_PAGE: str = "4 - Goals_Frameworks"
+COMMUNICATING_ASSURANCE_PAGE: str = "5 - Communicating_Assurance"
+FOLLOW_UP_PAGE: str = "6 - Follow_up"
 SUCCESS_PAGE: str = "Success"
 
 # Required logic

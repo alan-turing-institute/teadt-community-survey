@@ -1,4 +1,5 @@
 import streamlit as st
+from st_pages import hide_pages
 from config import (
     ADDITIONAL_INSIGHTS_STATE_KEY,
     WORKSHOP_INTEREST_STATE_KEY,
@@ -21,6 +22,8 @@ from streamlit_utils import (
 import mongo_utils
 from pymongo import MongoClient
 from typing import Any
+
+hide_pages(["Success"])
 
 verify_user(FOLLOW_UP_PAGE)
 display_error_messages()

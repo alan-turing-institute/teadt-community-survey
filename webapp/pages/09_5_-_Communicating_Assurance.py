@@ -1,4 +1,5 @@
 import streamlit as st
+from st_pages import hide_pages
 from survey_questions import questions
 from streamlit_utils import (
     QuestionGenerator,
@@ -38,9 +39,11 @@ page_element_keys: list[str] = [
 load_from_session(page_element_keys)
 
 SECTION_NUM = 5
+
 # Set the page configuration and title
 st.set_page_config(page_title="Communicating Assurance")
 st.title(f"{SECTION_NUM} - Communicating Assurance")
+hide_pages(["Success"])
 
 # Introduction to the section
 st.warning(

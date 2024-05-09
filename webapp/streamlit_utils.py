@@ -1,5 +1,6 @@
 import streamlit as st
 import logging
+import math
 from typing import Any, Optional
 from streamlit_extras import switch_page_button
 from config import (
@@ -224,6 +225,34 @@ class QuestionGenerator:
                 on_change=store_in_session,
                 args=(key,),
             )
+        elif question_type == "checkbox_select_all" and options is not None:
+            # Calculate number of columns based on number of options
+            num_options = len(options)
+            num_columns = min(
+                3, math.ceil(num_options / 4)
+            )  # Maximum of 4 columns or ceil(options/8)
+            # Display question text above columns
+            st.write(question_text)
+            st.write("")  # Add a space between question text and columns
+            # Create columns based on number of columns
+            columns = st.columns(num_columns)
+            # Display options in grid format
+            responses = []
+            for i, option in enumerate(options):
+                option_text_parts = option.split("/")
+                checkbox_label = option_text_parts[0].strip()
+                help_text = (
+                    option_text_parts[1].strip()
+                    if len(option_text_parts) > 1
+                    else None
+                )
+                response = columns[i % num_columns].checkbox(
+                    checkbox_label,
+                    help=help_text,
+                    key=f"{widget_key}_{checkbox_label}",
+                )
+                responses.append(response)
+            return responses
         elif question_type == "likert" and options is not None:
             # scale labels e.g. ['Strongly Disagree', 'Disagree', 'Neutral',
             #  'Agree', 'Strongly Agree']
@@ -273,6 +302,29 @@ class QuestionGenerator:
             raise ValueError(f"Invalid question type: {question_type}")
 
 
-# Example usage:
-# response = generate_streamlit_element(question_text, question_type,
-# options=options, key=question_key)
+def map_response_to_int(response, key):
+    # Define the mapping dictionaries inside the function
+    relevance_mapping = {
+        "Not Relevant": 1,
+        "Slightly Relevant": 2,
+        "Moderately Relevant": 3,
+        "Very Relevant": 4,
+        "Extremely Relevant": 5,
+    }
+
+    challenge_mapping = {
+        "Not challenging at all": 1,
+        "Slightly challenging": 2,
+        "Moderately challenging": 3,
+        "Very challenging": 4,
+        "Extremely challenging": 5,
+    }
+
+    if "relevance" in key:
+        return relevance_mapping.get(
+            response, None
+        )  # Returns None if response not in mapping
+    else:
+        return challenge_mapping.get(
+            response, None
+        )  # Assuming it's a challenge key
