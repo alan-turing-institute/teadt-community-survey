@@ -65,9 +65,15 @@ try:
             message = f"""
                 :white_check_mark: We've had {profile_max_value}
                 responses from people
-                with a similar profile ({profile_max_name}).
-                Continue filling in the pulse check and
-                find out how your answers compare against theirs!
+                with a similar {profile_max_name} 
+                
+                :warning: But we have had few responses from your sector.
+                Help us enhance representation
+                by sharing this survey with others.
+                Improved representation will allow you
+                 to more effectively compare
+                your responses with those of your peers
+                 when we share the results!
                 """
         else:
             message = """

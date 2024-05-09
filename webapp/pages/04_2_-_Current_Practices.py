@@ -157,10 +157,10 @@ if st.session_state.continue_clicked:
             options=questions["asset_data_sharing"].get("options"),
             key=ASSET_DATA_SHARING_STATE_KEY,
             help="""
-            In the context of digital twins, **asset-related data**
-             refers to the digital representation of information
-             pertaining to the characteristics, status,
-             and usage of physical assets in real-time.
+            Note that this question is specifically
+             about you actively collaborating with partners
+             to form connected digital twins,
+             not data sharing more broadly
             """,
         )
 
