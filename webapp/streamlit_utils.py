@@ -133,10 +133,10 @@ def check_required_fields(
                 if key in page_element_keys:
                     page_element_keys.remove(key)
         else:
-            #if the conditioning question not shown
+            # if the conditioning question not shown
             if key in page_element_keys:
                 page_element_keys.remove(key)
-                
+
     # Reduce required keys to only those of current page
     required_keys = [
         key for key in ALL_REQUIRED_KEYS if key in page_element_keys
