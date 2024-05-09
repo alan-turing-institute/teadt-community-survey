@@ -56,7 +56,7 @@ questions: dict[str, Any] = {
     },
     "location": {
         "tag": "location",
-        "question": "Where is your organisation located?",
+        "question": "Where is your organisation (mainly) located?",
         "type": "multiple_choice",
         "options": countries,
         "section": "community_composition",  # Example section
@@ -187,7 +187,7 @@ questions: dict[str, Any] = {
     "assurance_mechanisms": {
         "tag": "assurance_mechanisms",
         "question": "Which of the following assurance mechanisms do you"
-        " currently rely on for your own (or your client's) digital twin(s)?"
+        " **currently** rely on for your own (or your client's) digital twin(s)?"
         " Please select all that apply.",
         "type": "select_all",
         "options": [
@@ -504,9 +504,9 @@ questions: dict[str, Any] = {
     },
     "challenge_in_application": {
         "tag": "challenge_in_application",
-        "question": "Please rate, for each of the following Gemini principles,"
-        " how challenging you find it to determine if you have adequately"
-        " addressed the principle in practice.",
+        "question": "Please rate, for each of the following Gemini principles:"
+        " How challenging is it to define and/or"
+        " to know how to currently address it in practices?",
         "type": "likert",
         "options": [
             "Not challenging at all",
