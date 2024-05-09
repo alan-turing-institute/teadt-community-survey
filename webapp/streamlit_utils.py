@@ -130,9 +130,7 @@ def check_required_fields(
             if key in page_element_keys:
                 page_element_keys.remove(key)
         # if the conditioning response not given
-        elif ( 
-            data[depends_on_key] not in depends_on_response
-        ):
+        elif data[depends_on_key] not in depends_on_response:
             if key in page_element_keys:
                 page_element_keys.remove(key)
 
@@ -271,7 +269,7 @@ class QuestionGenerator:
             left_column, right_column = st.columns([1, 3])
             # Question text in the left column
             with left_column:
-                st.markdown(question_text,help=help)
+                st.markdown(question_text, help=help)
             # Likert scale slider in the right column
             with right_column:
                 return st.select_slider(

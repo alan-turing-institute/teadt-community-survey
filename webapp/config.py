@@ -290,38 +290,83 @@ conditional_keys = {
     },
     CHALLENGE_GOOD_STATE_KEY: {
         "depends_on_key": RELEVANCE_GOOD_STATE_KEY,
-        "depends_on_response": ["Slightly Relevant", "Moderately Relevant", "Very Relevant", "Extremely Relevant"],
+        "depends_on_response": [
+            "Slightly Relevant",
+            "Moderately Relevant",
+            "Very Relevant",
+            "Extremely Relevant",
+        ],
     },
     CHALLENGE_VALUE_STATE_KEY: {
         "depends_on_key": RELEVANCE_VALUE_STATE_KEY,
-        "depends_on_response": ["Slightly Relevant", "Moderately Relevant", "Very Relevant", "Extremely Relevant"],
+        "depends_on_response": [
+            "Slightly Relevant",
+            "Moderately Relevant",
+            "Very Relevant",
+            "Extremely Relevant",
+        ],
     },
     CHALLENGE_INSIGHT_STATE_KEY: {
         "depends_on_key": RELEVANCE_INSIGHT_STATE_KEY,
-        "depends_on_response": ["Slightly Relevant", "Moderately Relevant", "Very Relevant", "Extremely Relevant"],
+        "depends_on_response": [
+            "Slightly Relevant",
+            "Moderately Relevant",
+            "Very Relevant",
+            "Extremely Relevant",
+        ],
     },
     CHALLENGE_SECURITY_STATE_KEY: {
         "depends_on_key": RELEVANCE_SECURITY_STATE_KEY,
-        "depends_on_response": ["Slightly Relevant", "Moderately Relevant", "Very Relevant", "Extremely Relevant"],
+        "depends_on_response": [
+            "Slightly Relevant",
+            "Moderately Relevant",
+            "Very Relevant",
+            "Extremely Relevant",
+        ],
     },
     CHALLENGE_OPENNESS_STATE_KEY: {
         "depends_on_key": RELEVANCE_OPENNESS_STATE_KEY,
-        "depends_on_response": ["Slightly Relevant", "Moderately Relevant", "Very Relevant", "Extremely Relevant"],
+        "depends_on_response": [
+            "Slightly Relevant",
+            "Moderately Relevant",
+            "Very Relevant",
+            "Extremely Relevant",
+        ],
     },
     CHALLENGE_QUALITY_STATE_KEY: {
         "depends_on_key": RELEVANCE_QUALITY_STATE_KEY,
-        "depends_on_response": ["Slightly Relevant", "Moderately Relevant", "Very Relevant", "Extremely Relevant"],
+        "depends_on_response": [
+            "Slightly Relevant",
+            "Moderately Relevant",
+            "Very Relevant",
+            "Extremely Relevant",
+        ],
     },
     CHALLENGE_FEDERATION_STATE_KEY: {
         "depends_on_key": RELEVANCE_FEDERATION_STATE_KEY,
-        "depends_on_response": ["Slightly Relevant", "Moderately Relevant", "Very Relevant", "Extremely Relevant"],
+        "depends_on_response": [
+            "Slightly Relevant",
+            "Moderately Relevant",
+            "Very Relevant",
+            "Extremely Relevant",
+        ],
     },
     CHALLENGE_CURATION_STATE_KEY: {
         "depends_on_key": RELEVANCE_CURATION_STATE_KEY,
-        "depends_on_response": ["Slightly Relevant", "Moderately Relevant", "Very Relevant", "Extremely Relevant"],
+        "depends_on_response": [
+            "Slightly Relevant",
+            "Moderately Relevant",
+            "Very Relevant",
+            "Extremely Relevant",
+        ],
     },
     CHALLENGE_EVOLUTION_STATE_KEY: {
         "depends_on_key": RELEVANCE_EVOLUTION_STATE_KEY,
-        "depends_on_response": ["Slightly Relevant", "Moderately Relevant", "Very Relevant", "Extremely Relevant"],
+        "depends_on_response": [
+            "Slightly Relevant",
+            "Moderately Relevant",
+            "Very Relevant",
+            "Extremely Relevant",
+        ],
     },
 }

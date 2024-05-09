@@ -196,15 +196,15 @@ with st.container():
         questions["relevance_of_principles"]["question"],
         help="Choose 'Not Relevant' "
         "if a principle is not applicable to your sector or solution",
-        )
-    
+    )
+
     # for each gemini principles
     relevance_good = question_generator.generate_streamlit_element(
-        '**Public Good**',
+        "**Public Good**",
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_GOOD_STATE_KEY,
-        help='Must be used to deliver genuine public benefit in perpetuity.'
+        help="Must be used to deliver genuine public benefit in perpetuity.",
     )
 
     relevance_value = question_generator.generate_streamlit_element(
@@ -212,7 +212,7 @@ with st.container():
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_VALUE_STATE_KEY,
-        help='Must enable value creation and performance improvement.'
+        help="Must enable value creation and performance improvement.",
     )
 
     relevance_insight = question_generator.generate_streamlit_element(
@@ -220,7 +220,7 @@ with st.container():
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_INSIGHT_STATE_KEY,
-        help='Must provide determinable insight into the built environment.'
+        help="Must provide determinable insight into the built environment.",
     )
 
     relevance_security = question_generator.generate_streamlit_element(
@@ -228,7 +228,7 @@ with st.container():
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_SECURITY_STATE_KEY,
-        help='Must enable security and be secure itself'
+        help="Must enable security and be secure itself",
     )
 
     relevance_openness = question_generator.generate_streamlit_element(
@@ -236,7 +236,7 @@ with st.container():
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_OPENNESS_STATE_KEY,
-        help='Must be as open as possible'
+        help="Must be as open as possible",
     )
 
     relevance_quality = question_generator.generate_streamlit_element(
@@ -244,7 +244,7 @@ with st.container():
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_QUALITY_STATE_KEY,
-        help='Must be built on data of an appropriate quality'
+        help="Must be built on data of an appropriate quality",
     )
 
     relevance_federation = question_generator.generate_streamlit_element(
@@ -252,7 +252,7 @@ with st.container():
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_FEDERATION_STATE_KEY,
-        help='Must be based on a standard connected environment'
+        help="Must be based on a standard connected environment",
     )
 
     relevance_curation = question_generator.generate_streamlit_element(
@@ -260,7 +260,7 @@ with st.container():
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_CURATION_STATE_KEY,
-        help='Must have clear ownership, governance and regulation'
+        help="Must have clear ownership, governance and regulation",
     )
 
     relevance_evolution = question_generator.generate_streamlit_element(
@@ -268,14 +268,12 @@ with st.container():
         "likert_col",
         options=questions["relevance_of_principles"].get("options"),
         key=RELEVANCE_EVOLUTION_STATE_KEY,
-        help='Must be able to adapt as technology and society evolve'
+        help="Must be able to adapt as technology and society evolve",
     )
 
     st.write("#")
 
-    st.markdown(
-        questions["challenge_in_application"]["question"]
-        )
+    st.markdown(questions["challenge_in_application"]["question"])
     if relevance_good != "Not Relevant":
         challenge_good = question_generator.generate_streamlit_element(
             "Public Good",
