@@ -520,7 +520,8 @@ questions: dict[str, Any] = {
     "operationalization_challenges": {
         "tag": "operationalization_challenges",
         "question": "For those rated very challenging or extremely challenging"
-        " to operationalize, what are the main challenges you (or your clients) face?",
+        " to operationalize, what are the main challenges you "
+        "(or your clients) face?",
         "type": "text_area",
         "section": "ethical_assurance_frameworks",
     },

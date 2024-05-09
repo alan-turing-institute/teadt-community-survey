@@ -65,8 +65,8 @@ try:
             message = f"""
                 :white_check_mark: We've had {profile_max_value}
                 responses from people
-                with a similar {profile_max_name} 
-                
+                with a similar {profile_max_name}
+
                 :warning: But we have had few responses from your sector.
                 Help us enhance representation
                 by sharing this survey with others.

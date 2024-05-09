@@ -110,7 +110,9 @@ established_dt = question_generator.generate_streamlit_element(
 
 tag = TYPE_DT_STATE_KEY
 if (established_dt == "Yes") or (
-    established_dt == "Indirectly (We support clients or provide components for digital twins)"
+    established_dt
+    == "Indirectly "
+    "(We support clients or provide components for digital twins)"
 ):
     type_dt = question_generator.generate_streamlit_element(
         questions[tag]["question"],
