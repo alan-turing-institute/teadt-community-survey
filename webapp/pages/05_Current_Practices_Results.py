@@ -138,10 +138,11 @@ try:
 
     else:
         st.error("Could not connect to the database.")
-except ValueError:
+except ValueError as e:
     # Exception message is human-readable
-    st.warning(
-        "To see personalized insights based on your assurance mechanisms, "
+    st.warning(e)
+    st.info(
+        "This page will show personalized insights based on your assurance practices, "
         "please make sure to fill in the previous sections."
     )
 
