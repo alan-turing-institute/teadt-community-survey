@@ -56,12 +56,14 @@ try:
         user_overlap = set(current_user_assurance_mechanisms) & set(
             [mech[0] for mech in top_assurance_mechanisms]
         )
-        
+
         # Compare number of distinct assurance mechanisms applied
         technique_counts_per_person = [
             len(set(sublist)) for sublist in response_lists
         ]
-        current_user_technique_count = len(set(current_user_assurance_mechanisms))
+        current_user_technique_count = len(
+            set(current_user_assurance_mechanisms)
+        )
 
         distribution_of_techniques = Counter(technique_counts_per_person)
         technique_list = []
@@ -142,7 +144,8 @@ except ValueError as e:
     # Exception message is human-readable
     st.warning(e)
     st.info(
-        "This page will show personalized insights based on your assurance practices, "
+        "This page will show personalized insights"
+        " based on your assurance practices, "
         "please make sure to fill in the previous sections."
     )
 

@@ -71,11 +71,14 @@ try:
                 """
         else:
             message = """
-                :warning: We had too few responses from people with your profile
+                :warning: We had too few responses
+                 from people with your profile
                 to share detailed results. Help us enhance representation
                 by sharing this survey with others.
-                Improved representation will allow you to more effectively compare
-                your responses with those of your peers when we share the results!
+                Improved representation will allow you
+                 to more effectively compare
+                your responses with those of your peers
+                 when we share the results!
                 """
         st.write(message)
 
@@ -100,7 +103,6 @@ except ValueError as e:
         "This page will show personalized insights based on your profile, "
         "please make sure to fill in the previous sections."
     )
-
 
 
 if st.button("Continue"):

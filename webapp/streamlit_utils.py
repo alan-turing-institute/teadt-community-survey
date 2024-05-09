@@ -301,6 +301,7 @@ class QuestionGenerator:
         else:
             raise ValueError(f"Invalid question type: {question_type}")
 
+
 def map_response_to_int(response, key):
     # Define the mapping dictionaries inside the function
     relevance_mapping = {
@@ -308,7 +309,7 @@ def map_response_to_int(response, key):
         "Slightly Relevant": 2,
         "Moderately Relevant": 3,
         "Very Relevant": 4,
-        "Extremely Relevant": 5
+        "Extremely Relevant": 5,
     }
 
     challenge_mapping = {
@@ -316,10 +317,14 @@ def map_response_to_int(response, key):
         "Slightly challenging": 2,
         "Moderately challenging": 3,
         "Very challenging": 4,
-        "Extremely challenging": 5
+        "Extremely challenging": 5,
     }
-    
+
     if "relevance" in key:
-        return relevance_mapping.get(response, None)  # Returns None if response not in mapping
+        return relevance_mapping.get(
+            response, None
+        )  # Returns None if response not in mapping
     else:
-        return challenge_mapping.get(response, None)  # Assuming it's a challenge key
+        return challenge_mapping.get(
+            response, None
+        )  # Assuming it's a challenge key

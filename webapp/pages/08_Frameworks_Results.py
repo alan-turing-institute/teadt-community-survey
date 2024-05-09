@@ -9,7 +9,7 @@ from streamlit_utils import (
     verify_user,
     display_error_messages,
     check_required_fields,
-    map_response_to_int
+    map_response_to_int,
 )
 from streamlit_extras.switch_page_button import switch_page  # type: ignore
 from config import (
@@ -33,12 +33,12 @@ from config import (
     CHALLENGE_EVOLUTION_STATE_KEY,
     COMMUNICATING_ASSURANCE_PAGE,
     SECTOR_STATE_KEY,
-    GOALS_FRAMEWORK_PAGE
-)  
+    GOALS_FRAMEWORK_PAGE,
+)
 
 # List of keys for relevance and challenge
 relevance_keys = [
-   RELEVANCE_GOOD_STATE_KEY,
+    RELEVANCE_GOOD_STATE_KEY,
     RELEVANCE_VALUE_STATE_KEY,
     RELEVANCE_INSIGHT_STATE_KEY,
     RELEVANCE_SECURITY_STATE_KEY,
@@ -79,42 +79,79 @@ try:
     client: MongoClient = mongo_utils.init_connection()
     if client:
         # Retrieve all data first
-        all_data = {key: mongo_utils.get_field_values(client, key, filter_dict).get(key, []) 
-                    for key in relevance_keys + challenge_keys}
+        all_data = {
+            key: mongo_utils.get_field_values(client, key, filter_dict).get(
+                key, []
+            )
+            for key in relevance_keys + challenge_keys
+        }
 
         # Now apply the mapping function
-        ratings_data = {key: [map_response_to_int(response, key) for response in all_data[key]] 
-                        for key in relevance_keys + challenge_keys}
-        
+        ratings_data = {
+            key: [
+                map_response_to_int(response, key)
+                for response in all_data[key]
+            ]
+            for key in relevance_keys + challenge_keys
+        }
+
         print(ratings_data)
         # Calculating averages and preparing data for plotting
         data = []
         for key in relevance_keys:
             print(key)
             challenge_key = "challenge" + key[len("relevance"):]
-            relevant_data = [val for val in ratings_data[key] if val is not None]
-            challenge_data = [val for val in ratings_data[challenge_key] if val is not None]
-            if relevant_data and challenge_data:  # Ensure data is present for both dimensions
+            relevant_data = [
+                val for val in ratings_data[key] if val is not None
+            ]
+            challenge_data = [
+                val for val in ratings_data[challenge_key] if val is not None
+            ]
+            if (
+                relevant_data and challenge_data
+            ):  # Ensure data is present for both dimensions
                 avg_relevance = np.mean(relevant_data)
                 avg_challenge = np.mean(challenge_data)
-                item_name = key.replace("relevance", "").replace("_", " ").title()
-                data.append({"Item": item_name, "Relevance": avg_relevance, "Challenge": avg_challenge})
+                item_name = (
+                    key.replace("relevance", "").replace("_", " ").title()
+                )
+                data.append(
+                    {
+                        "Item": item_name,
+                        "Relevance": avg_relevance,
+                        "Challenge": avg_challenge,
+                    }
+                )
 
         user_data = []
         for key in relevance_keys:
             challenge_key = "challenge" + key[len("relevance"):]
             if key in st.session_state and challenge_key in st.session_state:
-                user_relevance = map_response_to_int(st.session_state[key], key)
-                user_challenge = map_response_to_int(st.session_state[challenge_key], challenge_key)
+                user_relevance = map_response_to_int(
+                    st.session_state[key], key
+                )
+                user_challenge = map_response_to_int(
+                    st.session_state[challenge_key], challenge_key
+                )
                 if user_relevance is not None and user_challenge is not None:
-                    item_name = key.replace("relevance", "").replace("_", " ").title()
-                    user_data.append({"Item": item_name, "Relevance": user_relevance, "Challenge": user_challenge})
+                    item_name = (
+                        key.replace("relevance", "").replace("_", " ").title()
+                    )
+                    user_data.append(
+                        {
+                            "Item": item_name,
+                            "Relevance": user_relevance,
+                            "Challenge": user_challenge,
+                        }
+                    )
 
-
-        st.markdown('### Compare your assessment of the Gemini Principles with that of your peers!')
+        st.markdown(
+            "### Compare your assessment of the Gemini Principles"
+            " with that of your peers!"
+        )
         df = pd.DataFrame(data)
         user_df = pd.DataFrame(user_data)
-        st.plotly_chart(plot_principles_2d(df, user_df))    
+        st.plotly_chart(plot_principles_2d(df, user_df))
 
 except ValueError as e:
     # Exception message is human-readable
