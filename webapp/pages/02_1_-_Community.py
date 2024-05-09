@@ -54,7 +54,7 @@ hide_pages(["Success"])
 st.title(f"Part {SECTION_NUM}: Community Composition")
 st.warning(
     "Here we aim to understand the diverse backgrounds"
-    "within the digital twin community."
+    " within the digital twin community."
 )
 
 st.markdown(REQUIRED_MESSAGE, unsafe_allow_html=True)
@@ -110,8 +110,9 @@ established_dt = question_generator.generate_streamlit_element(
 
 tag = TYPE_DT_STATE_KEY
 if (established_dt == "Yes") or (
-    established_dt == "Indirectly "
-    "(We support clients or provide components for their digital twins)"
+    established_dt
+    == "Indirectly "
+    "(We support clients or provide components for digital twins)"
 ):
     type_dt = question_generator.generate_streamlit_element(
         questions[tag]["question"],

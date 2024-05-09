@@ -2,7 +2,7 @@
 import pycountry
 from typing import Any
 
-countries = ["Select", "Global"] + sorted(
+countries = ["Select", "Global", "United Kingdom"] + sorted(
     [country.name for country in pycountry.countries]
 )
 
@@ -37,11 +37,10 @@ questions: dict[str, Any] = {
             "Media",
             "Mining",
             "National Government",
-            "Nuclear Energy",
+            "Energy",
             "Oil and Gas",
             "Place Leadership",
             "Rail",
-            "Renewable Energy",
             "Research",
             "Smart Cities",
             "Supply Chain and Logistics",
@@ -110,7 +109,7 @@ questions: dict[str, Any] = {
             "No",
             "Indirectly "
             "(We support clients or provide components"
-            " for their digital twins)",
+            " for digital twins)",
         ],
         "section": "community_composition",
     },
@@ -134,7 +133,8 @@ questions: dict[str, Any] = {
     "purpose_dt": {
         "tag": "primary_purpose_dt",
         "question": "Which of the following best describes the purpose"
-        " of your digital twin(s)? Select all that apply",
+        " of the digital twin(s) you have (helped) establish?"
+        " Select all that apply",
         "type": "select_all",
         "options": [
             "Internal Operations "
@@ -187,16 +187,18 @@ questions: dict[str, Any] = {
     "assurance_mechanisms": {
         "tag": "assurance_mechanisms",
         "question": "Which of the following assurance mechanisms do you"
-        " currently use (if any)? Please select all that apply.",
+        " currently rely on for your own (or your client's) digital twin(s)?"
+        " Please select all that apply.",
         "type": "select_all",
         "options": [
             "Bias Reviews (e.g., identifying and mitigating biases in "
             "processes or outputs)",
             "Compliance Audits (e.g., verifying adherence to laws and "
             "regulations)",
-            "Conformity Assessments (e.g., alignment with standards and "
-            "expectations)",
-            "Stakeholder Feedback Systems",
+            "Conformity Assessments (e.g., alignment with standards and"
+            " expectations, verification of engineering requirements)",
+            "Stakeholder Feedback Systems (e.g. processes and tools to collect"
+            " and evaluate feedback from DT users, operators etc.)",
             "Risk Assessment (e.g., evaluating potential risks in projects)",
             "Impact Assessment (e.g., assessing effects on stakeholders and "
             "environments)",
@@ -222,14 +224,15 @@ questions: dict[str, Any] = {
     },
     "assurance_mechanism_other": {
         "tag": "assurance_mechanism_other",
-        "question": "Please specify which assurance mechanism",
+        "question": "Please specify which other assurance mechanism",
         "type": "text_area",
         "section": "current_assurance_practices",
     },
     "assured_properties": {
         "tag": "assured_properties",
         "question": "Which of the following properties (or goals) do you"
-        " currently consider when assuring your digital twinning technology?"
+        " currently consider when assuring your (or your client's)"
+        " digital twinning technology?"
         " Please select all that apply.",
         "type": "select_all",
         "options": [
@@ -260,14 +263,15 @@ questions: dict[str, Any] = {
     },
     "assured_properties_other": {
         "tag": "assured_properties_other",
-        "question": "Please specify which property",
+        "question": "Please specify which other property",
         "type": "text_area",
         "section": "current_assurance_practices",
     },
     "asset_data_sharing": {
         "tag": "asset_data_sharing",
-        "question": "Have you considered sharing asset-related data"
-        " or models with other organisations to form connected digital twins?",
+        "question": "Have you considered sharing data or models"
+        " with other organisations (or across partners within an organisation)"
+        " to form **connected digital twins**?",
         "type": "radio",
         "options": ["Yes", "No"],
         "section": "current_assurance_practices",
@@ -276,7 +280,8 @@ questions: dict[str, Any] = {
         "tag": "partner_trust_difficulty",
         "question": "When partnering with other organisations for building"
         " connected digital twins, how difficult is it to establish trust "
-        "in value, competence and goodwill?",
+        "in the competence, goodwill and value"
+        " of the resulting shared digital twin?",
         "type": "likert",
         "options": [
             "Very Easy",
@@ -314,9 +319,10 @@ questions: dict[str, Any] = {
     },
     "reliance_on_evidence": {
         "tag": "reliance_on_evidence",
-        "question": "To what extent did you rely/are you relying on provision"
-        " of evidence-based assurance for data, architecture, info security "
-        "and skills to establish trust between the parties of a connected"
+        "question": "To what extent did you rely"
+        "/are you relying on communication"
+        " of assurance mechanisms (such as those selected in **Q2.2**)"
+        " to establish trust between the parties of a connected"
         " digital twin ecosystem?",
         "type": "likert",
         "options": [
@@ -334,7 +340,8 @@ questions: dict[str, Any] = {
     "integrate_assurance": {
         "tag": "integrate_assurance",
         "question": "Our assurance activities extend beyond mere checklist"
-        " compliance and are substantively integrated into our operational "
+        " compliance and are substantively integrated into"
+        " our (or our client's) operational "
         "practices.",
         "type": "likert",
         "options": [
@@ -350,7 +357,7 @@ questions: dict[str, Any] = {
         "tag": "communication_impact",
         "question": "The way we communicate our assurance activities"
         " significantly contributes to building and maintaining trust "
-        "and confidence among our stakeholders.",
+        "and confidence among our (or our client's) stakeholders.",
         "type": "likert",
         "options": [
             "Strongly disagree",
@@ -364,7 +371,8 @@ questions: dict[str, Any] = {
     "link_assurance_activities": {
         "tag": "link_assurance_activities",
         "question": "We can clearly link specific assurance activities"
-        " directly to higher-level principles guiding our system's "
+        " directly to higher-level principles guiding our"
+        " (or our client's) system's "
         "trustworthiness and ethical standards.",
         "type": "likert",
         "options": [
@@ -512,7 +520,8 @@ questions: dict[str, Any] = {
     "operationalization_challenges": {
         "tag": "operationalization_challenges",
         "question": "For those rated very challenging or extremely challenging"
-        " to operationalize, what are the main challenges you face?",
+        " to operationalize, what are the main challenges you "
+        "(or your clients) face?",
         "type": "text_area",
         "section": "ethical_assurance_frameworks",
     },
@@ -521,8 +530,8 @@ questions: dict[str, Any] = {
     ###
     "communication_methods": {
         "tag": "communication_methods",
-        "question": "How do you currently communicate your project’s assurance"
-        " strategies to your stakeholders or partner organisations?"
+        "question": "How do you currently communicate your assurance"
+        " strategies to stakeholders, partner organisations or your clients?"
         " Please select all that apply.",
         "type": "select_all",
         "options": [
@@ -532,15 +541,15 @@ questions: dict[str, Any] = {
             "Visual Aids",
             "Digital Communications",
             "Interactive Platforms",
-            "Not Systematically",
+            "Not Systematically / ad hoc",
             "Other",
         ],
         "section": "evidence_based_assurance",
     },
     "need_for_visual_tool": {
         "tag": "need_for_visual_tool",
-        "question": "Would a visual tool that helps you demonstrate and"
-        " communicate how your evidence-based assurance measures align "
+        "question": "Would a tool that helps you structure and"
+        " communicate how your assurance measures align "
         "with key ethical goals enhance trust in your digital twin(s)?",
         "type": "radio",
         "options": [
@@ -588,8 +597,7 @@ questions: dict[str, Any] = {
             "Awareness Programs for Assurance",
             "Tools to easily create Assurance Cases",
             "Regulatory Clarity and Compliance Guidance",
-            "Value demonstration",
-            "Business case justification",
+            "Value demonstration (e.g. Business case justification)",
             "Community Forums and Collaboration Platforms to share example"
             " assurance arguments / best practices",
             "Other (Please specify)",
