@@ -36,7 +36,7 @@ from config import (
     CHALLENGE_EVOLUTION_STATE_KEY,
     OPERATIONALIZATION_CHALLENGES_STATE_KEY,
     GOALS_FRAMEWORK_PAGE,
-    COMMUNICATING_ASSURANCE_PAGE,
+    GOALS_FRAMEWORK_RESULTS_PAGE,
     REQUIRED_MESSAGE,
 )
 
@@ -352,7 +352,7 @@ with st.container():
 if st.button("Continue"):
     try:
         check_required_fields(all_page_elements, give_hint=True)
-        switch_page(COMMUNICATING_ASSURANCE_PAGE)
+        switch_page(GOALS_FRAMEWORK_RESULTS_PAGE)
     except ValueError as e:
         # Exception message is human-readable
         st.error(str(e))

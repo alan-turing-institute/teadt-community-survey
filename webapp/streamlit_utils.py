@@ -124,17 +124,19 @@ def check_required_fields(
     for key, conditions in conditional_keys.items():
         depends_on_key = conditions["depends_on_key"]
         depends_on_response = conditions["depends_on_response"]
-        conditional_given = data[depends_on_key]
 
-        # if the conditioning question not shown
-        if depends_on_key not in data:
+        # If conditioning question shown
+        if depends_on_key in data:
+            conditional_given = data[depends_on_key]
+            # if the conditioning response not given
+            if conditional_given not in depends_on_response:
+                if key in page_element_keys:
+                    page_element_keys.remove(key)
+        else:
+            #if the conditioning question not shown
             if key in page_element_keys:
                 page_element_keys.remove(key)
-        # if the conditioning response not given
-        elif conditional_given not in depends_on_response:
-            if key in page_element_keys:
-                page_element_keys.remove(key)
-
+                
     # Reduce required keys to only those of current page
     required_keys = [
         key for key in ALL_REQUIRED_KEYS if key in page_element_keys
