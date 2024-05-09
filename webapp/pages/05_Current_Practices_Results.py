@@ -14,7 +14,7 @@ from collections import Counter
 
 # Config imports
 from config import (
-    CURRENT_PRACTICES_PAGE,
+    SATISFACTION_PAGE,
     COMMUNITY_RESULTS_PAGE,
     SECTOR_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
@@ -146,4 +146,4 @@ except ValueError as e:
 
 if st.button("Continue"):
     # Redirect to the next section of the survey
-    switch_page(CURRENT_PRACTICES_PAGE)
+    switch_page(SATISFACTION_PAGE)
