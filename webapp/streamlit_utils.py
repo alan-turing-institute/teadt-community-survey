@@ -124,13 +124,14 @@ def check_required_fields(
     for key, conditions in conditional_keys.items():
         depends_on_key = conditions["depends_on_key"]
         depends_on_response = conditions["depends_on_response"]
+        conditional_given = data[depends_on_key]
 
         # if the conditioning question not shown
         if depends_on_key not in data:
             if key in page_element_keys:
                 page_element_keys.remove(key)
         # if the conditioning response not given
-        elif data[depends_on_key] not in depends_on_response:
+        elif conditional_given not in depends_on_response:
             if key in page_element_keys:
                 page_element_keys.remove(key)
 
