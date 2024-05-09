@@ -88,7 +88,7 @@ to create a structured argument. This structured approach simplifies
 
 # Display an image
 image_path = Image.open("img/aba_example_case.png")
-st.image(image_path, width=600)
+st.image(image_path, width=800)
 
 need_for_visual_tool = question_generator.generate_streamlit_element(
     questions["need_for_visual_tool"]["question"],
