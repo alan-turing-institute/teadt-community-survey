@@ -70,11 +70,6 @@ try:
         for count, freq in distribution_of_techniques.items():
             technique_list.extend([count] * freq)
 
-        # Calculate the percentile
-        user_percentile = np.percentile(
-            technique_list, current_user_technique_count, interpolation="lower"
-        )
-
         # Calculate the average to compare with the user's count
         average_techniques = round(np.mean(technique_list))
 
@@ -91,7 +86,7 @@ try:
             :warning:  You are currently implementing
             {current_user_technique_count} distinct assurance
             mechansims, which is fewer than
-            {user_percentile}% of your peers.
+            average compared to your peers.
             """
         elif current_user_technique_count == average_techniques:
             message = f"""
@@ -105,7 +100,7 @@ try:
             :white_check_mark:  You are currently implementing
             {current_user_technique_count} distinct assurance
             mechansims, which is more
-            than {100 - user_percentile}% of your peers.
+            than average compared to your peers.
             """
 
         st.write(message)
