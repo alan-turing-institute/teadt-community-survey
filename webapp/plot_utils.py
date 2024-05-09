@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
+import pandas as pd
 from collections import Counter
 from matplotlib.cm import get_cmap
 from plotly.subplots import make_subplots
+import plotly.express as px
 
 
 # Function to plot a pie chart
@@ -105,3 +107,66 @@ def horizontal_bar_labels(categories):
     subplots["layout"]["width"] = height_calc
 
     return subplots
+
+
+def plot_principles_2d(df, user_df=None):
+    # Add a column to distinguish the datasets
+    df['Dataset'] = 'Sector Data'
+    if user_df is not None:
+        user_df['Dataset'] = 'Your Data'
+    
+    # Combine the datasets if user data is available
+    combined_df = pd.concat([df, user_df]) if user_df is not None else df
+    
+    # Create a scatter plot
+    fig = px.scatter(
+        combined_df, 
+        x='Challenge', 
+        y='Relevance', 
+        text='Item',
+        hover_name='Item', 
+        color='Dataset',  # Use the 'Dataset' column for color coding and legend entries
+        range_x=[0, 6],
+        range_y=[1, 6],
+        color_discrete_map={
+            'Sector Data': 'blue',  # Specify colors for better control
+            'Your Data': 'red'
+        },
+        )
+    
+    # Update the text position and marker properties
+    fig.update_traces(textposition='top center', marker=dict(size=12, opacity=0.5))
+
+    # Customize axis ticks using the mapping
+    relevance_mapping = {
+        "Not Relevant": 1, "Slightly Relevant": 2, "Moderately Relevant": 3,
+        "Very Relevant": 4, "Extremely Relevant": 5
+    }
+    challenge_mapping = {
+        "Not challenging at all": 1, "Slightly challenging": 2, "Moderately challenging": 3,
+        "Very challenging": 4, "Extremely challenging": 5
+    }
+    total_min_x = min(min(df['Challenge']),min(user_df['Challenge']))-0.2
+    total_max_x = max(max(df['Challenge']),max(user_df['Challenge']))+0.2
+    total_min_y = min(min(df['Relevance']),min(user_df['Relevance']))-0.2
+    total_max_y = max(max(df['Relevance']),max(user_df['Relevance']))+0.2
+
+
+    fig.update_layout(
+        xaxis_title="Degree of Challenge",
+        yaxis_title="Degree of Relevance",
+        xaxis=dict(
+            tickmode='array',
+            tickvals=list(challenge_mapping.values()),
+            ticktext=list(challenge_mapping.keys()),
+            range = [total_min_x,total_max_x],
+        ),
+        yaxis=dict(
+            tickmode='array',
+            tickvals=list(relevance_mapping.values()),
+            ticktext=list(relevance_mapping.keys()),
+            range = [total_min_y,total_max_y]
+        ),
+     )
+
+    return fig

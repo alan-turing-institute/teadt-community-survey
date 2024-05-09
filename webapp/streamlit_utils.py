@@ -301,7 +301,25 @@ class QuestionGenerator:
         else:
             raise ValueError(f"Invalid question type: {question_type}")
 
+def map_response_to_int(response, key):
+    # Define the mapping dictionaries inside the function
+    relevance_mapping = {
+        "Not Relevant": 1,
+        "Slightly Relevant": 2,
+        "Moderately Relevant": 3,
+        "Very Relevant": 4,
+        "Extremely Relevant": 5
+    }
 
-# Example usage:
-# response = generate_streamlit_element(question_text, question_type,
-# options=options, key=question_key)
+    challenge_mapping = {
+        "Not challenging at all": 1,
+        "Slightly challenging": 2,
+        "Moderately challenging": 3,
+        "Very challenging": 4,
+        "Extremely challenging": 5
+    }
+    
+    if "relevance" in key:
+        return relevance_mapping.get(response, None)  # Returns None if response not in mapping
+    else:
+        return challenge_mapping.get(response, None)  # Assuming it's a challenge key
