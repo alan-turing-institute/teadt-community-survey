@@ -126,7 +126,7 @@ def check_required_fields(
         depends_on_response = conditions["depends_on_response"]
 
         # If conditioning question shown
-        if depends_on_key in data:
+        if depends_on_key in data and isinstance(depends_on_key, str):
             conditional_given = data[depends_on_key]
             # if the conditioning response not given
             if conditional_given not in depends_on_response:
