@@ -1,9 +1,17 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 from collections import Counter
 from matplotlib.cm import get_cmap
 from plotly.subplots import make_subplots
 import plotly.express as px
+
+
+def get_colors_from_colormap(num_colors):
+    colormap = get_cmap("Pastel1")  # Get the colormap
+    # Generate colors from the colormap
+    colors = [colormap(i) for i in np.linspace(0, 1, num_colors)]
+    return colors
 
 
 # Function to plot a pie chart
@@ -30,8 +38,8 @@ def plot_pie_chart(data: list, current_user_sector, title, figsize=(2, 2)):
     labels = pie_data.keys()
     sizes = pie_data.values()
     # Get pastel colormap
-    colormap = get_cmap("Pastel1")  # Pastel2 is also available
-    colors = colormap.colors[: len(pie_data)]
+    num_items = len(pie_data)  # Number of colors needed
+    colors = get_colors_from_colormap(num_items)
 
     fig, ax = plt.subplots()
     ax.pie(
