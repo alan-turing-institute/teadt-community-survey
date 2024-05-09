@@ -56,7 +56,7 @@ def horizontal_bar_labels(categories):
     subplots = make_subplots(
         rows=len(categories),
         cols=1,
-        subplot_titles=[x["name"] for x in categories],
+        subplot_titles=[x[0] for x in categories],
         shared_xaxes=True,
         print_grid=False,
         vertical_spacing=(0.45 / len(categories)),
@@ -72,9 +72,9 @@ def horizontal_bar_labels(categories):
             dict(
                 type="bar",
                 orientation="h",
-                y=[x["name"]],
-                x=[x["value"]],
-                text=["{:,.0f}".format(x["value"])],
+                y=[x[0]],
+                x=[x[1]],
+                text=["{:,.0f}".format(x[1])],
                 hoverinfo="text",
                 textposition="auto",
                 marker=dict(

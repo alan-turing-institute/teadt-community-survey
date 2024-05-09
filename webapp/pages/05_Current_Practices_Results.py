@@ -125,7 +125,7 @@ try:
             )
 
         top_assurance_mechanisms = [
-            {"name": x[0].split(" (")[0], "value": x[1]}
+            (x[0].split(" (")[0], x[1])  # Change from dictionary to tuple
             for x in top_assurance_mechanisms
         ]
 
