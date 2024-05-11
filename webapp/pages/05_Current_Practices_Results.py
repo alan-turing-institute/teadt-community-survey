@@ -91,11 +91,6 @@ if client:
     for count, freq in distribution_of_techniques.items():
         technique_list.extend([count] * freq)
 
-    print(current_user_sector)
-    print(assurance_data)
-    print(response_lists)
-    print(technique_counts_per_person)
-    print(distribution_of_techniques)
     # Calculate the average to compare with the user's count
     average_techniques = round(np.mean(technique_list))
 
