@@ -82,18 +82,15 @@ try:
         }
         response_data = mongo_utils.count_responses(client, query)
         filter = {}
-        feedback_group = 'across all sectors'
+        feedback_group = "across all sectors"
         if response_data["sector"] > 1:
             filter = {"sector": current_user_sector}
-            feedback_group = 'with that'
-            f' of your peers in sector {current_user_sector}'
-
+            feedback_group = "with that"
+            f" of your peers in sector {current_user_sector}"
 
         # Retrieve all data first
         all_data = {
-            key: mongo_utils.get_field_values(client, key, filter).get(
-                key, []
-            )
+            key: mongo_utils.get_field_values(client, key, filter).get(key, [])
             for key in relevance_keys + challenge_keys
         }
 

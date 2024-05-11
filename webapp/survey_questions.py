@@ -187,7 +187,8 @@ questions: dict[str, Any] = {
     "assurance_mechanisms": {
         "tag": "assurance_mechanisms",
         "question": "Which of the following assurance mechanisms do you"
-        " **currently** rely on for your own (or your client's) digital twin(s)?"
+        " **currently** rely on for your own "
+        "(or your client's) digital twin(s)?"
         " Please select all that apply.",
         "type": "select_all",
         "options": [

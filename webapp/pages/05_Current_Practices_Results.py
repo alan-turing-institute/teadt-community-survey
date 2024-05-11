@@ -44,7 +44,7 @@ except ValueError as e:
         "please make sure to fill in the previous sections."
     )
 
- # Retrieve data from database and output info/graphics
+# Retrieve data from database and output info/graphics
 client: MongoClient = mongo_utils.init_connection()
 if client:
 
@@ -54,10 +54,10 @@ if client:
     }
     response_data = mongo_utils.count_responses(client, query)
     filter = {}
-    feedback_group = 'across all sectors'
+    feedback_group = "across all sectors"
     if response_data["sector"] > 1:
         filter = {"sector": current_user_sector}
-        feedback_group = f'in your sector {current_user_sector}'
+        feedback_group = f"in your sector {current_user_sector}"
 
     # Query data
     assurance_data = mongo_utils.get_field_values(
@@ -82,9 +82,7 @@ if client:
     technique_counts_per_person = [
         len(set(sublist)) for sublist in response_lists
     ]
-    current_user_technique_count = len(
-        set(current_user_assurance_mechanisms)
-    )
+    current_user_technique_count = len(set(current_user_assurance_mechanisms))
 
     distribution_of_techniques = Counter(technique_counts_per_person)
     technique_list = []
@@ -159,4 +157,3 @@ else:
 if st.button("Continue"):
     # Redirect to the next section of the survey
     switch_page(SATISFACTION_PAGE)
-
