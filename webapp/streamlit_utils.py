@@ -259,12 +259,14 @@ class QuestionGenerator:
             # scale labels e.g. ['Strongly Disagree', 'Disagree', 'Neutral',
             #  'Agree', 'Strongly Agree']
             likert_scale_labels = options
-            return st.select_slider(
+            return st.radio(
                 question_text,
                 likert_scale_labels,
                 key=widget_key,
                 on_change=store_in_session,
                 args=(key,),
+                horizontal=True,
+                index=None,
             )
         elif question_type == "likert_col" and options is not None:
             likert_scale_labels = options
@@ -275,13 +277,15 @@ class QuestionGenerator:
                 st.markdown(question_text, help=help)
             # Likert scale slider in the right column
             with right_column:
-                return st.select_slider(
+                return st.radio(
                     "",
                     likert_scale_labels,
                     key=widget_key,
                     label_visibility="collapsed",
                     on_change=store_in_session,
                     args=(key,),
+                    horizontal=True,
+                    index=None,
                 )
         elif question_type == "text_area":
             return st.text_area(
