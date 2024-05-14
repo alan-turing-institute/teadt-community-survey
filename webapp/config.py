@@ -282,8 +282,12 @@ conditional_keys = {
         "depends_on_response": ["Yes"],
     },
     PARTNER_TRUST_CHALLENGES_STATE_KEY: {
-        "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,
-        "depends_on_response": ["Yes"],
+        "depends_on_key": PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+        "depends_on_response": [
+            "Neutral",
+            "Somewhat Difficult",
+            "Very Difficult",
+        ],
     },
     RELIANCE_ON_EVIDENCE_STATE_KEY: {
         "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,

@@ -83,12 +83,13 @@ project_interest = st.checkbox(
     args=(PROJECT_INTEREST_STATE_KEY,),
     key=f"{PROJECT_INTEREST_STATE_KEY}_{WIDGET_SUFFIX}",
 )
-email_interest = st.checkbox(
-    "I would like to be emailed my responses to this form (or download below)",
-    on_change=store_in_session,
-    args=(EMAIL_INTEREST_STATE_KEY,),
-    key=f"{EMAIL_INTEREST_STATE_KEY}_{WIDGET_SUFFIX}",
-)
+# email_interest = st.checkbox(
+#     "I would like to be emailed my responses to this form "
+#     "(or download below)",
+#     on_change=store_in_session,
+#     args=(EMAIL_INTEREST_STATE_KEY,),
+#     key=f"{EMAIL_INTEREST_STATE_KEY}_{WIDGET_SUFFIX}",
+# )
 
 email = st.text_input(
     "Enter your email:",
