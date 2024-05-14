@@ -176,16 +176,20 @@ if st.session_state.continue_clicked:
                 )
             )
 
-            partner_trust_challenges = (
-                question_generator.generate_streamlit_element(
-                    questions["partner_trust_challenges"]["question"],
-                    questions["partner_trust_challenges"]["type"],
-                    options=questions["partner_trust_challenges"].get(
-                        "options"
-                    ),
-                    key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
+            if partner_trust_difficulty in [
+                "Somewhat Difficult",
+                "Very Difficult",
+            ]:
+                partner_trust_challenges = (
+                    question_generator.generate_streamlit_element(
+                        questions["partner_trust_challenges"]["question"],
+                        questions["partner_trust_challenges"]["type"],
+                        options=questions["partner_trust_challenges"].get(
+                            "options"
+                        ),
+                        key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
+                    )
                 )
-            )
 
             reliance_on_evidence = (
                 question_generator.generate_streamlit_element(

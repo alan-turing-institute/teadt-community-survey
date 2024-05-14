@@ -98,6 +98,7 @@ tags_to_display: list[str] = [
     ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
     FRAMEWORK_DESCRIPTION_STATE_KEY,
     FRAMEWORK_DEVELOPMENT_STATE_KEY,
+    VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY,
 ]
 load_from_session(tags_to_display)
 
@@ -134,10 +135,18 @@ with st.container():
                     key=FRAMEWORK_DEVELOPMENT_STATE_KEY,
                 )
             )
+    value_of_guiding_principles = (
+        question_generator.generate_streamlit_element(
+            questions["value_of_guiding_principles"]["question"],
+            questions["value_of_guiding_principles"]["type"],
+            options=questions["value_of_guiding_principles"].get("options"),
+            key=VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY,
+        )
+    )
 st.write("#")
 
 with st.container():
-    st.subheader("Assurance for Connected Digital Twins")
+    st.subheader("Assurance for Trustworthy and Ethical Digital Twins")
     # Display an image
     image_path = Image.open("img/gemini_principles.png")
     st.image(
@@ -147,7 +156,6 @@ with st.container():
 
     # Define tags for the questions to be displayed
     tags_to_display = [
-        VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY,
         FAMILIARITY_WITH_GEMINI_PRINCIPLES_STATE_KEY,
         RELEVANCE_GOOD_STATE_KEY,
         RELEVANCE_VALUE_STATE_KEY,
@@ -170,15 +178,6 @@ with st.container():
         OPERATIONALIZATION_CHALLENGES_STATE_KEY,
     ]
     load_from_session(tags_to_display)
-
-    value_of_guiding_principles = (
-        question_generator.generate_streamlit_element(
-            questions["value_of_guiding_principles"]["question"],
-            questions["value_of_guiding_principles"]["type"],
-            options=questions["value_of_guiding_principles"].get("options"),
-            key=VALUE_OF_GUIDING_PRINCIPLES_STATE_KEY,
-        )
-    )
 
     familiarity_with_gemini_principles = (
         question_generator.generate_streamlit_element(
@@ -273,7 +272,20 @@ with st.container():
 
     st.write("#")
 
-    st.markdown(questions["challenge_in_application"]["question"])
+    all_relevance_keys = [
+        relevance_curation,
+        relevance_evolution,
+        relevance_curation,
+        relevance_federation,
+        relevance_good,
+        relevance_insight,
+        relevance_openness,
+        relevance_security,
+        relevance_quality,
+        relevance_value,
+    ]
+    if any([x != "Not Relevant" for x in all_relevance_keys]):
+        st.markdown(questions["challenge_in_application"]["question"])
     if relevance_good != "Not Relevant":
         challenge_good = question_generator.generate_streamlit_element(
             "Public Good",

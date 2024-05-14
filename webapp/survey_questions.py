@@ -56,7 +56,7 @@ questions: dict[str, Any] = {
     },
     "location": {
         "tag": "location",
-        "question": "Where is your organisation located?",
+        "question": "Where is your organisation (mainly) located?",
         "type": "multiple_choice",
         "options": countries,
         "section": "community_composition",  # Example section
@@ -66,21 +66,26 @@ questions: dict[str, Any] = {
         "question": "What is your role within your organisation?",
         "type": "multiple_choice",
         "options": [
-            "Select",
-            "Developer/Engineer",
-            "Project/Program Manager",
-            "Executive/Decision-Maker",
-            "Researcher/Academic",
-            "Compliance Officer/Regulatory Affairs Manager",
-            "Technical Manager/Lead Developer",
-            "Industry Consultant/Advisor",
-            "Ontology Engineer/Framework Architect",
-            "Data Scientist/Analyst",
-            "Middleware/API Developer",
-            "Governance Specialist",
-            "Semantic Web Technologist",
-            "Platform Developer",
-            "Other",
+            "Senior Management (e.g., CEO, CFO, CTO)",
+            "Strategic/Business Lead "
+            "(e.g., Business Unit Head, Project/Program Manager, "
+            "Operations Manager)",
+            "Strategic Advisor "
+            "(e.g., Compliance Officer, Regulatory Affairs Manager, "
+            "Legal Advisor)",
+            "In-house Technical Specialist "
+            "(e.g., Developer/Engineer, Data Scientist/Analyst, "
+            "IT Specialist)",
+            "Digital Twin Support Specialist "
+            "(e.g., Ontology Developer, Dashboard Developer, "
+            "Data Integration Specialist)",
+            "Consultant/External Specialist "
+            "(e.g., Industry Consultant, External IT Consultant, "
+            "Freelance Technical Expert)",
+            "Research and Development "
+            "(e.g., Researcher/Academic, Innovation Specialist, "
+            "Product Development Scientist)",
+            "Other (Please specify)",
         ],
         "section": "community_composition",  # Example section
     },
@@ -90,12 +95,16 @@ questions: dict[str, Any] = {
         " Please select all that apply.",
         "type": "select_all",
         "options": [
-            "Designing and Implementing",
-            "Strategizing and Directing",
-            "Ensuring Compliance",
-            "Advising and Consulting",
-            "Developing Tools and Frameworks",
-            "Other",
+            "Strategic Direction (e.g., setting goals and strategies)",
+            "Budget Management (e.g., budget holder or budget influence)",
+            "Ensuring Compliance (e.g., uphold standards and regulations)",
+            "Project Leadership (e.g., lead project execution)",
+            "Technical Decision-Making (e.g., technology selection "
+            "and implementation)",
+            "Operational Management (e.g., oversee daily operations)",
+            "Governance Influence (e.g., guide decision-making and policies)",
+            "Research and Innovation (e.g., conduct R&D for innovation)",
+            "Other (Please specify):",
         ],
         "section": "community_composition",  # Example section
     },
@@ -126,7 +135,7 @@ questions: dict[str, Any] = {
             "Process (e.g., manufacturing processes, workflow optimization)",
             "Physical asset "
             "(e.g. building, manufacturing plant, power station)",
-            "Other (Please specify)",
+            "Other",
         ],
         "section": "community_composition",
     },
@@ -147,6 +156,7 @@ questions: dict[str, Any] = {
             "Market / Customer Engagement "
             "(e.g. enhancing customer experience or market understanding.",
             "Research and Development",
+            "Other",
         ],
         "section": "community_composition",
     },
@@ -187,7 +197,8 @@ questions: dict[str, Any] = {
     "assurance_mechanisms": {
         "tag": "assurance_mechanisms",
         "question": "Which of the following assurance mechanisms do you"
-        " currently rely on for your own (or your client's) digital twin(s)?"
+        " **currently** rely on for your own "
+        "(or your client's) digital twin(s)?"
         " Please select all that apply.",
         "type": "select_all",
         "options": [
@@ -236,27 +247,29 @@ questions: dict[str, Any] = {
         " Please select all that apply.",
         "type": "select_all",
         "options": [
-            "Safety",
-            "Security",
-            "Robustness",
-            "Transparency",
+            "Accountability",
+            "Contestability",
+            "Data Quality",
+            "Data Stewardship",
+            "Ethical Integrity",
+            "Evolution",
             "Explainability",
             "Fairness",
-            "Accountability",
-            "Governance",
-            "Contestability",
-            "Sustainability",
-            "Data Stewardship",
-            "Public Good",
-            "Value Creation",
-            "Openness",
-            "Quality",
             "Federation",
-            "Evolution",
-            "Trustworthiness",
-            "Ethical Integrity",
+            "Financial Performance",
+            "Fit-for-purpose",
+            "Governance",
             "Interoperability",
-            "None",
+            "Openness",
+            "Public Good",
+            "Reliability/Robustness",
+            "Resilience / Fault-tolerance",
+            "Safety",
+            "Security",
+            "Sustainability",
+            "Transparency",
+            "Trustworthiness",
+            "Value Creation" "None",
             "Other (Please specify)",
         ],
         "section": "current_assurance_practices",
@@ -461,8 +474,8 @@ questions: dict[str, Any] = {
         "tag": "value_of_guiding_principles",
         "question": "How valuable do you find high-level guiding principles in"
         " general, e.g., the Gemini principles, OECD AI principles, "
-        "or ethical "
-        "principles like SAFE-D or any other guiding principles?",
+        "or ethical principles like SAFE-D or "
+        "any other guiding principles for your work?",
         "type": "likert",
         "options": [
             "Not valuable at all",
@@ -504,9 +517,9 @@ questions: dict[str, Any] = {
     },
     "challenge_in_application": {
         "tag": "challenge_in_application",
-        "question": "Please rate, for each of the following Gemini principles,"
-        " how challenging you find it to determine if you have adequately"
-        " addressed the principle in practice.",
+        "question": "Please rate, for each of the following Gemini principles:"
+        " How challenging is it to define and/or"
+        " to know how to currently address it in practices?",
         "type": "likert",
         "options": [
             "Not at all challenging",

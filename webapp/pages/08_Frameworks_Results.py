@@ -73,16 +73,24 @@ try:
     check_required_fields(relevance_keys, give_hint=True)
 
     current_user_sector = st.session_state[SECTOR_STATE_KEY]
-    # Assuming current_user_sector is defined; here is an example filter
-    filter_dict = {"sector": current_user_sector}
 
     client: MongoClient = mongo_utils.init_connection()
     if client:
+        # check if data will be displayed grouped by sector
+        query = {
+            SECTOR_STATE_KEY: st.session_state[SECTOR_STATE_KEY],
+        }
+        response_data = mongo_utils.count_responses(client, query)
+        filter = {}
+        feedback_group = "across all sectors"
+        if response_data["sector"] > 1:
+            filter = {"sector": current_user_sector}
+            feedback_group = "with that"
+            f" of your peers in sector {current_user_sector}"
+
         # Retrieve all data first
         all_data = {
-            key: mongo_utils.get_field_values(client, key, filter_dict).get(
-                key, []
-            )
+            key: mongo_utils.get_field_values(client, key, filter).get(key, [])
             for key in relevance_keys + challenge_keys
         }
 
@@ -147,7 +155,7 @@ try:
 
         st.markdown(
             "### Compare your assessment of the Gemini Principles"
-            " with that of your peers!"
+            f" {feedback_group}!"
         )
         df = pd.DataFrame(data)
         user_df = pd.DataFrame(user_data)
