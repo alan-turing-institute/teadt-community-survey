@@ -262,6 +262,8 @@ class QuestionGenerator:
             return st.radio(
                 question_text,
                 likert_scale_labels,
+                captions=likert_scale_labels,
+                format_func=lambda x: " ",
                 key=widget_key,
                 on_change=store_in_session,
                 args=(key,),
@@ -276,17 +278,18 @@ class QuestionGenerator:
             with left_column:
                 st.markdown(question_text, help=help)
             # Likert scale slider in the right column
-            with right_column:
-                return st.radio(
-                    "",
-                    likert_scale_labels,
-                    key=widget_key,
-                    label_visibility="collapsed",
-                    on_change=store_in_session,
-                    args=(key,),
-                    horizontal=True,
-                    index=None,
-                )
+            return st.radio(
+                "",
+                likert_scale_labels,
+                captions=likert_scale_labels,
+                format_func=lambda x: " ",
+                key=widget_key,
+                label_visibility="collapsed",
+                on_change=store_in_session,
+                args=(key,),
+                horizontal=True,
+                index=None,
+            )
         elif question_type == "text_area":
             return st.text_area(
                 question_text,
