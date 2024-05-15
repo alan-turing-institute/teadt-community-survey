@@ -66,6 +66,7 @@ questions: dict[str, Any] = {
         "question": "What is your role within your organisation?",
         "type": "multiple_choice",
         "options": [
+            "Select",
             "Senior Management (e.g., CEO, CFO, CTO)",
             "Strategic/Business Lead "
             "(e.g., Business Unit Head, Project/Program Manager, "
@@ -421,8 +422,9 @@ questions: dict[str, Any] = {
     },
     "satisfaction_justification": {
         "tag": "satisfaction_justification",
-        "question": "How satisfied are you currently with justification and"
-        " documentation around your assurance process?",
+        "question": "How satisfied are you"
+        " with how your team identifies and documents "
+        "requirements, actions, and decisions in your assurance process?",
         "type": "likert",
         "options": [
             "Very unsatisfied",
@@ -586,9 +588,9 @@ questions: dict[str, Any] = {
     },
     "preparedness_for_argument": {
         "tag": "preparedness_for_argument",
-        "question": "How prepared do you feel to develop a structured argument"
-        " for how your current assurance activities relate to broader ethical "
-        "goals?",
+        "question": "How prepared do you feel to link"
+        " your current assurance activities with broader ethical goals"
+        " in a structured argument?",
         "type": "likert",
         "options": [
             "Not prepared at all",

@@ -147,6 +147,26 @@ st.write("#")
 
 with st.container():
     st.subheader("Assurance for Trustworthy and Ethical Digital Twins")
+
+    st.info(
+        """
+    The Gemini Principles
+     are a set of 9 high-level principles,
+     [established by the Centre for
+     Digital Built Britain](https://www.cdbb.cam.ac.uk/DFTG/GeminiPrinciples)
+     in December 2018 to guide the management and sharing of data
+     across the built environment.
+     These principles serve as the foundation
+     for developing a national digital twin and
+     an overall framework for information management.
+     Created with input from government, industry, and academia,
+     the principles aim to align stakeholders on data use and
+     ensure that these initiatives benefit the public good.
+     \n\n We are interested in understanding
+     how these principles resonate with you and
+     what is needed to better implement them better in the future.
+     """
+    )
     # Display an image
     image_path = Image.open("img/gemini_principles.png")
     st.image(
