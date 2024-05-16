@@ -315,17 +315,17 @@ def map_response_to_int(response, key):
     # Define the mapping dictionaries inside the function
     relevance_mapping = {
         "Not Relevant": 1,
-        "Slightly Relevant": 2,
-        "Moderately Relevant": 3,
-        "Very Relevant": 4,
+        "Slightly": 2,
+        "Moderately": 3,
+        "Very": 4,
         "Extremely Relevant": 5,
     }
 
     challenge_mapping = {
         "Not challenging at all": 1,
-        "Slightly challenging": 2,
-        "Moderately challenging": 3,
-        "Very challenging": 4,
+        "Slightly": 2,
+        "Moderately": 3,
+        "Very": 4,
         "Extremely challenging": 5,
     }
 

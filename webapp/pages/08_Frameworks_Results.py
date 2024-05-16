@@ -70,7 +70,7 @@ st.title("Results: Your Practice")
 page_element_keys = [SECTOR_STATE_KEY] + relevance_keys
 
 try:
-    check_required_fields(relevance_keys, give_hint=True)
+    check_required_fields(page_element_keys, give_hint=True)
 
     current_user_sector = st.session_state[SECTOR_STATE_KEY]
 
@@ -103,11 +103,9 @@ try:
             for key in relevance_keys + challenge_keys
         }
 
-        print(ratings_data)
         # Calculating averages and preparing data for plotting
         data = []
         for key in relevance_keys:
-            print(key)
             challenge_key = "challenge" + key[len("relevance"):]
             relevant_data = [
                 val for val in ratings_data[key] if val is not None
@@ -163,11 +161,11 @@ try:
 
 except ValueError as e:
     # Exception message is human-readable
-    st.warning(e)
-    st.info(
+    st.warning(e) #TODO remove this before launch
+    st.warning(
         "This page will show personalized insights"
-        " on perceptions of the Gemini Principles amongst your peers"
-        "please make sure to fill in the previous sections."
+        " on perceptions of the Gemini Principles amongst your peers."
+        " Please make sure to fill in the previous sections."
     )
 
 

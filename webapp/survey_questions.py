@@ -481,9 +481,9 @@ questions: dict[str, Any] = {
         "type": "likert",
         "options": [
             "Not valuable at all",
-            "Slightly valuable",
-            "Moderately valuable",
-            "Very valuable",
+            "Slightly",
+            "Moderately",
+            "Very",
             "Extremely valuable",
         ],
         "section": "ethical_assurance_frameworks",
