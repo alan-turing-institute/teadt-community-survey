@@ -159,10 +159,8 @@ try:
         user_df = pd.DataFrame(user_data)
         st.plotly_chart(plot_principles_2d(df, user_df))
 
-except ValueError as e:
-    # Exception message is human-readable
-    st.warning(e)  # TODO remove this before launch
-    st.warning(
+except ValueError:
+    st.info(
         "This page will show personalized insights"
         " on perceptions of the Gemini Principles amongst your peers."
         " Please make sure to fill in the previous sections."
