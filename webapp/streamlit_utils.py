@@ -333,7 +333,7 @@ def map_response_to_int(response, key):
     }
 
     challenge_mapping = {
-        "Not challenging at all": 1,
+        "Not at all challenging": 1,
         "Slightly": 2,
         "Moderately": 3,
         "Very": 4,
