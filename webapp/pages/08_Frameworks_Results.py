@@ -161,7 +161,7 @@ try:
 
 except ValueError as e:
     # Exception message is human-readable
-    st.warning(e) #TODO remove this before launch
+    st.warning(e)  # TODO remove this before launch
     st.warning(
         "This page will show personalized insights"
         " on perceptions of the Gemini Principles amongst your peers."
