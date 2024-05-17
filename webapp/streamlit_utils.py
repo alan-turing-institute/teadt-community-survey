@@ -186,6 +186,7 @@ class QuestionGenerator:
         self,
         question_text: str,
         question_type: str,
+        disabled: bool = False,
         options: Optional[list] = None,
         key: Optional[str] = None,
         help: Optional[str] = None,
@@ -295,6 +296,7 @@ class QuestionGenerator:
                 question_text,
                 key=widget_key,
                 on_change=store_in_session,
+                disabled=disabled,
                 args=(key,),
             )
         elif question_type == "radio" and options is not None:

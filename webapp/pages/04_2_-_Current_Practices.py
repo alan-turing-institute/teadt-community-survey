@@ -70,6 +70,7 @@ assurance_meaning = question_generator.generate_streamlit_element(
     questions["assurance_meaning"]["question"],
     questions["assurance_meaning"]["type"],
     key=ASSURANCE_MEANING_STATE_KEY,
+    disabled=st.session_state.disabled,
 )
 
 # Submit button for assurance definition
