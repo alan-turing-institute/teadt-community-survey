@@ -143,7 +143,7 @@ questions: dict[str, Any] = {
     "purpose_dt": {
         "tag": "primary_purpose_dt",
         "question": "Which of the following best describes the purpose"
-        " of the digital twin(s) you have (helped) establish?"
+        " of the digital twin(s) you have established (or helped establish)?"
         " Select all that apply",
         "type": "select_all",
         "options": [
