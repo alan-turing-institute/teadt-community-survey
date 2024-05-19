@@ -3,6 +3,7 @@ import logging
 import math
 from typing import Any, Optional
 from streamlit_extras import switch_page_button
+from streamlit_sortables import sort_items
 from config import (
     SURVEY_SUBMITTED_STATE_KEY,
     SUCCESS_PAGE,
@@ -237,6 +238,21 @@ class QuestionGenerator:
                 on_change=store_in_session,
                 args=(key,),
             )
+        elif question_type == "select_all_rank" and options is not None:
+    
+            st.write(question_text)
+
+            # Use sort_items for selecting and reordering with multi_containers
+            original_items = [
+                {'header': 'Available Options', 'items': options},
+                {'header': 'Your ranking', 'items': []}
+            ]
+
+            sorted_items = sort_items(original_items, 
+                                      multi_containers=True,
+                                      direction="vertical")
+
+            return sorted_items[1]['items']
         elif question_type == "checkbox_select_all" and options is not None:
             # Calculate number of columns based on number of options
             num_options = len(options)

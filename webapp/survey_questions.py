@@ -316,22 +316,20 @@ questions: dict[str, Any] = {
     "partner_trust_challenges": {
         "tag": "partner_trust_challenges",
         "question": "What are/were the major challenges to overcome?"
-        " Please select all that apply.",
-        "type": "select_all",
+        " Please drag all that apply and sort in right-hand box "
+        "from most challenging (top) to least challenging(bottom).",
+        "type": "select_all_rank",
         "options": [
-            "Unclear business case and issues around fairly distributed "
-            "return on investment",
-            "Insufficient digital awareness/skills",
-            "Lack of trust in partner organisation",
-            "Concerns re confidentiality of data",
-            "Loss of control of data",
+            "Unclear ROI",
+            "Lack of digital awareness/skills",
+            "Lack of trust in partner",
             "Intellectual Property Rights",
-            "Regulatory concerns around data protection",
+            "Concerns around data",
             "Competition",
-            "Info security etc",
+            "Info security",
             "Technical architecture",
             "Interoperability",
-            "Lawyer mis-alignment / legal agreement barriers",
+            "Legal agreement barriers",
             "Business Change",
             "Client Sponsor",
         ],
@@ -611,16 +609,20 @@ questions: dict[str, Any] = {
         "tag": "support_for_assurance",
         "question": "What type of support might help you in creating sound"
         " assurance arguments around ethical principles for your digital"
-        " twin project? Please select all that apply.",
-        "type": "select_all",
+        " twin project?"
+        " Please drag all that apply and sort in right-hand box "
+        "from most needed (top) to least needed (bottom).",
+        "type": "select_all_rank",
         "options": [
-            "Step-by-Step Guidance / Skills Training",
+            "Step-by-Step Guidance",
+            "Skills Training",
             "Awareness Programs for Assurance",
-            "Tools to easily create Assurance Cases",
-            "Regulatory Clarity and Compliance Guidance",
-            "Value demonstration (e.g. Business case justification)",
-            "Community Forums and Collaboration Platforms to share example"
-            " assurance arguments / best practices",
+            "Tools to create Assurance Cases",
+            "Regulatory Clarity",
+            "Value demonstration",
+            "Business case justification",
+            "Community Forums with examples",
+            "Collaboration Platform",
             "Other (Please specify)",
         ],
         "section": "evidence_based_assurance",

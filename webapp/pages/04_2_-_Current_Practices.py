@@ -189,6 +189,11 @@ if st.session_state.continue_clicked:
                             "options"
                         ),
                         key=PARTNER_TRUST_CHALLENGES_STATE_KEY,
+                        help='''
+                        Those that don't apply to you
+                         can be left unselected. ROI
+                         = return of investment
+                        '''
                     )
                 )
 
