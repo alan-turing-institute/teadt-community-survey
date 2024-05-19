@@ -382,7 +382,8 @@ with st.container():
         'challenge_insight', 'challenge_federation',
         'challenge_curation', 'challenge_evolution',
         'challenge_quality']
-    vars_challenging = [locals()[var] for var in vars_challenging if var in locals()]
+    vars_challenging = [locals()[var] for
+                        var in vars_challenging if var in locals()]
     any_challenging = bool(set(vars_challenging) & set(choice_challenging))
     print(vars_challenging)
     print(any_challenging)
@@ -391,7 +392,8 @@ with st.container():
             question_generator.generate_streamlit_element(
                 questions["operationalization_challenges"]["question"],
                 questions["operationalization_challenges"]["type"],
-                options=questions["operationalization_challenges"].get("options"),
+                options=questions[
+                    "operationalization_challenges"].get("options"),
                 key=OPERATIONALIZATION_CHALLENGES_STATE_KEY,
             )
         )
