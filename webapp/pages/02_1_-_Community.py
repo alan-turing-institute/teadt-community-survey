@@ -17,6 +17,7 @@ from config import (
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
     PURPOSE_DT_STATE_KEY,
+    PURPOSE_DT_OTHER_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
     COMMUNITY_PAGE,
     COMMUNITY_RESULTS_PAGE,
@@ -35,6 +36,8 @@ page_element_keys: list[str] = [
     ESTABLISHED_DT_STATE_KEY,
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
+    PURPOSE_DT_STATE_KEY,
+    PURPOSE_DT_OTHER_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
 ]
 
@@ -127,12 +130,19 @@ if (established_dt == "Yes") or (
             key=tag,
         )
     tag = PURPOSE_DT_STATE_KEY
-    type_dt = question_generator.generate_streamlit_element(
+    purpose_dt = question_generator.generate_streamlit_element(
         questions[tag]["question"],
         questions[tag]["type"],
         options=questions[tag].get("options"),
         key=tag,
     )
+    if "Other (Please specify)" in purpose_dt:
+        tag = PURPOSE_DT_OTHER_STATE_KEY
+        purpose_dt = question_generator.generate_streamlit_element(
+            questions[tag]["question"],
+            questions[tag]["type"],
+            key=tag,
+        )
 
 if established_dt == "No":
     tag = NO_DT_REASON_STATE_KEY

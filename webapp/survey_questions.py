@@ -136,7 +136,7 @@ questions: dict[str, Any] = {
             "Process (e.g., manufacturing processes, workflow optimization)",
             "Physical asset "
             "(e.g. building, manufacturing plant, power station)",
-            "Other",
+            "Other (Please specify)",
         ],
         "section": "community_composition",
     },
@@ -157,13 +157,19 @@ questions: dict[str, Any] = {
             "Market / Customer Engagement "
             "(e.g. enhancing customer experience or market understanding.",
             "Research and Development",
-            "Other",
+            "Other (Please specify)",
         ],
         "section": "community_composition",
     },
     "type_dt_other": {
         "tag": "type_dt_other",
         "question": "Please specify the type",
+        "type": "text_area",
+        "section": "community_composition",
+    },
+    "purpose_dt_other": {
+        "tag": "purpose_dt_other",
+        "question": "Please specify the purpose",
         "type": "text_area",
         "section": "community_composition",
     },

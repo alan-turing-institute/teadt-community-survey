@@ -28,6 +28,7 @@ ESTABLISHED_DT_STATE_KEY: str = "established_dt"
 TYPE_DT_STATE_KEY: str = "type_dt"
 TYPE_DT_OTHER_STATE_KEY: str = "type_dt_other"
 PURPOSE_DT_STATE_KEY: str = "purpose_dt"
+PURPOSE_DT_OTHER_STATE_KEY: str = "purpose_dt_other"
 NO_DT_REASON_STATE_KEY: str = "no_dt_reason"
 
 # Current Practices Page Keys
@@ -104,6 +105,7 @@ ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
     PURPOSE_DT_STATE_KEY,
+    PURPOSE_DT_OTHER_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
     ASSURANCE_MEANING_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
@@ -190,6 +192,8 @@ ALL_REQUIRED_KEYS: list[str] = [
     ESTABLISHED_DT_STATE_KEY,
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
+    PURPOSE_DT_STATE_KEY,
+    PURPOSE_DT_OTHER_STATE_KEY,
     NO_DT_REASON_STATE_KEY,
     ASSURANCE_MECHANISMS_STATE_KEY,
     ASSURANCE_MECHANISM_OTHER_STATE_KEY,
@@ -239,6 +243,10 @@ ALL_REQUIRED_KEYS: list[str] = [
 conditional_keys = {
     TYPE_DT_OTHER_STATE_KEY: {
         "depends_on_key": TYPE_DT_STATE_KEY,
+        "depends_on_response": ["Other (Please specify)"],
+    },
+    PURPOSE_DT_OTHER_STATE_KEY: {
+        "depends_on_key": PURPOSE_DT_STATE_KEY,
         "depends_on_response": ["Other (Please specify)"],
     },
     NO_DT_REASON_STATE_KEY: {
