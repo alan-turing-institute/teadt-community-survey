@@ -136,14 +136,14 @@ questions: dict[str, Any] = {
             "Process (e.g., manufacturing processes, workflow optimization)",
             "Physical asset "
             "(e.g. building, manufacturing plant, power station)",
-            "Other",
+            "Other (Please specify)",
         ],
         "section": "community_composition",
     },
     "purpose_dt": {
         "tag": "primary_purpose_dt",
         "question": "Which of the following best describes the purpose"
-        " of the digital twin(s) you have (helped) establish?"
+        " of the digital twin(s) you have established (or helped establish)?"
         " Select all that apply",
         "type": "select_all",
         "options": [
@@ -157,13 +157,19 @@ questions: dict[str, Any] = {
             "Market / Customer Engagement "
             "(e.g. enhancing customer experience or market understanding.",
             "Research and Development",
-            "Other",
+            "Other (Please specify)",
         ],
         "section": "community_composition",
     },
     "type_dt_other": {
         "tag": "type_dt_other",
         "question": "Please specify the type",
+        "type": "text_area",
+        "section": "community_composition",
+    },
+    "purpose_dt_other": {
+        "tag": "purpose_dt_other",
+        "question": "Please specify the purpose",
         "type": "text_area",
         "section": "community_composition",
     },
