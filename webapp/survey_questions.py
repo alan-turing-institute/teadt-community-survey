@@ -288,6 +288,16 @@ questions: dict[str, Any] = {
         "type": "text_area",
         "section": "current_assurance_practices",
     },
+    "assurance_experience": {
+        "tag": "assurance_experience",
+        "question": "Who provides assurance within/for your organisation?",
+        "type": "radio",
+        "options": ["In-house assurance team",
+                    "In-house, non-specialized team",
+                    "External third-party",
+                    "We provide assurance services for clients"],
+        "section": "current_assurance_practices",
+    },
     "asset_data_sharing": {
         "tag": "asset_data_sharing",
         "question": "Have you considered sharing data or models"
@@ -606,6 +616,22 @@ questions: dict[str, Any] = {
             "Somewhat prepared",
             "Very prepared",
         ],
+        "section": "evidence_based_assurance",
+    },
+    "challenges_adoption": {
+        "tag": "challenges_adoption",
+        "question": "What would prevent you from adopting"
+        " a new trustworthy and ethical assurance tool?"
+        " Select all that apply.",
+        "type": "select_all",
+        "options": [
+            "Doesn't fit into our governance process",
+            "Doesn't integrate into our tech stack",
+            "Internal resistance",
+            "No time to spend on ethical assurance",
+            "Cost prohibitive",
+            "Lack of expertise to implement",
+            "Unclear benefits"],
         "section": "evidence_based_assurance",
     },
     "support_for_assurance": {

@@ -16,6 +16,7 @@ from config import (
     BENEFITS_OF_VISUAL_TOOL_STATE_KEY,
     REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
     PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
+    CHALLENGES_ADOPTION,
     SUPPORT_FOR_ASSURANCE_STATE_KEY,
     SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY,
     COMMUNICATING_ASSURANCE_PAGE,
@@ -127,6 +128,12 @@ preparedness_for_argument = question_generator.generate_streamlit_element(
     questions["preparedness_for_argument"]["type"],
     options=questions["preparedness_for_argument"].get("options"),
     key=PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
+)
+challenges_adoption = question_generator.generate_streamlit_element(
+    questions["challenges_adoption"]["question"],
+    questions["challenges_adoption"]["type"],
+    options=questions["challenges_adoption"].get("options"),
+    key=CHALLENGES_ADOPTION,
 )
 
 support_for_assurance = question_generator.generate_streamlit_element(

@@ -16,6 +16,7 @@ from config import (
     ASSURANCE_MECHANISM_OTHER_STATE_KEY,
     ASSURED_PROPERTIES_STATE_KEY,
     ASSURED_PROPERTIES_OTHER_STATE_KEY,
+    ASSURANCE_EXPERIENCE_STATE_KEY,
     ASSET_DATA_SHARING_STATE_KEY,
     PARTNER_TRUST_DIFFICULTY_STATE_KEY,
     PARTNER_TRUST_CHALLENGES_STATE_KEY,
@@ -150,6 +151,13 @@ if st.session_state.continue_clicked:
                     key=ASSURED_PROPERTIES_OTHER_STATE_KEY,
                 )
             )
+
+        assurance_experience = question_generator.generate_streamlit_element(
+            questions["assurance_experience"]["question"],
+            questions["assurance_experience"]["type"],
+            options=questions["assurance_experience"].get("options"),
+            key=ASSURANCE_EXPERIENCE_STATE_KEY,
+        )
 
         st.subheader("Assurance for Connected Digital Twins")
         asset_data_sharing = question_generator.generate_streamlit_element(
