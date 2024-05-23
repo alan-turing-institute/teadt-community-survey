@@ -15,7 +15,7 @@ def get_colors_from_colormap(num_colors):
 
 
 # Function to plot a pie chart
-def plot_pie_chart(data: list, current_user_sector, title, figsize=(2, 2)):
+def plot_pie_chart(data: list, current_user_sector, title, figsize=(3, 3)):
     # Count occurrences
     sector_counts = Counter(data)
 
@@ -41,7 +41,7 @@ def plot_pie_chart(data: list, current_user_sector, title, figsize=(2, 2)):
     num_items = len(pie_data)  # Number of colors needed
     colors = get_colors_from_colormap(num_items)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=figsize)
     ax.pie(
         sizes, labels=labels, autopct="%1.1f%%", startangle=90, colors=colors
     )
