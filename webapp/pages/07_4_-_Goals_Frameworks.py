@@ -385,8 +385,6 @@ with st.container():
     vars_challenging = [locals()[var] for
                         var in vars_challenging if var in locals()]
     any_challenging = bool(set(vars_challenging) & set(choice_challenging))
-    print(vars_challenging)
-    print(any_challenging)
     if any_challenging:
         operationalization_challenges = (
             question_generator.generate_streamlit_element(
