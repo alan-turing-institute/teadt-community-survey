@@ -65,8 +65,9 @@ try:
         ]
         response_counts = Counter(filtered_responses)
         # Filter out the "None" option
-        filtered_counts = Counter({k: v for k, v in
-                                   response_counts.items() if k != "None"})
+        filtered_counts = Counter(
+            {k: v for k, v in response_counts.items() if k != "None"}
+        )
 
         top_assurance_mechanisms = filtered_counts.most_common(5)
         # Determine user's overlap with top three sector mechanisms
@@ -80,7 +81,7 @@ try:
         ]
         current_user_technique_count = len(
             set(current_user_assurance_mechanisms)
-            )
+        )
 
         distribution_of_techniques = Counter(technique_counts_per_person)
         technique_list = []

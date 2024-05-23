@@ -131,11 +131,12 @@ def check_required_fields(
             # if the conditioning response not given
             if isinstance(conditional_given, str):
                 conditional_satisfied = (
-                    conditional_given in depends_on_response)
+                    conditional_given in depends_on_response
+                )
             elif isinstance(conditional_given, list):
-                conditional_satisfied = any(item in
-                                            depends_on_response
-                                            for item in conditional_given)
+                conditional_satisfied = any(
+                    item in depends_on_response for item in conditional_given
+                )
             if not conditional_satisfied:
                 # print(f'conditioning response not given for {key}')
                 if key in page_element_keys:

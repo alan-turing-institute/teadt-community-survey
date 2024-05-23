@@ -292,10 +292,12 @@ questions: dict[str, Any] = {
         "tag": "assurance_experience",
         "question": "Who provides assurance within/for your organisation?",
         "type": "radio",
-        "options": ["In-house assurance team",
-                    "In-house, non-specialized team",
-                    "External third-party",
-                    "We provide assurance services for clients"],
+        "options": [
+            "In-house assurance team",
+            "In-house, non-specialized team",
+            "External third-party",
+            "We provide assurance services for clients",
+        ],
         "section": "current_assurance_practices",
     },
     "asset_data_sharing": {
@@ -631,7 +633,8 @@ questions: dict[str, Any] = {
             "No time to spend on ethical assurance",
             "Cost prohibitive",
             "Lack of expertise to implement",
-            "Unclear benefits"],
+            "Unclear benefits",
+        ],
         "section": "evidence_based_assurance",
     },
     "support_for_assurance": {

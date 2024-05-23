@@ -384,27 +384,37 @@ with st.container():
 
     st.write("#")
     choice_challenging = [
-            "Slightly",
-            "Moderately",
-            "Very",
-            "Extremely challenging"]
+        "Slightly",
+        "Moderately",
+        "Very",
+        "Extremely challenging",
+    ]
     vars_challenging = [
-        'challenge_good', 'challenge_value',
-        'challenge_security', 'challenge_openness',
-        'challenge_insight', 'challenge_federation',
-        'challenge_curation', 'challenge_evolution',
-        'challenge_quality']
+        "challenge_good",
+        "challenge_value",
+        "challenge_security",
+        "challenge_openness",
+        "challenge_insight",
+        "challenge_federation",
+        "challenge_curation",
+        "challenge_evolution",
+        "challenge_quality",
+    ]
 
-    vars_challenging = [st.session_state[key] for
-                        key in challenge_keys if key in st.session_state]
+    vars_challenging = [
+        st.session_state[key]
+        for key in challenge_keys
+        if key in st.session_state
+    ]
     any_challenging = bool(set(vars_challenging) & set(choice_challenging))
     if any_challenging:
         operationalization_challenges = (
             question_generator.generate_streamlit_element(
                 questions["operationalization_challenges"]["question"],
                 questions["operationalization_challenges"]["type"],
-                options=questions[
-                    "operationalization_challenges"].get("options"),
+                options=questions["operationalization_challenges"].get(
+                    "options"
+                ),
                 key=OPERATIONALIZATION_CHALLENGES_STATE_KEY,
             )
         )

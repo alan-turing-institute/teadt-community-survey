@@ -36,7 +36,8 @@ This survey is a key part of the Trustworthy and Ethical Assurance for Digital
  participation will
  help us identify how DT projects can be better supported to integrate ethical
  principles effectively.
-""")
+"""
+)
 
 st.info(
     """
@@ -57,7 +58,7 @@ The TEA-DT project is spearheaded by researchers at the Alan Turing Institute
  Assurance (TEA)
  Platform, an innovative tool designed to guide users in defining,
  operationalizing, and
- implementing ethical principles within DT projects. 
+ implementing ethical principles within DT projects.
 
  The survey data will significantly influence the TEA-DT project by:
 
@@ -176,7 +177,8 @@ if all(consent_given):
     - For optimal performance, **use a laptop or desktop**;
      mobile device compatibility is limited.
 
-        """)
+        """
+    )
     # If all checkboxes are checked, show the 'Next' button
     if st.button("Next"):
         # Redirect to the next section of the survey
