@@ -36,40 +36,42 @@ This survey is a key part of the Trustworthy and Ethical Assurance for Digital
  participation will
  help us identify how DT projects can be better supported to integrate ethical
  principles effectively.
+""")
 
-### The TEA-DT Project
+st.info(
+    """
+    ### What is Trustworthy and Ethical Assurance?
+    Trustworthy and ethical assurance refers to clear
+    methods and tools that ensure data-driven technologies are
+    designed, developed and deployed reliably and ethically.
+    This approach is essential for building trust and transparency
+    in increasingly complex technological environments.
+    """
+)
+st.markdown(
+    """
+ ### The TEA-DT Project
 
 The TEA-DT project is spearheaded by researchers at the Alan Turing Institute
  and the University of York. It revolves around the Trustworthy and Ethical
  Assurance (TEA)
  Platform, an innovative tool designed to guide users in defining,
  operationalizing, and
- implementing ethical principles within DT projects. The platform aids in
- creating structured
- arguments and evidence to justify chosen ethical principles, fostering trust
- through
- transparent and accessible communication.
+ implementing ethical principles within DT projects. 
 
-The data collected from this survey will play a crucial role in shaping the
-TEA-DT project's
- direction. Insights on current DT assurance practices, challenges faced by
- practitioners,
-  and the perceived value of ethical principles in DT development will inform
-  the ongoing enhancement
-  of the TEA Platform. Additionally, understanding the community's needs and
-  perceptions will
-  guide the project's efforts to co-create accessible and reproducible
-  standards for assuring
-  DT technologies, ultimately cultivating a robust assurance ecosystem for DT
-  research and innovation.
-The data collected from this survey will feed directly into the TEA-DT
-project, helping us to:
--	Understand the current landscape of digital twin assurance practices and the
-challenges practitioners face.
--	Identify areas where the TEA Platform can be improved or adapted to
-better meet the needs of the digital twin community.
--	 Inform the development of accessible and reproducible standards for
+ The survey data will significantly influence the TEA-DT project by:
+
+- Providing insights into the current landscape of
+ digital twin assurance practices and
+ the challenges practitioners face.
+- Highlighting opportunities to enhance the TEA Platform
+ to better serve the digital twin community.
+- Inform the development of accessible and reproducible standards for
 assuring digital twin technologies.
+
+This information will help shape the project's direction and
+ the production of guidance materials, ultimately cultivating
+ a robust assurance ecosystem for DT research and innovation.
 
 ### Data Collection and Use
 We are committed to ensuring the anonymity of all survey participants.
@@ -163,6 +165,18 @@ consent_given = [
 # Check if all checkboxes are checked
 if all(consent_given):
     st.success("All consent given. Proceed to the next section of the survey.")
+    st.error(
+        """
+        ⚠️ Please Note:
+
+    - We do not collect personal identifiers. Therefore **closing the browser
+     tab results in permanent data loss**.
+    - **Switching WiFi networks** during the survey will cause a restart
+     and loss of all progress.
+    - For optimal performance, **use a laptop or desktop**;
+     mobile device compatibility is limited.
+
+        """)
     # If all checkboxes are checked, show the 'Next' button
     if st.button("Next"):
         # Redirect to the next section of the survey
