@@ -64,7 +64,11 @@ try:
             if item != "Other (Please specify)"
         ]
         response_counts = Counter(filtered_responses)
-        top_assurance_mechanisms = response_counts.most_common(5)
+        # Filter out the "None" option
+        filtered_counts = Counter({k: v for k, v in
+                                   response_counts.items() if k != "None"})
+
+        top_assurance_mechanisms = filtered_counts.most_common(5)
         # Determine user's overlap with top three sector mechanisms
         user_overlap = set(current_user_assurance_mechanisms) & set(
             [mech[0] for mech in top_assurance_mechanisms]
