@@ -199,6 +199,18 @@ with st.container():
     ]
     load_from_session(tags_to_display)
 
+    challenge_keys = [
+        CHALLENGE_GOOD_STATE_KEY,
+        CHALLENGE_VALUE_STATE_KEY,
+        CHALLENGE_INSIGHT_STATE_KEY,
+        CHALLENGE_SECURITY_STATE_KEY,
+        CHALLENGE_OPENNESS_STATE_KEY,
+        CHALLENGE_QUALITY_STATE_KEY,
+        CHALLENGE_FEDERATION_STATE_KEY,
+        CHALLENGE_CURATION_STATE_KEY,
+        CHALLENGE_EVOLUTION_STATE_KEY,
+    ]
+
     familiarity_with_gemini_principles = (
         question_generator.generate_streamlit_element(
             questions["familiarity_with_gemini_principles"]["question"],
@@ -382,8 +394,9 @@ with st.container():
         'challenge_insight', 'challenge_federation',
         'challenge_curation', 'challenge_evolution',
         'challenge_quality']
-    vars_challenging = [locals()[var] for
-                        var in vars_challenging if var in locals()]
+
+    vars_challenging = [st.session_state[key] for
+                        key in challenge_keys if key in st.session_state]
     any_challenging = bool(set(vars_challenging) & set(choice_challenging))
     if any_challenging:
         operationalization_challenges = (
