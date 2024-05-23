@@ -76,7 +76,7 @@ try:
         ]
         current_user_technique_count = len(
             set(current_user_assurance_mechanisms)
-            )
+        )
 
         distribution_of_techniques = Counter(technique_counts_per_person)
         technique_list = []

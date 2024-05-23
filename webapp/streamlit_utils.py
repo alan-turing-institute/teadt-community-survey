@@ -20,6 +20,28 @@ from config import (
 WIDGET_SUFFIX: str = "widget"
 
 
+def setup_spinner(css_bottom: str = "30px", font_size: str = "2em"):
+    # this css ensures the spinner appears at the bottom of the page not top
+    st.markdown(
+        f"""
+    <style>
+    div.stSpinner > div {{
+        position: fixed;
+        bottom: {css_bottom};
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: {font_size};
+    }}
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
+
+
 # Disable the submit button after it is clicked
 def disable_button() -> None:
     st.session_state.disabled = True
@@ -131,11 +153,12 @@ def check_required_fields(
             # if the conditioning response not given
             if isinstance(conditional_given, str):
                 conditional_satisfied = (
-                    conditional_given in depends_on_response)
+                    conditional_given in depends_on_response
+                )
             elif isinstance(conditional_given, list):
-                conditional_satisfied = any(item in
-                                            depends_on_response
-                                            for item in conditional_given)
+                conditional_satisfied = any(
+                    item in depends_on_response for item in conditional_given
+                )
             if not conditional_satisfied:
                 # print(f'conditioning response not given for {key}')
                 if key in page_element_keys:
