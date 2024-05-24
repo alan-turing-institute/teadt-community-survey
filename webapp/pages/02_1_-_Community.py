@@ -76,13 +76,6 @@ question_generator = QuestionGenerator(SECTION_NUM)
 
 # Define the tags of questions to display in this section
 # Generate Streamlit elements and assign responses to variables
-tag: str = SECTOR_STATE_KEY
-sector = question_generator.generate_streamlit_element(
-    questions[tag]["question"],
-    questions[tag]["type"],
-    options=questions[tag].get("options"),
-    key=tag,
-)
 
 tag = LOCATION_STATE_KEY
 location = question_generator.generate_streamlit_element(
@@ -101,6 +94,14 @@ role = question_generator.generate_streamlit_element(
 
 tag = RESPONSIBILITIES_STATE_KEY
 primary_responsibilities = question_generator.generate_streamlit_element(
+    questions[tag]["question"],
+    questions[tag]["type"],
+    options=questions[tag].get("options"),
+    key=tag,
+)
+
+tag: str = SECTOR_STATE_KEY
+sector = question_generator.generate_streamlit_element(
     questions[tag]["question"],
     questions[tag]["type"],
     options=questions[tag].get("options"),

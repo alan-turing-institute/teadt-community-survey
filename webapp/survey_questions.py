@@ -41,7 +41,6 @@ questions: dict[str, Any] = {
             "Oil and Gas",
             "Place Leadership",
             "Rail",
-            "Research",
             "Smart Cities",
             "Supply Chain and Logistics",
             "Technology",
