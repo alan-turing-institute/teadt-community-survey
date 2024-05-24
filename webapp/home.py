@@ -73,13 +73,12 @@ st.markdown(
     "community practices."
 )
 
-# TODO reactive this for stage 2 data collection
-# st.markdown(
-#     "The Community Pulse Check is a dynamic survey "
-#     "that allows you to see some of the results immediately, "
-#     "providing instant feedback on how your experiences and views align"
-#     " with those of your peers. "
-# )
+st.markdown(
+    "The Community Pulse Check is a dynamic survey "
+    "that allows you to see some of the results immediately, "
+    "providing instant feedback on how your experiences and views align"
+    " with those of your peers. "
+)
 
 st.markdown(
     "- Participating will take approximately 15 – 20 minutes\n"

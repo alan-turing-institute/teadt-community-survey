@@ -181,9 +181,6 @@ REQUIRED_MESSAGE = (
 )
 
 # REQUIRED_QUESTIONS
-# TODO: fix dealing with conditional but required questions:
-
-
 ALL_REQUIRED_KEYS: list[str] = [
     SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
