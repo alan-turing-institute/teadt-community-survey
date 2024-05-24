@@ -37,6 +37,33 @@ def init_connection() -> MongoClient:
     return client
 
 
+def check_response_count(client, threshold=10):
+    """
+    Checks the total number of responses and displays a warning
+    if the number of responses is below the specified threshold.
+
+    Args:
+        client (MongoClient): The MongoDB client.
+        threshold (int): The response count threshold for displaying a warning.
+
+    Returns:
+        int: The total number of responses.
+    """
+    total_response_data = count_responses(client, {})
+    total_response_count = total_response_data["total"]
+
+    if total_response_count < threshold:
+        st.warning(
+            f"""
+            🎉 Amazing, you are one of our first {threshold} respondents!
+            Please note that the data is based on limited responses
+            and may not fully represent broader trends yet.
+            """
+        )
+
+    return total_response_count
+
+
 def count_responses(client, query):
     """
     Count the number of documents in a MongoDB collection
@@ -58,6 +85,11 @@ def count_responses(client, query):
     collection = db[os.getenv(COLLECTION_NAME_ENV)]
 
     results = {}
+    # Handle the empty query case
+    if not query:
+        results["total"] = collection.count_documents({})
+        return results
+
     # Generate all possible combinations of query keys
     keys = list(query.keys())
     for r in range(1, len(keys) + 1):
