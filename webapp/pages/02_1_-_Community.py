@@ -1,5 +1,6 @@
 import streamlit as st
 from st_pages import hide_pages
+from datetime import datetime
 
 from streamlit_utils import (
     verify_user,
@@ -9,6 +10,7 @@ from streamlit_utils import (
 from streamlit_extras.switch_page_button import switch_page
 from survey_questions import questions
 from config import (
+    START_TIMESTAMP_STATE_KEY,
     SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
     ROLE_STATE_KEY,
@@ -47,6 +49,9 @@ load_from_session(page_element_keys)
 
 verify_user(COMMUNITY_PAGE)
 display_error_messages()
+
+## Record start time (to later compute total duration)
+st.session_state[START_TIMESTAMP_STATE_KEY] = str(datetime.today().replace(microsecond=0))
 
 # reintroduce sidebar (collapse button will stay hidden as CSS cannot by
 # dynamically altered)

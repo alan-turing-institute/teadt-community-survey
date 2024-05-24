@@ -4,6 +4,7 @@ DATABASE_NAME_ENV: str = "DB_NAME"
 COLLECTION_NAME_ENV: str = "COLLECTION_NAME"
 
 # Application management
+START_TIMESTAMP_STATE_KEY: str = "start_timestamp"
 USER_ID_STATE_KEY: str = "_id"
 SURVEY_SUBMITTED_STATE_KEY: str = "survey_submitted"
 ERROR_MESSAGES_STATE_KEY: str = "error_messages"
@@ -98,6 +99,7 @@ EMAIL_STATE_KEY: str = "email"
 
 # TODO(cptanalastriste): Refactor. There's a better way of doing this.
 ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
+    START_TIMESTAMP_STATE_KEY,
     USER_ID_STATE_KEY,
     SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
