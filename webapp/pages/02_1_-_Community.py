@@ -52,7 +52,8 @@ display_error_messages()
 
 # Record start time (to later compute total duration)
 st.session_state[START_TIMESTAMP_STATE_KEY] = str(
-    datetime.today().replace(microsecond=0))
+    datetime.today().replace(microsecond=0)
+)
 
 # reintroduce sidebar (collapse button will stay hidden as CSS cannot by
 # dynamically altered)
@@ -76,8 +77,7 @@ question_generator = QuestionGenerator(SECTION_NUM)
 
 # Define the tags of questions to display in this section
 # Generate Streamlit elements and assign responses to variables
-
-tag = LOCATION_STATE_KEY
+tag: str = LOCATION_STATE_KEY
 location = question_generator.generate_streamlit_element(
     questions[tag]["question"],
     questions[tag]["type"],
@@ -100,7 +100,7 @@ primary_responsibilities = question_generator.generate_streamlit_element(
     key=tag,
 )
 
-tag: str = SECTOR_STATE_KEY
+tag = SECTOR_STATE_KEY
 sector = question_generator.generate_streamlit_element(
     questions[tag]["question"],
     questions[tag]["type"],

@@ -128,8 +128,16 @@ def plot_principles_2d(df, user_df=None):
 
     # Create jittered x and y coordinates
     jitter_strength = 0.1  # Adjust the jitter strength as needed
-    combined_df["Challenge_jittered"] = combined_df["Challenge"] + np.random.uniform(-jitter_strength, jitter_strength, size=len(combined_df))
-    combined_df["Relevance_jittered"] = combined_df["Relevance"] + np.random.uniform(-jitter_strength, jitter_strength, size=len(combined_df))
+    combined_df["Challenge_jittered"] = combined_df[
+        "Challenge"
+    ] + np.random.uniform(
+        -jitter_strength, jitter_strength, size=len(combined_df)
+    )
+    combined_df["Relevance_jittered"] = combined_df[
+        "Relevance"
+    ] + np.random.uniform(
+        -jitter_strength, jitter_strength, size=len(combined_df)
+    )
 
     # Create a scatter plot with jittered values
     fig = px.scatter(
@@ -149,8 +157,7 @@ def plot_principles_2d(df, user_df=None):
 
     # Update the text position and marker properties
     fig.update_traces(
-        textposition="top center",
-        marker=dict(size=12, opacity=0.4)
+        textposition="top center", marker=dict(size=12, opacity=0.4)
     )
 
     # Customize axis ticks using the mapping
