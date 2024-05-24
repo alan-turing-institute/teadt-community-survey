@@ -15,8 +15,7 @@ import logging
 from streamlit_utils import disable_sidebar
 
 logging.basicConfig()
-# TODO(cgavidia): Level should be customisable
-logging.getLogger().setLevel(logging.INFO)
+logging.getLogger().setLevel(logging.ERROR)
 
 # Define the constants
 length_captcha = 4
@@ -169,12 +168,6 @@ if (
         if st.button("Verify the code"):
             user_provided_text = user_provided_text.replace(" ", "")
             # If the captcha is correct, set 'controllo' session state to True
-            # TODO(cptanalatriste)REMOVE LATER!
-            # logging.info(
-            #     f"{st.session_state[CAPTCHA_TEXT_STATE_KEY].lower()=} "
-            #     f"{user_provided_text.lower().strip()=}"
-            # )
-
             if (
                 st.session_state[CAPTCHA_TEXT_STATE_KEY].lower()
                 == user_provided_text.lower().strip()

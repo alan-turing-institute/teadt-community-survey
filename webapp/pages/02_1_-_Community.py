@@ -78,8 +78,6 @@ sector = question_generator.generate_streamlit_element(
     key=tag,
 )
 
-# TODO(cptanalatriste): There's a bug when the user does not modify the
-# default value.
 tag = LOCATION_STATE_KEY
 location = question_generator.generate_streamlit_element(
     questions[tag]["question"],
