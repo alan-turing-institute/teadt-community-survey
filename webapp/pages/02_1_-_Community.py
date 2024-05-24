@@ -50,8 +50,9 @@ load_from_session(page_element_keys)
 verify_user(COMMUNITY_PAGE)
 display_error_messages()
 
-## Record start time (to later compute total duration)
-st.session_state[START_TIMESTAMP_STATE_KEY] = str(datetime.today().replace(microsecond=0))
+# Record start time (to later compute total duration)
+st.session_state[START_TIMESTAMP_STATE_KEY] = str(
+    datetime.today().replace(microsecond=0))
 
 # reintroduce sidebar (collapse button will stay hidden as CSS cannot by
 # dynamically altered)
