@@ -164,7 +164,7 @@ with st.container():
      ensure that these initiatives benefit the public good.
      \n\n We are interested in understanding
      how these principles resonate with you and
-     what is needed to better implement them better in the future.
+     what is needed to better implement them in the future.
      """
     )
     # Display an image
@@ -327,7 +327,7 @@ with st.container():
         )
     if relevance_value != "Not Relevant":
         challenge_value = question_generator.generate_streamlit_element(
-            "Value",
+            "Value Creation",
             "likert_col",
             options=questions["challenge_in_application"].get("options"),
             key=CHALLENGE_VALUE_STATE_KEY,
