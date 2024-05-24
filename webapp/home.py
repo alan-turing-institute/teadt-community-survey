@@ -15,8 +15,7 @@ import logging
 from streamlit_utils import disable_sidebar
 
 logging.basicConfig()
-# TODO(cgavidia): Level should be customisable
-logging.getLogger().setLevel(logging.INFO)
+logging.getLogger().setLevel(logging.ERROR)
 
 # Define the constants
 length_captcha = 4
@@ -74,13 +73,12 @@ st.markdown(
     "community practices."
 )
 
-# TODO reactive this for stage 2 data collection
-# st.markdown(
-#     "The Community Pulse Check is a dynamic survey "
-#     "that allows you to see some of the results immediately, "
-#     "providing instant feedback on how your experiences and views align"
-#     " with those of your peers. "
-# )
+st.markdown(
+    "The Community Pulse Check is a dynamic survey "
+    "that allows you to see some of the results immediately, "
+    "providing instant feedback on how your experiences and views align"
+    " with those of your peers. "
+)
 
 st.markdown(
     "- Participating will take approximately 15 – 20 minutes\n"
@@ -169,12 +167,6 @@ if (
         if st.button("Verify the code"):
             user_provided_text = user_provided_text.replace(" ", "")
             # If the captcha is correct, set 'controllo' session state to True
-            # TODO(cptanalatriste)REMOVE LATER!
-            # logging.info(
-            #     f"{st.session_state[CAPTCHA_TEXT_STATE_KEY].lower()=} "
-            #     f"{user_provided_text.lower().strip()=}"
-            # )
-
             if (
                 st.session_state[CAPTCHA_TEXT_STATE_KEY].lower()
                 == user_provided_text.lower().strip()

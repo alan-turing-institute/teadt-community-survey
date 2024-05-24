@@ -11,8 +11,6 @@ ERROR_MESSAGES_STATE_KEY: str = "error_messages"
 VALID_CAPTCHA_ENTRY_STATE_KEY: str = "controllo"
 CAPTCHA_TEXT_STATE_KEY: str = "Captcha"
 
-# TODO: Maybe move them to each page?
-
 # Consent Page Keys
 CONSENT_QUESTIONS: int = 10
 CONSENT_STATE_KEY: str = "consent"
@@ -97,7 +95,6 @@ PROJECT_INTEREST_STATE_KEY: str = "project_interest"
 EMAIL_INTEREST_STATE_KEY: str = "email_interest"
 EMAIL_STATE_KEY: str = "email"
 
-# TODO(cptanalastriste): Refactor. There's a better way of doing this.
 ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
     START_TIMESTAMP_STATE_KEY,
     USER_ID_STATE_KEY,
@@ -165,7 +162,6 @@ ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
 ]
 
 # Page catalogue
-# TODO(cgavidia): This can be an Enum
 HOME_PAGE: str = "home"
 CONSENT_PAGE: str = "Consent"
 COMMUNITY_PAGE: str = "1 - Community"
@@ -187,9 +183,6 @@ REQUIRED_MESSAGE = (
 )
 
 # REQUIRED_QUESTIONS
-# TODO: fix dealing with conditional but required questions:
-
-
 ALL_REQUIRED_KEYS: list[str] = [
     SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
