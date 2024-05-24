@@ -113,32 +113,42 @@ def check_required_fields(
         if session_key in st.session_state
     }
     # Check conditional keys and remove those not showing
-    for key, conditions in conditional_keys.items():
-        depends_on_key = conditions["depends_on_key"]
+    # Find intersection between page_element_keys and conditional_keys
+    intersecting_keys = set(page_element_keys).intersection(
+        conditional_keys.keys()
+    )
+
+    # Check conditional keys and remove those not showing
+    for key in intersecting_keys:
+        conditions = conditional_keys[key]
+        depends_on_keys = conditions["depends_on_key"]
         depends_on_response = conditions["depends_on_response"]
 
-        # If conditioning question shown
-        if depends_on_key in data and isinstance(depends_on_key, str):
-            # print(f'conditioning question shown for {key}')
-            conditional_given = data[depends_on_key]
-            # if the conditioning response not given
-            if isinstance(conditional_given, str):
-                conditional_satisfied = (
-                    conditional_given in depends_on_response
-                )
-            elif isinstance(conditional_given, list):
-                conditional_satisfied = any(
-                    item in depends_on_response for item in conditional_given
-                )
-            if not conditional_satisfied:
-                # print(f'conditioning response not given for {key}')
-                if key in page_element_keys:
-                    page_element_keys.remove(key)
-        else:
-            # if the conditioning question not shown
-            if key in page_element_keys:
-                # print(f'conditioning question not shown for {key}')
-                page_element_keys.remove(key)
+        if isinstance(depends_on_keys, str):
+            depends_on_keys = [depends_on_keys]
+
+        conditional_satisfied = False
+        cond_question_shown = False
+
+        for single_key in depends_on_keys:
+            if single_key in data and isinstance(single_key, str):
+                cond_question_shown = True
+                conditional_given = data[single_key]
+                if isinstance(conditional_given, str):
+                    conditional_satisfied = (
+                        conditional_given in depends_on_response
+                    )
+                elif isinstance(conditional_given, list):
+                    conditional_satisfied = any(
+                        item in depends_on_response
+                        for item in conditional_given
+                    )
+
+                if conditional_satisfied:
+                    break
+
+        if not cond_question_shown or not conditional_satisfied:
+            page_element_keys.remove(key)
 
     # Reduce required keys to only those of current page
     required_keys = [
@@ -163,7 +173,6 @@ def check_required_fields(
             missing_fields.append(
                 (question_key, get_question_number(question_key))
             )
-
     if missing_fields:
         if give_hint:
             question_numbers = ", ".join(

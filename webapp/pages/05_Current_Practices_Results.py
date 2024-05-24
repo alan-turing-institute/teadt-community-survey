@@ -149,7 +149,7 @@ try:
             filter,
             current_user_assurance_mechanisms,
             feedback_group,
-            5
+            5,
         )
 
         # Display top assured principles
@@ -160,7 +160,7 @@ try:
             filter,
             current_user_assured_properties,
             feedback_group,
-            3
+            3,
         )
 
     else:
