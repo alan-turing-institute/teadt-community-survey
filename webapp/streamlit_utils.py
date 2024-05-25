@@ -112,52 +112,69 @@ def check_required_fields(
         for session_key in page_element_keys
         if session_key in st.session_state
     }
-    # Check conditional keys and remove those not showing
-    # Find intersection between page_element_keys and conditional_keys
-    intersecting_keys = set(page_element_keys).intersection(
-        conditional_keys.keys()
-    )
 
-    # Check conditional keys and remove those not showing
-    for key in intersecting_keys:
-        conditions = conditional_keys[key]
+    def check_condition_satisfied(sub_key, data, cond_keys):
+        """Check if the condition for a single key is satisfied, handling nested conditions."""
+        print(f'{sub_key} this is a conditional key')
+
+        conditions = cond_keys[sub_key]
         depends_on_keys = conditions["depends_on_key"]
         depends_on_response = conditions["depends_on_response"]
 
         if isinstance(depends_on_keys, str):
             depends_on_keys = [depends_on_keys]
 
-        conditional_satisfied = False
-        cond_question_shown = False
-
+        all_dependent_conditions_unsatisfied = True
         for single_key in depends_on_keys:
-            if single_key in data and isinstance(single_key, str):
-                cond_question_shown = True
-                conditional_given = data[single_key]
-                if isinstance(conditional_given, str):
-                    conditional_satisfied = (
-                        conditional_given in depends_on_response
-                    )
-                elif isinstance(conditional_given, list):
-                    conditional_satisfied = any(
-                        item in depends_on_response
-                        for item in conditional_given
-                    )
-
-                if conditional_satisfied:
+            if single_key in cond_keys:
+                if check_condition_satisfied(single_key, data, cond_keys):
+                    all_dependent_conditions_unsatisfied = False
                     break
+            else:
+                all_dependent_conditions_unsatisfied = False
 
-        if not cond_question_shown or not conditional_satisfied:
-            page_element_keys.remove(key)
+        if all_dependent_conditions_unsatisfied:
+            return False
+        
+        print(f'continue checking for conditionals for {sub_key}')
+        for single_key in depends_on_keys:
+            print(f'conditional on {single_key}')
+            if single_key in data: 
+                conditional_given = data[single_key]
+                print(f'COND_GIVEN:{conditional_given}')
+                if isinstance(conditional_given, str):
+                    if conditional_given in depends_on_response:
+                        print('condition fulfilled')
+                        return True
+                elif isinstance(conditional_given, list):
+                    if any(item in depends_on_response for item in conditional_given):
+                        print('at least one condition fulfilled')
+                        return True
+        print('condition not fulfilled')
+        return False
 
+    # Main function to remove keys based on conditions
+    def remove_unsatisfied_keys(data, cond_keys, page_element_keys):
+        """Remove keys from page_element_keys if their conditions are not satisfied."""
+        for key in list(cond_keys.keys()):
+            print(f'KEY {key}')
+            if not check_condition_satisfied(key, data, cond_keys):
+                print('NOT SHOWN / NOT FULLFILLED')
+                if key in page_element_keys:
+                    page_element_keys.remove(key)
+                    print('REMOVED')
+
+    remove_unsatisfied_keys(data, conditional_keys, page_element_keys)
     # Reduce required keys to only those of current page
     required_keys = [
         key for key in ALL_REQUIRED_KEYS if key in page_element_keys
     ]
     missing_fields = []
+    print(page_element_keys)
+    print(required_keys)
 
-    # Function to retrieve question number based on index
     def get_question_number(key):
+        # Function to retrieve question number based on index
         return page_element_keys.index(key) + 1
 
     for question_key in required_keys:
@@ -173,6 +190,8 @@ def check_required_fields(
             missing_fields.append(
                 (question_key, get_question_number(question_key))
             )
+    missing_fields = sorted(missing_fields, key=lambda x: x[1])
+    print(missing_fields)
     if missing_fields:
         if give_hint:
             question_numbers = ", ".join(

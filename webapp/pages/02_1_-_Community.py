@@ -31,10 +31,10 @@ import logging
 logging.info("Loading the community page")
 
 page_element_keys: list[str] = [
-    SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
     ROLE_STATE_KEY,
     RESPONSIBILITIES_STATE_KEY,
+    SECTOR_STATE_KEY,
     ESTABLISHED_DT_STATE_KEY,
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
