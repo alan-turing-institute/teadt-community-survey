@@ -243,7 +243,9 @@ ALL_REQUIRED_KEYS: list[str] = [
 
 conditional_keys = {
     TYPE_DT_OTHER_STATE_KEY: {
-        "depends_on_key": [TYPE_DT_STATE_KEY,],
+        "depends_on_key": [
+            TYPE_DT_STATE_KEY,
+        ],
         "depends_on_response": ["Other (Please specify)"],
     },
     PURPOSE_DT_OTHER_STATE_KEY: {
@@ -256,15 +258,19 @@ conditional_keys = {
     },
     TYPE_DT_STATE_KEY: {
         "depends_on_key": [ESTABLISHED_DT_STATE_KEY],
-        "depends_on_response": ["Yes",
-                                "Indirectly (We support clients "
-                                "or provide components for digital twins)"],
+        "depends_on_response": [
+            "Yes",
+            "Indirectly (We support clients "
+            "or provide components for digital twins)",
+        ],
     },
     PURPOSE_DT_STATE_KEY: {
         "depends_on_key": [ESTABLISHED_DT_STATE_KEY],
-        "depends_on_response": ["Yes",
-                                "Indirectly (We support clients "
-                                "or provide components for digital twins)"],
+        "depends_on_response": [
+            "Yes",
+            "Indirectly (We support clients "
+            "or provide components for digital twins)",
+        ],
     },
     ASSURED_PROPERTIES_OTHER_STATE_KEY: {
         "depends_on_key": [ASSURED_PROPERTIES_STATE_KEY],

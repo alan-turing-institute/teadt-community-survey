@@ -114,8 +114,9 @@ def check_required_fields(
     }
 
     def check_condition_satisfied(sub_key, data, cond_keys):
-        """Check if the condition for a single key is satisfied, handling nested conditions."""
-        print(f'{sub_key} this is a conditional key')
+        """Check if the condition for a single key is satisfied,
+         handling nested conditions."""
+        print(f"{sub_key} this is a conditional key")
 
         conditions = cond_keys[sub_key]
         depends_on_keys = conditions["depends_on_key"]
@@ -135,34 +136,38 @@ def check_required_fields(
 
         if all_dependent_conditions_unsatisfied:
             return False
-        
-        print(f'continue checking for conditionals for {sub_key}')
+
+        print(f"continue checking for conditionals for {sub_key}")
         for single_key in depends_on_keys:
-            print(f'conditional on {single_key}')
-            if single_key in data: 
+            print(f"conditional on {single_key}")
+            if single_key in data:
                 conditional_given = data[single_key]
-                print(f'COND_GIVEN:{conditional_given}')
+                print(f"COND_GIVEN:{conditional_given}")
                 if isinstance(conditional_given, str):
                     if conditional_given in depends_on_response:
-                        print('condition fulfilled')
+                        print("condition fulfilled")
                         return True
                 elif isinstance(conditional_given, list):
-                    if any(item in depends_on_response for item in conditional_given):
-                        print('at least one condition fulfilled')
+                    if any(
+                        item in depends_on_response
+                        for item in conditional_given
+                    ):
+                        print("at least one condition fulfilled")
                         return True
-        print('condition not fulfilled')
+        print("condition not fulfilled")
         return False
 
     # Main function to remove keys based on conditions
     def remove_unsatisfied_keys(data, cond_keys, page_element_keys):
-        """Remove keys from page_element_keys if their conditions are not satisfied."""
+        """Remove keys from page_element_keys
+        if their conditions are not satisfied."""
         for key in list(cond_keys.keys()):
-            print(f'KEY {key}')
+            print(f"KEY {key}")
             if not check_condition_satisfied(key, data, cond_keys):
-                print('NOT SHOWN / NOT FULLFILLED')
+                print("NOT SHOWN / NOT FULLFILLED")
                 if key in page_element_keys:
                     page_element_keys.remove(key)
-                    print('REMOVED')
+                    print("REMOVED")
 
     remove_unsatisfied_keys(data, conditional_keys, page_element_keys)
     # Reduce required keys to only those of current page
