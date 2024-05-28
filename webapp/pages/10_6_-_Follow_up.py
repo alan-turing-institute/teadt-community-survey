@@ -19,6 +19,7 @@ from streamlit_utils import (
     verify_user,
     display_error_messages,
     check_required_fields,
+    check_interest,
 )
 import mongo_utils
 from pymongo import MongoClient
@@ -86,7 +87,7 @@ project_interest = st.checkbox(
     key=f"{PROJECT_INTEREST_STATE_KEY}_{WIDGET_SUFFIX}",
 )
 
-project_interest = st.checkbox(
+event_interest = st.checkbox(
     "If I am one of the first 30 respondents, "
     "I would like to attend the in-person insights briefing event "
     "at Connected Places DT Hub headquarters, London.",
@@ -112,6 +113,9 @@ st.markdown("*We'll only use your email to contact you regarding follow-ups.*")
 
 if st.button("Submit"):
     try:
+        check_interest([workshop_interest,
+                        project_interest,
+                        event_interest], email)
         check_required_fields(ALL_REQUIRED_KEYS)
 
         client: MongoClient = mongo_utils.init_connection()

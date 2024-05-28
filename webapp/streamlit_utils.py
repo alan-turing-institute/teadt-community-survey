@@ -213,6 +213,14 @@ def check_required_fields(
             )
 
 
+def check_interest(truth_values, email):
+    if any(truth_values) and not email:
+        raise ValueError(
+            "If you would like to receive updates / "
+            "invites to future events, please provide an email address."
+        )
+
+
 class QuestionGenerator:
     def __init__(self, section_number: int):
         self.section_number = section_number
