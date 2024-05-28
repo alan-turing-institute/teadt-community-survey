@@ -1,5 +1,6 @@
 import streamlit as st
 from st_pages import hide_pages
+from datetime import datetime
 
 from streamlit_utils import (
     verify_user,
@@ -9,6 +10,7 @@ from streamlit_utils import (
 from streamlit_extras.switch_page_button import switch_page
 from survey_questions import questions
 from config import (
+    START_TIMESTAMP_STATE_KEY,
     SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
     ROLE_STATE_KEY,
@@ -29,10 +31,10 @@ import logging
 logging.info("Loading the community page")
 
 page_element_keys: list[str] = [
-    SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
     ROLE_STATE_KEY,
     RESPONSIBILITIES_STATE_KEY,
+    SECTOR_STATE_KEY,
     ESTABLISHED_DT_STATE_KEY,
     TYPE_DT_STATE_KEY,
     TYPE_DT_OTHER_STATE_KEY,
@@ -47,6 +49,11 @@ load_from_session(page_element_keys)
 
 verify_user(COMMUNITY_PAGE)
 display_error_messages()
+
+# Record start time (to later compute total duration)
+st.session_state[START_TIMESTAMP_STATE_KEY] = str(
+    datetime.today().replace(microsecond=0)
+)
 
 # reintroduce sidebar (collapse button will stay hidden as CSS cannot by
 # dynamically altered)
@@ -70,15 +77,7 @@ question_generator = QuestionGenerator(SECTION_NUM)
 
 # Define the tags of questions to display in this section
 # Generate Streamlit elements and assign responses to variables
-tag: str = SECTOR_STATE_KEY
-sector = question_generator.generate_streamlit_element(
-    questions[tag]["question"],
-    questions[tag]["type"],
-    options=questions[tag].get("options"),
-    key=tag,
-)
-
-tag = LOCATION_STATE_KEY
+tag: str = LOCATION_STATE_KEY
 location = question_generator.generate_streamlit_element(
     questions[tag]["question"],
     questions[tag]["type"],
@@ -95,6 +94,14 @@ role = question_generator.generate_streamlit_element(
 
 tag = RESPONSIBILITIES_STATE_KEY
 primary_responsibilities = question_generator.generate_streamlit_element(
+    questions[tag]["question"],
+    questions[tag]["type"],
+    options=questions[tag].get("options"),
+    key=tag,
+)
+
+tag = SECTOR_STATE_KEY
+sector = question_generator.generate_streamlit_element(
     questions[tag]["question"],
     questions[tag]["type"],
     options=questions[tag].get("options"),

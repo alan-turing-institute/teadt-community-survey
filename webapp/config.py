@@ -4,6 +4,7 @@ DATABASE_NAME_ENV: str = "DB_NAME"
 COLLECTION_NAME_ENV: str = "COLLECTION_NAME"
 
 # Application management
+START_TIMESTAMP_STATE_KEY: str = "start_timestamp"
 USER_ID_STATE_KEY: str = "_id"
 SURVEY_SUBMITTED_STATE_KEY: str = "survey_submitted"
 ERROR_MESSAGES_STATE_KEY: str = "error_messages"
@@ -92,9 +93,11 @@ ADDITIONAL_INSIGHTS_STATE_KEY: str = "additional_insights"
 WORKSHOP_INTEREST_STATE_KEY: str = "workshop_interest"
 PROJECT_INTEREST_STATE_KEY: str = "project_interest"
 EMAIL_INTEREST_STATE_KEY: str = "email_interest"
+EVENT_INTEREST_STATE_KEY: str = "event_interest"
 EMAIL_STATE_KEY: str = "email"
 
 ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
+    START_TIMESTAMP_STATE_KEY,
     USER_ID_STATE_KEY,
     SECTOR_STATE_KEY,
     LOCATION_STATE_KEY,
@@ -156,6 +159,7 @@ ALL_SESSION_KEYS: list[str] = ALL_CONSENT_STATE_KEYS + [
     WORKSHOP_INTEREST_STATE_KEY,
     PROJECT_INTEREST_STATE_KEY,
     EMAIL_INTEREST_STATE_KEY,
+    EVENT_INTEREST_STATE_KEY,
     EMAIL_STATE_KEY,
 ]
 
@@ -230,7 +234,6 @@ ALL_REQUIRED_KEYS: list[str] = [
     OPERATIONALIZATION_CHALLENGES_STATE_KEY,
     COMMUNICATION_METHODS_STATE_KEY,
     NEED_FOR_VISUAL_TOOL_STATE_KEY,
-    BENEFITS_OF_VISUAL_TOOL_STATE_KEY,
     REASONS_AGAINST_VISUAL_TOOL_STATE_KEY,
     PREPAREDNESS_FOR_ARGUMENT_STATE_KEY,
     CHALLENGES_ADOPTION,
@@ -240,59 +243,69 @@ ALL_REQUIRED_KEYS: list[str] = [
 
 conditional_keys = {
     TYPE_DT_OTHER_STATE_KEY: {
-        "depends_on_key": TYPE_DT_STATE_KEY,
+        "depends_on_key": [
+            TYPE_DT_STATE_KEY,
+        ],
         "depends_on_response": ["Other (Please specify)"],
     },
     PURPOSE_DT_OTHER_STATE_KEY: {
-        "depends_on_key": PURPOSE_DT_STATE_KEY,
+        "depends_on_key": [PURPOSE_DT_STATE_KEY],
         "depends_on_response": ["Other (Please specify)"],
     },
     NO_DT_REASON_STATE_KEY: {
-        "depends_on_key": ESTABLISHED_DT_STATE_KEY,
+        "depends_on_key": [ESTABLISHED_DT_STATE_KEY],
         "depends_on_response": ["No"],
     },
     TYPE_DT_STATE_KEY: {
-        "depends_on_key": ESTABLISHED_DT_STATE_KEY,
-        "depends_on_response": ["Yes"],
+        "depends_on_key": [ESTABLISHED_DT_STATE_KEY],
+        "depends_on_response": [
+            "Yes",
+            "Indirectly (We support clients "
+            "or provide components for digital twins)",
+        ],
     },
     PURPOSE_DT_STATE_KEY: {
-        "depends_on_key": ESTABLISHED_DT_STATE_KEY,
-        "depends_on_response": ["Yes"],
+        "depends_on_key": [ESTABLISHED_DT_STATE_KEY],
+        "depends_on_response": [
+            "Yes",
+            "Indirectly (We support clients "
+            "or provide components for digital twins)",
+        ],
     },
     ASSURED_PROPERTIES_OTHER_STATE_KEY: {
-        "depends_on_key": ASSURED_PROPERTIES_STATE_KEY,
+        "depends_on_key": [ASSURED_PROPERTIES_STATE_KEY],
         "depends_on_response": ["Other (Please specify)"],
     },
     ASSURANCE_MECHANISM_OTHER_STATE_KEY: {
-        "depends_on_key": ASSURANCE_MECHANISMS_STATE_KEY,
+        "depends_on_key": [ASSURANCE_MECHANISMS_STATE_KEY],
         "depends_on_response": ["Other (Please specify)"],
     },
     SUPPORT_FOR_ASSURANCE_OTHER_STATE_KEY: {
-        "depends_on_key": SUPPORT_FOR_ASSURANCE_STATE_KEY,
+        "depends_on_key": [SUPPORT_FOR_ASSURANCE_STATE_KEY],
         "depends_on_response": ["Other (Please specify)"],
     },
     FRAMEWORK_DESCRIPTION_STATE_KEY: {
-        "depends_on_key": ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
+        "depends_on_key": [ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY],
         "depends_on_response": ["Yes  / Something similar"],
     },
     FRAMEWORK_DEVELOPMENT_STATE_KEY: {
-        "depends_on_key": ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY,
+        "depends_on_key": [ETHICAL_FRAMEWORK_EXISTENCE_STATE_KEY],
         "depends_on_response": ["Yes  / Something similar"],
     },
     REASONS_AGAINST_VISUAL_TOOL_STATE_KEY: {
-        "depends_on_key": NEED_FOR_VISUAL_TOOL_STATE_KEY,
+        "depends_on_key": [NEED_FOR_VISUAL_TOOL_STATE_KEY],
         "depends_on_response": ["No"],
     },
     BENEFITS_OF_VISUAL_TOOL_STATE_KEY: {
-        "depends_on_key": NEED_FOR_VISUAL_TOOL_STATE_KEY,
+        "depends_on_key": [NEED_FOR_VISUAL_TOOL_STATE_KEY],
         "depends_on_response": ["Yes"],
     },
     PARTNER_TRUST_DIFFICULTY_STATE_KEY: {
-        "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,
+        "depends_on_key": [ASSET_DATA_SHARING_STATE_KEY],
         "depends_on_response": ["Yes"],
     },
     PARTNER_TRUST_CHALLENGES_STATE_KEY: {
-        "depends_on_key": PARTNER_TRUST_DIFFICULTY_STATE_KEY,
+        "depends_on_key": [PARTNER_TRUST_DIFFICULTY_STATE_KEY],
         "depends_on_response": [
             "Neutral",
             "Somewhat Difficult",
@@ -300,11 +313,11 @@ conditional_keys = {
         ],
     },
     RELIANCE_ON_EVIDENCE_STATE_KEY: {
-        "depends_on_key": ASSET_DATA_SHARING_STATE_KEY,
+        "depends_on_key": [ASSET_DATA_SHARING_STATE_KEY],
         "depends_on_response": ["Yes"],
     },
     CHALLENGE_GOOD_STATE_KEY: {
-        "depends_on_key": RELEVANCE_GOOD_STATE_KEY,
+        "depends_on_key": [RELEVANCE_GOOD_STATE_KEY],
         "depends_on_response": [
             "Slightly",
             "Moderately",
@@ -313,7 +326,7 @@ conditional_keys = {
         ],
     },
     CHALLENGE_VALUE_STATE_KEY: {
-        "depends_on_key": RELEVANCE_VALUE_STATE_KEY,
+        "depends_on_key": [RELEVANCE_VALUE_STATE_KEY],
         "depends_on_response": [
             "Slightly",
             "Moderately",
@@ -322,7 +335,7 @@ conditional_keys = {
         ],
     },
     CHALLENGE_INSIGHT_STATE_KEY: {
-        "depends_on_key": RELEVANCE_INSIGHT_STATE_KEY,
+        "depends_on_key": [RELEVANCE_INSIGHT_STATE_KEY],
         "depends_on_response": [
             "Slightly",
             "Moderately",
@@ -331,7 +344,7 @@ conditional_keys = {
         ],
     },
     CHALLENGE_SECURITY_STATE_KEY: {
-        "depends_on_key": RELEVANCE_SECURITY_STATE_KEY,
+        "depends_on_key": [RELEVANCE_SECURITY_STATE_KEY],
         "depends_on_response": [
             "Slightly",
             "Moderately",
@@ -340,7 +353,7 @@ conditional_keys = {
         ],
     },
     CHALLENGE_OPENNESS_STATE_KEY: {
-        "depends_on_key": RELEVANCE_OPENNESS_STATE_KEY,
+        "depends_on_key": [RELEVANCE_OPENNESS_STATE_KEY],
         "depends_on_response": [
             "Slightly",
             "Moderately",
@@ -349,7 +362,7 @@ conditional_keys = {
         ],
     },
     CHALLENGE_QUALITY_STATE_KEY: {
-        "depends_on_key": RELEVANCE_QUALITY_STATE_KEY,
+        "depends_on_key": [RELEVANCE_QUALITY_STATE_KEY],
         "depends_on_response": [
             "Slightly",
             "Moderately",
@@ -358,7 +371,7 @@ conditional_keys = {
         ],
     },
     CHALLENGE_FEDERATION_STATE_KEY: {
-        "depends_on_key": RELEVANCE_FEDERATION_STATE_KEY,
+        "depends_on_key": [RELEVANCE_FEDERATION_STATE_KEY],
         "depends_on_response": [
             "Slightly",
             "Moderately",
@@ -367,7 +380,7 @@ conditional_keys = {
         ],
     },
     CHALLENGE_CURATION_STATE_KEY: {
-        "depends_on_key": RELEVANCE_CURATION_STATE_KEY,
+        "depends_on_key": [RELEVANCE_CURATION_STATE_KEY],
         "depends_on_response": [
             "Slightly",
             "Moderately",
@@ -376,12 +389,31 @@ conditional_keys = {
         ],
     },
     CHALLENGE_EVOLUTION_STATE_KEY: {
-        "depends_on_key": RELEVANCE_EVOLUTION_STATE_KEY,
+        "depends_on_key": [RELEVANCE_EVOLUTION_STATE_KEY],
         "depends_on_response": [
             "Slightly",
             "Moderately",
             "Very",
             "Extremely Relevant",
+        ],
+    },
+    OPERATIONALIZATION_CHALLENGES_STATE_KEY: {
+        "depends_on_key": [
+            CHALLENGE_GOOD_STATE_KEY,
+            CHALLENGE_VALUE_STATE_KEY,
+            CHALLENGE_INSIGHT_STATE_KEY,
+            CHALLENGE_SECURITY_STATE_KEY,
+            CHALLENGE_OPENNESS_STATE_KEY,
+            CHALLENGE_QUALITY_STATE_KEY,
+            CHALLENGE_FEDERATION_STATE_KEY,
+            CHALLENGE_CURATION_STATE_KEY,
+            CHALLENGE_EVOLUTION_STATE_KEY,
+        ],
+        "depends_on_response": [
+            "Slightly",
+            "Moderately",
+            "Very",
+            "Extremely challenging",
         ],
     },
 }

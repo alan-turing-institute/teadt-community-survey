@@ -34,6 +34,10 @@ try:
     # Retrieve data from database and output info/graphics
     client: MongoClient = mongo_utils.init_connection()
     if client:
+        # check how many submissions already
+        total_response_count = mongo_utils.check_response_count(
+            client, threshold=10
+        )
         # Query data for charts
         sector_data = mongo_utils.get_field_values(client, "sector")
         role_data = mongo_utils.get_field_values(client, "role")

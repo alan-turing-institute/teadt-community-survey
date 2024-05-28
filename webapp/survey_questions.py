@@ -41,7 +41,6 @@ questions: dict[str, Any] = {
             "Oil and Gas",
             "Place Leadership",
             "Rail",
-            "Research",
             "Smart Cities",
             "Supply Chain and Logistics",
             "Technology",
@@ -105,7 +104,7 @@ questions: dict[str, Any] = {
             "Operational Management (e.g., oversee daily operations)",
             "Governance Influence (e.g., guide decision-making and policies)",
             "Research and Innovation (e.g., conduct R&D for innovation)",
-            "Other (Please specify):",
+            "Other",
         ],
         "section": "community_composition",  # Example section
     },
@@ -553,7 +552,8 @@ questions: dict[str, Any] = {
     },
     "operationalization_challenges": {
         "tag": "operationalization_challenges",
-        "question": "For those rated very challenging or extremely challenging"
+        "question": "For those rated slightly challenging "
+        "to extremely challenging"
         " to operationalize, what are the main challenges you "
         "(or your clients) face?",
         "type": "text_area",
