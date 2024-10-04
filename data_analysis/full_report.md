@@ -60,7 +60,7 @@ The majority of respondents (68%) conduct assurance internally, with most relyin
 **3. Assurance Focuses on Technical and Economic Performance**  
 Most respondents assure approximately seven or fewer properties of digital twins, focusing primarily on technical and economic performance. Societal properties, such as safety and trustworthiness, are assured to a lesser extent, with ethical, legal, and regulatory aspects being even less frequently addressed. Ecosystem integration properties, except for interoperability, were the least selected, highlighting gaps in broader assurance considerations.
 
-![What properties do you assure for?](report_plots/1x/properties_assured.png)
+![What properties do you assure for?](report_plots/formatted_plots/properties_assured.png)
 
 **4. Varied Understanding of Assurance in Digital Twins**
 The understanding of assurance varied widely among respondents. Some focused on specific properties of digital twins, while others emphasized the broader goal of increasing trust. Key themes included validation, verification, and testing, with many responses mentioning trust and confidence as the primary outcomes. Specific goals such as accuracy, utility, privacy, and reliability were commonly mentioned, but safety and compliance were less prominent. For example:
@@ -72,6 +72,9 @@ The understanding of assurance varied widely among respondents. Some focused on 
 - "Independent validation of transparency, security, and trustworthiness in the data, processes, and purpose of the digital twin."
 
 The diversity in responses indicates that assurance is not yet a mature or consistently shared concept across the digital twin community.
+
+![What do you understand 'assurance' to mean?](report_plots/wordclouds/wordcloud_assure_meaning.svg)
+
 
 **5. Mixed Satisfaction with Assurance Practices and Communication**  
 To understand satisfaction with current assurance practices, respondents were asked how satisfied they were with how their team identifies and documents requirements, actions, and decisions in their assurance process. We also provided three statements related to assurance integration, communication, and alignment with higher-level principles, and asked respondents to rate their level of agreement on a Likert scale from 1 (strongly disagree) to 5 (strongly agree).
