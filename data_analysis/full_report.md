@@ -73,13 +73,17 @@ The understanding of assurance varied widely among respondents. Some focused on 
 
 The diversity in responses indicates that assurance is not yet a mature or consistently shared concept across the digital twin community.
 
-![What do you understand 'assurance' to mean?](report_plots/wordclouds/wordcloud_assure_meaning.svg)
+![What do you understand 'assurance' to mean?](report_plots/wordclouds/wordcloud_meaning.svg)
 
 
 **5. Mixed Satisfaction with Assurance Practices and Communication**  
 To understand satisfaction with current assurance practices, respondents were asked how satisfied they were with how their team identifies and documents requirements, actions, and decisions in their assurance process. We also provided three statements related to assurance integration, communication, and alignment with higher-level principles, and asked respondents to rate their level of agreement on a Likert scale from 1 (strongly disagree) to 5 (strongly agree).
 
 Overall, respondents reported a high level of satisfaction with their assurance activities, particularly in the effectiveness of communicating assurance to build stakeholder trust. The majority agreed that assurance activities are substantively integrated into operational practices and that these activities can be clearly linked to higher-level trustworthiness and ethical principles. However, there was also a notable minority who disagreed with these statements, indicating variability in how assurance practices are perceived and implemented. This divergence may partly explain why 16% of respondents reported being unsatisfied with their overall assurance process.
+
+![Satisfaction ratings](report_plots/formatted_plots/attitudes.png)
+
+
 ## Gemini Principles
 
 **6. High Relevance but Limited Practical Value of Guiding Principles**  
@@ -87,20 +91,38 @@ To understand perceptions of guiding principles like the Gemini Principles, resp
 
 When asked to rate the relevance of each principle, most respondents indicated that they found them "very" or "extremely relevant," showing strong overall agreement on their importance. However, when assessing their practical value, responses were more mixed, with many considering the principles only "moderately valuable." This paradox suggests that while the principles are recognized as the right set of guidelines, they are not perceived as valuable in practice—likely because they are challenging to effectively implement.
 
+![High relevance overall](report_plots/gemini_high_relevance.svg)
+
+![Moderate Value](report_plots/gemini_value.svg)
+
+
 **7. High Relevance Ratings Across All Principles**  
 All guiding principles were rated as either "Very" or "Extremely Relevant" by the majority of respondents, indicating a broad consensus on their overall importance. Among these, "Insight," "Value," and "Quality" were rated most highly, reflecting their particular significance within the community.
+
+![Relevance](report_plots/relevance_stacked.svg)
 
 **8. Mixed perceived Challenges across Principles**
 For all principles (except those rated as irrelevant), respondents were asked to rate how challenging each principle was to implement. While "Moderately Challenging" was the most common response across all principles, notable differences emerged in the more extreme ratings. "Federation" received the most "Extremely Challenging" ratings, followed by "Evolution" and "Security." In contrast, "Insight" was the only principle never rated as extremely challenging and was generally seen as less challenging. Interestingly, the principles of "Curation" and "Openness" had symmetric extreme responses, with equal numbers finding them either not at all challenging or extremely challenging, possibly reflecting differences in sector or stages of digital twin adoption.
 
+![Challenge](report_plots/challenge_stacked.svg)
+
 When comparing principles relative to each other, "Quality" and "Security" emerged in the upper right quadrant, indicating that, relatively speaking, they were the most challenging principles among those rated as most relevant. This variability highlights the complexity of putting these principles into practice and warrants further exploration through in-depth interviews to understand the underlying reasons.
+
+![Quadrants](report_plots/quadrant_gemini.svg)
 
 **9. Mixed Interest in Connected Digital Twins and Challenges in Establishing Trust**  
 Only 55% of respondents reported considering sharing data or models with other organizations to build connected digital twins, which may explain why the "Federation" principle received relatively low relevance ratings. This suggests that not all digital twin practitioners are focused on creating connected digital twins. Among those who did pursue connected twins, 67% found it difficult to establish trust in the resulting shared digital twin. The challenges reported included a broad range of issues, with the most common being intellectual property rights, data confidentiality, interoperability, and insufficient digital awareness. This indicates that for those who find "Federation" relevant, it is often perceived as highly challenging to implement.
 
+![Satisfaction ratings](report_plots/formatted_plots/data_sharing.png)
+
+![Satisfaction ratings](report_plots/formatted_plots/trust_challenges.png)
+
 
 **10. Key Challenges in Implementing the Gemini Principles: Uncertainty, Lack of Standards, and Communication Barriers**  
 The main challenges reported when putting the Gemini Principles into practice were categorized into four key themes: "Not knowing how," "Communicating value," "Data Concerns," and "Lack of consistency."
+
+TODO: add wordcloud (fig needs to be regenerated)
+
 
 The theme "Not knowing how" best encapsulates a sense of uncertainty among respondents, often reflecting an inability to determine where to begin or a lack of the necessary knowledge, including the absence of appropriate metrics or KPIs. This theme was especially prominent for principles like "Public good," "Evolution," and "Value," highlighting that the digital twin space is still developing and that some sectors exhibit lower maturity when addressing these foundational concepts. For instance:
 - “It is not clear what public good in perpetuity would look like.”
@@ -121,11 +143,18 @@ These challenges demonstrate that while the Gemini Principles are recognized as 
 **11. Readiness for Argument-Based Assurance: Interest in Tools but Uncertainty Remains**  
 When asked about their readiness for a tool to support argument-based assurance, 48% of respondents indicated that such a tool would enhance trust in their digital twins by helping structure and communicate how assurance measures align with ethical goals. Another 38% expressed interest but required more information to fully understand its utility, while only 14% did not see the value of such a tool. Among those interested, common benefits included the potential for a more standardized approach, improved understanding of both the system and assurance process, and the ability to challenge or revisit assurance arguments. In contrast, those who were not interested in the tool often cited that it was not applicable to their work or did not align with their existing stakeholder communication practices.
 
+
 **12. Lack of Established Frameworks for Trustworthy and Ethical Digital Twins**  
 A significant gap was identified in the foundational understanding of digital twin ethics, with 72% of respondents indicating that their organizations lacked an established definition or framework for trustworthy and ethical digital twins. This highlights a lack of clarity in operationalizing ethical principles, signaling an area for potential development.
 
+
+![framework](report_plots/ethics_framework.svg.svg)
+
+
 **13. Gap in Structuring and Communicating Assurance Cases**  
 The majority of respondents (60+%) communicate their assurance work verbally during meetings, with 40% not using any structured approach for this communication. Fewer than 30% use visual aids in their reports, demonstrating a clear gap in effectively structuring and conveying assurance cases across the industry. Although some respondents do follow established standards or use visual aids, further exploration is needed to better understand current practices and identify how TEA could support and integrate with these existing approaches.
+
+![framework](report_plots/comms.svg)
 
 **14. Value Demonstration and Skills Training Identified as Key Needs for Tool Adoption**  
 When asked about the support needed to adopt the TEA tool and create assurance cases around ethical principles, the majority of respondents indicated that they would require a value demonstration to justify building an assurance case, emphasizing the need for a clear business justification. Additionally, a significant number of respondents highlighted their lack of expertise in implementing assurance tools as a major challenge, making skills training the second most requested form of support. A substantial number of respondents selected costs and lack of time as potentail challenges, although those were chosen to a lesser degree. The least frequently selected challenges were around internal resistance and integration with governance process or tech stack. Interestingly, community forums were the least selected support option, chosen by only 24% of respondents, suggesting a preference for more direct or formal methods of learning and engagement.
