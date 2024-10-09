@@ -156,7 +156,7 @@ For all principles (except those rated as irrelevant), respondents were asked to
 
 When comparing principles relative to each other, "Quality" and "Security" emerged in the upper right quadrant, indicating that, relatively speaking, they were the most challenging principles among those rated as most relevant. These two principles are good candidates to be worked out further, as most practitioners would benefit from more specific and illustrative best practices in those areas.
 
-![Quadrants](report_plots/quadrant_gemini.svg)
+![Quadrants](report_plots/formatted_plots/quadrant_gemini.png)
 
 **9. Mixed Interest in Connected Digital Twins and Challenges in Establishing Trust**  
 Only about half (55%) of respondents reported considering sharing data or models with other organizations to build connected digital twins, which may explain why the "Federation" principle received relatively low relevance ratings. This suggests that not all digital twin practitioners are focused on creating connected digital twins. Among those who did pursue connected twins, 67% found it difficult to establish trust in the resulting shared digital twin. The challenges reported included a broad range of issues, with the most common being intellectual property rights, data confidentiality, interoperability, and insufficient digital awareness. This indicates that for those who find "Federation" relevant, it is often perceived as highly challenging to implement.
