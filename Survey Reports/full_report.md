@@ -64,7 +64,7 @@ Respondents came from ten different countries, with the majority based in the UK
 | Telecommunications                 | 1     |
 | Water                              | 1     |
 
-![role](report_plots/roles.svg.svg)
+![role](report_plots/roles.svg)
 
 
 **Survey Structure and Content**  
@@ -146,13 +146,13 @@ When asked to rate the relevance of each principle, most respondents indicated t
 **7. High Relevance Ratings Across All Principles**  
 All guiding principles were rated as either "Very" or "Extremely Relevant" by the majority of respondents, indicating a broad consensus on their overall importance. Among these, "Insight," "Value," and "Quality" were more often rated as "extremely relevant" compared to other principles, reflecting their particular significance within the community.
 
-![Relevance](report_plots/relevance_stacked.svg)
+![Relevance](report_plots/relevance_stacked.png)
 
 **8. Mixed perceived Challenges across Principles**
 
 For all principles (except those rated as irrelevant), respondents were asked to rate how challenging each principle was to implement. While "Moderately Challenging" was the most common response across all principles (not displayed below!), notable differences emerged in the more extreme ratings. "Federation" received the most "Extremely Challenging" ratings, followed by "Public Good, "Evolution" and "Security." In contrast, "Insight" was the only principle never rated as extremely challenging and was generally seen as less challenging. Interestingly, the principles of "Curation" and "Openness" had symmetric extreme responses, with equal numbers finding them either not at all challenging or extremely challenging, possibly reflecting differences in sector or stages of digital twin adoption. This variability highlights the complexity of putting these principles into practice and warrants further exploration through in-depth interviews to understand the underlying reasons.
 
-![Challenge](report_plots/challenge_stacked.svg)
+![Challenge](report_plots/challenge_stacked.png)
 
 When comparing principles relative to each other, "Quality" and "Security" emerged in the upper right quadrant, indicating that, relatively speaking, they were the most challenging principles among those rated as most relevant. These two principles are good candidates to be worked out further, as most practitioners would benefit from more specific and illustrative best practices in those areas.
 
@@ -201,7 +201,7 @@ A significant gap was identified in the foundational understanding of digital tw
 **13. Gap in Structuring and Communicating Assurance Cases**  
 The majority of respondents (64%) communicate their assurance work verbally during meetings, with 42% not using any structured approach for this communication. Only 30% use visual aids in their reports, demonstrating a clear gap in effectively structuring and conveying assurance cases across the industry. Although some respondents do follow established standards or use visual aids, further exploration is needed to better understand current practices and identify how TEA could support and integrate with these existing approaches.
 
-![framework](report_plots/comms.svg)
+![framework](report_plots/comms.png)
 
 **14. Value Demonstration and Skills Training Identified as Key Needs for Tool Adoption**  
 When asked about the support needed to adopt the TEA tool and create assurance cases around ethical principles, the majority of respondents indicated that they would require a **value demonstration** to justify building an assurance case, emphasizing the need for a clear business justification. Additionally, a significant number of respondents highlighted their lack of expertise in implementing assurance tools as a major challenge, making **skills training** the second most requested form of support. A substantial number of respondents selected costs and lack of time as potential challenges, although those were chosen less frequently. The least frequently selected challenges were around internal resistance and integration with governance process or tech stack. Interestingly, community forums were the least requested support option, chosen by only 24% of respondents, suggesting a preference for more direct or formal methods of learning and engagement.
