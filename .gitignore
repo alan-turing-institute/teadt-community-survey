@@ -3,3 +3,6 @@
 venv/
 *.pyc
 db/*
+
+.quarto/
+_site/

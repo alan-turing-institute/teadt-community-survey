@@ -1,0 +1,13 @@
+---
+title: "TEA-DT Community Pulse Check"
+---
+
+This site has been setup to help users navigate the resources of this repository.
+
+On this site you will find the following:
+
+- Description of the project
+- Description of the codebase 
+- Methodology for our "community pulse check" (i.e. survey)
+- Results of the survey
+

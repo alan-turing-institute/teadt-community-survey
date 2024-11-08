@@ -1,0 +1,30 @@
+---
+title: "About"
+---
+
+This site has been setup to help users navigate the resources of this repository.
+
+On this site you will find the following:
+
+- Description of the project (this page)
+- [Description of the codebase](codebase.qmd)
+- [Methodology for our survey](methodology.qmd)
+- [Results and analysis](results-analysis.qmd)
+
+## Trustworthy and Ethical Assurance of Digital Twins (TEA-DT)
+
+The Trustworthy and Ethical Assurance of Digital Twins project ran from February to October 2024.
+It was a collaborative project between the Turing Research and Innovation Cluster in Digital Twins (Alan Turing Institute) and the Centre for Assuring Autonomy (University of York), with support from the Responsible Technology Adoption Unit (UK Department for Science, Innovation and Technology).
+Funding for the project was awarded by the [BRAID programme](https://braiduk.org/) (UKRI AHRC).
+
+There were three primary objectives for this project:
+
+1. Scoping research into assurance of digital twins
+2. Co-design of an open-source tool and platform
+3. Establish a multi-disciplinary and multi-sector community of practice
+
+### Community Pulse Check
+
+As part of the scoping research, [Dr Sophie Arana](https://www.turing.ac.uk/people/dr-sophie-arana) led the design and delivery of a survey, known as our "community pulse check", to help identify current attitudes, needs, and capabilities, among digital twin practitioners (e.g. researchers and developers).
+
+This survey was carried out in partnership with the [Digital Twin Hub](https://digitaltwinhub.co.uk/) (Connected Places Catapult) given their extensive network of over 5000 members.
