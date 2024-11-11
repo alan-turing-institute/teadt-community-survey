@@ -28,3 +28,39 @@ There were three primary objectives for this project:
 As part of the scoping research, [Dr Sophie Arana](https://www.turing.ac.uk/people/dr-sophie-arana) led the design and delivery of a survey, known as our "community pulse check", to help identify current attitudes, needs, and capabilities, among digital twin practitioners (e.g. researchers and developers).
 
 This survey was carried out in partnership with the [Digital Twin Hub](https://digitaltwinhub.co.uk/) (Connected Places Catapult) given their extensive network of over 5000 members.
+
+### Project Team
+
+<table>
+    <tbody>
+        <tr>
+            <td align="center" valign="top" width="14.28%">
+                <a href="https://github.com/aranas"><img src="https://avatars.githubusercontent.com/u/6906140?v=4?s=100" width="100px;" alt="Sophie Arana" style="border-radius: 50%;"/><br /><sub><b>Sophie Arana</b></sub></a>
+            </td>
+            <td align="center" valign="top" width="14.28%">
+                <a href="https://github.com/chrisdburr">
+                    <img src="https://avatars.githubusercontent.com/u/63010234?v=4?s=100" width="100px;" alt="Christopher Burr" style="border-radius: 50%;"/>
+                    <br />
+                    <sub><b>Christopher Burr</b></sub>
+                </a>
+                <br />
+            </td>
+            <td align="center" valign="top" width="14.28%">
+                <a href="https://github.com/cptanalatriste">
+                    <img src="https://avatars.githubusercontent.com/u/1616531?v=4?s=100" width="100px;" alt="Christopher Burr" style="border-radius: 50%;"/>
+                    <br />
+                    <sub><b>Carlos Gavidia-Calderon</b></sub>
+                </a>
+                <br />
+            </td>
+            <!-- Add Nathan -->
+        </tr>
+    </tbody>
+</table>
+
+### Acknowledgements
+
+In addition to the above contributors, we would also like to thank the following people:
+
+<!-- TODO: Add list -->
+
