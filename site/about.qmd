@@ -64,3 +64,29 @@ In addition to the above contributors, we would also like to thank the following
 
 <!-- TODO: Add list -->
 
+### About our Codebase
+
+For the community pulse-check, we designed an interactive form that could provide feedback to participants as soon as they submitted their responses.
+This was only possible for a subset of questions, such as those with a fixed set of responses:
+
+> Which of the following assurance mechanisms do you currently rely on for your own (or your client's) digital twin(s)?
+
+This was achieved by using a free and open-source framework known as [Streamlit](https://streamlit.io).
+Streamlit is designed to help users build data-driven web applications, with an emphasis on interactive dashboards and visualisations, using Python (i.e. with minimal knowledge of HTML, CSS, and Javascript).
+
+That said, it took considerable time and effort to customise the survey and ensure that community responses were properly displayed, raising questions among the team about whether it provided sufficient value to those completing the survey. 
+
+However, for transparency, our code is fully available through the associated GitHub repository.
+
+## `webapp` directory
+
+In the `webapp` directory, you will find code for the main application, such as the following individual Python files:
+
+- **`pages/01_Consent.py`**: Consent was obtained prior to completion of the survey by requirining explicit acknowledgement of key statements. This file handles the consent form.
+- **`pages/02_1_-_Community.py`**: This file generates survey questions related to the community's digital twin practices, and is similar to other pages within this directory (e.g. `06_3_-_Satisfaction.py`).
+- **`pages/03_Community_Results.py`**: This file displays the results from the questions in the previous page (i.e. `02_1_-_Community.py`). It retrieves data from our database (MongoDB), counts responses matching the user's profile, and provides feedback based on the count.
+- **mongo_utils.py**: This file contains utility functions for interacting with database. It includes functions for initialising the database connection, checking response counts, and retrieving field values from the database.
+- **plot_utils.py**: This file contains utility functions for generating plots and visualisations. 
+
+These files, and the remaining files contained within the `webapp` directory, collectively manage the survey's flow, from user consent to displaying results and follow-up questions, while interacting with the MongoDB database and generating visualisations using Streamlit.
+
