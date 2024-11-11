@@ -252,6 +252,6 @@ The majority of respondents (64%) communicate their assurance work verbally duri
 **14. Value Demonstration and Skills Training Identified as Key Needs for Tool Adoption**  
 When asked about the support needed to adopt the TEA tool and create assurance cases around ethical principles, the majority of respondents indicated that they would require a **value demonstration** to justify building an assurance case, emphasizing the need for a clear business justification. Additionally, a significant number of respondents highlighted their lack of expertise in implementing assurance tools as a major challenge, making **skills training** the second most requested form of support. A substantial number of respondents selected costs and lack of time as potential challenges, although those were chosen less frequently. The least frequently selected challenges were around internal resistance and integration with governance process or tech stack. Interestingly, community forums were the least requested support option, chosen by only 24% of respondents, suggesting a preference for more direct or formal methods of learning and engagement.
 
-# Appendix
+## Appendix
 
 TODO: add List of survey questions
