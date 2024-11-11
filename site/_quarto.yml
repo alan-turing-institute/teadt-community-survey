@@ -5,9 +5,25 @@ website:
   title: "TEA-DT Community Pulse Check"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+      - href: methodology.qmd
+        text: Methodology
+      - text: Survey Analysis and Results
+        menu:
+          - analysis.qmd
+          - notebooks.qmd
+      - href: codebase.qmd
+        text: Codebase
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href:  https://github.com/alan-turing-institute/teadt-community-survey
+          - text: Report a Bug
+            href:  https://github.com/alan-turing-institute/teadt-community-survey/issues
+  repo-url: github.com/alan-turing-institute/teadt-community-survey
+  repo-actions: [source, issue]
 
 format:
   html:
