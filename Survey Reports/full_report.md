@@ -1,4 +1,4 @@
-# Full narrative report
+# Full report
 
 # Study Objectives & Research Questions
 This study was conducted by the Innovation & Impact Hub, part of the Turing Research and Innovation cluster for digital twins. The aim was to explore the challenges and opportunities for assurance of digital twins within the community, with a particular focus on the application of high-level guiding principles such as the Gemini Principles.
