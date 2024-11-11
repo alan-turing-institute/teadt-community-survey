@@ -1,0 +1,39 @@
+# This workflow will convert the markdown report file into pdf
+
+name: Update PDF from Markdown
+
+on:
+  push:
+    paths:
+      - 'Survey Reports/full_report.md'  # Trigger on changes to any markdown file
+  workflow_dispatch:  # Allows for manual runs
+
+jobs:
+  convert-to-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Pandoc
+        run: |
+          sudo apt update
+          sudo apt install -y pandoc texlive texlive-latex-recommended
+
+      - name: Convert Markdown to PDF
+        run: |
+          for file in $(find . -name "*.md"); do
+            output_file="${file%.md}.pdf"
+            pandoc "$file" -o "$output_file"
+          done
+
+      - name: Commit and push updated PDFs
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add *.pdf
+          git commit -m "Update PDF files from Markdown"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
