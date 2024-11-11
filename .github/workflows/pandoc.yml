@@ -24,9 +24,15 @@ jobs:
       - name: Convert Markdown to PDF
         run: |
           for file in $(find . -name "Survey Reports/full_report.md"); do
-            output_file="${file%.md}.pdf"
-            pandoc "$file" -o "$output_file"
-          done
+            if [ -f "$file" ]; then
+              echo "Found file: $file"
+              output_file="${file}.pdf"
+              echo "Converting $file to $output_file"
+              pandoc "$file" -o "$output_file"
+            else
+              echo "File not found: Survey Reports/full_report.md"
+            fi
+            done
 
       - name: Commit and push updated PDFs
         run: |
