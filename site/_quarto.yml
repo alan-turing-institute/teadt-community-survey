@@ -13,8 +13,6 @@ website:
         menu:
           - analysis.qmd
           - notebooks.qmd
-      - href: codebase.qmd
-        text: Codebase
     tools:
       - icon: github
         menu:
