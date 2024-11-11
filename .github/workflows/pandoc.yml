@@ -21,19 +21,23 @@ jobs:
           sudo apt update
           sudo apt install -y pandoc texlive texlive-latex-recommended
 
-      - name: Convert Markdown to PDF
+      - name: Check if Markdown file was modified
+        id: file_check
         run: |
-          for file in $(find . -name "Survey Reports/full_report.md"); do
-            if [ -f "$file" ]; then
-              echo "Found file: $file"
-              output_file="${file}.pdf"
-              echo "Converting $file to $output_file"
-              pandoc "$file" -o "$output_file"
-            else
-              echo "File not found: Survey Reports/full_report.md"
-            fi
-            done
+          if git diff --name-only HEAD~1 HEAD | grep -q "Survey Reports/full_report.md"; then
+            echo "markdown_changed=true" >> $GITHUB_ENV
+          else
+          echo "markdown_changed=false" >> $GITHUB_ENV
+          fi
 
+      - name: Convert Markdown to PDF if Changed
+        if: env.markdown_changed == 'true'
+        run: |
+          input_file="Survey Reports/full_report.md"
+          output_file="Survey Reports/full_report.pdf"
+          echo "Converting $input_file to $output_file."
+          pandoc "$input_file" -o "$output_file"
+    
       - name: Commit and push updated PDFs
         run: |
           git config --global user.name 'github-actions[bot]'
