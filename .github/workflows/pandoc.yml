@@ -23,7 +23,7 @@ jobs:
 
       - name: Convert Markdown to PDF
         run: |
-          for file in $(find . -name "*.md"); do
+          for file in $(find . -name "Survey Reports/full_report.md"); do
             output_file="${file%.md}.pdf"
             pandoc "$file" -o "$output_file"
           done
