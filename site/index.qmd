@@ -1,13 +1,16 @@
 ---
 title: "TEA-DT Community Pulse Check"
+sidebar: false
 ---
 
-This site has been setup to help users navigate the resources of this repository.
+![](images/hero.jpg){fig-alt="A hero image for the website. It is an abstract image of people on floating platforms, investigating information. The illustrator is Jonny lighthands."}
 
-On this site you will find the following:
+Welcome to our Github repository's project pages.
+These pages were set up to help users navigate information pertainining to the TEA-DT Community Pulse Check.
 
-- Description of the project
-- Description of the codebase 
-- Methodology for our "community pulse check" (i.e. survey)
-- Results of the survey
+On this site you will find (among other things) the following:
 
+- Information about the TEA-DT project and the community pulse check
+- Details about our methodology
+- Results of the survey analysis
+- News and Updates

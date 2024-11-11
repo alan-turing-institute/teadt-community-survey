@@ -1,3 +1,155 @@
-# Methodology
+# Survey Methodology and Information
 
-<!-- TODO: migrate existing material into this page -->
+This page contains detailed information about the methodology used for our survey and analysis, including:
+
+1. [Our objectives and research questions](#study-objectives--research-questions)
+2. [Our recruitment and cognitive pilot](#survey-sample-and-recruitment)
+3. [Survey structure and content](#survey-structure)
+4. [Demographics of respondees](#demographics)
+
+Our aims in presenting this information is to a) ensure transparency and reproducibility, and b) enable others to reuse the codebase for similar work in the future.
+
+## Study Objectives & Research Questions
+
+As noted in the [about page](about.qmd), this study was conducted by the Innovation & Impact Hub (part of the [Turing Research and Innovation cluster for Digital Twins](https://www.turing.ac.uk/research/research-projects/tric-dt)) as part of the [TEA-DT project](https://www.turing.ac.uk/research/research-projects/trustworthy-and-ethical-assurance-digital-twins-tea-dt).
+
+The aim of this survey was to explore the challenges and opportunities for assurance of digital twins within the community, with a particular focus on the application of high-level guiding principles such as the Gemini Principles.
+
+::: {.callout-note}
+## About the Community
+Our goal was to target digital twin "practitioners", broadly construed as those actively involved in research, development, or governance of digital twins. This could include those who were part of a project to build a digital twin, or those working on tools or techniques for digital twinning.
+:::
+
+The study was divided into three main topics and for each topic we defined a set of research questions:
+
+- **Topic 1:** Current understanding and practices in assuring digital twins.
+	- **RQ1**: What is the maturity of the surveyed digital twin community?
+	- **RQ2:** What is the community's current understanding of assurance?
+	- **RQ3:** What practices are being used, including methods and properties assured?
+
+- **Topic 2:** Attitudes & perceived challenges in putting ethical and trustworthy digital twin principles into practice.
+	- **RQ4**: How satisfied is the community with their assurance practices?
+	- **RQ5:** How does the community perceive guiding principles (eg Gemini Principles)?
+	- **RQ6:** What challenges do people encounter when putting the Gemini Principles into practice?
+
+- **topic 3:** Readiness for, and attitudes towards, new tools for argument-based assurance.
+	- **RQ7:** What is the community's readiness for argument-based assurance methods?
+	- **RQ8**: What support is needed for successful adoption?
+
+## Survey Sample and Recruitment
+
+The survey aimed to gather insights from digital twin practitioners and was distributed to a number of digital twinning communities, including the Digital Twin Hub's community (comprising industry, academia, and public sector), the DTnet+ community (an academic network of digital twin practitioners), and the broader Alan Turing Institute's university network.
+Participants were recruited through community newsletters and social media (Twitter & LinkedIn).
+The survey was conducted completely anonymous, and we did not collect any sensitive data by default.
+Respondents could choose to submit their email address for the specific purpose of being contacted for events related to this piece of work (e.g. workshops presenting our analysis).
+
+We received a total of 50 responses, representing a broad spectrum of roles, including senior & strategic leadership, technical specialists, and research positions (see [demographics](#demographics)).
+The responses were roughly evenly split between these categories.
+Most participants reported balancing a range of responsibilities, including technical decision-making and operational management, while only four individuals included "Compliance" in their primary responsibilities.
+
+### Cognitive Pilot Overview
+
+A cognitive pilot was conducted with four digital twin practitioners to evaluate the survey's design and relevance.
+Participants filled in the survey in a live call while sharing their screen and vocalizing their thoughts.
+This allowed for immediate feedback on question clarity and response options.
+A combination of interviewer observation and retrospective probing techniques were used to identify potential problems of the survey and probe understanding.
+For example, in case of hesitation, the respondents were prompted to report on the possible reason (eg whether the question was not relevant enough to the respondents, ambiguous in its meaning or response options were not representative enough).
+At the end, feedback was collected on the survey’s length, value of dynamic results, and overall relevance.
+
+The feedback revealed that while the survey was engaging and appropriately balanced between multiple choice and free-text responses, there were concerns about limited response options and ambiguous wording in some questions.
+Based on these insights, changes were made to improve question phrasing, add more detailed response options, introduce a question about the primary purpose of digital twins, and provide additional help fields to aid navigation.
+
+## Survey Structure
+
+Following the adjustments made from the cognitive pilot, the survey was divided into five sections: 
+
+1. Background Information (e.g. sector, location)
+2. Current Assurance Practices and Understanding
+3. Satisfaction with Assurance Practices
+4. High-Level Assurance Goals and Ethical Frameworks
+5. Communicating Assurance
+
+The entire survey consisted of 25 core questions, with an additional eight questions that were conditional on previous responses (see example below).
+In addition, participants were asked to rate each Gemini Principle on how relevant and how challenging it was.
+The level of challenge, however, was only requested for those principles that were not deemed irrelevant.
+As a result, the number of questions varied considerably depending on the responses given throughout.
+
+::: {.callout-tip}
+## List of Questions
+To see a list of all survey questions, please [click here](questions.qmd).
+:::
+
+### Format and Duration
+
+The survey began in on May 30th and was open until July 31st.
+
+The survey was developed as a web-based application using the open-source Python framework Streamlit (see [codebase](codebase.qmd) for further information), enabling an interactive and user-friendly experience for participants.
+It was hosted on Azure infrastructure in line with our ethics review to data protection and secure data handling.
+
+The survey took an average of 18 minutes to complete.
+Throughout the survey, respondents received live feedback on some of the aggregated answers that had been submitted so far, making the experience more engaging.
+
+::: {.callout-tip title="Conditional Question Example"}
+In the survey, some questions were dependent on participants' previous responses.
+
+- **Main Question:** "Has your organisation established one or more digital twins?" (NB: this question was asked to all participants.)
+- **Follow-up Question (Conditional):** "What type of digital twin(s)?" (NB: this follow-up question was only shown to participants who answered "yes" or "indirectly" to the main question.)
+:::
+
+### Data Analysis
+
+For data analysis, we primarily used descriptive statistics to summarize quantitative responses.
+Additionally, we performed a more detailed content analysis on the qualitative data collected from four open-ended questions, with coding conducted by three independent coders to ensure reliability and depth of insights (see our [Analysis](analysis.qmd) section for further details).
+
+## Demographics
+
+Respondents came from ten different countries, with the majority based in the UK, and some selecting "global" as the primary location for their company.
+
+| Location              | Count |
+|:-----------------------|-------:|
+| United Kingdom        | 33    |
+| Global                | 8     |
+| United States         | 2     |
+| France                | 1     |
+| Germany               | 1     |
+| Italy                 | 1     |
+| Japan                 | 1     |
+| Singapore             | 1     |
+| South Africa          | 1     |
+| United Arab Emirates  | 1     |
+: Number of responses by location. {#tbl-location tbl-colwidths="[75,25]"}
+
+<br>
+Survey participants represented over 19 different sectors, with larger groups emerging from Energy, IT, and Engineering sectors:
+
+| Sector                             | Count |
+|:------------------------------------|-------:|
+| Energy                   			 | 7     |
+| Information technology / Software  | 5     |
+| Engineering                        | 5     |
+| Healthcare                         | 3     |
+| Smart Cities                       | 3     |
+| Other                              | 3     |
+| Manufacturing                      | 3     |
+| Artificial Intelligence            | 3     |
+| Education                          | 3     |
+| Defence                            | 3     |
+| Construction                       | 2     |
+| Technology                         | 2     |
+| Transport                          | 2     |
+| Environment and Conservation       | 1     |
+| Aviation                           | 1     |
+| National Government                | 1     |
+| Place Leadership                   | 1     |
+| Telecommunications                 | 1     |
+| Water                              | 1     |
+: Number of responses by sector. {#tbl-sector tbl-colwidths="[75,25]"}
+
+![Distribution of Survey Respondents by Role: The pie chart shows the percentage of survey respondents based on their roles within their organizations. The question asked was, "What is your role within your organisation?"](images/report_plots/roles.svg){#fig-respondents-role .lightbox}
+
+## Limitations
+
+One limitation of this survey is the bias towards participants from the UK.
+This bias is largely due to the networks through which the survey was distributed, which have a predominantly UK-based focus.
+Additionally, as the survey was conducted anonymously, we were unable to ensure balanced representation across other demographics.
+This anonymity, while protecting respondent privacy, limits our ability to assess and correct for potential imbalances in the survey sample.
