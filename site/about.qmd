@@ -53,7 +53,14 @@ This survey was carried out in partnership with the [Digital Twin Hub](https://d
                 </a>
                 <br />
             </td>
-            <!-- Add Nathan -->
+            <td align="center" valign="top" width="14.28%">
+                <a href="https://github.com/mavlishek">
+                    <img src="https://avatars.githubusercontent.com/u/35903424?v=4?s=100" width="100px;" alt="Nathan Hughes" style="border-radius: 50%;"/>
+                    <br />
+                    <sub><b>Nathan Hughes</b></sub>
+                </a>
+                <br />
+            </td>
         </tr>
     </tbody>
 </table>
