@@ -23,6 +23,8 @@ website:
   repo-url: github.com/alan-turing-institute/teadt-community-survey
   repo-actions: [source, issue]
 
+bibliography: refs.bib
+
 format:
   html:
     theme: cosmo
