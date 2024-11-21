@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 838.76 499.3">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke-width: 3px;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-22, .cls-23, .cls-24, .cls-25 {
+        stroke: #fff;
+        stroke-miterlimit: 6;
+      }
+
+      .cls-3 {
+        fill: #337538;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-22, .cls-23, .cls-24, .cls-25 {
+        stroke-width: 6px;
+      }
+
+      .cls-4 {
+        fill: #ecb742;
+      }
+
+      .cls-5 {
+        fill: #d9cc70;
+      }
+
+      .cls-6 {
+        fill: #b777b0;
+      }
+
+      .cls-7 {
+        fill: #99ba9b;
+      }
+
+      .cls-26 {
+        font-family: Geomanist-LightItalic, Geomanist;
+        font-style: italic;
+        font-weight: 300;
+      }
+
+      .cls-26, .cls-27 {
+        font-size: 14px;
+      }
+
+      .cls-28 {
+        letter-spacing: 0em;
+      }
+
+      .cls-29 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        fill: #f9e7c0;
+      }
+
+      .cls-9 {
+        fill: #e69f03;
+      }
+
+      .cls-30 {
+        letter-spacing: 0em;
+      }
+
+      .cls-10 {
+        fill: #f2cf81;
+      }
+
+      .cls-11 {
+        fill: #85beb2;
+      }
+
+      .cls-12 {
+        fill: #f7f1a0;
+      }
+
+      .cls-31 {
+        letter-spacing: 0em;
+      }
+
+      .cls-13 {
+        fill: #aed3cc;
+      }
+
+      .cls-32 {
+        font-family: Verdana, Verdana;
+        font-size: 9.61px;
+      }
+
+      .cls-32, .cls-27 {
+        fill: #2a3f5f;
+        isolation: isolate;
+      }
+
+      .cls-14 {
+        fill: #4096c7;
+      }
+
+      .cls-15 {
+        fill: #80d9ef;
+      }
+
+      .cls-16 {
+        fill: #812c55;
+      }
+
+      .cls-17 {
+        fill: #bfecf7;
+      }
+
+      .cls-18 {
+        fill: #40c7e7;
+      }
+
+      .cls-19 {
+        fill: #f4eb71;
+      }
+
+      .cls-20 {
+        fill: #fbf8d0;
+      }
+
+      .cls-33 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-34 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-35 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-36 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-37 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-38 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-39 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-21 {
+        fill: #e7d2e5;
+      }
+
+      .cls-40 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-41 {
+        letter-spacing: 0em;
+      }
+
+      .cls-42 {
+        letter-spacing: 0em;
+      }
+
+      .cls-43 {
+        letter-spacing: 0em;
+      }
+
+      .cls-22 {
+        fill: #66976a;
+      }
+
+      .cls-23 {
+        fill: #cfa4ca;
+      }
+
+      .cls-44 {
+        font-size: 20.05px;
+      }
+
+      .cls-44, .cls-27, .cls-45 {
+        font-family: Geomanist-Book, Geomanist;
+      }
+
+      .cls-24 {
+        fill: #ccdccd;
+      }
+
+      .cls-25 {
+        fill: #5da899;
+      }
+
+      .cls-46 {
+        letter-spacing: .03em;
+      }
+
+      .cls-47 {
+        letter-spacing: .03em;
+      }
+
+      .cls-48 {
+        letter-spacing: .03em;
+      }
+
+      .cls-45 {
+        font-size: 10px;
+      }
+    </style>
+  </defs>
+  <g id="Text">
+    <g id="Layer_1">
+      <path class="cls-2" d="M174.7,56.65v336.38"/>
+      <rect class="cls-1" x="174.7" y="56.65" width="654.34" height="336.38"/>
+      <g>
+        <text class="cls-32" transform="translate(171.64 460.44)"><tspan x="0" y="0">0</tspan></text>
+        <text class="cls-32" transform="translate(248.29 460.44)"><tspan x="0" y="0">10</tspan></text>
+        <text class="cls-32" transform="translate(327.98 460.44)"><tspan x="0" y="0">20</tspan></text>
+        <text class="cls-32" transform="translate(407.67 460.44)"><tspan x="0" y="0">30</tspan></text>
+        <text class="cls-32" transform="translate(487.37 460.44)"><tspan x="0" y="0">40</tspan></text>
+        <text class="cls-32" transform="translate(567.06 460.44)"><tspan x="0" y="0">50</tspan></text>
+        <text class="cls-32" transform="translate(646.76 460.44)"><tspan x="0" y="0">60</tspan></text>
+        <text class="cls-32" transform="translate(726.45 460.44)"><tspan x="0" y="0">70</tspan></text>
+        <text class="cls-32" transform="translate(806.15 460.44)"><tspan x="0" y="0">80</tspan></text>
+      </g>
+      <g>
+        <g shape-rendering="crispEdges">
+          <g>
+            <path class="cls-25" d="M174.73,432.5v-44.85h207.21v44.85h-207.21Z"/>
+            <path class="cls-11" d="M381.94,432.5v-44.85h79.69v44.85h-79.69Z"/>
+            <path class="cls-13" d="M461.63,432.5v-44.85h47.82v44.85h-47.82Z"/>
+          </g>
+        </g>
+        <text class="cls-27" transform="translate(35.4 413.43)"><tspan x="0" y="0">Ecosystem Integration</tspan></text>
+      </g>
+      <g>
+        <g shape-rendering="crispEdges">
+          <g>
+            <path class="cls-3" d="M174.7,367.42v-44.85h127.51v44.85h-127.51Z"/>
+            <path class="cls-22" d="M302.21,367.42v-44.85h119.54v44.85h-119.54Z"/>
+            <path class="cls-7" d="M421.75,367.42v-44.85h103.61v44.85h-103.61Z"/>
+            <path class="cls-24" d="M525.36,367.42v-44.85h15.94v44.85h-15.94Z"/>
+          </g>
+        </g>
+        <text class="cls-27" transform="translate(56.91 348.36)"><tspan x="0" y="0">Legal &amp; Regulato</tspan><tspan class="cls-47" x="104.72" y="0">r</tspan><tspan x="109.86" y="0">y</tspan></text>
+      </g>
+      <g>
+        <g shape-rendering="crispEdges">
+          <g>
+            <path class="cls-5" d="M174.7,302.34v-44.85h167.36v44.85h-167.36Z"/>
+            <path class="cls-19" d="M342.06,302.34v-44.85h143.45v44.85h-143.45Z"/>
+            <path class="cls-12" d="M485.51,302.34v-44.85h71.73v44.85h-71.73Z"/>
+            <path class="cls-20" d="M557.24,302.34v-44.85h7.97v44.85h-7.97Z"/>
+          </g>
+        </g>
+        <text class="cls-27" transform="translate(130.92 283.28)"><tspan x="0" y="0">Ethical</tspan></text>
+      </g>
+      <g>
+        <g shape-rendering="crispEdges">
+          <g>
+            <path class="cls-9" d="M174.7,237.26v-44.85h151.42v44.85h-151.42Z"/>
+            <path class="cls-4" d="M326.12,237.26v-44.85h151.42v44.85h-151.42Z"/>
+            <path class="cls-10" d="M477.54,237.26v-44.85h103.61v44.85h-103.61Z"/>
+            <path class="cls-8" d="M581.14,237.26v-44.85h87.67v44.85h-87.67Z"/>
+          </g>
+        </g>
+        <text class="cls-27" transform="translate(123.47 218.2)"><tspan x="0" y="0">Societal</tspan></text>
+      </g>
+      <g>
+        <g shape-rendering="crispEdges">
+          <g>
+            <path class="cls-16" d="M174.7,172.18v-44.85h231.12v44.85h-231.12Z"/>
+            <path class="cls-6" d="M405.82,172.18v-44.85h167.36v44.85h-167.36Z"/>
+            <path class="cls-23" d="M573.17,172.18v-44.85h103.61v44.85h-103.61Z"/>
+            <path class="cls-21" d="M676.78,172.18v-44.85h55.78v44.85h-55.78Z"/>
+          </g>
+        </g>
+        <text class="cls-27" transform="translate(113.66 153.12)"><tspan x="0" y="0">Economic</tspan></text>
+      </g>
+      <g>
+        <g shape-rendering="crispEdges">
+          <g>
+            <path class="cls-14" d="M174.7,107.1v-44.85h286.9v44.85H174.7Z"/>
+            <path class="cls-18" d="M461.6,107.1v-44.85h175.34v44.85h-175.34Z"/>
+            <path class="cls-15" d="M636.93,107.1v-44.85h151.42v44.85h-151.42Z"/>
+            <path class="cls-17" d="M788.35,107.1v-44.85h7.97v44.85h-7.97Z"/>
+          </g>
+        </g>
+        <text class="cls-27" transform="translate(36.21 88.04)"><tspan class="cls-37" x="0" y="0">T</tspan><tspan x="6.38" y="0">echnical Per</tspan><tspan class="cls-40" x="80.97" y="0">f</tspan><tspan class="cls-31" x="85.17" y="0">ormance</tspan></text>
+      </g>
+    </g>
+    <text class="cls-26"><tspan x="184.72" y="119.71">Data Quali</tspan><tspan class="cls-48" x="246.37" y="119.71">t</tspan><tspan class="cls-39" x="250.67" y="119.71">y</tspan><tspan x="257.15" y="119.71">, Reliabili</tspan><tspan class="cls-47" x="308.46" y="119.71">t</tspan><tspan class="cls-29" x="312.76" y="119.71">y/Robustness, Securi</tspan><tspan class="cls-47" x="437.41" y="119.71">t</tspan><tspan class="cls-38" x="441.71" y="119.71">y</tspan><tspan x="448.19" y="119.71">, Accuracy</tspan></text>
+    <text class="cls-26"><tspan x="184.72" y="182.27">Fi</tspan><tspan class="cls-38" x="194.04" y="182.27">t</tspan><tspan x="197.5" y="182.27">-</tspan><tspan class="cls-40" x="202.02" y="182.27">f</tspan><tspan x="205.77" y="182.27">or-purpose, Value c</tspan><tspan class="cls-36" x="325.78" y="182.27">r</tspan><tspan x="329.92" y="182.27">eation, Sustainabili</tspan><tspan class="cls-47" x="439.57" y="182.27">t</tspan><tspan class="cls-38" x="443.87" y="182.27">y</tspan><tspan class="cls-29" x="450.35" y="182.27">, Financial Per</tspan><tspan class="cls-41" x="531.2" y="182.27">f</tspan><tspan x="534.95" y="182.27">ormance</tspan></text>
+    <text class="cls-26"><tspan x="184.72" y="247.95">Sa</tspan><tspan class="cls-41" x="198.73" y="247.95">f</tspan><tspan x="202.48" y="247.95">e</tspan><tspan class="cls-47" x="210.43" y="247.95">t</tspan><tspan class="cls-38" x="214.73" y="247.95">y</tspan><tspan x="221.21" y="247.95">, </tspan><tspan class="cls-39" x="227.64" y="247.95">T</tspan><tspan x="234.37" y="247.95">rus</tspan><tspan class="cls-47" x="252.04" y="247.95">t</tspan><tspan x="256.34" y="247.95">wo</tspan><tspan class="cls-47" x="276.19" y="247.95">r</tspan><tspan x="281.03" y="247.95">thiness, Openness, Public Good</tspan></text>
+    <text class="cls-26"><tspan x="184.72" y="311.49">Explainabili</tspan><tspan class="cls-47" x="250.85" y="311.49">t</tspan><tspan class="cls-38" x="255.15" y="311.49">y</tspan><tspan x="261.63" y="311.49">, Ethical Integri</tspan><tspan class="cls-47" x="347.94" y="311.49">t</tspan><tspan class="cls-39" x="352.24" y="311.49">y</tspan><tspan x="358.72" y="311.49">, </tspan><tspan class="cls-33" x="365.14" y="311.49">F</tspan><tspan x="371.32" y="311.49">airness, Social Justice</tspan></text>
+    <text class="cls-26"><tspan x="184.72" y="377.69">Governance, </tspan><tspan class="cls-38" x="266.5" y="377.69">T</tspan><tspan x="273.24" y="377.69">ranspa</tspan><tspan class="cls-34" x="313.55" y="377.69">r</tspan><tspan x="317.7" y="377.69">enc</tspan><tspan class="cls-38" x="340.57" y="377.69">y</tspan><tspan x="347.06" y="377.69">, Accountabili</tspan><tspan class="cls-47" x="428.21" y="377.69">t</tspan><tspan class="cls-38" x="432.51" y="377.69">y</tspan><tspan x="438.99" y="377.69">, Contestabili</tspan><tspan class="cls-47" x="516.2" y="377.69">t</tspan><tspan x="520.5" y="377.69">y</tspan></text>
+    <text class="cls-45"><tspan x="381.27" y="484.38">Number of </tspan><tspan class="cls-36" x="431.79" y="484.38">r</tspan><tspan x="434.96" y="484.38">espondents assuring </tspan><tspan class="cls-43" x="528.93" y="484.38">f</tspan><tspan class="cls-28" x="531.93" y="484.38">or this principle</tspan></text>
+    <text class="cls-26"><tspan x="184.72" y="443.14">Inte</tspan><tspan class="cls-36" x="207.23" y="443.14">r</tspan><tspan class="cls-30" x="211.37" y="443.14">operabili</tspan><tspan class="cls-47" x="264.72" y="443.14">t</tspan><tspan class="cls-38" x="269.02" y="443.14">y</tspan><tspan x="275.5" y="443.14">, </tspan><tspan class="cls-38" x="281.93" y="443.14">F</tspan><tspan x="288.03" y="443.14">ederation, Evolution</tspan></text>
+  </g>
+  <g id="Hex_codes">
+    <text class="cls-44" transform="translate(0 43.48)"><tspan x="0" y="0">Which p</tspan><tspan class="cls-42" x="73.6" y="0">r</tspan><tspan x="80.16" y="0">ope</tspan><tspan class="cls-46" x="116.05" y="0">r</tspan><tspan x="123.41" y="0">ties do you cur</tspan><tspan class="cls-35" x="255.49" y="0">r</tspan><tspan x="261.85" y="0">ently consider when assuring your digital </tspan><tspan class="cls-46" x="631.82" y="0">t</tspan><tspan x="638.72" y="0">winning technology?</tspan></text>
+  </g>
+</svg>

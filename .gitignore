@@ -1,0 +1,8 @@
+.DS_store
+.venv/
+venv/
+*.pyc
+db/*
+
+.quarto/
+_site/
