@@ -7,9 +7,8 @@ This site has been setup to help users navigate the resources of this repository
 On this site you will find the following:
 
 - Description of the project (this page)
-- [Description of the codebase](codebase.qmd)
 - [Methodology for our survey](methodology.qmd)
-- [Results and analysis](results-analysis.qmd)
+- [Results and analysis](analysis.qmd)
 
 ## Trustworthy and Ethical Assurance of Digital Twins (TEA-DT)
 

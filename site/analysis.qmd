@@ -13,8 +13,8 @@ The analysis is presented across the following sections:
 The analysis presented on this page is only a selection of the key results. However, other resources are available:
 
 - To view our survey questions, please [click here](questions.qmd).
-- To view our full results, please [click here](notebooks/full_results.ipynb).
-- To view the thematic content analaysis of the free-text answers, please [click here](notebooks/content_analysis.ipynb).
+- To view the code used for this analysis (e.g. production of graphs), please [click here](https://github.com/alan-turing-institute/teadt-community-survey/blob/main/Survey%20Reports/tea_survey_narrative_report.ipynb).
+- To view the thematic content analaysis of the free-text answers, please [click here](https://github.com/alan-turing-institute/teadt-community-survey/blob/main/Survey%20Reports/tea_gemini_content_analysis.ipynb).
 :::
 
 ## Current Practices and Attitudes

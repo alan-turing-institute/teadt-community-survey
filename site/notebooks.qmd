@@ -1,9 +1,11 @@
 # Notebooks
 
 ::: {.callout-note}
-On this page you will find a list and description of our Jupyter notebooks, which present and explain the code used during different stages of our analysis.
+On this page you will find a list and description of our Jupyter notebooks (available on our GitHub repository), which present and explain the code used during different stages of our analysis.
 :::
 
 | Notebook Title | Description |
 | :--- | :--- |
-| [Content Analysis](notebooks/tea_gemini_content_analysis.ipynb) | This notebook documents the method we applied for systematically examining the free-text data collected across four distinct survey fields. |
+| [Narrative Report](https://github.com/alan-turing-institute/teadt-community-survey/blob/main/Survey%20Reports/tea_survey_narrative_report.ipynb) | This notebook provides the code used for creating the charts and analysis presented in our [narrative report](analysis.qmd). |
+| [Content Analysis](https://github.com/alan-turing-institute/teadt-community-survey/blob/main/Survey%20Reports/tea_gemini_content_analysis.ipynb) | This notebook documents the method we applied for systematically examining the free-text data collected across four distinct survey fields. |
+

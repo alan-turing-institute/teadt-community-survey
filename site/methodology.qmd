@@ -83,7 +83,7 @@ To see a list of all survey questions, please [click here](questions.qmd).
 
 The survey began in on May 30th and was open until July 31st.
 
-The survey was developed as a web-based application using the open-source Python framework Streamlit (see [codebase](codebase.qmd) for further information), enabling an interactive and user-friendly experience for participants.
+The survey was developed as a web-based application using the open-source Python framework Streamlit, enabling an interactive and user-friendly experience for participants.
 It was hosted on Azure infrastructure in line with our ethics review to data protection and secure data handling.
 
 The survey took an average of 18 minutes to complete.
