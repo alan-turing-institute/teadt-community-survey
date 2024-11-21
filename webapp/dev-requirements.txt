@@ -1,4 +1,0 @@
-black
-mypy
-pandas-stubs
-flake8
