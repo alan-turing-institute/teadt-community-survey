@@ -14,3 +14,7 @@ On this site you will find (among other things) the following:
 - Details about our methodology
 - Results of the survey analysis
 - News and Updates
+
+## News & Updates
+
+- We'll give a brief roundup of the survey results during a DT Hub [Gemini Call](https://digitaltwinhub.co.uk/gemini-call/) on Dec 3rd 2024 - Join us!
