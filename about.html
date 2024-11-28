@@ -149,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   <li><a href="#about-our-codebase" id="toc-about-our-codebase" class="nav-link" data-scroll-target="#about-our-codebase">About our Codebase</a></li>
   </ul></li>
-  <li><a href="#webapp-directory" id="toc-webapp-directory" class="nav-link" data-scroll-target="#webapp-directory"><code>webapp</code> directory</a></li>
+  <li><a href="#app-directory" id="toc-app-directory" class="nav-link" data-scroll-target="#app-directory"><code>app</code> directory</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="github.com/alan-turing-institute/teadt-community-survey/blob/main/about.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="github.com/alan-turing-institute/teadt-community-survey/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -233,15 +233,16 @@ ul.task-list li input[type="checkbox"] {
 <p>However, for transparency, our code is fully available through the associated GitHub repository.</p>
 </section>
 </section>
-<section id="webapp-directory" class="level2">
-<h2 class="anchored" data-anchor-id="webapp-directory"><code>webapp</code> directory</h2>
-<p>In the <code>webapp</code> directory, you will find code for the main application, such as the following individual Python files:</p>
+<section id="app-directory" class="level2">
+<h2 class="anchored" data-anchor-id="app-directory"><code>app</code> directory</h2>
+<p>In the <code>app/webapp/</code> directory, you will find code for the main application, such as the following individual Python files:</p>
 <ul>
-<li><strong><code>pages/01_Consent.py</code></strong>: Consent was obtained prior to completion of the survey by requirining explicit acknowledgement of key statements. This file handles the consent form.</li>
-<li><strong><code>pages/02_1_-_Community.py</code></strong>: This file generates survey questions related to the community’s digital twin practices, and is similar to other pages within this directory (e.g.&nbsp;<code>06_3_-_Satisfaction.py</code>).</li>
-<li><strong><code>pages/03_Community_Results.py</code></strong>: This file displays the results from the questions in the previous page (i.e.&nbsp;<code>02_1_-_Community.py</code>). It retrieves data from our database (MongoDB), counts responses matching the user’s profile, and provides feedback based on the count.</li>
-<li><strong>mongo_utils.py</strong>: This file contains utility functions for interacting with database. It includes functions for initialising the database connection, checking response counts, and retrieving field values from the database.</li>
-<li><strong>plot_utils.py</strong>: This file contains utility functions for generating plots and visualisations.</li>
+<li><strong><code>webapp/pages/01_Consent.py</code></strong>: Consent was obtained prior to completion of the survey by requirining explicit acknowledgement of key statements. This file handles the consent form.</li>
+<li><strong><code>webapp/pages/02_1_-_Community.py</code></strong>: This file generates survey questions related to the community’s digital twin practices, and is similar to other pages within this directory (e.g.&nbsp;<code>06_3_-_Satisfaction.py</code>).</li>
+<li><strong><code>webapp/pages/03_Community_Results.py</code></strong>: This file displays the results from the questions in the previous page (i.e.&nbsp;<code>02_1_-_Community.py</code>). It retrieves data from our database (MongoDB), counts responses matching the user’s profile, and provides feedback based on the count.</li>
+<li><strong>webapp/mongo_utils.py</strong>: This file contains utility functions for interacting with database. It includes functions for initialising the database connection, checking response counts, and retrieving field values from the database.</li>
+<li><strong>webapp/plot_utils.py</strong>: This file contains utility functions for generating plots and visualisations.</li>
+<li><strong>Makefile</strong>: The Makefile streamlines key development and deployment tasks for the application. It includes commands for building and running the app locally or in Docker, managing dependencies, and setting up a database. Additionally, it provides utilities for code linting, formatting, and type checking to maintain code quality.</li>
 </ul>
 <p>These files, and the remaining files contained within the <code>webapp</code> directory, collectively manage the survey’s flow, from user consent to displaying results and follow-up questions, while interacting with the MongoDB database and generating visualisations using Streamlit.</p>
 
