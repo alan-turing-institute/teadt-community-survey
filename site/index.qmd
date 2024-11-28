@@ -1,0 +1,20 @@
+---
+title: "TEA-DT Community Pulse Check"
+sidebar: false
+---
+
+![](images/hero.jpg){fig-alt="A hero image for the website. It is an abstract image of people on floating platforms, investigating information. The illustrator is Jonny lighthands."}
+
+Welcome to our Github repository's project pages.
+These pages were set up to help users navigate information pertainining to the TEA-DT Community Pulse Check.
+
+On this site you will find (among other things) the following:
+
+- Information about the TEA-DT project and the community pulse check
+- Details about our methodology
+- Results of the survey analysis
+- News and Updates
+
+## News & Updates
+
+- We'll give a brief roundup of the survey results during a DT Hub [Gemini Call](https://digitaltwinhub.co.uk/gemini-call/) on Dec 3rd 2024 - Join us!

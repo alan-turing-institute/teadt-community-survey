@@ -1,0 +1,98 @@
+---
+title: "About"
+---
+
+This site has been setup to help users navigate the resources of this repository.
+
+On this site you will find the following:
+
+- Description of the project (this page)
+- [Methodology for our survey](methodology.qmd)
+- [Results and analysis](analysis.qmd)
+
+## Trustworthy and Ethical Assurance of Digital Twins (TEA-DT)
+
+The Trustworthy and Ethical Assurance of Digital Twins project ran from February to October 2024.
+It was a collaborative project between the Turing Research and Innovation Cluster in Digital Twins (Alan Turing Institute) and the Centre for Assuring Autonomy (University of York), with support from the Responsible Technology Adoption Unit (UK Department for Science, Innovation and Technology).
+Funding for the project was awarded by the [BRAID programme](https://braiduk.org/) (UKRI AHRC).
+
+There were three primary objectives for this project:
+
+1. Scoping research into assurance of digital twins
+2. Co-design of an open-source tool and platform
+3. Establish a multi-disciplinary and multi-sector community of practice
+
+### Community Pulse Check
+
+As part of the scoping research, [Dr Sophie Arana](https://www.turing.ac.uk/people/dr-sophie-arana) led the design and delivery of a survey, known as our "community pulse check", to help identify current attitudes, needs, and capabilities, among digital twin practitioners (e.g. researchers and developers).
+
+This survey was carried out in partnership with the [Digital Twin Hub](https://digitaltwinhub.co.uk/) (Connected Places Catapult) given their extensive network of over 5000 members.
+
+### Project Team
+
+<table>
+    <tbody>
+        <tr>
+            <td align="center" valign="top" width="14.28%">
+                <a href="https://github.com/aranas"><img src="https://avatars.githubusercontent.com/u/6906140?v=4?s=100" width="100px;" alt="Sophie Arana" style="border-radius: 50%;"/><br /><sub><b>Sophie Arana</b></sub></a>
+            </td>
+            <td align="center" valign="top" width="14.28%">
+                <a href="https://github.com/chrisdburr">
+                    <img src="https://avatars.githubusercontent.com/u/63010234?v=4?s=100" width="100px;" alt="Christopher Burr" style="border-radius: 50%;"/>
+                    <br />
+                    <sub><b>Christopher Burr</b></sub>
+                </a>
+                <br />
+            </td>
+            <td align="center" valign="top" width="14.28%">
+                <a href="https://github.com/cptanalatriste">
+                    <img src="https://avatars.githubusercontent.com/u/1616531?v=4?s=100" width="100px;" alt="Christopher Burr" style="border-radius: 50%;"/>
+                    <br />
+                    <sub><b>Carlos Gavidia-Calderon</b></sub>
+                </a>
+                <br />
+            </td>
+            <td align="center" valign="top" width="14.28%">
+                <a href="https://github.com/mavlishek">
+                    <img src="https://avatars.githubusercontent.com/u/35903424?v=4?s=100" width="100px;" alt="Nathan Hughes" style="border-radius: 50%;"/>
+                    <br />
+                    <sub><b>Nathan Hughes</b></sub>
+                </a>
+                <br />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+### Acknowledgements
+
+In addition to the above contributors, we would also like to thank the following people:
+
+<!-- TODO: Add list -->
+
+### About our Codebase
+
+For the community pulse-check, we designed an interactive form that could provide feedback to participants as soon as they submitted their responses.
+This was only possible for a subset of questions, such as those with a fixed set of responses:
+
+> Which of the following assurance mechanisms do you currently rely on for your own (or your client's) digital twin(s)?
+
+This was achieved by using a free and open-source framework known as [Streamlit](https://streamlit.io).
+Streamlit is designed to help users build data-driven web applications, with an emphasis on interactive dashboards and visualisations, using Python (i.e. with minimal knowledge of HTML, CSS, and Javascript).
+
+That said, it took considerable time and effort to customise the survey and ensure that community responses were properly displayed, raising questions among the team about whether it provided sufficient value to those completing the survey. 
+
+However, for transparency, our code is fully available through the associated GitHub repository.
+
+## `webapp` directory
+
+In the `webapp` directory, you will find code for the main application, such as the following individual Python files:
+
+- **`pages/01_Consent.py`**: Consent was obtained prior to completion of the survey by requirining explicit acknowledgement of key statements. This file handles the consent form.
+- **`pages/02_1_-_Community.py`**: This file generates survey questions related to the community's digital twin practices, and is similar to other pages within this directory (e.g. `06_3_-_Satisfaction.py`).
+- **`pages/03_Community_Results.py`**: This file displays the results from the questions in the previous page (i.e. `02_1_-_Community.py`). It retrieves data from our database (MongoDB), counts responses matching the user's profile, and provides feedback based on the count.
+- **mongo_utils.py**: This file contains utility functions for interacting with database. It includes functions for initialising the database connection, checking response counts, and retrieving field values from the database.
+- **plot_utils.py**: This file contains utility functions for generating plots and visualisations. 
+
+These files, and the remaining files contained within the `webapp` directory, collectively manage the survey's flow, from user consent to displaying results and follow-up questions, while interacting with the MongoDB database and generating visualisations using Streamlit.
+

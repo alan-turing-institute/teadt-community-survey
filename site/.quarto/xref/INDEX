@@ -1,0 +1,86 @@
+{
+  "index.qmd": {
+    "index.html": "a062f806"
+  },
+  "about.qmd": {
+    "about.html": "6638da3d"
+  },
+  "codebase.qmd": {
+    "codebase.html": "ec9ac6c9"
+  },
+  "results-analysis.qmd": {
+    "results-analysis.html": "62ae3878"
+  },
+  "methodology.qmd": {
+    "methodology.html": "92446604"
+  },
+  "images/report_plots/gemini_familiarity_caption.md": {
+    "gemini_familiarity_caption.html": "51b612e3"
+  },
+  "images/report_plots/experience_caption.md": {
+    "experience_caption.html": "cad7f4a0"
+  },
+  "images/report_plots/challenge_stacked_caption.md": {
+    "challenge_stacked_caption.html": "b87c93d3"
+  },
+  "images/report_plots/comms_caption.md": {
+    "comms_caption.html": "a5dd72d3"
+  },
+  "images/report_plots/wordclouds/wordcloud_meaning_caption.md": {
+    "wordcloud_meaning_caption.html": "b96c24f7"
+  },
+  "images/report_plots/roles_caption.md": {
+    "roles_caption.html": "7b56decc"
+  },
+  "images/report_plots/relevance_stacked_caption.md": {
+    "relevance_stacked_caption.html": "6ec6a888"
+  },
+  "images/report_plots/formatted_plots/properties_assured_caption.md": {
+    "properties_assured_caption.html": "ed2f039c"
+  },
+  "images/report_plots/formatted_plots/trust_challenges_caption.md": {
+    "trust_challenges_caption.html": "16d24586"
+  },
+  "images/report_plots/formatted_plots/quadrant_gemini_caption.md": {
+    "quadrant_gemini_caption.html": "bb974b4a"
+  },
+  "images/report_plots/formatted_plots/data_sharing_caption.md": {
+    "data_sharing_caption.html": "58d4cb32"
+  },
+  "images/report_plots/formatted_plots/attitudes_caption.md": {
+    "attitudes_caption.html": "977eeb80"
+  },
+  "analysis-and-notebooks.qmd": {
+    "analysis-and-notebooks.html": "e8b49a81"
+  },
+  "notebooks/tea_gemini_content_analysis.ipynb": {
+    "tea_gemini_content_analysis.html": "314c3686"
+  },
+  "notebooks/tea_survey_current_practice.ipynb": {
+    "tea_survey_current_practice.html": "0c34ffa1"
+  },
+  "notebooks/tea_survey_narrative_report.ipynb": {
+    "tea_survey_narrative_report.html": "e7320686"
+  },
+  "notebooks/tea_survey_readiness.ipynb": {
+    "tea_survey_readiness.html": "9160521b"
+  },
+  "notebooks.qmd": {
+    "notebooks.html": "d095640c"
+  },
+  "analysis.qmd": {
+    "analysis.html": "405932d3"
+  },
+  "404.qmd": {
+    "404.html": "3e45c225"
+  },
+  "questions.qmd": {
+    "questions.html": "8f3d978d"
+  },
+  "notebooks/full_results.ipynb": {
+    "full_results.html": "2b579907"
+  },
+  "notebooks/content_analysis.ipynb": {
+    "content_analysis.html": "7c1ae8fc"
+  }
+}
