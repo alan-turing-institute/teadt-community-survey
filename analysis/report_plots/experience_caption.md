@@ -1,0 +1,1 @@
+Figure X: **Assurance Providers Within Organizations**. The bar chart shows the distribution of responses to the multiple-choice question, "Who provides assurance within/for your organisation?" Respondents could choose from four options.

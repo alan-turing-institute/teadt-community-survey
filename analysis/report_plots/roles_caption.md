@@ -1,0 +1,1 @@
+Figure X: **Distribution of Survey Respondents by Role**. The pie chart shows the percentage of survey respondents based on their roles within their organizations. The question asked was, "What is your role within your organisation?" 

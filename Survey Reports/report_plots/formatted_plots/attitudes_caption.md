@@ -1,7 +1,0 @@
-Figure X: **Attitudes and Satisfaction Towards Assurance Practices**. This figure presents the results from multiple questions assessing respondents' attitudes and satisfaction with assurance practices. The first three bars correspond to statements where respondents rated their level of agreement on a Likert scale from disagreeing (orange) to agreeing (green):
-
-    "The way we communicate our assurance activities significantly contributes to building and maintaining trust and confidence among our (or our client's) stakeholders."
-    "We can clearly link specific assurance activities directly to higher-level principles guiding our (or our client's) system's trustworthiness and ethical standards."
-    "Our assurance activities extend beyond mere checklist compliance and are substantively integrated into our (or our client's) operational processes."
-
-The stacked bars show the percentage of respondents selecting each Likert rating, with colors coding for the type of response.The bottom bar reflects responses to the question, "How satisfied are you with how your team identifies and documents requirements, actions, and decisions in your assurance process?" Ratings ranged from very unsatisfied (purple) to very satisfied (blues). Percentages of "Neutral" responses are represented in grey (not displayed as bars).
