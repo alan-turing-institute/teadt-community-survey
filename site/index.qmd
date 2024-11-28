@@ -15,6 +15,16 @@ On this site you will find (among other things) the following:
 - Results of the survey analysis
 - News and Updates
 
+:::{.callout-note}
+### How to Cite These Results
+
+The results published on this website can be cited using the following DOI:  
+[https://doi.org/10.5281/zenodo.14238745](https://doi.org/10.5281/zenodo.14238745)
+
+**Full Citation**:  
+Sophie Arana, Carlos Gavidia-Calderon, Christopher Burr, & Kalle Westerling. (2024). *alan-turing-institute/teadt-community-survey: v1.0.0: Community Pulse Check Final Release with Narrative Report* (v1.0.0). Zenodo. [https://doi.org/10.5281/zenodo.14238745](https://doi.org/10.5281/zenodo.14238745)
+:::
+
 ## News & Updates
 
 - We'll give a brief roundup of the survey results during a DT Hub [Gemini Call](https://digitaltwinhub.co.uk/gemini-call/) on Dec 3rd 2024 - Join us!
