@@ -25,10 +25,10 @@ jobs:
         python-version: "3.10"
     - name: Install dependencies
       run: |
-        make install-dependencies
+        make -C app install-dependencies
     - name: Lint with flake8
       run:  |
-        make run-linter
+        make -C app run-linter
     - name: Type cheking with mypy
       run: |
-        make run-type-checker
+        make -C app run-type-checker
