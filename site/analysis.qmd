@@ -88,7 +88,7 @@ This divergence may partly explain why 24% of respondents reported being unsatis
 
 ## Evaluating the Gemini Principles
 
-In addition to the current practices and attitudes, a further key motivation for this survey was to better understand how the use and adoption of the Gemini Principles.
+In addition to the current practices and attitudes, a further key motivation for this survey was to better understand the use and adoption of the Gemini Principles.
 Specifically, we wanted to understand how the community assessed the utility of these principles and whether there was operational value from the perspective of assurance.
 
 ::: {.callout-note}
