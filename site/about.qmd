@@ -84,15 +84,16 @@ That said, it took considerable time and effort to customise the survey and ensu
 
 However, for transparency, our code is fully available through the associated GitHub repository.
 
-## `webapp` directory
+## `app` directory
 
-In the `webapp` directory, you will find code for the main application, such as the following individual Python files:
+In the `app/webapp/` directory, you will find code for the main application, such as the following individual Python files:
 
-- **`pages/01_Consent.py`**: Consent was obtained prior to completion of the survey by requirining explicit acknowledgement of key statements. This file handles the consent form.
-- **`pages/02_1_-_Community.py`**: This file generates survey questions related to the community's digital twin practices, and is similar to other pages within this directory (e.g. `06_3_-_Satisfaction.py`).
-- **`pages/03_Community_Results.py`**: This file displays the results from the questions in the previous page (i.e. `02_1_-_Community.py`). It retrieves data from our database (MongoDB), counts responses matching the user's profile, and provides feedback based on the count.
-- **mongo_utils.py**: This file contains utility functions for interacting with database. It includes functions for initialising the database connection, checking response counts, and retrieving field values from the database.
-- **plot_utils.py**: This file contains utility functions for generating plots and visualisations. 
+- **`webapp/pages/01_Consent.py`**: Consent was obtained prior to completion of the survey by requirining explicit acknowledgement of key statements. This file handles the consent form.
+- **`webapp/pages/02_1_-_Community.py`**: This file generates survey questions related to the community's digital twin practices, and is similar to other pages within this directory (e.g. `06_3_-_Satisfaction.py`).
+- **`webapp/pages/03_Community_Results.py`**: This file displays the results from the questions in the previous page (i.e. `02_1_-_Community.py`). It retrieves data from our database (MongoDB), counts responses matching the user's profile, and provides feedback based on the count.
+- **webapp/mongo_utils.py**: This file contains utility functions for interacting with database. It includes functions for initialising the database connection, checking response counts, and retrieving field values from the database.
+- **webapp/plot_utils.py**: This file contains utility functions for generating plots and visualisations. 
+- **Makefile**: The Makefile streamlines key development and deployment tasks for the application. It includes commands for building and running the app locally or in Docker, managing dependencies, and setting up a database. Additionally, it provides utilities for code linting, formatting, and type checking to maintain code quality.
 
 These files, and the remaining files contained within the `webapp` directory, collectively manage the survey's flow, from user consent to displaying results and follow-up questions, while interacting with the MongoDB database and generating visualisations using Streamlit.
 
